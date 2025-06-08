@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "src": "/.*",
+      "headers": {
+        "User-Agent": "facebookexternalhit/.*"
+      },
+      "continue": true
+    }
+  ]
+}
