@@ -1,17 +1,9 @@
 {
-  "routes": [
-    {
-      "src": "/.*",
-      "headers": {
-        "User-Agent": "facebookexternalhit/.*"
-      },
-      "continue": true
-    }
-  ],
   "rewrites": [
-    { "source": "/en", "destination": "/" },
-    { "source": "/ar", "destination": "/" },
-    { "source": "/en/(.*)", "destination": "/$1" },
-    { "source": "/ar/(.*)", "destination": "/$1" }
+    // 1. Root of each language (/en or /ar) → /
+    { "source": "/(en|ar)", "destination": "/" },
+
+    // 2. Anything under /en/* or /ar/* → /* (strip the language prefix)
+    { "source": "/(en|ar)/:path*", "destination": "/:path*" }
   ]
 }
