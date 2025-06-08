@@ -37,7 +37,7 @@
                 padding: 0.8rem 1rem; /* Mobile-friendly padding */
                 margin-bottom: 0.8rem; /* Default gap for mobile */
                 max-width: 90%; /* Align content width with image */
-                margin-left: auto;
+               Gig margin-left: auto;
                 margin-right: auto;
             }
 
@@ -52,13 +52,15 @@
                 background-size: cover; /* Full image visible */
                 position: relative; /* For overlay */
                 overflow: hidden; /* Prevent scrollbars from image shift */
-                will-change: background-position; /* Optimize for animation */
+                will-change: background-position, filter; /* Optimize for animation and blur */
+                transition: filter 0.3s ease; /* Smooth blur transition */
+                filter: var(--blur-radius, blur(0px)); /* Default to no blur */
             }
             .intro-slide::before {
                 content: "";
                 position: absolute;
                 inset: 0;
-                background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+                background: rgba(0, 0, 0, 0.4); /* Fixed dark overlay for contrast */
                 z-index: 1;
             }
 
@@ -113,7 +115,7 @@
             }
 
             .countdown .num {
-                font-size: clamp(1.8rem, 5.5vw, 2.7rem); /* Bigger numbers */
+                font-size: clamp(2rem, 6vw, 3rem); /* Bigger numbers */
                 font-weight: 600;
                 color: var(--accent);
             }
@@ -131,7 +133,7 @@
                 margin-bottom: 0.4rem;
             }
 
-            a.btn {
+            a Collecteda.btn {
                 display: inline-block;
                 margin-top: 0.8rem;
                 padding: 0.6rem 1rem;
@@ -214,7 +216,7 @@
         </section>
 
         <section class="spaced-section">
-            <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
+            <h1 class="great">Julien & Christina</h1>
             <h3>Sunday, August 31<sup>st</sup>, 2025</h3>
 
             <div class="countdown" id="countdown">
@@ -265,19 +267,27 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            // Parallax Effect
-            function parallaxEffect() {
+            // Parallax and Blur Effect
+            function parallaxAndBlurEffect() {
                 const introSlide = document.querySelector(".intro-slide");
                 if (!introSlide) return;
 
-                // Throttle scroll event for performance
+                let lastScrollY = window.scrollY;
                 let isScrolling = false;
+
                 window.addEventListener("scroll", function () {
                     if (!isScrolling) {
                         window.requestAnimationFrame(function () {
                             const scrollPosition = window.scrollY;
-                            const offset = scrollPosition * 0.6; // Adjust speed of parallax (lower = subtler)
-                            introSlide.style.backgroundPositionY = `${offset}px`;
+                            // Parallax effect
+                            const parallaxOffset = scrollPosition * 0.7; // Adjust speed of parallax
+                            introSlide.style.backgroundPositionY = `${parallaxOffset}px`;
+
+                            // Blur effect: increase blur as you scroll down
+                            const maxScroll = introSlide.offsetHeight * 0.7; // Blur over half the section height
+                            const blurRadius = Math.min(10, (scrollPosition / maxScroll) * 10); // Blur from 0px to 10px
+                            introSlide.style.setProperty("--blur-radius", `blur(${blurRadius}px)`); // Set CSS custom property
+
                             isScrolling = false;
                         });
                         isScrolling = true;
@@ -285,9 +295,9 @@
                 });
             }
 
-            // Run parallax only if the device supports it
+            // Run parallax and blur only if the device supports it
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
-                parallaxEffect();
+                parallaxAndBlurEffect();
             }
         </script>
     </body>
