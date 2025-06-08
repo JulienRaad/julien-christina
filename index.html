@@ -93,24 +93,29 @@
       margin-bottom: 1rem;
     }
 
-    .countdown {
-      display: flex;
-      gap: 1rem;
-      margin: 0.8rem 0 0.4rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .countdown .box {
-      padding: 0.6rem 0.5rem;
-      min-width: 60px;
-      background: rgba(0, 0, 0, 0.05);
-      border-radius: 6px;
-    }
-    .countdown .num {
-      font-size: clamp(1.4rem, 5vw, 2rem);
-      font-weight: 600;
-      color: var(--accent);
-    }
+.countdown {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.8rem 0 0.4rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+}
+.countdown .box {
+  padding: 0.4rem 0.6rem;
+  min-width: auto;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-weight: 600;
+  color: var(--accent);
+}
+.countdown .label {
+  font-size: 0.75em;
+  margin-left: 0.2em;
+}
 
     .small-heading {
       text-transform: uppercase;
@@ -180,7 +185,7 @@
       .countdown .num {
         font-size: clamp(1.8rem, 5vw, 2.4rem);
       }
-
+      
       .small-heading {
         font-size: 0.85rem;
       }
@@ -210,14 +215,14 @@
 
   <section class="spaced-section">
     <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
-    <h3>Sunday, August 31, 2025</h3>
+    <h3>Sunday, August 31<sup>st</sup>, 2025</h3>
 
-    <div class="countdown" id="countdown">
-      <div class="box"><span class="num" id="days">0</span><br>Days</div>
-      <div class="box"><span class="num" id="hours">0</span><br>Hours</div>
-      <div class="box"><span class="num" id="minutes">0</span><br>Minutes</div>
-      <div class="box"><span class="num" id="seconds">0</span><br>Seconds</div>
-    </div>
+<div class="countdown" id="countdown">
+  <div class="box"><span class="num" id="days">0</span><span class="label">D</span></div>
+  <div class="box"><span class="num" id="hours">0</span><span class="label">H</span></div>
+  <div class="box"><span class="num" id="minutes">0</span><span class="label">M</span></div>
+  <div class="box"><span class="num" id="seconds">0</span><span class="label">S</span></div>
+</div>
   </section>
 
   <section class="spaced-section">
