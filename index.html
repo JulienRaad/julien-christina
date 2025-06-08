@@ -278,11 +278,12 @@
       parallaxEffect();
     }
 
-    // Set initial scroll offset after page load
+    // Set initial scroll offset on page load
     window.addEventListener('load', function () {
-      setTimeout(function () {
-        window.scrollTo(0, 100); // Adjust this value to control how far down the page starts
-      }, 0); // Delay to ensure page is fully loaded
+      window.scrollTo({
+        top: 150, // Adjust this value to control how far down the page starts
+        behavior: 'smooth' // Smooth scroll for better user experience
+      });
     });
   </script>
 </body>
