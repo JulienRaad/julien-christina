@@ -309,16 +309,7 @@
                 document.getElementById("rsvpContacts").innerHTML = strings.rsvpContacts.replace(/\n/g, "<br />");
 
                 // If Arabic, switch direction to rtl and adjust styles
-                if (lang === "ar") {
-                    document.documentElement.lang = "ar";
-                    document.documentElement.dir = "rtl";
-                    document.body.style.direction = "rtl";
-                    // You might want to add Arabic fonts and adjust CSS accordingly here
-                } else {
-                    document.documentElement.lang = "en";
-                    document.documentElement.dir = "ltr";
-                    document.body.style.direction = "ltr";
-                }
+                document.documentElement.lang = lang;
             }
 
             // Countdown timer example
@@ -341,6 +332,7 @@
                         return;
                     }
 
+                    let locale = (lang === "ar") ? "ar-lb" : lang;
                     const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString('ar');
                     const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString('ar');
                     const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString('ar');
