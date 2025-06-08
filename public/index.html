@@ -156,8 +156,7 @@
             }
             .small-heading {
                 text-transform: uppercase;
-                letter-spacing: 1.5px;
-                font-size: 0.75rem;
+                font-size: 1rem;
                 color: var(--accent);
                 margin-bottom: 0.4rem;
             }
@@ -259,6 +258,10 @@
             <p id="rsvpContacts"></p>
         </section>
 
+        <section>
+            <h3 id="goodNight"></h3>
+        </section>
+
         <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
         <script>
@@ -316,6 +319,7 @@
                 document.getElementById("accountNumber").textContent = strings.accountNumber;
 
                 document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
+                document.getElementById("goodNight").textContent = strings.goodNight;
                 document.getElementById("rsvpContacts").innerHTML = strings.rsvpContacts.replace(/\n/g, "<br />");
             }
 
