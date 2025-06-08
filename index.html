@@ -25,8 +25,6 @@
                 color: var(--text);
                 background: var(--primary);
                 scroll-behavior: smooth;
-                overflow-x: hidden; /* Prevent horizontal scrollbars */
-                touch-action: auto; /* Ensure smooth touch scrolling */
             }
 
             section:not(.intro-slide) {
@@ -38,13 +36,9 @@
                 text-align: center;
                 padding: 0.8rem 1rem; /* Mobile-friendly padding */
                 margin-bottom: 0.8rem; /* Default gap for mobile */
-                max-width: 90%; /* Align content width */
+                max-width: 90%; /* Align content width with image */
                 margin-left: auto;
                 margin-right: auto;
-                background: rgba(255, 255, 255, 0.9); /* Semi-transparent background for readability */
-                border-radius: 8px; /* Optional: slight rounding for aesthetics */
-                position: relative; /* Ensure content is above background */
-                z-index: 2; /* Place content above background */
             }
 
             .spaced-section {
@@ -53,19 +47,19 @@
 
             .intro-slide {
                 width: 100vw;
-                min-height: 70vh; /* Header height */
-                background: url("header.png") center top / cover fixed; /* Fixed background */
+                min-height: 70vh; /* Reduced height for mobile */
+                background: url("header.png") center top no-repeat; /* Anchor image at top */
+                background-size: cover; /* Full image visible */
                 position: relative; /* For overlay */
-                overflow: hidden; /* Prevent scrollbars */
-                z-index: 1; /* Below content sections */
+                overflow: hidden; /* Prevent scrollbars from image shift */
+                will-change: background-position; /* Optimize for animation */
             }
-
             .intro-slide::before {
                 content: "";
                 position: absolute;
                 inset: 0;
                 background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
-                z-index: 1; /* Above background but below content */
+                z-index: 1;
             }
 
             h1.great {
@@ -100,6 +94,13 @@
                 line-height: 1.5;
             }
 
+
+
+
+
+
+
+
             .countdown {
                 display: flex;
                 gap: 0.5rem;
@@ -119,7 +120,7 @@
             }
 
             .countdown .num {
-                font-size: clamp(1.7rem, 5.5vw, 2.7rem); /* Bigger numbers */
+                font-size: clamp(2rem, 6vw, 3rem); /* Bigger numbers */
                 font-weight: 600;
                 color: var(--accent);
             }
@@ -127,6 +128,7 @@
             .countdown .label {
                 font-size: 0.75em;
                 margin-left: 0.2em;
+
             }
 
             .small-heading {
@@ -150,10 +152,10 @@
 
             /* Desktop and larger screens */
             @media (min-width: 600px) {
-                section:not(.intro-slide) {
+                section {
                     padding: 1rem 1.2rem;
                     margin-bottom: 1rem;
-                    max-width: 600px; /* Align with typical content width */
+                    max-width: 600px; /* Align with typical image width on desktop */
                 }
 
                 .spaced-section {
@@ -161,7 +163,8 @@
                 }
 
                 .intro-slide {
-                    min-height: 70vh; /* Consistent header height */
+                    min-height: 70vh; /* Reduced height for desktop */
+                    background-size: cover; /* Parallax, full image */
                 }
 
                 h1.great {
@@ -207,6 +210,11 @@
             </blockquote>
         </section>
 
+
+
+
+
+
         <section>
             <div style="font-weight: 600;">
                 <p class="small-heading">
@@ -219,7 +227,7 @@
         </section>
 
         <section class="spaced-section">
-            <h1 class="great">Julien & Christina</h1>
+            <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
             <h3>Sunday, August 31<sup>st</sup>, 2025</h3>
 
             <div class="countdown" id="countdown">
@@ -269,6 +277,39 @@
             }
             setInterval(updateCountdown, 1000);
             updateCountdown();
+
+            // Parallax Effect
+            function parallaxEffect() {
+                const introSlide = document.querySelector(".intro-slide");
+                if (!introSlide) return;
+
+                // Throttle scroll event for performance
+                let isScrolling = false;
+                window.addEventListener("scroll", function () {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(function () {
+                            const scrollPosition = window.scrollY;
+                            const offset = scrollPosition * 0.3; // Adjust speed of parallax (lower = subtler)
+                            introSlide.style.backgroundPositionY = `${offset}px`;
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            }
+
+            // Run parallax only if the device supports it
+            if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
+                parallaxEffect();
+            }
+
+            // Set initial scroll offset on page load
+            window.addEventListener("load", function () {
+                window.scrollTo({
+                    top: 150, // Adjust this value to control how far down the page starts
+                    behavior: "smooth", // Smooth scroll for better user experience
+                });
+            });
         </script>
     </body>
 </html>
