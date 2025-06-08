@@ -1,9 +1,6 @@
 {
   "rewrites": [
-    // 1. Root of each language (/en or /ar) → /
     { "source": "/(en|ar)", "destination": "/" },
-
-    // 2. Anything under /en/* or /ar/* → /* (strip the language prefix)
     { "source": "/(en|ar)/:path*", "destination": "/:path*" }
   ]
 }
