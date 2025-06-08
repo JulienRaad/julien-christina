@@ -260,14 +260,11 @@
             </p>
         </section>
 
-        <button id="playBtn">Play Audio</button>
-        
         <audio id="bgMusic" loop>
-  <source src="background-audio.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+            <source src="background-audio.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
 
-        
         <script>
             // Countdown Timer
             const targetDate = new Date("August 31, 2025 18:00:00").getTime();
@@ -287,15 +284,7 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-             document.getElementById('playBtn').addEventListener('click', function () {
-    const audio = document.getElementById('bgMusic');
-    audio.play().then(() => {
-      console.log('Audio started playing');
-      this.style.display = 'none'; // Hide button after playing
-    }).catch(error => {
-      console.error('Playback failed:', error);
-    });
-  });
+            window.addEventListener("scroll", playAudioOnScroll, { once: true });
             // Parallax Effect
             function parallaxEffect() {
                 const introSlide = document.querySelector(".intro-slide");
@@ -314,6 +303,24 @@
                         isScrolling = true;
                     }
                 });
+            }
+
+            // Play audio on first scroll
+            let hasPlayedAudio = false;
+
+            function playAudioOnScroll() {
+                if (hasPlayedAudio) return;
+
+                const audio = document.getElementById("bgMusic");
+                audio
+                    .play()
+                    .then(() => {
+                        hasPlayedAudio = true;
+                        window.removeEventListener("scroll", playAudioOnScroll);
+                    })
+                    .catch((error) => {
+                        console.error("Playback failed:", error);
+                    });
             }
 
             // Run parallax only if the device supports it
