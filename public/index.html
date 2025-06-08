@@ -322,7 +322,7 @@
             }
 
             // Countdown timer example
-            function startCountdown(targetDate) {
+            function startCountdown(targetDate, lang) {
                 const daysEl = document.getElementById("days");
                 const hoursEl = document.getElementById("hours");
                 const minutesEl = document.getElementById("minutes");
@@ -341,10 +341,10 @@
                         return;
                     }
 
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                    const seconds = Math.floor((diff / 1000) % 60);
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24)).toLocaleString(lang);
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24).toLocaleString(lang);
+                    const minutes = Math.floor((diff / (1000 * 60)) % 60).toLocaleString(lang);
+                    const seconds = Math.floor((diff / 1000) % 60).toLocaleString(lang);
 
                     daysEl.textContent = days;
                     hoursEl.textContent = hours;
@@ -362,7 +362,7 @@
 
                 // Initialize countdown to the wedding date (adjust if needed)
                 const weddingDate = new Date("2025-08-31T18:00:00"); // 6:00 PM
-                startCountdown(weddingDate);
+                startCountdown(weddingDate, lang);
             })();
 
             // Play music button logic
