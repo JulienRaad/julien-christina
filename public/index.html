@@ -64,7 +64,7 @@
                 min-height: 70vh; /* Reduced height for mobile */
                 background: url("proposal.png") center top no-repeat; /* Anchor image at top */
                 background-size: cover; /* Full image visible */
-                position: relative; /* For overlay */
+                position: relative; /* For overlay and button */
                 overflow: hidden; /* Prevent scrollbars from image shift */
                 will-change: background-position; /* Optimize for animation */
             }
@@ -74,6 +74,29 @@
                 inset: 0;
                 background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
                 z-index: 1;
+            }
+
+            /* Play Music Button */
+            #playMusicBtn {
+                position: absolute;
+                bottom: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                z-index: 2;
+                backdrop-filter: blur(3px);
+                transition: opacity 0.3s ease;
+            }
+
+            #playMusicBtn:hover {
+                background: rgba(0, 0, 0, 0.8);
             }
 
             h1.great {
@@ -207,7 +230,9 @@
         </style>
     </head>
     <body>
-        <section class="intro-slide"></section>
+        <section class="intro-slide">
+            <button id="playMusicBtn">Play Music</button>
+        </section>
 
         <section>
             <blockquote>
@@ -284,7 +309,6 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            window.addEventListener("touchstart", playAudioOnScroll, { once: true });
             // Parallax Effect
             function parallaxEffect() {
                 const introSlide = document.querySelector(".intro-slide");
@@ -305,25 +329,24 @@
                 });
             }
 
-            // Play audio on first scroll
-            let hasPlayedAudio = false;
-
-            function playAudioOnScroll() {
-                if (hasPlayedAudio) return;
-
-                const audio = document.getElementById("bgMusic");
-                audio
-                    .play()
-                    .then(() => {
-                        hasPlayedAudio = true;
-                        window.removeEventListener("touchstart", playAudioOnScroll);
-                    });
-            }
-
             // Run parallax only if the device supports it
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                 parallaxEffect();
             }
+
+            // Play music button logic
+            const audio = document.getElementById("bgMusic");
+            const playMusicBtn = document.getElementById("playMusicBtn");
+
+            playMusicBtn.addEventListener("click", function () {
+                audio.play().then(() => {
+                    audio.loop = true;
+                    playMusicBtn.style.display = "none";
+                }).catch((error) => {
+                    // Handle errors (like autoplay restrictions)
+                    console.warn("Audio play failed:", error);
+                });
+            });
         </script>
     </body>
 </html>
