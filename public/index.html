@@ -76,13 +76,12 @@
                 z-index: 1;
             }
 
-            /* Play Music Button */
             #playMusicBtn {
                 position: absolute;
                 bottom: 1.5rem;
                 left: 50%;
                 transform: translateX(-50%);
-                background: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+                background: rgba(0, 0, 0, 0.6);
                 color: white;
                 border: none;
                 padding: 0.75rem 1.5rem;
@@ -92,11 +91,21 @@
                 cursor: pointer;
                 z-index: 2;
                 backdrop-filter: blur(3px);
-                transition: opacity 0.3s ease;
+                outline-offset: 0; /* no offset */
             }
 
-            #playMusicBtn:hover {
-                background: rgba(0, 0, 0, 0.8);
+            /* Custom focus style that stays inside the button */
+            #playMusicBtn:focus {
+                outline: 2px solid white; /* or any visible color */
+                outline-offset: 0; /* ensures outline doesn't overflow */
+                border-radius: 25px; /* match the button's rounding */
+                box-shadow: none; /* remove any default shadow */
+            }
+
+            /* Keep hover/active styles consistent */
+            #playMusicBtn:hover,
+            #playMusicBtn:active {
+                background: rgba(0, 0, 0, 0.7);
             }
 
             h1.great {
@@ -339,13 +348,16 @@
             const playMusicBtn = document.getElementById("playMusicBtn");
 
             playMusicBtn.addEventListener("click", function () {
-                audio.play().then(() => {
-                    audio.loop = true;
-                    playMusicBtn.style.display = "none";
-                }).catch((error) => {
-                    // Handle errors (like autoplay restrictions)
-                    console.warn("Audio play failed:", error);
-                });
+                audio
+                    .play()
+                    .then(() => {
+                        audio.loop = true;
+                        playMusicBtn.style.display = "none";
+                    })
+                    .catch((error) => {
+                        // Handle errors (like autoplay restrictions)
+                        console.warn("Audio play failed:", error);
+                    });
             });
         </script>
     </body>
