@@ -260,9 +260,9 @@
 
     <script>
       // Detect language from URL path
-      const pathSegments = window.location.pathname.split('/').filter(Boolean);
-      const lang = pathSegments[0] || 'en';
-
+const supportedLangs = ['en', 'ar'];
+const pathSegments   = window.location.pathname.split('/').filter(Boolean);
+const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : 'en';
       async function loadStrings(lang = 'en') {
         try {
           const response = await fetch(`/lang/${lang}.json`);
