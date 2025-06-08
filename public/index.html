@@ -4,12 +4,20 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Julien & Christina Wedding</title>
-    <!-- Open Graph / WhatsApp / Facebook -->
-    <meta property="og:title" content="Julien & Christina Wedding" />
-    <meta property="og:description" content="You're invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-    <meta property="og:image" content="https://www.jcwedding.com/proposal.png" />
-    <meta property="og:url" content="https://www.jcwedding.com" />
-    <meta property="og:type" content="website" />
+        <!-- Open Graph / WhatsApp / Facebook -->
+        <meta property="og:title" content="Julien & Christina Wedding" />
+        <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+        <meta property="og:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
+        <meta property="og:url" content="https://www.jcraadwedding.com" />
+        <meta property="og:type" content="website" />
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Julien & Christina Wedding" />
+        <meta name="twitter:description" content="You're invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+        <meta name="twitter:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
+        <meta name="twitter:image:alt" content="Julien and Christina Wedding Invitation" />
+
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
         <style>
@@ -56,7 +64,7 @@
                 min-height: 70vh; /* Reduced height for mobile */
                 background: url("proposal.png") center top no-repeat; /* Anchor image at top */
                 background-size: cover; /* Full image visible */
-                position: relative; /* For overlay */
+                position: relative; /* For overlay and button */
                 overflow: hidden; /* Prevent scrollbars from image shift */
                 will-change: background-position; /* Optimize for animation */
             }
@@ -66,6 +74,41 @@
                 inset: 0;
                 background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
                 z-index: 1;
+            }
+
+            #playMusicBtn {
+                position: absolute;
+                top: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                z-index: 2;
+                backdrop-filter: blur(3px);
+                -webkit-tap-highlight-color: transparent;
+                outline: none;
+                box-shadow: none;
+                transition: transform 0.1s ease;
+            }
+
+            #playMusicBtn.pressed {
+                transform: translateX(-50%) scale(0.95);
+            }
+
+            #playMusicBtn:focus {
+                outline: none;
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+
+            #playMusicBtn:hover {
+                background-color: rgba(0, 0, 0, 0.7);
             }
 
             h1.great {
@@ -199,7 +242,9 @@
         </style>
     </head>
     <body>
-        <section class="intro-slide"></section>
+        <section class="intro-slide">
+            <button id="playMusicBtn">Play Music</button>
+        </section>
 
         <section>
             <blockquote>
@@ -252,6 +297,11 @@
             </p>
         </section>
 
+        <audio id="bgMusic" loop>
+            <source src="background-audio.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+        </audio>
+
         <script>
             // Countdown Timer
             const targetDate = new Date("August 31, 2025 18:00:00").getTime();
@@ -295,6 +345,41 @@
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                 parallaxEffect();
             }
+
+            // Play music button logic
+            const audio = document.getElementById("bgMusic");
+            const playMusicBtn = document.getElementById("playMusicBtn");
+
+            playMusicBtn.addEventListener("click", function () {
+                audio
+                    .play()
+                    .then(() => {
+                        audio.loop = true;
+                        playMusicBtn.style.display = "none";
+                    })
+                    .catch((error) => {
+                        // Handle errors (like autoplay restrictions)
+                        console.warn("Audio play failed:", error);
+                    });
+            });
+
+            const btn = document.getElementById("playMusicBtn");
+
+            btn.addEventListener("pointerdown", () => {
+                btn.classList.add("pressed");
+            });
+
+            btn.addEventListener("pointerup", () => {
+                btn.classList.remove("pressed");
+            });
+
+            btn.addEventListener("pointercancel", () => {
+                btn.classList.remove("pressed");
+            });
+
+            btn.addEventListener("pointerleave", () => {
+                btn.classList.remove("pressed");
+            });
         </script>
     </body>
 </html>
