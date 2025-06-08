@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Julien & Christina Wedding</title>
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -27,25 +26,12 @@
     }
 
     .parallax-header {
-      position: relative;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .parallax-header::before {
-      content: "";
       background-image: url('header.png');
-      background-size: cover;
+      height: 70vh;
+      background-attachment: fixed;
       background-position: center;
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 130%;
-      width: 100%;
-      will-change: transform;
-      z-index: 0;
-      transform: translateY(0);
-      transition: transform 0.1s linear;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     section {
@@ -124,11 +110,8 @@
   </style>
 </head>
 <body>
-
-  <!-- Parallax Image Header (no text) -->
   <div class="parallax-header"></div>
 
-  <!-- Page Content -->
   <section>
     <blockquote>
       Two are better than one. For if they fall, one will lift up the other. <br>
@@ -168,9 +151,7 @@
     <p>Julien: <strong>+31687606064</strong><br>Christina: <strong>+31621491472</strong></p>
   </section>
 
-  <!-- JavaScript -->
   <script>
-    // Countdown logic
     const targetDate = new Date('August 31, 2025 18:00:00').getTime();
     function updateCountdown() {
       const now = new Date().getTime();
@@ -179,6 +160,7 @@
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
       document.getElementById('days').textContent = days;
       document.getElementById('hours').textContent = hours;
       document.getElementById('minutes').textContent = minutes;
@@ -186,17 +168,6 @@
     }
     setInterval(updateCountdown, 1000);
     updateCountdown();
-
-    // Parallax effect
-    const header = document.querySelector('.parallax-header::before');
-    window.addEventListener('scroll', () => {
-      const scrolled = window.scrollY;
-      document.querySelector('.parallax-header::before')?.style?.setProperty(
-        'transform',
-        `translateY(${scrolled * 0.4}px)`
-      );
-    });
   </script>
-
 </body>
 </html>
