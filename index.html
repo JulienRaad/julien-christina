@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -93,6 +93,29 @@
       margin-bottom: 1rem;
     }
 
+.countdown {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0.8rem 0 0.4rem;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-x: auto;
+}
+.countdown .box {
+  padding: 0.4rem 0.6rem;
+  min-width: auto;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 6px;
+  display: flex;
+  align-items: baseline;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  font-weight: 600;
+  color: var(--accent);
+}
+.countdown .label {
+  font-size: 0.75em;
+  margin-left: 0.2em;
+}
 
     .small-heading {
       text-transform: uppercase;
@@ -117,77 +140,11 @@
     @media (min-width: 600px) {
       section {
         padding: 1rem 1.2rem;
-        margin-bottom: 1rem;
-        max-width: 600px; /* Align with typical image width on desktop */
+@@ -180,28 +185,28 @@
+      .countdown .num {
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
       }
-
-      .spaced-section {
-        margin-bottom: 2rem; /* Double spacing for last four sections */
-      }
-
-      .intro-slide {
-        min-height: 70vh; /* Reduced height for desktop */
-        background-size: cover; /* Parallax, full image */
-      }
-
-      h1.great {
-        font-size: clamp(2.5rem, 6vw, 5rem);
-      }
-
-      h2 {
-        font-size: clamp(1.5rem, 4vw, 2.2rem);
-      }
-
-      h3 {
-        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
-      }
-
-      p, li {
-        font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-      }
-
-      blockquote {
-        max-width: 26ch;
-        font-size: clamp(1.25rem, 4vw, 1.6rem);
-      }
-
-.countdown {
-  display: flex;
-  gap: 0.5rem;
-  margin: 0.8rem 0 0.4rem;
-  flex-wrap: nowrap;
-  justify-content: center;
-  overflow-x: auto;
-}
-
-.countdown .box {
-  padding: 0.4rem 0.6rem;
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 6px;
-  display: flex;
-  align-items: baseline;
-  font-weight: 600;
-}
-
-.countdown .num {
-  font-size: clamp(1.6rem, 5vw, 2.2rem); /* Bigger numbers */
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.countdown .label {
-  font-size: 0.75em;
-  margin-left: 0.2em;
-  color: var(--text); /* Default text color for labels */
-}
-
-.venue-img {
-  width: 100%;
-  height: auto;
-  max-height: 30vh; /* or try 30vh or 35vh for smaller */
-  display: block;
-  margin: 1rem 0;
-}
+      
       .small-heading {
         font-size: 0.85rem;
       }
@@ -212,8 +169,7 @@
     <div style="font-weight: 600;">
     <p class="small-heading">Mr. Pierre & Mrs. Fadia Raad<br>Together with<br>Mrs. Marina Saadallah</p>
     </div>
-    <p>Joyfully request your presence at the wedding of their son and daughter</p>
-  </section>
+@@ -210,85 +215,85 @@
 
   <section class="spaced-section">
     <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
@@ -234,9 +190,6 @@
     <a class="btn" href="https://maps.app.goo.gl/N9T2fvZ9BBjVyfzA9" target="_blank" rel="noopener">Location Map</a>
   </section>
 
-    <img src="venue.png" alt="Venue" class="venue-img" />
-    <!-- Spacer below the image -->
-<div style="height: 2rem;"></div>
   <section class="spaced-section">
     <h2>Gift Registry</h2>
     <p>Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Wish Money.</p>
