@@ -1,294 +1,315 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Julien & Christina Wedding</title>
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
-        rel="stylesheet"
-    />
-    <style>
-        :root {
-            --primary: #ffffff;
-            --accent: #a5b68d; /* Dusty rose */
-            --text: #333333;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Julien & Christina Wedding</title>
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+        <style>
+            :root {
+                --primary: #ffffff;
+                --accent: #a5b68d; /* Dusty rose */
+                --text: #333333;
+            }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
 
-        html,
-        body {
-            font-family: "Montserrat", sans-serif;
-            color: var(--text);
-            background: var(--primary);
-            scroll-behavior: smooth;
-        }
+            html,
+            body {
+                font-family: "Montserrat", sans-serif;
+                color: var(--text);
+                background: var(--primary);
+                scroll-behavior: smooth;
+            }
 
-        /* Fixed background div to replace background-attachment: fixed */
-        .fixed-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 70vh; /* match intro-slide height */
-            background: url("header.png") center top no-repeat;
-            background-size: cover;
-            z-index: -1; /* behind everything */
-            pointer-events: none; /* no interaction */
-        }
-
-        section:not(.intro-slide) {
-            min-height: auto; /* Size based on content */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0.8rem 1rem; /* Mobile-friendly padding */
-            margin-bottom: 0.8rem; /* Default gap for mobile */
-            max-width: 90%; /* Align content width with image */
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .spaced-section {
-            margin-bottom: 1.6rem; /* Double spacing for last four sections on mobile */
-        }
-
-        .intro-slide {
-            position: relative;
-            width: 100vw;
-            min-height: 70vh; /* match fixed-bg height */
-            overflow: hidden; /* Prevent scrollbars from image shift */
-        }
-
-        .intro-slide::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
-            z-index: 1;
-        }
-
-        h1.great {
-            font-family: "Great Vibes", cursive;
-            font-size: clamp(2rem, 8vw, 4rem); /* Mobile-friendly */
-            color: var(--accent);
-            margin-bottom: 0.2rem;
-            position: relative;
-            z-index: 2; /* above overlay */
-        }
-
-        h2 {
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-
-        h3 {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: 400;
-            margin-bottom: 0.4rem;
-        }
-
-        p,
-        li {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            line-height: 1.6;
-        }
-
-        blockquote {
-            max-width: 90%; /* Wider for mobile */
-            font-size: clamp(1rem, 4vw, 1.4rem);
-            font-style: italic;
-            line-height: 1.5;
-        }
-
-        .countdown {
-            display: flex;
-            gap: 0.5rem;
-            margin: 0.8rem 0 0.4rem;
-            flex-wrap: nowrap;
-            justify-content: center;
-            overflow-x: auto;
-        }
-
-        .countdown .box {
-            padding: 0.4rem 0.6rem;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 6px;
-            display: flex;
-            align-items: baseline;
-            font-weight: 600;
-        }
-
-        .countdown .num {
-            font-size: clamp(2rem, 6vw, 3rem); /* Bigger numbers */
-            font-weight: 600;
-            color: var(--accent);
-        }
-
-        .countdown .label {
-            font-size: 0.75em;
-            margin-left: 0.2em;
-        }
-
-        .small-heading {
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 0.4rem;
-        }
-
-        a.btn {
-            display: inline-block;
-            margin-top: 0.8rem;
-            padding: 0.6rem 1rem;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        /* Desktop and larger screens */
-        @media (min-width: 600px) {
-            section {
-                padding: 1rem 1.2rem;
-                margin-bottom: 1rem;
-                max-width: 600px; /* Align with typical image width on desktop */
+            section:not(.intro-slide) {
+                min-height: auto; /* Size based on content */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 0.8rem 1rem; /* Mobile-friendly padding */
+                margin-bottom: 0.8rem; /* Default gap for mobile */
+                max-width: 90%; /* Align content width with image */
+                margin-left: auto;
+                margin-right: auto;
             }
 
             .spaced-section {
-                margin-bottom: 2rem; /* Double spacing for last four sections */
+                margin-bottom: 1.6rem; /* Double spacing for last four sections on mobile */
             }
 
             .intro-slide {
-                min-height: 70vh; /* Reduced height for desktop */
-                /* background-size: cover; removed as fixed-bg covers */
+                width: 100vw;
+                min-height: 70vh; /* Reduced height for mobile */
+                background: url("header.png") center top no-repeat; /* Anchor image at top */
+                background-size: cover; /* Full image visible */
+                position: relative; /* For overlay */
+                overflow: hidden; /* Prevent scrollbars from image shift */
+                will-change: background-position; /* Optimize for animation */
+            }
+            .intro-slide::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+                z-index: 1;
             }
 
             h1.great {
-                font-size: clamp(2.5rem, 6vw, 5rem);
+                font-family: "Great Vibes", cursive;
+                font-size: clamp(2rem, 8vw, 4rem); /* Mobile-friendly */
+                color: var(--accent);
+                margin-bottom: 0.2rem;
             }
 
             h2 {
-                font-size: clamp(1.5rem, 4vw, 2.2rem);
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
+                font-weight: 600;
+                margin-bottom: 0.4rem;
             }
 
             h3 {
-                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+                font-size: clamp(1rem, 4vw, 1.5rem);
+                font-weight: 400;
+                margin-bottom: 0.4rem;
             }
 
             p,
             li {
-                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+                font-size: clamp(0.85rem, 3vw, 1rem);
+                line-height: 1.6;
             }
 
             blockquote {
-                max-width: 26ch;
-                font-size: clamp(1.25rem, 4vw, 1.6rem);
+                max-width: 90%; /* Wider for mobile */
+                font-size: clamp(1rem, 4vw, 1.4rem);
+                font-style: italic;
+                line-height: 1.5;
+            }
+
+
+
+
+
+
+
+
+            .countdown {
+                display: flex;
+                gap: 0.5rem;
+                margin: 0.8rem 0 0.4rem;
+                flex-wrap: nowrap;
+                justify-content: center;
+                overflow-x: auto;
+            }
+
+            .countdown .box {
+                padding: 0.4rem 0.6rem;
+                background: rgba(0, 0, 0, 0.05);
+                border-radius: 6px;
+                display: flex;
+                align-items: baseline;
+                font-weight: 600;
+            }
+
+            .countdown .num {
+                font-size: clamp(2rem, 6vw, 3rem); /* Bigger numbers */
+                font-weight: 600;
+                color: var(--accent);
+            }
+
+            .countdown .label {
+                font-size: 0.75em;
+                margin-left: 0.2em;
+
             }
 
             .small-heading {
-                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-size: 0.75rem;
+                color: var(--accent);
+                margin-bottom: 0.4rem;
             }
 
             a.btn {
-                padding: 0.75rem 1.25rem;
-                font-size: 1rem;
+                display: inline-block;
+                margin-top: 0.8rem;
+                padding: 0.6rem 1rem;
+                background: var(--accent);
+                color: #fff;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 0.9rem;
             }
-        }
-    </style>
-</head>
-<body>
-    <!-- Fixed background div for iOS Safari compatibility -->
-    <div class="fixed-bg"></div>
 
-    <section class="intro-slide"></section>
+            /* Desktop and larger screens */
+            @media (min-width: 600px) {
+                section {
+                    padding: 1rem 1.2rem;
+                    margin-bottom: 1rem;
+                    max-width: 600px; /* Align with typical image width on desktop */
+                }
 
-    <section>
-        <blockquote>
-            Two are better than one. For if they fall, one will lift up the other. <br />
-            <span style="font-size: 0.9em; opacity: 0.7;">— Ecclesiastes 4:9‑12</span>
-        </blockquote>
-    </section>
+                .spaced-section {
+                    margin-bottom: 2rem; /* Double spacing for last four sections */
+                }
 
-    <section>
-        <div style="font-weight: 600;">
-            <p class="small-heading">
-                Mr. Pierre & Mrs. Fadia Raad<br />
-                Together with<br />
-                Mrs. Marina Saadallah
+                .intro-slide {
+                    min-height: 70vh; /* Reduced height for desktop */
+                    background-size: cover; /* Parallax, full image */
+                }
+
+                h1.great {
+                    font-size: clamp(2.5rem, 6vw, 5rem);
+                }
+
+                h2 {
+                    font-size: clamp(1.5rem, 4vw, 2.2rem);
+                }
+
+                h3 {
+                    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+                }
+
+                p,
+                li {
+                    font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+                }
+
+                blockquote {
+                    max-width: 26ch;
+                    font-size: clamp(1.25rem, 4vw, 1.6rem);
+                }
+
+                .small-heading {
+                    font-size: 0.85rem;
+                }
+
+                a.btn {
+                    padding: 0.75rem 1.25rem;
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section class="intro-slide"></section>
+
+        <section>
+            <blockquote>
+                Two are better than one. For if they fall, one will lift up the other. <br />
+                <span style="font-size: 0.9em; opacity: 0.7;">— Ecclesiastes 4:9‑12</span>
+            </blockquote>
+        </section>
+
+
+
+
+
+
+        <section>
+            <div style="font-weight: 600;">
+                <p class="small-heading">
+                    Mr. Pierre & Mrs. Fadia Raad<br />
+                    Together with<br />
+                    Mrs. Marina Saadallah
+                </p>
+            </div>
+            <p>Joyfully request your presence at the wedding of their son and daughter</p>
+        </section>
+
+        <section class="spaced-section">
+            <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
+            <h3>Sunday, August 31<sup>st</sup>, 2025</h3>
+
+            <div class="countdown" id="countdown">
+                <div class="box"><span class="num" id="days">0</span><span class="label">D</span></div>
+                <div class="box"><span class="num" id="hours">0</span><span class="label">H</span></div>
+                <div class="box"><span class="num" id="minutes">0</span><span class="label">M</span></div>
+                <div class="box"><span class="num" id="seconds">0</span><span class="label">S</span></div>
+            </div>
+        </section>
+
+        <section class="spaced-section">
+            <h2 id="ceremony">Pleine Lune, Faitroun</h2>
+            <h3>6:00 PM</h3>
+            <p>Reception to follow</p>
+            <a class="btn" href="https://maps.app.goo.gl/N9T2fvZ9BBjVyfzA9" target="_blank" rel="noopener">Location Map</a>
+        </section>
+
+        <section class="spaced-section">
+            <h2>Gift Registry</h2>
+            <p>Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Wish Money.</p>
+            <p>Acc# 22122046-03</p>
+        </section>
+
+        <section class="spaced-section">
+            <h2>RSVP by July 31<sup>st</sup></h2>
+            <p>
+                Julien <strong>+31687606064</strong><br />
+                Christina <strong>+31621491472</strong>
             </p>
-        </div>
-        <p>Joyfully request your presence at the wedding of their son and daughter</p>
-    </section>
+        </section>
 
-    <section class="spaced-section">
-        <h1 class="great">Julien&nbsp; & &nbsp;Christina</h1>
-        <h3>Sunday, August 31<sup>st</sup>, 2025</h3>
+        <script>
+            // Countdown Timer
+            const targetDate = new Date("August 31, 2025 18:00:00").getTime();
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        <div class="countdown" id="countdown">
-            <div class="box"><span class="num" id="days">0</span><span class="label">D</span></div>
-            <div class="box"><span class="num" id="hours">0</span><span class="label">H</span></div>
-            <div class="box"><span class="num" id="minutes">0</span><span class="label">M</span></div>
-            <div class="box"><span class="num" id="seconds">0</span><span class="label">S</span></div>
-        </div>
-    </section>
+                document.getElementById("days").textContent = days;
+                document.getElementById("hours").textContent = hours;
+                document.getElementById("minutes").textContent = minutes;
+                document.getElementById("seconds").textContent = seconds;
+            }
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
 
-    <section class="spaced-section">
-        <h2 id="ceremony">Pleine Lune, Faitroun</h2>
-        <h3>6:00 PM</h3>
-        <p>Reception to follow</p>
-        <a class="btn" href="https://maps.app.goo.gl/N9T2fvZ9BBjVyfzA9" target="_blank" rel="noopener">Location Map</a>
-    </section>
+            // Parallax Effect
+            function parallaxEffect() {
+                const introSlide = document.querySelector(".intro-slide");
+                if (!introSlide) return;
 
-    <section class="spaced-section">
-        <h2>Gift Registry</h2>
-        <p>Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Wish Money.</p>
-        <p>Acc# 22122046-03</p>
-    </section>
-
-    <section class="spaced-section">
-        <h2>RSVP by July 31<sup>st</sup></h2>
-        <p>
-            Julien <strong>+31687606064</strong><br />
-            Christina <strong>+31621491472</strong>
-        </p>
-    </section>
-
-    <script>
-        // Countdown Timer
-        const targetDate = new Date("August 31, 2025 18:00:00").getTime();
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            if (distance < 0) {
-                document.getElementById("countdown").textContent = "The wedding day has arrived!";
-                return;
+                // Throttle scroll event for performance
+                let isScrolling = false;
+                window.addEventListener("scroll", function () {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(function () {
+                            const scrollPosition = window.scrollY;
+                            const offset = scrollPosition * 0.3; // Adjust speed of parallax (lower = subtler)
+                            introSlide.style.backgroundPositionY = `${offset}px`;
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
             }
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            // Run parallax only if the device supports it
+            if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
+                parallaxEffect();
+            }
 
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = hours;
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds;
-        }
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-    </script>
-</body>
+            // Set initial scroll offset on page load
+            window.addEventListener("load", function () {
+                window.scrollTo({
+                    top: 150, // Adjust this value to control how far down the page starts
+                    behavior: "smooth", // Smooth scroll for better user experience
+                });
+            });
+        </script>
+    </body>
 </html>
