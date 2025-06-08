@@ -91,21 +91,23 @@
                 cursor: pointer;
                 z-index: 2;
                 backdrop-filter: blur(3px);
-                outline-offset: 0; /* no offset */
+                -webkit-tap-highlight-color: transparent; /* remove mobile blue ripple */
+                outline: none; /* remove outline */
+                box-shadow: none; /* remove shadows */
             }
 
-            /* Custom focus style that stays inside the button */
+            /* Focus indication using a subtle background or box-shadow inside the button */
             #playMusicBtn:focus {
-                outline: 2px solid white; /* or any visible color */
-                outline-offset: 0; /* ensures outline doesn't overflow */
-                border-radius: 25px; /* match the button's rounding */
-                box-shadow: none; /* remove any default shadow */
+                outline: none;
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3); /* subtle glow inside */
+                background-color: rgba(0, 0, 0, 0.7); /* slight darkening */
             }
 
-            /* Keep hover/active styles consistent */
+            /* Hover and active states can have the same or a slightly different style */
             #playMusicBtn:hover,
             #playMusicBtn:active {
-                background: rgba(0, 0, 0, 0.7);
+                background-color: rgba(0, 0, 0, 0.7);
+                box-shadow: none;
             }
 
             h1.great {
