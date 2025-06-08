@@ -1,406 +1,436 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Wedding Invitation</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Wedding Invitation</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Julien & Christina Wedding" />
-    <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-    <meta property="og:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
-    <meta property="og:url" content="https://www.jcraadwedding.com" />
-    <meta property="og:type" content="website" />
+        <!-- Open Graph -->
+        <meta property="og:title" content="Julien & Christina Wedding" />
+        <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+        <meta property="og:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
+        <meta property="og:url" content="https://www.jcraadwedding.com" />
+        <meta property="og:type" content="website" />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Julien & Christina Wedding" />
-    <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-    <meta name="twitter:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
-    <meta name="twitter:image:alt" content="Wedding Invitation" />
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Julien & Christina Wedding" />
+        <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+        <meta name="twitter:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
+        <meta name="twitter:image:alt" content="Wedding Invitation" />
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 
-    <style>
-        :root {
-            --primary: #ffffff;
-            --accent: #a5b68d;
-            --text: #333333;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html, body {
-            font-family: "Montserrat", sans-serif;
-            color: var(--text);
-            background: var(--primary);
-            scroll-behavior: smooth;
-            direction: ltr;
-        }
-        section:not(.intro-slide) {
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0.8rem 1rem;
-            margin-bottom: 0.8rem;
-            max-width: 90%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .spaced-section {
-            margin-bottom: 1.6rem;
-        }
-        .intro-slide {
-            width: 100vw;
-            min-height: 70vh;
-            background: url("proposal.png") center top no-repeat;
-            background-size: cover;
-            position: relative;
-            overflow: hidden;
-            will-change: background-position;
-        }
-        .intro-slide::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-        #playMusicBtn {
-            position: absolute;
-            top: 1.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 2;
-            backdrop-filter: blur(3px);
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            box-shadow: none;
-        }
-        #playMusicBtn:focus {
-            outline: none;
-            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-        #playMusicBtn:hover,
-        #playMusicBtn:active {
-            background-color: rgba(0, 0, 0, 0.7);
-            box-shadow: none;
-        }
-        h1.great {
-            font-family: "Great Vibes", cursive;
-            font-size: clamp(2rem, 8vw, 4rem);
-            color: var(--accent);
-            margin-bottom: 0.2rem;
-        }
-        h2 {
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-        h3 {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-        }
-        p, li {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            line-height: 1.6;
-        }
-        blockquote {
-            max-width: 90%;
-            font-size: clamp(1rem, 4vw, 1.4rem);
-            font-style: italic;
-            line-height: 1.5;
-        }
-        .countdown {
-            display: flex;
-            gap: 0.5rem;
-            margin: 0.8rem 0 0.4rem;
-            flex-wrap: nowrap;
-            justify-content: center;
-            overflow-x: auto;
-        }
-        .countdown .box {
-            padding: 0.4rem 0.6rem;
-            background: rgba(0, 0, 0, 0.05);
-            border-radius: 6px;
-            display: flex;
-            align-items: baseline;
-            font-weight: 600;
-        }
-        .countdown .num {
-            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .countdown .label {
-            font-size: 0.75em;
-            margin-left: 0.2em;
-        }
-        .small-heading {
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-size: 0.75rem;
-            color: var(--accent);
-            margin-bottom: 0.4rem;
-        }
-        a.btn {
-            display: inline-block;
-            margin-top: 0.8rem;
-            padding: 0.6rem 1rem;
-            background: var(--accent);
-            color: #fff;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        @media (min-width: 600px) {
-            section {
-                padding: 1rem 1.2rem;
-                margin-bottom: 1rem;
-                max-width: 600px;
+        <style>
+            :root {
+                --primary: #ffffff;
+                --accent: #a5b68d;
+                --text: #333333;
+            }
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            html,
+            body {
+                font-family: "Montserrat", sans-serif;
+                color: var(--text);
+                background: var(--primary);
+                scroll-behavior: smooth;
+                direction: ltr;
+            }
+            section:not(.intro-slide) {
+                min-height: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 0.8rem 1rem;
+                margin-bottom: 0.8rem;
+                max-width: 90%;
+                margin-left: auto;
+                margin-right: auto;
             }
             .spaced-section {
-                margin-bottom: 2rem;
+                margin-bottom: 1.6rem;
             }
             .intro-slide {
+                width: 100vw;
                 min-height: 70vh;
+                background: url("proposal.png") center top no-repeat;
                 background-size: cover;
+                position: relative;
+                overflow: hidden;
+                will-change: background-position;
+            }
+            .intro-slide::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 1;
+            }
+            #playMusicBtn {
+                position: absolute;
+                top: 1.5rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.6);
+                color: white;
+                border: none;
+                padding: 0.75rem 1.5rem;
+                border-radius: 25px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                z-index: 2;
+                backdrop-filter: blur(3px);
+                -webkit-tap-highlight-color: transparent;
+                outline: none;
+                box-shadow: none;
+            }
+            #playMusicBtn:focus {
+                outline: none;
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+                background-color: rgba(0, 0, 0, 0.7);
+            }
+            #playMusicBtn:hover,
+            #playMusicBtn:active {
+                background-color: rgba(0, 0, 0, 0.7);
+                box-shadow: none;
             }
             h1.great {
-                font-size: clamp(2.5rem, 6vw, 5rem);
+                font-family: "Great Vibes", cursive;
+                font-size: clamp(2rem, 8vw, 4rem);
+                color: var(--accent);
+                margin-bottom: 0.2rem;
             }
             h2 {
-                font-size: clamp(1.5rem, 4vw, 2.2rem);
+                font-size: clamp(1.2rem, 5vw, 1.8rem);
+                font-weight: 600;
+                margin-bottom: 0.4rem;
             }
             h3 {
-                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+                font-size: clamp(1rem, 4vw, 1.5rem);
+                font-weight: 600;
+                margin-bottom: 0.4rem;
             }
-            p, li {
-                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            p,
+            li {
+                font-size: clamp(0.85rem, 3vw, 1rem);
+                line-height: 1.6;
             }
             blockquote {
-                max-width: 26ch;
-                font-size: clamp(1.25rem, 4vw, 1.6rem);
+                max-width: 90%;
+                font-size: clamp(1rem, 4vw, 1.4rem);
+                font-style: italic;
+                line-height: 1.5;
+            }
+            .countdown {
+                display: flex;
+                gap: 0.5rem;
+                margin: 0.8rem 0 0.4rem;
+                flex-wrap: nowrap;
+                justify-content: center;
+                overflow-x: auto;
+            }
+            .countdown .box {
+                padding: 0.4rem 0.6rem;
+                background: rgba(0, 0, 0, 0.05);
+                border-radius: 6px;
+                display: flex;
+                align-items: baseline;
+                font-weight: 600;
+            }
+            .countdown .num {
+                font-size: clamp(1.8rem, 5.5vw, 2.7rem);
+                font-weight: 600;
+                color: var(--accent);
+            }
+            .countdown .label {
+                font-size: 0.75em;
+                margin-left: 0.2em;
             }
             .small-heading {
-                font-size: 0.85rem;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-size: 0.75rem;
+                color: var(--accent);
+                margin-bottom: 0.4rem;
             }
             a.btn {
-                padding: 0.75rem 1.25rem;
-                font-size: 1rem;
+                display: inline-block;
+                margin-top: 0.8rem;
+                padding: 0.6rem 1rem;
+                background: var(--accent);
+                color: #fff;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 0.9rem;
             }
-        }
-    </style>
-</head>
-<body>
-    <section class="intro-slide">
-        <button id="playMusicBtn"></button>
-    </section>
+            @media (min-width: 600px) {
+                section {
+                    padding: 1rem 1.2rem;
+                    margin-bottom: 1rem;
+                    max-width: 600px;
+                }
+                .spaced-section {
+                    margin-bottom: 2rem;
+                }
+                .intro-slide {
+                    min-height: 70vh;
+                    background-size: cover;
+                }
+                h1.great {
+                    font-size: clamp(2.5rem, 6vw, 5rem);
+                }
+                h2 {
+                    font-size: clamp(1.5rem, 4vw, 2.2rem);
+                }
+                h3 {
+                    font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+                }
+                p,
+                li {
+                    font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+                }
+                blockquote {
+                    max-width: 26ch;
+                    font-size: clamp(1.25rem, 4vw, 1.6rem);
+                }
+                .small-heading {
+                    font-size: 0.85rem;
+                }
+                a.btn {
+                    padding: 0.75rem 1.25rem;
+                    font-size: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <section class="intro-slide">
+            <button id="playMusicBtn"></button>
+        </section>
 
-    <section>
-        <blockquote id="quote">
-            <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
-        </blockquote>
-    </section>
+        <section>
+            <blockquote id="quote">
+                <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
+            </blockquote>
+        </section>
 
-    <section>
-        <div style="font-weight: 600;">
-            <p class="small-heading" id="hosts"></p>
-        </div>
-        <p id="invitationText"></p>
-    </section>
+        <section>
+            <div style="font-weight: 600;">
+                <p class="small-heading" id="hosts"></p>
+            </div>
+            <p id="invitationText"></p>
+        </section>
 
-    <section class="spaced-section">
-        <h1 class="great" id="brideGroom"></h1>
-        <h3 id="date"></h3>
+        <section class="spaced-section">
+            <h1 class="great" id="brideGroom"></h1>
+            <h3 id="date"></h3>
 
-        <div class="countdown" id="countdown">
-            <div class="box"><span class="num" id="days">0</span><span class="label" id="daysLabel"></span></div>
-            <div class="box"><span class="num" id="hours">0</span><span class="label" id="hoursLabel"></span></div>
-            <div class="box"><span class="num" id="minutes">0</span><span class="label" id="minutesLabel"></span></div>
-            <div class="box"><span class="num" id="seconds">0</span><span class="label" id="secondsLabel"></span></div>
-        </div>
-    </section>
+            <div class="countdown" id="countdown">
+                <div class="box"><span class="num" id="days">0</span><span class="label" id="daysLabel"></span></div>
+                <div class="box"><span class="num" id="hours">0</span><span class="label" id="hoursLabel"></span></div>
+                <div class="box"><span class="num" id="minutes">0</span><span class="label" id="minutesLabel"></span></div>
+                <div class="box"><span class="num" id="seconds">0</span><span class="label" id="secondsLabel"></span></div>
+            </div>
+        </section>
 
-    <section>
-        <h2 id="locationTitle"></h2>
-        <p id="time"></p>
-        <p id="reception"></p>
-        <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
-    </section>
+        <section>
+            <h2 id="locationTitle"></h2>
+            <p id="time"></p>
+            <p id="reception"></p>
+            <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
+        </section>
 
-    <section>
-        <h3 id="giftRegistryTitle"></h3>
-        <p id="giftRegistryDesc"></p>
-        <p id="accountNumber"></p>
-    </section>
+        <section>
+            <h3 id="giftRegistryTitle"></h3>
+            <p id="giftRegistryDesc"></p>
+            <p id="accountNumber"></p>
+        </section>
 
-    <section>
-        <h3 id="rsvpTitle"></h3>
-        <p id="rsvpContacts"></p>
-    </section>
+        <section>
+            <h3 id="rsvpTitle"></h3>
+            <p id="rsvpContacts"></p>
+        </section>
 
-    <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
+        <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
-    <script>
-      // Detect language from URL path
-const supportedLangs = ['en', 'ar'];
-const pathSegments   = window.location.pathname.split('/').filter(Boolean);
-const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : 'en';
-      async function loadStrings(lang = 'en') {
-        try {
-          const response = await fetch(`/lang/${lang}.json`);
-          if (!response.ok) throw new Error("Failed to load language file");
-          return await response.json();
-        } catch (error) {
-          console.error(error);
-          return null;
-        }
-      }
+        <script>
+            // Detect language from URL path
+            const supportedLangs = ["en", "ar"];
+            const pathSegments = window.location.pathname.split("/").filter(Boolean);
+            const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
+            async function loadStrings(lang = "en") {
+                try {
+                    const response = await fetch(`/lang/${lang}.json`);
+                    if (!response.ok) throw new Error("Failed to load language file");
+                    return await response.json();
+                } catch (error) {
+                    console.error(error);
+                    return null;
+                }
+            }
 
-      function applyStrings(strings) {
-        if (!strings) return;
+            function applyStrings(strings) {
+                if (!strings) return;
 
-        document.title = strings.title;
-        document.querySelector("meta[property='og:title']").setAttribute("content", strings.title);
-        document.querySelector("meta[name='twitter:title']").setAttribute("content", strings.title);
+                document.title = strings.title;
+                document.querySelector("meta[property='og:title']").setAttribute("content", strings.title);
+                document.querySelector("meta[name='twitter:title']").setAttribute("content", strings.title);
 
-        document.getElementById("playMusicBtn").textContent = strings.playMusic;
+                document.getElementById("playMusicBtn").textContent = strings.playMusic;
 
-        document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
-        document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
+                document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
+                document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
 
-        document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
-        document.getElementById("invitationText").textContent = strings.invitation;
+                document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
+                document.getElementById("invitationText").textContent = strings.invitation;
 
-        document.getElementById("brideGroom").textContent = strings.brideGroom;
-        document.getElementById("date").textContent = strings.date;
+                document.getElementById("brideGroom").textContent = strings.brideGroom;
+                document.getElementById("date").textContent = strings.date;
 
-        document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
-        document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
-        document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
-        document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
+                document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
+                document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
+                document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
+                document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
 
-        document.getElementById("locationTitle").textContent = strings.locationTitle;
-        document.getElementById("time").textContent = strings.time;
-        document.getElementById("reception").textContent = strings.reception;
-        document.getElementById("locationMap").textContent = strings.locationMap;
+                document.getElementById("locationTitle").textContent = strings.locationTitle;
+                document.getElementById("time").textContent = strings.time;
+                document.getElementById("reception").textContent = strings.reception;
+                document.getElementById("locationMap").textContent = strings.locationMap;
 
-        document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
-        document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
-        document.getElementById("accountNumber").textContent = strings.accountNumber;
+                document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
+                document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
+                document.getElementById("accountNumber").textContent = strings.accountNumber;
 
-        document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
-        document.getElementById("rsvpContacts").innerHTML = strings.rsvpContacts.replace(/\n/g, "<br />");
+                document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
+                document.getElementById("rsvpContacts").innerHTML = strings.rsvpContacts.replace(/\n/g, "<br />");
 
-        // If Arabic, switch direction to rtl and adjust styles
-        if (lang === "ar") {
-          document.documentElement.lang = "ar";
-          document.documentElement.dir = "rtl";
-          document.body.style.direction = "rtl";
-          // You might want to add Arabic fonts and adjust CSS accordingly here
-        } else {
-          document.documentElement.lang = "en";
-          document.documentElement.dir = "ltr";
-          document.body.style.direction = "ltr";
-        }
-      }
+                // If Arabic, switch direction to rtl and adjust styles
+                if (lang === "ar") {
+                    document.documentElement.lang = "ar";
+                    document.documentElement.dir = "rtl";
+                    document.body.style.direction = "rtl";
+                    // You might want to add Arabic fonts and adjust CSS accordingly here
+                } else {
+                    document.documentElement.lang = "en";
+                    document.documentElement.dir = "ltr";
+                    document.body.style.direction = "ltr";
+                }
+            }
 
-      // Countdown timer example
-      function startCountdown(targetDate) {
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
+            // Countdown timer example
+            function startCountdown(targetDate) {
+                const daysEl = document.getElementById("days");
+                const hoursEl = document.getElementById("hours");
+                const minutesEl = document.getElementById("minutes");
+                const secondsEl = document.getElementById("seconds");
 
-        function updateCountdown() {
-          const now = new Date();
-          const diff = targetDate - now;
+                function updateCountdown() {
+                    const now = new Date();
+                    const diff = targetDate - now;
 
-          if (diff <= 0) {
-            daysEl.textContent = 0;
-            hoursEl.textContent = 0;
-            minutesEl.textContent = 0;
-            secondsEl.textContent = 0;
-            clearInterval(timer);
-            return;
-          }
+                    if (diff <= 0) {
+                        daysEl.textContent = 0;
+                        hoursEl.textContent = 0;
+                        minutesEl.textContent = 0;
+                        secondsEl.textContent = 0;
+                        clearInterval(timer);
+                        return;
+                    }
 
-          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-          const minutes = Math.floor((diff / (1000 * 60)) % 60);
-          const seconds = Math.floor((diff / 1000) % 60);
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                    const seconds = Math.floor((diff / 1000) % 60);
 
-          daysEl.textContent = days;
-          hoursEl.textContent = hours;
-          minutesEl.textContent = minutes;
-          secondsEl.textContent = seconds;
-        }
+                    daysEl.textContent = days;
+                    hoursEl.textContent = hours;
+                    minutesEl.textContent = minutes;
+                    secondsEl.textContent = seconds;
+                }
 
-        updateCountdown();
-        const timer = setInterval(updateCountdown, 1000);
-      }
+                updateCountdown();
+                const timer = setInterval(updateCountdown, 1000);
+            }
 
-      (async () => {
-        const strings = await loadStrings(lang);
-        applyStrings(strings);
+            (async () => {
+                const strings = await loadStrings(lang);
+                applyStrings(strings);
 
-        // Initialize countdown to the wedding date (adjust if needed)
-        const weddingDate = new Date("2025-08-31T18:00:00"); // 6:00 PM
-        startCountdown(weddingDate);
-      })();
+                // Initialize countdown to the wedding date (adjust if needed)
+                const weddingDate = new Date("2025-08-31T18:00:00"); // 6:00 PM
+                startCountdown(weddingDate);
+            })();
 
-// Play music button logic
-const playMusicBtn = document.getElementById("playMusicBtn");
-const audio = document.getElementById("weddingAudio");
-let userStartedPlayback = false;
-let wasPlayingBeforeHidden = false;
+            // Play music button logic
+            const playMusicBtn = document.getElementById("playMusicBtn");
+            const audio = document.getElementById("weddingAudio");
+            let userStartedPlayback = false;
+            let wasPlayingBeforeHidden = false;
 
-playMusicBtn.addEventListener("click", () => {
-  audio.play().then(() => {
-    userStartedPlayback = true;
-    playMusicBtn.remove(); // Remove the button once audio starts
-  }).catch((err) => {
-    console.warn("Autoplay blocked:", err);
-  });
-});
+            playMusicBtn.addEventListener("click", () => {
+                audio
+                    .play()
+                    .then(() => {
+                        userStartedPlayback = true;
+                        playMusicBtn.remove(); // Remove the button once audio starts
+                    })
+                    .catch((err) => {
+                        console.warn("Autoplay blocked:", err);
+                    });
+            });
 
-// Pause/resume audio on tab visibility change
-document.addEventListener("visibilitychange", () => {
-  if (!userStartedPlayback) return;
+            // Pause/resume audio on tab visibility change
+            document.addEventListener("visibilitychange", () => {
+                if (!userStartedPlayback) return;
 
-  if (document.hidden) {
-    if (!audio.paused) {
-      audio.pause();
-      wasPlayingBeforeHidden = true;
-    } else {
-      wasPlayingBeforeHidden = false;
-    }
-  } else {
-    if (wasPlayingBeforeHidden) {
-      audio.play().catch(() => {
-        // May be blocked again due to browser policies
-        console.warn("Resuming playback blocked by browser.");
-      });
-    }
-  }
-});
-    </script>
-</body>
+                if (document.hidden) {
+                    if (!audio.paused) {
+                        audio.pause();
+                        wasPlayingBeforeHidden = true;
+                    } else {
+                        wasPlayingBeforeHidden = false;
+                    }
+                } else {
+                    if (wasPlayingBeforeHidden) {
+                        audio.play().catch(() => {
+                            // May be blocked again due to browser policies
+                            console.warn("Resuming playback blocked by browser.");
+                        });
+                    }
+                }
+            });
+            // Parallax EffectMore actions
+            function parallaxEffect() {
+                const introSlide = document.querySelector(".intro-slide");
+                if (!introSlide) return;
+
+                // Throttle scroll event for performance
+                let isScrolling = false;
+                window.addEventListener("scroll", function () {
+                    if (!isScrolling) {
+                        window.requestAnimationFrame(function () {
+                            const scrollPosition = window.scrollY;
+                            const offset = scrollPosition * 0.6; // Adjust speed of parallax (lower = subtler)
+                            introSlide.style.backgroundPositionY = `${offset}px`;
+                            isScrolling = false;
+                        });
+                        isScrolling = true;
+                    }
+                });
+            }
+
+            // Run parallax only if the device supports it
+            if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
+                parallaxEffect();
+            }
+        </script>
+    </body>
 </html>
