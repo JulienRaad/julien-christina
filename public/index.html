@@ -78,7 +78,7 @@
 
             #playMusicBtn {
                 position: absolute;
-                top: 1.5rem;
+                bottom: 1.5rem;
                 left: 50%;
                 transform: translateX(-50%);
                 background: rgba(0, 0, 0, 0.6);
@@ -91,24 +91,24 @@
                 cursor: pointer;
                 z-index: 2;
                 backdrop-filter: blur(3px);
-                -webkit-tap-highlight-color: transparent; /* remove mobile blue ripple */
-                outline: none; /* remove outline */
-                box-shadow: none; /* remove shadows */
+                -webkit-tap-highlight-color: transparent;
+                outline: none;
+                box-shadow: none;
+                transition: transform 0.1s ease;
             }
 
-            /* Focus indication using a subtle background or box-shadow inside the button */
+            #playMusicBtn.pressed {
+                transform: translateX(-50%) scale(0.95);
+            }
+
             #playMusicBtn:focus {
                 outline: none;
-                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3); /* subtle glow inside */
-                background-color: rgba(0, 0, 0, 0.7); /* slight darkening */
+                box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+                background-color: rgba(0, 0, 0, 0.7);
             }
 
-            /* Hover and active states can have the same or a slightly different style */
-            #playMusicBtn:hover,
-            #playMusicBtn:active {
-                transform: translateX(-50%) scale(0.95);
+            #playMusicBtn:hover {
                 background-color: rgba(0, 0, 0, 0.7);
-                box-shadow: none;
             }
 
             h1.great {
@@ -361,6 +361,24 @@
                         // Handle errors (like autoplay restrictions)
                         console.warn("Audio play failed:", error);
                     });
+            });
+
+            const btn = document.getElementById("playMusicBtn");
+
+            btn.addEventListener("pointerdown", () => {
+                btn.classList.add("pressed");
+            });
+
+            btn.addEventListener("pointerup", () => {
+                btn.classList.remove("pressed");
+            });
+
+            btn.addEventListener("pointercancel", () => {
+                btn.classList.remove("pressed");
+            });
+
+            btn.addEventListener("pointerleave", () => {
+                btn.classList.remove("pressed");
             });
         </script>
     </body>
