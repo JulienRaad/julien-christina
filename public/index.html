@@ -284,7 +284,7 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            window.addEventListener("click", playAudioOnScroll, { once: true });
+            window.addEventListener("touchStart", playAudioOnScroll, { once: true });
             // Parallax Effect
             function parallaxEffect() {
                 const introSlide = document.querySelector(".intro-slide");
@@ -316,7 +316,7 @@
                     .play()
                     .then(() => {
                         hasPlayedAudio = true;
-                        window.removeEventListener("click", playAudioOnScroll);
+                        window.removeEventListener("touchStart", playAudioOnScroll);
                     });
             }
 
