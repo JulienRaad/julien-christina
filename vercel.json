@@ -7,5 +7,11 @@
       },
       "continue": true
     }
+  ],
+  "rewrites": [
+    { "source": "/en", "destination": "/" },
+    { "source": "/ar", "destination": "/" },
+    { "source": "/en/(.*)", "destination": "/$1" },
+    { "source": "/ar/(.*)", "destination": "/$1" }
   ]
 }
