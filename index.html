@@ -95,13 +95,6 @@
                 line-height: 1.5;
             }
 
-            .cross-image {
-                display: block;
-                margin: 0rem auto 0 auto; /* center horizontally */
-                max-width: 50%;  /* Responsive max width */
-                height: auto;    /* Keep aspect ratio */
-                border-radius: 16px; /* Optional: rounded corners */
-            }
             .countdown {
                 display: flex;
                 gap: 0.5rem;
@@ -210,10 +203,6 @@
             </blockquote>
         </section>
 
-        <section class="spaced-section">
-            <img src="cross.png" alt="Cross image" class="cross-image" />
-        </section>
-
         <section>
             <div style="font-weight: 600;">
                 <p class="small-heading">
@@ -246,7 +235,7 @@
 
         <section class="spaced-section">
             <h2>Gift Registry</h2>
-            <p>Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Whish Money.</p>
+            <p>Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Wish Money.</p>
             <p>Acc# 22122046-03</p>
         </section>
 
@@ -276,16 +265,6 @@
             }
             setInterval(updateCountdown, 1000);
             updateCountdown();
-
-            // Removed parallax JS for fixed background effect
-
-            // Set initial scroll offset on page load
-            window.addEventListener("load", function () {
-                window.scrollTo({
-                    top: 150,
-                    behavior: "smooth",
-                });
-            });
         </script>
     </body>
 </html>
