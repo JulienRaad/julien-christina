@@ -280,10 +280,6 @@
             function applyStrings(strings) {
                 if (!strings) return;
 
-                document.title = strings.title;
-                document.querySelector("meta[property='og:title']").setAttribute("content", strings.title);
-                document.querySelector("meta[name='twitter:title']").setAttribute("content", strings.title);
-
                 document.getElementById("playMusicBtn").textContent = strings.playMusic;
 
                 document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
