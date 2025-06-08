@@ -207,10 +207,6 @@
         </style>
     </head>
     <body>
-        <audio autoplay loop>
-            <source src="background-audio.mp3" type="audio/mpeg">
-        </audio>
-        
         <section class="intro-slide"></section>
 
         <section>
@@ -264,6 +260,12 @@
             </p>
         </section>
 
+        <audio id="bgMusic" loop>
+  <source src="background-audio.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+        
         <script>
             // Countdown Timer
             const targetDate = new Date("August 31, 2025 18:00:00").getTime();
@@ -283,6 +285,10 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
+            window.addEventListener('load', function () {
+    const audio = document.getElementById('bgMusic');
+    audio.play();
+  });
             // Parallax Effect
             function parallaxEffect() {
                 const introSlide = document.querySelector(".intro-slide");
