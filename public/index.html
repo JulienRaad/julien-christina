@@ -341,10 +341,10 @@
                         return;
                     }
 
-                    const days = Math.floor(diff / (1000 * 60 * 60 * 24)).toLocaleString(lang);
-                    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24).toLocaleString(lang);
-                    const minutes = Math.floor((diff / (1000 * 60)) % 60).toLocaleString(lang);
-                    const seconds = Math.floor((diff / 1000) % 60).toLocaleString(lang);
+                    const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString('ar');
+                    const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString('ar');
+                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString('ar');
+                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString('ar');
 
                     daysEl.textContent = days;
                     hoursEl.textContent = hours;
