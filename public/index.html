@@ -6,16 +6,16 @@
     <title>Wedding Invitation</title>
 
     <!-- Open Graph -->
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
+    <meta property="og:title" content="Julien & Christina Wedding" />
+    <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
     <meta property="og:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
     <meta property="og:url" content="" />
     <meta property="og:type" content="website" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:description" content="" />
+    <meta name="twitter:title" content="Julien & Christina Wedding" />
+    <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
     <meta name="twitter:image" content="https://i.ibb.co/3yvyGmWc/proposal.jpg" />
     <meta name="twitter:image:alt" content="Wedding Invitation" />
 
@@ -210,55 +210,50 @@
 </head>
 <body>
     <section class="intro-slide">
-        <button id="playMusicBtn">Play Music</button>
+        <button id="playMusicBtn"></button>
     </section>
 
     <section>
         <blockquote id="quote">
-            Two are better than one. For if they fall, one will lift up the other. <br />
-            <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;">— Ecclesiastes 4:9‑12</span>
+            <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
         </blockquote>
     </section>
 
     <section>
         <div style="font-weight: 600;">
-            <p class="small-heading" id="hosts">
-                Mr. Pierre & Mrs. Fadia Raad<br />
-                Together with<br />
-                Mrs. Marina Saadallah
-            </p>
+            <p class="small-heading" id="hosts"></p>
         </div>
-        <p id="invitationText">Joyfully request your presence at the wedding of their son and daughter</p>
+        <p id="invitationText"></p>
     </section>
 
     <section class="spaced-section">
-        <h1 class="great" id="brideGroom">Julien&nbsp; & &nbsp;Christina</h1>
-        <h3 id="date">Sunday, August 31<sup>st</sup>, 2025</h3>
+        <h1 class="great" id="brideGroom"></h1>
+        <h3 id="date"></h3>
 
         <div class="countdown" id="countdown">
-            <div class="box"><span class="num" id="days">0</span><span class="label" id="daysLabel">D</span></div>
-            <div class="box"><span class="num" id="hours">0</span><span class="label" id="hoursLabel">H</span></div>
-            <div class="box"><span class="num" id="minutes">0</span><span class="label" id="minutesLabel">M</span></div>
-            <div class="box"><span class="num" id="seconds">0</span><span class="label" id="secondsLabel">S</span></div>
+            <div class="box"><span class="num" id="days">0</span><span class="label" id="daysLabel"></span></div>
+            <div class="box"><span class="num" id="hours">0</span><span class="label" id="hoursLabel"></span></div>
+            <div class="box"><span class="num" id="minutes">0</span><span class="label" id="minutesLabel"></span></div>
+            <div class="box"><span class="num" id="seconds">0</span><span class="label" id="secondsLabel"></span></div>
         </div>
     </section>
 
     <section>
-        <h2 id="locationTitle">Pleine Lune, Faitroun</h2>
-        <p id="time">6:00 PM</p>
-        <p id="reception">Reception to follow</p>
-        <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn">Location Map</a>
+        <h2 id="locationTitle"></h2>
+        <p id="time"></p>
+        <p id="reception"></p>
+        <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
     </section>
 
     <section>
-        <h3 id="giftRegistryTitle">Gift Registry</h3>
-        <p id="giftRegistryDesc">Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Whish Money.</p>
-        <p id="accountNumber">Acc# 30605332-03</p>
+        <h3 id="giftRegistryTitle"></h3>
+        <p id="giftRegistryDesc"></p>
+        <p id="accountNumber"></p>
     </section>
 
     <section>
-        <h3 id="rsvpTitle">RSVP by July 31st</h3>
-        <p id="rsvpContacts">Julien +31687606064<br />Christina +31621491472</p>
+        <h3 id="rsvpTitle"></h3>
+        <p id="rsvpContacts"></p>
     </section>
 
     <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
@@ -371,19 +366,41 @@
         startCountdown(weddingDate);
       })();
 
-      // Play music button logic
-      const playMusicBtn = document.getElementById("playMusicBtn");
-      const audio = document.getElementById("weddingAudio");
+// Play music button logic
+const playMusicBtn = document.getElementById("playMusicBtn");
+const audio = document.getElementById("weddingAudio");
+let userStartedPlayback = false;
+let wasPlayingBeforeHidden = false;
 
-      playMusicBtn.addEventListener("click", () => {
-        if (audio.paused) {
-          audio.play();
-          playMusicBtn.textContent = "Pause Music";
-        } else {
-          audio.pause();
-          playMusicBtn.textContent = "Play Music";
-        }
+playMusicBtn.addEventListener("click", () => {
+  audio.play().then(() => {
+    userStartedPlayback = true;
+    playMusicBtn.remove(); // Remove the button once audio starts
+  }).catch((err) => {
+    console.warn("Autoplay blocked:", err);
+  });
+});
+
+// Pause/resume audio on tab visibility change
+document.addEventListener("visibilitychange", () => {
+  if (!userStartedPlayback) return;
+
+  if (document.hidden) {
+    if (!audio.paused) {
+      audio.pause();
+      wasPlayingBeforeHidden = true;
+    } else {
+      wasPlayingBeforeHidden = false;
+    }
+  } else {
+    if (wasPlayingBeforeHidden) {
+      audio.play().catch(() => {
+        // May be blocked again due to browser policies
+        console.warn("Resuming playback blocked by browser.");
       });
+    }
+  }
+});
     </script>
 </body>
 </html>
