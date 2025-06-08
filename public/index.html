@@ -260,6 +260,8 @@
             </p>
         </section>
 
+        <button id="playBtn">Play Audio</button>
+        
         <audio id="bgMusic" loop>
   <source src="background-audio.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -285,9 +287,14 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            window.addEventListener('load', function () {
+             document.getElementById('playBtn').addEventListener('click', function () {
     const audio = document.getElementById('bgMusic');
-    audio.play();
+    audio.play().then(() => {
+      console.log('Audio started playing');
+      this.style.display = 'none'; // Hide button after playing
+    }).catch(error => {
+      console.error('Playback failed:', error);
+    });
   });
             // Parallax Effect
             function parallaxEffect() {
