@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>More actions
   <title>Julien & Christina Wedding</title>
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #ffffff;
-      --accent: #FA8072; /* Dusty rose */
+      --accent: #A5B68D; /* Dusty rose */
       --text: #333333;
     }
 
@@ -26,7 +26,7 @@
       scroll-behavior: smooth;
     }
 
-    section {
+    section:not(.intro-slide) {
       min-height: auto; /* Size based on content */
       display: flex;
       flex-direction: column;
@@ -45,9 +45,10 @@
     }
 
     .intro-slide {
+      width: 100vw;
       min-height: 80vh; /* Reduced height for mobile */
-      background: url('header.png') center bottom no-repeat; /* Anchor image at bottom */
-      background-size: 100% auto; /* Full width, auto height */
+      background: url('header.png') center top no-repeat; /* Anchor image at top */
+      background-size: cover; /* Full image visible */
       position: relative; /* For overlay */
       overflow: hidden; /* Prevent scrollbars from image shift */
       will-change: background-position; /* Optimize for animation */
@@ -65,11 +66,6 @@
       font-size: clamp(2rem, 8vw, 4rem); /* Mobile-friendly */
       color: var(--accent);
       margin-bottom: 0.2rem;
-    }
-
-    /* Specific section with Julien & Christina */
-    section:nth-child(3) h1.great {
-      margin-bottom: 0.8rem; /* Increased spacing below Julien & Christina */
     }
 
     h2 {
@@ -140,7 +136,7 @@
       section {
         padding: 1rem 1.2rem;
         margin-bottom: 1rem;
-        max-width: 600px; /* Align content width with image */
+        max-width: 600px; /* Align with typical image width on desktop */
       }
 
       .spaced-section {
@@ -149,11 +145,7 @@
 
       .intro-slide {
         min-height: 70vh; /* Reduced height for desktop */
-        background-size: cover; /* Full image, covering viewport */
-      }
-
-      section:nth-child(3) h1.great {
-        margin-bottom: 1rem; /* Slightly larger spacing for desktop */
+        background-size: cover; /* Parallax, full image */
       }
 
       h1.great {
@@ -212,7 +204,7 @@
   <section>
     <p class="small-heading">Mr. Pierre & Mrs. Fadia Raad<br>Together with<br>Mrs. Marina Saadallah</p>
     <p>Joyfully request your presence at the wedding of their son and daughter</p>
-    <h1 class="great">Julien  &  Christina</h1>
+    <h1 class="great">Julien & Christina</h1>
     <h3>Sunday, August 31, 2025</h3>
 
     <div class="countdown" id="countdown">
@@ -224,21 +216,21 @@
   </section>
 
   <section class="spaced-section">
-    <h2 id="ceremony">Pleine Lune, Faitroun</h2>
+    <h2 id="ceremony">Wedding Ceremony & Party</h2>
     <h3>6:00 PM</h3>
-    <p>Reception to follow</p>
+    <p>Pleine Lune, Faitroun</p>
     <a class="btn" href="https://maps.app.goo.gl/N9T2fvZ9BBjVyfzA9" target="_blank" rel="noopener">Location Map</a>
   </section>
 
   <section class="spaced-section">
     <h2>Gift Registry</h2>
-    <p>You presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Wish Money.</p>
-    <p>Acc# 40275246-13</p>
+    <p>For those who desire, a wedding list is available at Wish Money all branches.</p>
+    <p>Acc# 20875046-03</p>
   </section>
 
   <section class="spaced-section">
     <h2>Be Our Guest</h2>
-    <p>Please confirm your presence before 31<sup>st</sup> of July, 2025</p>
+    <p>Please confirm your presence before 15<sup>th</sup> of August, 2025</p>
     <h3>Contact us at</h3>
     <p>Julien: <strong>+31687606064</strong><br>Christina: <strong>+31621491472</strong></p>
   </section>
@@ -273,8 +265,8 @@
         if (!isScrolling) {
           window.requestAnimationFrame(function () {
             const scrollPosition = window.scrollY;
-            const offset = -(scrollPosition * 0.3); // Negative offset to move upward
-            introSlide.style.backgroundPositionY = `calc(100% + ${offset}px)`; // Anchor at bottom
+            const offset = scrollPosition * 0.3; // Adjust speed of parallax (lower = subtler)
+            introSlide.style.backgroundPositionY = `${offset}px`;
             isScrolling = false;
           });
           isScrolling = true;
@@ -287,11 +279,12 @@
       parallaxEffect();
     }
 
-    // Set initial scroll offset after page load
+    // Set initial scroll offset on page load
     window.addEventListener('load', function () {
-      setTimeout(function () {
-        window.scrollTo(0, 100); // Adjust this value to control how far down the page starts
-      }, 0); // Delay to ensure page is fully loaded
+      window.scrollTo({
+        top: 150, // Adjust this value to control how far down the page starts
+        behavior: 'smooth' // Smooth scroll for better user experience
+      });
     });
   </script>
 </body>
