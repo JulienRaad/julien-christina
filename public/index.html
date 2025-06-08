@@ -340,10 +340,10 @@
                     }
 
                     let locale = lang === "ar" ? "ar-lb" : lang;
-                    const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(lang);
-                    const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(lang);
-                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(lang);
-                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(lang);
+                    const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
+                    const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
+                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
+                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
 
                     daysEl.textContent = days;
                     hoursEl.textContent = hours;
