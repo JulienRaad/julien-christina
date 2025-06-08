@@ -302,14 +302,6 @@
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                 parallaxEffect();
             }
-
-            // Set initial scroll offset on page load
-            window.addEventListener("load", function () {
-                window.scrollTo({
-                    top: 150, // Adjust this value to control how far down the page starts
-                    behavior: "smooth", // Smooth scroll for better user experience
-                });
-            });
         </script>
     </body>
 </html>
