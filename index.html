@@ -50,9 +50,10 @@
                 min-height: 70vh; /* Reduced height for mobile */
                 background: url("header.png") center top no-repeat; /* Anchor image at top */
                 background-size: cover; /* Full image visible */
+                background-attachment: fixed; /* <-- Make background fixed */
                 position: relative; /* For overlay */
                 overflow: hidden; /* Prevent scrollbars from image shift */
-                will-change: background-position; /* Optimize for animation */
+                /* will-change removed since no animation */
             }
             .intro-slide::before {
                 content: "";
@@ -94,6 +95,13 @@
                 line-height: 1.5;
             }
 
+            .cross-image {
+                display: block;
+                margin: 0rem auto 0 auto; /* center horizontally */
+                max-width: 50%;  /* Responsive max width */
+                height: auto;    /* Keep aspect ratio */
+                border-radius: 16px; /* Optional: rounded corners */
+            }
             .countdown {
                 display: flex;
                 gap: 0.5rem;
@@ -141,6 +149,7 @@
                 text-decoration: none;
                 font-size: 0.9rem;
             }
+
             /* Desktop and larger screens */
             @media (min-width: 600px) {
                 section {
@@ -193,11 +202,16 @@
     </head>
     <body>
         <section class="intro-slide"></section>
+
         <section>
             <blockquote>
                 Two are better than one. For if they fall, one will lift up the other. <br />
                 <span style="font-size: 0.9em; opacity: 0.7;">— Ecclesiastes 4:9‑12</span>
             </blockquote>
+        </section>
+
+        <section class="spaced-section">
+            <img src="cross.png" alt="Cross image" class="cross-image" />
         </section>
 
         <section>
@@ -263,36 +277,13 @@
             setInterval(updateCountdown, 1000);
             updateCountdown();
 
-            // Parallax Effect
-            function parallaxEffect() {
-                const introSlide = document.querySelector(".intro-slide");
-                if (!introSlide) return;
-
-                // Throttle scroll event for performance
-                let isScrolling = false;
-                window.addEventListener("scroll", function () {
-                    if (!isScrolling) {
-                        window.requestAnimationFrame(function () {
-                            const scrollPosition = window.scrollY;
-                            const offset = scrollPosition * 0.3; // Adjust speed of parallax (lower = subtler)
-                            introSlide.style.backgroundPositionY = `${offset}px`;
-                            isScrolling = false;
-                        });
-                        isScrolling = true;
-                    }
-                });
-            }
-
-            // Run parallax only if the device supports it
-            if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
-                parallaxEffect();
-            }
+            // Removed parallax JS for fixed background effect
 
             // Set initial scroll offset on page load
             window.addEventListener("load", function () {
                 window.scrollTo({
-                    top: 150, // Adjust this value to control how far down the page starts
-                    behavior: "smooth", // Smooth scroll for better user experience
+                    top: 150,
+                    behavior: "smooth",
                 });
             });
         </script>
