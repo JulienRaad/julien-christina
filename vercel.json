@@ -1,6 +1,15 @@
 {
   "rewrites": [
-    { "source": "/(en|ar)", "destination": "/" },
-    { "source": "/(en|ar)/:path*", "destination": "/:path*" }
+    /* ------------- 1) never touch real static assets ------------- */
+    { "source": "/lang/:path*",     "destination": "/lang/:path*" },
+    { "source": "/:file((?:[^/]+)\\.[a-z0-9]+)", "destination": "/:file" },
+
+    /* ------------- 2) supported locales you actually have ------------- */
+    { "source": "/:locale(en|ar)",          "destination": "/" },
+    { "source": "/:locale(en|ar)/:path*",   "destination": "/:path*" },
+
+    /* ------------- 3) fallback: ANY other slug behaves like /en ------------- */
+    { "source": "/:slug",         "destination": "/" },
+    { "source": "/:slug/:path*",  "destination": "/:path*" }
   ]
 }
