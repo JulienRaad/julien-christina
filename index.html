@@ -9,7 +9,7 @@
   <style>
     :root {
       --primary: #ffffff;
-      --accent: #A5B68D; /* Dusty rose */
+      --accent: #FA8072; /* Dusty rose */
       --text: #333333;
     }
 
@@ -26,7 +26,7 @@
       scroll-behavior: smooth;
     }
 
-    section:not(.intro-slide) {
+    section {
       min-height: auto; /* Size based on content */
       display: flex;
       flex-direction: column;
@@ -45,10 +45,9 @@
     }
 
     .intro-slide {
-      width: 100vw;
       min-height: 80vh; /* Reduced height for mobile */
-      background: url('header.png') center top no-repeat; /* Anchor image at top */
-      background-size: cover; /* Full image visible */
+      background: url('header.png') center bottom no-repeat; /* Anchor image at bottom */
+      background-size: 100% auto; /* Full width, auto height */
       position: relative; /* For overlay */
       overflow: hidden; /* Prevent scrollbars from image shift */
       will-change: background-position; /* Optimize for animation */
@@ -66,6 +65,11 @@
       font-size: clamp(2rem, 8vw, 4rem); /* Mobile-friendly */
       color: var(--accent);
       margin-bottom: 0.2rem;
+    }
+
+    /* Specific section with Julien & Christina */
+    section:nth-child(3) h1.great {
+      margin-bottom: 0.8rem; /* Increased spacing below Julien & Christina */
     }
 
     h2 {
@@ -136,7 +140,7 @@
       section {
         padding: 1rem 1.2rem;
         margin-bottom: 1rem;
-        max-width: 600px; /* Align with typical image width on desktop */
+        max-width: 600px; /* Align content width with image */
       }
 
       .spaced-section {
@@ -145,7 +149,11 @@
 
       .intro-slide {
         min-height: 70vh; /* Reduced height for desktop */
-        background-size: cover; /* Parallax, full image */
+        background-size: cover; /* Full image, covering viewport */
+      }
+
+      section:nth-child(3) h1.great {
+        margin-bottom: 1rem; /* Slightly larger spacing for desktop */
       }
 
       h1.great {
@@ -265,8 +273,8 @@
         if (!isScrolling) {
           window.requestAnimationFrame(function () {
             const scrollPosition = window.scrollY;
-            const offset = scrollPosition * 0.3; // Adjust speed of parallax (lower = subtler)
-            introSlide.style.backgroundPositionY = `${offset}px`;
+            const offset = -(scrollPosition * 0.3); // Negative offset to move upward
+            introSlide.style.backgroundPositionY = `calc(100% + ${offset}px)`; // Anchor at bottom
             isScrolling = false;
           });
           isScrolling = true;
@@ -279,12 +287,11 @@
       parallaxEffect();
     }
 
-    // Set initial scroll offset on page load
+    // Set initial scroll offset after page load
     window.addEventListener('load', function () {
-      window.scrollTo({
-        top: 150, // Adjust this value to control how far down the page starts
-        behavior: 'smooth' // Smooth scroll for better user experience
-      });
+      setTimeout(function () {
+        window.scrollTo(0, 100); // Adjust this value to control how far down the page starts
+      }, 0); // Delay to ensure page is fully loaded
     });
   </script>
 </body>
