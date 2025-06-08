@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Julien & Christina Wedding</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffffff;
+      --accent: #FA8072; /* Dusty rose */
+      --text: #333333;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background: var(--primary);
+      scroll-behavior: smooth;
+    }
+
+    section {
+      min-height: auto; /* Size based on content */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0.8rem 1rem; /* Mobile-friendly padding */
+      margin-bottom: 0.8rem; /* Default gap for mobile */
+      max-width: 90%; /* Align content width with image */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .spaced-section {
+      margin-bottom: 1.6rem; /* Double spacing for last four sections on mobile */
+    }
+
+    .intro-slide {
+      min-height: 120vh; /* Taller for vertical image */
+      background: url('images/header.png') center/contain no-repeat scroll; /* Full image visible */
+      position: relative; /* For overlay */
+    }
+    .intro-slide::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4); /* Dark overlay for contrast */
+      z-index: 1;
+    }
+
+    h1.great {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 8vw, 4rem); /* Mobile-friendly */
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    h3 {
+      font-size: clamp(1rem, 4vw, 1.5rem);
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+    }
+
+    p, li {
+      font-size: clamp(0.85rem, 3vw, 1rem);
+      line-height: 1.6;
+    }
+
+    blockquote {
+      max-width: 90%; /* Wider for mobile */
+      font-size: clamp(1rem, 4vw, 1.4rem);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      margin: 0.8rem 0 0.4rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .countdown .box {
+      padding: 0.6rem 0.5rem;
+      min-width: 60px;
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 6px;
+    }
+    .countdown .num {
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .small-heading {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    a.btn {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.6rem 1rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    /* Desktop and larger screens */
+    @media (min-width: 600px) {
+      section {
+        padding: 1rem 1.2rem;
+        margin-bottom: 1rem;
+        max-width: 600px; /* Align with typical image width on desktop */
+      }
+
+      .spaced-section {
+        margin-bottom: 2rem; /* Double spacing for last four sections */
+      }
+
+      h1.great {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+      }
+
+      h3 {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+      }
+
+      p, li {
+        font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+      }
+
+      blockquote {
+        max-width: 26ch;
+        font-size: clamp(1.25rem, 4vw, 1.6rem);
+      }
+
+      .countdown {
+        gap: 1.5rem;
+        margin: 1rem 0 0.5rem;
+      }
+      .countdown .box {
+        padding: 1rem 0.75rem;
+        min-width: 80px;
+      }
+      .countdown .num {
+        font-size: clamp(1.8rem, 5vw, 2.4rem);
+      }
+
+      .small-heading {
+        font-size: 0.85rem;
+      }
+
+      a.btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 1rem;
+      }
+
+      .intro-slide {
+        min-height: 100vh; /* Shorter for desktop */
+        background: url('header.png') center/contain no-repeat fixed; /* Parallax, full image */
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="intro-slide"></section>
+
+  <section>
+    <blockquote>
+      Two are better than one. For if they fall, one will lift up the other. <br><span style="font-size:0.9em; opacity:0.7;">— Ecclesiastes 4:9‑12</span>
+    </blockquote>
+  </section>
+
+  <section>
+    <p class="small-heading">Mr. Pierre & Mrs. Fadia Raad<br>Together with<br>Mrs. Marina Saadallah</p>
+    <p>Joyfully request your presence at the wedding of their son and daughter</p>
+    <h1 class="great">Julien & Christina</h1>
+    <h3>Sunday, August 31, 2025</h3>
+
+    <div class="countdown" id="countdown">
+      <div class="box"><span class="num" id="days">0</span><br>Days</div>
+      <div class="box"><span class="num" id="hours">0</span><br>Hours</div>
+      <div class="box"><span class="num" id="minutes">0</span><br>Minutes</div>
+      <div class="box"><span class="num" id="seconds">0</span><br>Seconds</div>
+    </div>
+  </section>
+
+ <section class="spaced-section">
+    <h2 id="ceremony">Wedding Ceremony & Party</h2>
+    <h3>6:00 PM</h3>
+    <p>Pleine Lune, Faitroun</p>
+    <a class="btn" href="https://maps.app.goo.gl/N9T2fvZ9BBjVyfzA9" target="_blank" rel="noopener">Location Map</a>
+  </section>
+
+  <section class="spaced-section">
+    <h2>Gift Registry</h2>
+    <p>For those who desire, a wedding list is available at Wish Money all branches.</p>
+    <p>Acc# 20875046-03</p>
+  </section>
+
+  <section class="spaced-section">
+    <h2>Be Our Guest</h2>
+    <p>Please confirm your presence before 15<sup>th</sup> of August, 2025</p>
+    <h3>Contact us at</h3>
+    <p>Julien: <strong>+31687606064</strong><br>Christina: <strong>+31621491472</strong></p>
+  </section>
+
+  <script>
+    const targetDate = new Date('August 31, 2025 18:00:00').getTime();
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+      document.getElementById('seconds').textContent = seconds;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
