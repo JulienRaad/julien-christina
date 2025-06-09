@@ -592,8 +592,7 @@
                         const name = nameInput.value.trim();
                         const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
                         const number = attendanceSelect.value === "yes" ? Number(numberSelect.value).toLocaleString(locale) : "0";
-
-                        let message = `${strings.messageTitle}\n${strings.formLabels.name}: ${name}`;
+                        let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${name}`;
                         if (number !== "0" && number !== 0) {
                             message += `\n${strings.formLabels.number}: ${number}`;
                         }
