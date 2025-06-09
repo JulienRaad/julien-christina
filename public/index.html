@@ -579,10 +579,10 @@
 
             submitBtn.addEventListener("click", () => {
                 if (!submitBtn.disabled) {
-                    const name = nameInput.value.trim();
-                    const attendance = attendanceSelect.value === "yes" ? "Yes" : "No";
-                    const number = attendanceSelect.value === "yes" ? numberSelect.value : "N/A";
-                    const message = `RSVP Julien and Christina Wedding\nName: ${name}\nNumber: ${number}\nAttending: ${attendance}`;
+const name = nameInput.value.trim();
+const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
+const number = attendanceSelect.value === "yes" ? numberSelect.value : strings.formLabels.no;
+const message = `${strings.messageTitle}\n${strings.formLabels.name}: ${name}\n${number !== "0" ? `${strings.formLabels.number}: ${number}\n` : ""}${strings.formLabels.attendance}: ${attendance}`;
                     const encodedMessage = encodeURIComponent(message);
                     const phoneNumber = "+31687606064";
                     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
