@@ -174,6 +174,7 @@
                 font-size: clamp(0.9rem, 3vw, 1rem);
                 font-family: "Montserrat", sans-serif;
                 font-weight: 600;
+                margin-bottom: 0.7rem;
                 color: #ffffff;
                 background: var(--accent);
                 border: none;
@@ -217,7 +218,6 @@
 
             .rsvp-form-card button:hover:not(:disabled) {
                 background: #8b9a76; /* Slightly darker shade for hover */
-                transform: translateY(-2px); /* Lift on hover (desktop) */
             }
 
             /* Ensure scale resets after release */
@@ -225,11 +225,6 @@
             .rsvp-form-card button:not(:active) {
                 transform: scale(1); /* Explicitly reset scale when not active */
             }
-
-                        .rsvp-form-card button:hover:not(:disabled) {
-                            background: #8b9a76; /* Maintain hover effect */
-                            transform: translateY(-2px); /* Keep hover lift */
-                        }
 
                                                 /* RSVP Form Styles */
                                                 .rsvp-form-container {
@@ -239,7 +234,7 @@
                                                 }
                                                 .rsvp-form-container label {
                                                     display: block;
-                                                    margin-bottom: 0.5rem;
+                                                    margin-bottom: 1rem;
                                                     font-size: clamp(0.85rem, 3vw, 1rem);
                                                     font-weight: 600;
                                                     color: var(--text);
@@ -252,13 +247,7 @@
                                         border-radius: 12px; /* Rounded corners for card effect */
                                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Material Design elevation */
                                         padding: 1.5rem; /* Internal padding for card */
-                                        margin-top: 1rem;
-                                        margin-bottom: 1rem;
                                         transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
-                                    }
-                                    .rsvp-form-card:hover {
-                                        transform: translateY(-2px); /* Slight lift on hover */
-                                        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.1); /* Elevated shadow */
                                     }
                                     .rsvp-form-card label {
                                         display: block;
@@ -454,18 +443,6 @@
             const supportedLangs = ["en", "ar"];
             const pathSegments = window.location.pathname.split("/").filter(Boolean);
             const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
-
-            document.documentElement.lang = lang;
-            if (lang === "ar") {
-                document.documentElement.dir = "rtl";
-                document.body.style.direction = "rtl";
-                // Adjust form styles for RTL if needed
-                document.querySelector(".rsvp-form-container select").style.backgroundPosition = "left 0.75rem center";
-            } else {
-                document.documentElement.dir = "ltr";
-                document.body.style.direction = "ltr";
-            }
-
             async function loadStrings(lang = "en") {
                 try {
                     const response = await fetch(`/lang/${lang}.json`);
@@ -507,6 +484,15 @@
                 document.getElementById("attendance").options[2].text = strings.formLabels.no;
                 document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
                 document.getElementById("submitBtn").textContent = strings.formLabels.submit;
+
+                document.documentElement.lang = lang;
+                if (lang === "ar") {
+                    document.documentElement.dir = "rtl";
+                    document.body.style.direction = "rtl";
+                } else {
+                    document.documentElement.dir = "ltr";
+                    document.body.style.direction = "ltr";
+                }
             }
 
             // Countdown timer
