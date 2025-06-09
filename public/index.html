@@ -1,4 +1,4 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -476,18 +476,17 @@
 <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
 <script>
-    // Detect language, max, and name from query parameters
     const supportedLangs = ["en", "ar"];
     const urlParams = new URLSearchParams(window.location.search);
     const lang = supportedLangs.includes(urlParams.get("lang")) ? urlParams.get("lang") : "en";
     const id = parseInt(urlParams.get("id")) || 1;
     const validatedId = isNaN(id) ? 1 : id;
     const locale = lang === "ar" ? "ar-lb" : lang;
-    const maxGuests = parseInt(urlParams.get("for")) || 5; // Default to 5 if max is not provided or invalid
+    const maxGuests = parseInt(urlParams.get("for")) || 5;
     const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
-    const isSingleGuest = validatedMaxGuests === 1; // Flag for max=1 case
+    const isSingleGuest = validatedMaxGuests === 1;
     const rawName = urlParams.get("name") || "";
-    const sanitizedName = rawName.trim().slice(0, 30).replace(/[<>]/g, ""); // Limit to 30 chars, remove < and >
+    const sanitizedName = rawName.trim().slice(0, 30).replace(/[<>]/g, "");
 
     async function loadStrings(lang = "en") {
         try {
@@ -529,7 +528,6 @@
         document.getElementById("attendance").options[1].text = strings.formLabels.yes;
         document.getElementById("attendance").options[2].text = strings.formLabels.no;
 
-        // Handle beloved section
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
             document.getElementById("belovedText").textContent = strings.belovedText;
@@ -539,13 +537,11 @@
             belovedSection.style.display = "none";
         }
 
-        // Dynamically generate number dropdown options based on validatedMaxGuests
         const numberSelect = document.getElementById("number");
         if (isSingleGuest) {
-            // For max=1, set a single option with value 1, selected and disabled
             numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
             numberSelect.setAttribute("disabled", "disabled");
-            numberSelect.classList.add("single-guest"); // Add class for styling
+            numberSelect.classList.add("single-guest");
         } else {
             numberSelect.innerHTML = `<option value="" disabled selected>${strings.formLabels.numberPlaceholder}</option>`;
             for (let i = 1; i <= validatedMaxGuests; i++) {
@@ -571,7 +567,6 @@
         }
     }
 
-    // Countdown timer
     function startCountdown(targetDate, lang) {
         const daysEl = document.getElementById("days");
         const hoursEl = document.getElementById("hours");
@@ -607,39 +602,38 @@
         const timer = setInterval(updateCountdown, 1000);
     }
 
-    // RSVP Form Logic
     function initializeRSVPForm(strings) {
         const nameInput = document.getElementById("name");
         const attendanceSelect = document.getElementById("attendance");
         const numberSelect = document.getElementById("number");
         const submitBtn = document.getElementById("submitBtn");
 
-        // Pre-fill name input if sanitizedName is provided
         if (sanitizedName) {
             nameInput.value = sanitizedName;
         }
 
-        function validate() {
-            const nameOk = nameInput.value.trim() !== "";
-            const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-            const numberOk = isSingleGuest ? true : numberSelect.value !== ""; // Always valid when max=1
+function validate() {
+    const nameOk = nameInput.value.trim() !== "";
+    const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
+    const numberOk = isSingleGuest ? true : numberSelect.value !== "";
 
-            if (!isSingleGuest && attendanceSelect.value === "yes") {
-                numberSelect.removeAttribute("disabled");
-            } else if (!isSingleGuest) {
-                numberSelect.value = "";
-                numberSelect.setAttribute("disabled", "disabled");
-            }
+    // Enable numberSelect only if attendance is "yes" and not a single guest
+    if (!isSingleGuest && attendanceSelect.value === "yes") {
+        numberSelect.removeAttribute("disabled");
+    } else if (!isSingleGuest) {
+        numberSelect.value = "";
+        numberSelect.setAttribute("disabled", "disabled");
+    }
 
-            submitBtn.disabled = !(nameOk && attendanceOk && (isSingleGuest || numberOk));
-        }
+    // Enable submit button if name and attendance are valid, and if attendance is "yes", number must be valid
+    submitBtn.disabled = !(nameOk && attendanceOk && (attendanceSelect.value === "no" || isSingleGuest || numberOk));
+}
 
         [nameInput, attendanceSelect].forEach((el) => {
             el.addEventListener("input", validate);
             el.addEventListener("change", validate);
         });
 
-        // Only add input/change listeners to numberSelect if max > 1
         if (!isSingleGuest) {
             numberSelect.addEventListener("input", validate);
             numberSelect.addEventListener("change", validate);
@@ -665,7 +659,6 @@
         validate();
     }
 
-    // Play music button logic
     const playMusicBtn = document.getElementById("playMusicBtn");
     const audio = document.getElementById("weddingAudio");
     let userStartedPlayback = false;
@@ -702,7 +695,6 @@
         }
     });
 
-    // Parallax Effect
     function parallaxEffect() {
         const introSlide = document.querySelector(".intro-slide");
         if (!introSlide) return;
@@ -721,7 +713,6 @@
         });
     }
 
-    // Initialize
     (async () => {
         const strings = await loadStrings(lang);
         if (!strings) {
