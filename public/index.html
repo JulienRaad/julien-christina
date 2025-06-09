@@ -97,6 +97,9 @@
                             outline: none;
                             box-shadow: none;
                         }
+#locationMap {
+    display: none; /* Hide the button by default */
+}
                         #playMusicBtn:focus {
                             outline: none;
                             box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
@@ -366,12 +369,12 @@
 
         <img src="hands.jpg" alt="Rings" class="hands-image" />
 
-        <section>
-            <h2 id="locationTitle"></h2>
-            <p id="time"></p>
-            <p id="reception"></p>
-            <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
-        </section>
+<section>
+    <h2 id="locationTitle"></h2>
+    <p id="time"></p>
+    <p id="reception"></p>
+    <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
+</section>
 
         <section>
             <h3 id="giftRegistryTitle"></h3>
@@ -638,6 +641,22 @@
                 if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                     parallaxEffect();
                 }
+
+// Handle map image load/error
+    const mapImage = document.querySelector(".map-container img");
+    const locationMapBtn = document.getElementById("locationMap");
+
+    if (mapImage && locationMapBtn) {
+        // Show button if image fails to load
+        mapImage.addEventListener("error", () => {
+            locationMapBtn.style.display = "inline-block";
+        });
+
+        // Ensure button remains hidden if image loads successfully
+        mapImage.addEventListener("load", () => {
+            locationMapBtn.style.display = "none";
+        });
+    }
             })();
         </script>
     </body>
