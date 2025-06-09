@@ -1,649 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Wedding Invitation</title>
-        <!-- Open Graph -->
-        <meta property="og:title" content="Julien & Christina Wedding" />
-        <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-        <meta property="og:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
-        <meta property="og:image:alt" content="Love" />
-        <meta property="og:url" content="https://www.jcraadwedding.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="JCWedding" />
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Julien & Christina Wedding" />
-        <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-        <meta name="twitter:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
-        <meta name="twitter:image:alt" content="Love" />
-        <!-- Google Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
-<style>
-    :root {
-        --primary: #ffffff;
-        --accent: #a5b68d;
-        --text: #333333;
-    }
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    html,
-    body {
-        font-family: "Montserrat", sans-serif;
-        color: var(--text);
-        background: var(--primary);
-        scroll-behavior: smooth;
-        direction: ltr;
-    }
-    .hands-image {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin-bottom: 1rem;
-    }
-    section:not(.intro-slide) {
-        min-height: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 0.8rem 1rem;
-        margin-bottom: 0.8rem;
-        max-width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .spaced-section {
-        margin-bottom: 1.6rem;
-    }
-    .intro-slide {
-        width: 100%;
-        min-height: 75vh;
-        background: url("hug.jpg") center top no-repeat;
-        background-size: cover;
-        position: relative;
-        overflow: hidden;
-        will-change: background-position;
-    }
-    .intro-slide::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0);
-        z-index: 1;
-    }
-    #playMusicBtn {
-        position: absolute;
-        top: 1.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        border: none;
-        padding: 0.75rem 1.5rem;
-        border-radius: 25px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        z-index: 2;
-        backdrop-filter: blur(3px);
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-        box-shadow: none;
-    }
-    #playMusicBtn:focus {
-        outline: none;
-        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-        background-color: rgba(0, 0, 0, 0.7);
-    }
-    #playMusicBtn:hover,
-    #playMusicBtn:active {
-        background-color: rgba(0, 0, 0, 0.7);
-        box-shadow: none;
-    }
-    h1.great {
-        font-family: "Great Vibes", cursive;
-        font-size: clamp(2rem, 8vw, 4rem);
-        color: var(--accent);
-        margin-bottom: 0.2rem;
-    }
-    h2 {
-        font-size: clamp(1.2rem, 5vw, 1.8rem);
-        font-weight: 600;
-        margin-bottom: 0.4rem;
-    }
-    h3 {
-        font-size: clamp(1rem, 4vw, 1.5rem);
-        font-weight: 600;
-        margin-bottom: 0.4rem;
-    }
-    p,
-    li {
-        font-size: clamp(0.85rem, 3vw, 1rem);
-        line-height: 1.6;
-    }
-    blockquote {
-        max-width: 90%;
-        font-size: clamp(1rem, 4vw, 1.4rem);
-        font-style: italic;
-        line-height: 1.5;
-    }
-    .countdown {
-        display: flex;
-        gap: 0.5rem;
-        margin: 0.8rem 0 0.4rem;
-        flex-wrap: nowrap;
-        justify-content: center;
-        overflow-x: auto;
-    }
-    .countdown .box {
-        padding: 0.4rem 0.6rem;
-        background: rgba(0, 0, 0, 0.05);
-        border-radius: 6px;
-        display: flex;
-        align-items: baseline;
-        font-weight: 600;
-    }
-    .countdown .num {
-        font-size: clamp(1.8rem, 5.5vw, 2.7rem);
-        font-weight: 600;
-        color: var(--accent);
-    }
-    .countdown .label {
-        font-size: 0.75em;
-        margin-left: 0.2em;
-    }
-    .small-heading {
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        color: var(--accent);
-        margin-bottom: 0.4rem;
-    }
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wedding Invitation</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Julien & Christina Wedding" />
+    <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+    <meta property="og:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
+    <meta property="og:image:alt" content="Love" />
+    <meta property="og:url" content="https://www.jcraadwedding.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JCWedding" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Julien & Christina Wedding" />
+    <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
+    <meta name="twitter:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
+    <meta name="twitter:image:alt" content="Love" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 
-    /* Location Map Button */
-    a.btn {
-        width: 100%;
-        padding: 0.75rem;
-        font-size: clamp(0.9rem, 3vw, 1rem);
-        font-family: "Montserrat", sans-serif;
-        font-weight: 600;
-        margin-top: 1rem;
-        color: #ffffff;
-        background: var(--accent);
-        border: none;
-        border-radius: 8px;
-        text-decoration: none;
-        -webkit-tap-highlight-color: transparent;
-        transition: transform 0.1s ease;
-        touch-action: manipulation;
-    }
-
-    a.btn:focus,
-    a.btn:active {
-        outline: none;
-        box-shadow: none;
-        transform: scale(0.95);
-    }
-
-    /* RSVP Submit Button */
-    .rsvp-form-card button {
-        width: 100%;
-        padding: 0.75rem;
-        font-size: clamp(0.9rem, 3vw, 1rem);
-        font-family: "Montserrat", sans-serif;
-        font-weight: 600;
-        color: #ffffff;
-        background: var(--accent);
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        -webkit-tap-highlight-color: transparent;
-        transition: background 0.3s ease, transform 0.1s ease;
-        touch-action: manipulation;
-    }
-
-    .rsvp-form-card button:focus,
-    .rsvp-form-card button:active {
-        outline: none;
-        box-shadow: none;
-        transform: scale(0.95);
-    }
-
-    .rsvp-form-card button:hover:not(:disabled) {
-        background: #8b9a76;
-    }
-
-    /* Ensure scale resets after release */
-    a.btn:not(:active),
-    .rsvp-form-card button:not(:active) {
-        transform: scale(1);
-    }
-
-    .rsvp-form-card {
-        width: 100%;
-        max-width: 450px;
-        background: var(--primary);
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-        padding: 1.5rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .rsvp-form-card label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-size: clamp(0.85rem, 3vw, 1rem);
-        font-weight: 600;
-        color: var(--text);
-        text-align: left;
-    }
-    [dir="rtl"] .rsvp-form-card label {
-        text-align: right;
-    }
-    .rsvp-form-card input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: clamp(0.85rem, 3vw, 1rem);
-        font-family: "Montserrat", sans-serif;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        background: transparent;
-        color: var(--text);
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 1rem;
-        cursor: text;
-        -webkit-tap-highlight-color: transparent;
-    }
-    .rsvp-form-card select {
-        appearance: none;
-        width: 100%;
-        padding: 0.75rem 2rem 0.75rem 1rem;
-        font-size: clamp(0.85rem, 3vw, 1rem);
-        font-family: "Montserrat", sans-serif;
-        border: 1px solid #e2e8f0;
-        border-radius: 8px;
-        background: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.75rem center;
-        background-size: 1rem;
-        color: var(--text);
-        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        margin-bottom: 1rem;
-        cursor: pointer;
-        line-height: 1.5;
-        -webkit-tap-highlight-color: transparent;
-    }
-    .rsvp-form-card select:disabled {
-        background: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.75rem center;
-        background-size: 1rem;
-        border-color: #e2e8f0;
-        opacity: 0.7;
-        cursor: not-allowed;
-    }
-    [dir="rtl"] .rsvp-form-card select:disabled {
-        background-position: left 0.75rem center;
-    }
-    .rsvp-form-card input:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
-        background: transparent;
-    }
-    .rsvp-form-card select:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
-        background: transparent;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: right 0.75rem center;
-        background-size: 1rem;
-    }
-    .rsvp-form-card input:active,
-    .rsvp-form-card select:active {
-        outline: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-    .rsvp-form-card button:disabled {
-        background: var(--accent);
-        opacity: 0.5;
-        cursor: not-allowed;
-        transform: none;
-    }
-
-    @media (min-width: 600px) {
-        section {
-            padding: 1rem 1.2rem;
+    <style>
+        :root {
+            --primary: #ffffff;
+            --accent: #a5b68d;
+            --text: #333333;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: var(--text);
+            background: var(--primary);
+            scroll-behavior: smooth;
+            direction: ltr;
+        }
+        .hands-image {
+            width: 100%;
+            height: auto;
+            display: block;
             margin-bottom: 1rem;
-            max-width: 600px;
+        }
+        section:not(.intro-slide) {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
         }
         .spaced-section {
-            margin-bottom: 2rem;
+            margin-bottom: 1.6rem;
         }
         .intro-slide {
-            min-height: 70vh;
+            width: 100%;
+            min-height: 75vh;
+            background: url("hug.jpg") center top no-repeat;
             background-size: cover;
+            position: relative;
+            overflow: hidden;
+            will-change: background-position;
+        }
+        .intro-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        }
+        #playMusicBtn {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(3px);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        #playMusicBtn:focus {
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        #playMusicBtn:hover,
+        #playMusicBtn:active {
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: none;
         }
         h1.great {
-            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-family: "Great Vibes", cursive;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--accent);
+            margin-bottom: 0.2rem;
         }
         h2 {
-            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
         }
         h3 {
-            font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
         }
         p,
         li {
-            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            line-height: 1.6;
         }
         blockquote {
-            max-width: 26ch;
-            font-size: clamp(1.25rem, 4vw, 1.6rem);
+            max-width: 90%;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .countdown {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0.8rem 0 0.4rem;
+            flex-wrap: nowrap;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        .countdown .box {
+            padding: 0.4rem 0.6rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: baseline;
+            font-weight: 600;
+        }
+        .countdown .num {
+            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .countdown .label {
+            font-size: 0.75em;
+            margin-left: 0.2em;
         }
         .small-heading {
+            text-transform: uppercase;
             font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
         }
+
+        /* Location Map Button */
         a.btn {
-            padding: 0.75rem 1.25rem;
-            font-size: 1rem;
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            margin-top: 1rem;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        a.btn:focus,
+        a.btn:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        /* RSVP Submit Button */
+        .rsvp-form-card button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.3s ease, transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        .rsvp-form-card button:focus,
+        .rsvp-form-card button:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        .rsvp-form-card button:hover:not(:disabled) {
+            background: #8b9a76;
+        }
+
+        /* Ensure scale resets after release */
+        a.btn:not(:active),
+        .rsvp-form-card button:not(:active) {
+            transform: scale(1);
+        }
+
+        .rsvp-form-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .rsvp-form-card label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+        }
+        [dir="rtl"] .rsvp-form-card label {
+            text-align: right;
+        }
+        .rsvp-form-card input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+            cursor: text;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rsvp-form-card select {
+            appearance: none;
+            width: 100%;
+            padding: 0.75rem 2rem 0.75rem 1rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rsvp-form-card select:disabled {
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            border-color: #e2e8f0;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        [dir="rtl"] .rsvp-form-card select:disabled {
+            background-position: left 0.75rem center;
+        }
+        .rsvp-form-card input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
+            background: transparent;
+        }
+        .rsvp-form-card select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+        .rsvp-form-card input:active,
+        .rsvp-form-card select:active {
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rsvp-form-card button:disabled {
+            background: var(--accent);
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Hide dropdown arrow and style single-guest field */
+        .rsvp-form-card select.single-guest {
+            background-image: none; /* Remove dropdown arrow */
+            appearance: none; /* Ensure no native dropdown styling */
+            cursor: default; /* Indicate non-interactivity */
+            padding-right: 1rem; /* Adjust padding to align with other inputs */
+        }
+
+        /* Optional: Make the disabled single-guest field look like a static text field */
+        .rsvp-form-card select.single-guest:disabled {
+            background: #f8f8f8; /* Light background to mimic text input */
+            border-color: #e2e8f0;
+            color: var(--text);
+            opacity: 1; /* Override default disabled opacity */
+        }
+
+        @media (min-width: 600px) {
+            section {
+                padding: 1rem 1.2rem;
+                margin-bottom: 1rem;
+                max-width: 600px;
+            }
+            .spaced-section {
+                margin-bottom: 2rem;
+            }
+            .intro-slide {
+                min-height: 70vh;
+                background-size: cover;
+            }
+            h1.great {
+                font-size: clamp(2.5rem, 6vw, 5rem);
+            }
+            h2 {
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+            }
+            h3 {
+                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            }
+            p,
+            li {
+                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            }
+            blockquote {
+                max-width: 26ch;
+                font-size: clamp(1.25rem, 4vw, 1.6rem);
+            }
+            .small-heading {
+                font-size: 0.85rem;
+            }
+            a.btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<section class="intro-slide">
+    <button id="playMusicBtn"></button>
+</section>
+
+<section>
+    <blockquote id="quote">
+        <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
+    </blockquote>
+</section>
+
+<section>
+    <div style="font-weight: 600;">
+        <p class="small-heading" id="hosts"></p>
+    </div>
+    <p id="invitationText"></p>
+</section>
+
+<section class="spaced-section">
+    <h1 class="great" id="brideGroom"></h1>
+    <h3 id="date"></h3>
+
+    <div class="countdown" id="countdown">
+        <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
+        <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
+        <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
+        <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
+    </div>
+</section>
+
+<img src="hands.jpg" alt="Rings" class="hands-image" />
+
+<section>
+    <h2 id="locationTitle"></h2>
+    <p id="time"></p>
+    <p id="reception"></p>
+    <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun" target="_blank" id="locationMap" class="btn"></a>
+</section>
+
+<section>
+    <h3 id="giftRegistryTitle"></h3>
+    <p id="giftRegistryDesc"></p>
+    <p id="accountNumber"></p>
+</section>
+
+<section>
+    <div class="rsvp-form-card">
+        <h3 id="rsvpTitle"></h3>
+        <form id="rsvpForm" onsubmit="return false;">
+            <label for="name" id="nameLabel"></label>
+            <input type="text" id="name" required />
+
+            <label for="attendance" id="attendanceLabel"></label>
+            <select id="attendance" required>
+                <option value="" disabled selected></option>
+                <option value="yes"></option>
+                <option value="no"></option>
+            </select>
+
+            <label for="number" id="numberLabel"></label>
+            <select id="number" required>
+                <option value="" disabled selected></option>
+            </select>
+
+            <button type="button" id="submitBtn" disabled></button>
+        </form>
+    </div>
+</section>
+<section>
+    <p id="goodNight"></p>
+</section>
+
+<audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
+
+<script>
+    // Detect language and max from query parameters
+    const supportedLangs = ["en", "ar"];
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = supportedLangs.includes(urlParams.get("lang")) ? urlParams.get("lang") : "en";
+    const locale = lang === "ar" ? "ar-lb" : lang;
+    const maxGuests = parseInt(urlParams.get("max")) || 5; // Default to 5 if max is not provided or invalid
+    const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
+    const isSingleGuest = validatedMaxGuests === 1; // Flag for max=1 case
+
+    async function loadStrings(lang = "en") {
+        try {
+            const response = await fetch(`/lang/${lang}.json`);
+            if (!response.ok) throw new Error("Failed to load language file");
+            return await response.json();
+        } catch (error) {
+            console.error(error);
+            return null;
         }
     }
-    
-</style>
-    </head>
-    <body>
-        <section class="intro-slide">
-            <button id="playMusicBtn"></button>
-        </section>
-        <section>
-            <blockquote id="quote">
-                <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
-            </blockquote>
-        </section>
-        <section>
-            <div style="font-weight: 600;">
-                <p class="small-heading" id="hosts"></p>
-            </div>
-            <p id="invitationText"></p>
-        </section>
-        <section class="spaced-section">
-            <h1 class="great" id="brideGroom"></h1>
-            <h3 id="date"></h3>
-            <div class="countdown" id="countdown">
-                <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
-                <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
-                <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
-                <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
-            </div>
-        </section>
-        <img src="hands.jpg" alt="Rings" class="hands-image" />
-        <section>
-            <h2 id="locationTitle"></h2>
-            <p id="time"></p>
-            <p id="reception"></p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun" target="_blank" id="locationMap" class="btn"></a>
-        </section>
-        <section>
-            <h3 id="giftRegistryTitle"></h3>
-            <p id="giftRegistryDesc"></p>
-            <p id="accountNumber"></p>
-        </section>
-        <section>
-            <div class="rsvp-form-card">
-                <h3 id="rsvpTitle"></h3>
-                <form id="rsvpForm" onsubmit="return false;">
-                    <label for="name" id="nameLabel"></label>
-                    <input type="text" id="name" required />
-                    <label for="attendance" id="attendanceLabel"></label>
-                    <select id="attendance" required>
-                        <option value="" disabled selected></option>
-                        <option value="yes"></option>
-                        <option value="no"></option>
-                    </select>
-                    <label for="number" id="numberLabel"></label>
-                    <select id="number" required>
-                        <option value="" disabled selected></option>
-                    </select>
-                    <button type="button" id="submitBtn" disabled></button>
-                </form>
-            </div>
-        </section>
-        <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
-        <script>
-            // Detect language from query parameter
-            const supportedLangs = ["en", "ar"];
-            const urlParams = new URLSearchParams(window.location.search);
-            const lang = supportedLangs.includes(urlParams.get("lang")) ? urlParams.get("lang") : "en";
-            const locale = lang === "ar" ? "ar-lb" : lang;
-            const maxGuests = parseInt(urlParams.get("max")) || 5; // Default to 5 if max is not provided or invalid
-            const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
+    function applyStrings(strings) {
+        if (!strings) return;
+        document.getElementById("playMusicBtn").textContent = strings.playMusic;
+        document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
+        document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
+        document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
+        document.getElementById("invitationText").textContent = strings.invitation;
+        document.getElementById("brideGroom").innerHTML = strings.brideGroom;
+        document.getElementById("date").textContent = strings.date;
+        document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
+        document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
+        document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
+        document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
+        document.getElementById("locationTitle").textContent = strings.locationTitle;
+        document.getElementById("time").textContent = strings.time;
+        document.getElementById("reception").textContent = strings.reception;
+        document.getElementById("locationMap").textContent = strings.locationMap;
+        document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
+        document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
+        document.getElementById("accountNumber").textContent = strings.accountNumber;
+        document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
+        document.getElementById("goodNight").textContent = strings.goodNight;
+        document.getElementById("nameLabel").textContent = strings.formLabels.name;
+        document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
+        document.getElementById("numberLabel").textContent = strings.formLabels.number;
+        document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
+        document.getElementById("attendance").options[1].text = strings.formLabels.yes;
+        document.getElementById("attendance").options[2].text = strings.formLabels.no;
 
-            async function loadStrings(lang = "en") {
-                try {
-                    const response = await fetch(`/lang/${lang}.json`);
-                    if (!response.ok) throw new Error("Failed to load language file");
-                    return await response.json();
-                } catch (error) {
-                    console.error(error);
-                    return null;
-                }
+        // Dynamically generate number dropdown options based on validatedMaxGuests
+        const numberSelect = document.getElementById("number");
+        if (isSingleGuest) {
+            // For max=1, set a single option with value 1, selected and disabled
+            numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
+            numberSelect.setAttribute("disabled", "disabled");
+            numberSelect.classList.add("single-guest"); // Add class for styling
+        } else {
+            numberSelect.innerHTML = `<option value="" disabled selected>${strings.formLabels.numberPlaceholder}</option>`;
+            for (let i = 1; i <= validatedMaxGuests; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.text = Number(i).toLocaleString(locale);
+                numberSelect.appendChild(option);
             }
+        }
 
-            function applyStrings(strings) {
-                if (!strings) return;
-                document.getElementById("playMusicBtn").textContent = strings.playMusic;
-                document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
-                document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
-                document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
-                document.getElementById("invitationText").textContent = strings.invitation;
-                document.getElementById("brideGroom").innerHTML = strings.brideGroom;
-                document.getElementById("date").textContent = strings.date;
-                document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
-                document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
-                document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
-                document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
-                document.getElementById("locationTitle").textContent = strings.locationTitle;
-                document.getElementById("time").textContent = strings.time;
-                document.getElementById("reception").textContent = strings.reception;
-                document.getElementById("locationMap").textContent = strings.locationMap;
-                document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
-                document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
-                document.getElementById("accountNumber").textContent = strings.accountNumber;
-                document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
-                document.getElementById("nameLabel").textContent = strings.formLabels.name;
-                document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
-                document.getElementById("numberLabel").textContent = strings.formLabels.number;
-                document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
-                document.getElementById("attendance").options[1].text = strings.formLabels.yes;
-                document.getElementById("attendance").options[2].text = strings.formLabels.no;
-                document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
-                document.getElementById("submitBtn").textContent = strings.formLabels.submit;
-                // Dynamically generate number dropdown options based on validatedMaxGuests
-                const numberSelect = document.getElementById("number");
-                numberSelect.innerHTML = `<option value="" disabled selected>${strings.formLabels.numberPlaceholder}</option>`;
-                for (let i = 1; i <= validatedMaxGuests; i++) {
-                    const option = document.createElement("option");
-                    option.value = i;
-                    option.text = Number(i).toLocaleString(locale);
-                    numberSelect.appendChild(option);
-                }
-                document.documentElement.lang = lang;
-                if (lang === "ar") {
-                    document.documentElement.dir = "rtl";
-                    document.body.style.direction = "rtl";
-                    const selects = document.querySelectorAll(".rsvp-form-card select");
-                    selects.forEach((select) => {
-                        select.style.backgroundPosition = "left 0.75rem center";
-                    });
-                } else {
-                    document.documentElement.dir = "ltr";
-                    document.body.style.direction = "ltr";
-                }
-            }
-
-            // Countdown timer
-            function startCountdown(targetDate, lang) {
-                const daysEl = document.getElementById("days");
-                const hoursEl = document.getElementById("hours");
-                const minutesEl = document.getElementById("minutes");
-                const secondsEl = document.getElementById("seconds");
-
-                function updateCountdown() {
-                    const now = new Date();
-                    const diff = targetDate - now;
-
-                    if (diff <= 0) {
-                        const zero = Number(0).toLocaleString(locale)
-                        daysEl.textContent = zero;
-                        hoursEl.textContent = zero;
-                        minutesEl.textContent = zero;
-                        secondsEl.textContent = zero;
-                        clearInterval(timer);
-                        return;
-                    }
-
-                    const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
-                    const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
-                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
-                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
-
-                    daysEl.textContent = days;
-                    hoursEl.textContent = hours;
-                    minutesEl.textContent = minutes;
-                    secondsEl.textContent = seconds;
-                }
-
-                updateCountdown();
-                const timer = setInterval(updateCountdown, 1000);
-            }
-            // RSVP Form Logic
-            function initializeRSVPForm(strings) {
-                const nameInput = document.getElementById("name");
-                const attendanceSelect = document.getElementById("attendance");
-                const numberSelect = document.getElementById("number");
-                const submitBtn = document.getElementById("submitBtn");
-
-                function validate() {
-                    const nameOk = nameInput.value.trim() !== "";
-                    const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-                    const isYes = attendanceSelect.value === "yes";
-                    const numberOk = numberSelect.value !== "";
-
-                    if (isYes) {
-                        numberSelect.removeAttribute("disabled");
-                    } else {
-                        numberSelect.value = "";
-                        numberSelect.setAttribute("disabled", "disabled");
-                    }
-
-                    submitBtn.disabled = !(nameOk && attendanceOk && ((isYes && numberOk) || !isYes));
-                }
-
-                [nameInput, attendanceSelect, numberSelect].forEach((el) => {
-                    el.addEventListener("input", validate);
-                    el.addEventListener("change", validate);
-                });
-
-                submitBtn.addEventListener("click", () => {
-                    if (!submitBtn.disabled) {
-                        const name = nameInput.value.trim();
-                        const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
-                        const number = attendanceSelect.value === "yes" ? Number(numberSelect.value).toLocaleString(locale) : "0";
-                        let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${name}`;
-                        if (number !== "0" && number !== 0) {
-                            message += `\n${strings.formLabels.number}: ${number}`;
-                        }
-                        message += `\n${strings.formLabels.attendance}: ${attendance}`;
-                        const encodedMessage = encodeURIComponent(message);
-                        const phoneNumber = "+31687606064";
-                        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                        window.location.href = whatsappLink;
-                    }
-                });
-
-                validate();
-            }
-
-            // Play music button logic
-            const playMusicBtn = document.getElementById("playMusicBtn");
-            const audio = document.getElementById("weddingAudio");
-            let userStartedPlayback = false;
-            let wasPlayingBeforeHidden = false;
-
-            playMusicBtn.addEventListener("click", () => {
-                audio
-                    .play()
-                    .then(() => {
-                        userStartedPlayback = true;
-                        playMusicBtn.remove();
-                    })
-                    .catch((err) => {
-                        console.warn("Autoplay blocked:", err);
-                    });
+        document.getElementById("submitBtn").textContent = strings.formLabels.submit;
+        document.documentElement.lang = lang;
+        if (lang === "ar") {
+            document.documentElement.dir = "rtl";
+            document.body.style.direction = "rtl";
+            const selects = document.querySelectorAll(".rsvp-form-card select:not(.single-guest)");
+            selects.forEach((select) => {
+                select.style.backgroundPosition = "left 0.75rem center";
             });
+        } else {
+            document.documentElement.dir = "ltr";
+            document.body.style.direction = "ltr";
+        }
+    }
 
-            document.addEventListener("visibilitychange", () => {
-                if (!userStartedPlayback) return;
+    // Countdown timer
+    function startCountdown(targetDate, lang) {
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
 
-                if (document.hidden) {
-                    if (!audio.paused) {
-                        audio.pause();
-                        wasPlayingBeforeHidden = true;
-                    } else {
-                        wasPlayingBeforeHidden = false;
-                    }
-                } else {
-                    if (wasPlayingBeforeHidden) {
-                        audio.play().catch(() => {
-                            console.warn("Resuming playback blocked by browser.");
-                        });
-                    }
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                const zero = Number(0).toLocaleString(locale);
+                daysEl.textContent = zero;
+                hoursEl.textContent = zero;
+                minutesEl.textContent = zero;
+                secondsEl.textContent = zero;
+                clearInterval(timer);
+                return;
+            }
+
+            const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
+            const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
+            const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
+            const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
+
+            daysEl.textContent = days;
+            hoursEl.textContent = hours;
+            minutesEl.textContent = minutes;
+            secondsEl.textContent = seconds;
+        }
+
+        updateCountdown();
+        const timer = setInterval(updateCountdown, 1000);
+    }
+
+    // RSVP Form Logic
+    function initializeRSVPForm(strings) {
+        const nameInput = document.getElementById("name");
+        const attendanceSelect = document.getElementById("attendance");
+        const numberSelect = document.getElementById("number");
+        const submitBtn = document.getElementById("submitBtn");
+
+        function validate() {
+            const nameOk = nameInput.value.trim() !== "";
+            const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
+            const numberOk = isSingleGuest ? true : numberSelect.value !== ""; // Always valid when max=1
+
+            if (!isSingleGuest && attendanceSelect.value === "yes") {
+                numberSelect.removeAttribute("disabled");
+            } else if (!isSingleGuest) {
+                numberSelect.value = "";
+                numberSelect.setAttribute("disabled", "disabled");
+            }
+
+            submitBtn.disabled = !(nameOk && attendanceOk && (isSingleGuest || numberOk));
+        }
+
+        [nameInput, attendanceSelect].forEach((el) => {
+            el.addEventListener("input", validate);
+            el.addEventListener("change", validate);
+        });
+
+        // Only add input/change listeners to numberSelect if max > 1
+        if (!isSingleGuest) {
+            numberSelect.addEventListener("input", validate);
+            numberSelect.addEventListener("change", validate);
+        }
+
+        submitBtn.addEventListener("click", () => {
+            if (!submitBtn.disabled) {
+                const name = nameInput.value.trim();
+                const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
+                const number = isSingleGuest ? "1" : (attendanceSelect.value === "yes" ? Number(numberSelect.value).toLocaleString(locale) : "0");
+                let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${name}`;
+                if (number !== "0" && number !== 0) {
+                    message += `\n${strings.formLabels.number}: ${number}`;
                 }
+                message += `\n${strings.formLabels.attendance}: ${attendance}`;
+                const encodedMessage = encodeURIComponent(message);
+                const phoneNumber = "+31687606064";
+                const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                window.location.href = whatsappLink;
+            }
+        });
+
+        validate();
+    }
+
+    // Play music button logic
+    const playMusicBtn = document.getElementById("playMusicBtn");
+    const audio = document.getElementById("weddingAudio");
+    let userStartedPlayback = false;
+    let wasPlayingBeforeHidden = false;
+
+    playMusicBtn.addEventListener("click", () => {
+        audio
+            .play()
+            .then(() => {
+                userStartedPlayback = true;
+                playMusicBtn.remove();
+            })
+            .catch((err) => {
+                console.warn("Autoplay blocked:", err);
             });
+    });
 
-            // Parallax Effect
-            function parallaxEffect() {
-                const introSlide = document.querySelector(".intro-slide");
-                if (!introSlide) return;
+    document.addEventListener("visibilitychange", () => {
+        if (!userStartedPlayback) return;
 
-                let isScrolling = false;
-                window.addEventListener("scroll", function () {
-                    if (!isScrolling) {
-                        window.requestAnimationFrame(function () {
-                            const scrollPosition = window.scrollY;
-                            const offset = scrollPosition * 0.6;
-                            introSlide.style.backgroundPositionY = `${offset}px`;
-                            isScrolling = false;
-                        });
-                        isScrolling = true;
-                    }
+        if (document.hidden) {
+            if (!audio.paused) {
+                audio.pause();
+                wasPlayingBeforeHidden = true;
+            } else {
+                wasPlayingBeforeHidden = false;
+            }
+        } else {
+            if (wasPlayingBeforeHidden) {
+                audio.play().catch(() => {
+                    console.warn("Resuming playback blocked by browser.");
                 });
             }
-            // Initialize
-            (async () => {
-                const strings = await loadStrings(lang);
-                if (!strings) {
-                    console.error("Failed to load strings, using fallback");
-                    return;
-                }
-                applyStrings(strings);
-                const weddingDate = new Date("2025-08-31T18:00:00");
-                startCountdown(weddingDate, lang);
-                initializeRSVPForm(strings);
-                if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
-                    parallaxEffect();
-                }
-            })();
-        </script>
-    </body>
+        }
+    });
+
+    // Parallax Effect
+    function parallaxEffect() {
+        const introSlide = document.querySelector(".intro-slide");
+        if (!introSlide) return;
+
+        let isScrolling = false;
+        window.addEventListener("scroll", function () {
+            if (!isScrolling) {
+                window.requestAnimationFrame(function () {
+                    const scrollPosition = window.scrollY;
+                    const offset = scrollPosition * 0.6;
+                    introSlide.style.backgroundPositionY = `${offset}px`;
+                    isScrolling = false;
+                });
+                isScrolling = true;
+            }
+        });
+    }
+
+    // Initialize
+    (async () => {
+        const strings = await loadStrings(lang);
+        if (!strings) {
+            console.error("Failed to load strings, using fallback");
+            return;
+        }
+        applyStrings(strings);
+        const weddingDate = new Date("2025-08-31T18:00:00");
+        startCountdown(weddingDate, lang);
+        initializeRSVPForm(strings);
+        if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
+            parallaxEffect();
+        }
+    })();
+</script>
+</body>
 </html>
