@@ -24,338 +24,339 @@
 
     <style>
         :root {
-                                                    --primary: #ffffff;
-                                                    --accent: #a5b68d;
-                                                    --text: #333333;
-                                                }
-                                                * {
-                                                    margin: 0;
-                                                    padding: 0;
-                                                    box-sizing: border-box;
-                                                }
-                                                html,
-                                                body {
-                                                    font-family: "Montserrat", sans-serif;
-                                                    color: var(--text);
-                                                    background: var(--primary);
-                                                    scroll-behavior: smooth;
-                                                    direction: ltr;
-                                                }
-                                                .hands-image {
-                                                    width: 100%;
-                                                    height: auto;
-                                                    display: block;
-                                                    margin-bottom: 1rem;
-                                                }
-                                                section:not(.intro-slide) {
-                                                    min-height: auto;
-                                                    display: flex;
-                                                    flex-direction: column;
-                                                    justify-content: center;
-                                                    align-items: center;
-                                                    text-align: center;
-                                                    padding: 0.8rem 1rem;
-                                                    margin-bottom: 0.8rem;
-                                                    max-width: 95%;
-                                                    margin-left: auto;
-                                                    margin-right: auto;
-                                                }
-                                                .spaced-section {
-                                                    margin-bottom: 1.6rem;
-                                                }
-                                                .intro-slide {
-                                                    width: 100%;
-                                                    min-height: 75vh;
-                                                    background: url("hug.jpg") center top no-repeat;
-                                                    background-size: cover;
-                                                    position: relative;
-                                                    overflow: hidden;
-                                                    will-change: background-position;
-                                                }
-                                                .intro-slide::before {
-                                                    content: "";
-                                                    position: absolute;
-                                                    inset: 0;
-                                                    background: rgba(0, 0, 0, 0);
-                                                    z-index: 1;
-                                                }
-                                                #playMusicBtn {
-                                                    position: absolute;
-                                                    top: 1.5rem;
-                                                    left: 50%;
-                                                    transform: translateX(-50%);
-                                                    background: rgba(0, 0, 0, 0.6);
-                                                    color: white;
-                                                    border: none;
-                                                    padding: 0.75rem 1.5rem;
-                                                    border-radius: 25px;
-                                                    font-size: 1rem;
-                                                    font-weight: 600;
-                                                    cursor: pointer;
-                                                    z-index: 2;
-                                                    backdrop-filter: blur(3px);
-                                                    -webkit-tap-highlight-color: transparent;
-                                                    outline: none;
-                                                    box-shadow: none;
-                                                }
-                                                #playMusicBtn:focus {
-                                                    outline: none;
-                                                    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-                                                    background-color: rgba(0, 0, 0, 0.7);
-                                                }
-                                                #playMusicBtn:hover,
-                                                #playMusicBtn:active {
-                                                    background-color: rgba(0, 0, 0, 0.7);
-                                                    box-shadow: none;
-                                                }
-                                                h1.great {
-                                                    font-family: "Great Vibes", cursive;
-                                                    font-size: clamp(2rem, 8vw, 4rem);
-                                                    color: var(--accent);
-                                                    margin-bottom: 0.2rem;
-                                                }
-                                                h2 {
-                                                    font-size: clamp(1.2rem, 5vw, 1.8rem);
-                                                    font-weight: 600;
-                                                    margin-bottom: 0.4rem;
-                                                }
-                                                h3 {
-                                                    font-size: clamp(1rem, 4vw, 1.5rem);
-                                                    font-weight: 600;
-                                                    margin-bottom: 0.4rem;
-                                                }
-                                                p,
-                                                li {
-                                                    font-size: clamp(0.85rem, 3vw, 1rem);
-                                                    line-height: 1.6;
-                                                }
-                                                blockquote {
-                                                    max-width: 90%;
-                                                    font-size: clamp(1rem, 4vw, 1.4rem);
-                                                    font-style: italic;
-                                                    line-height: 1.5;
-                                                }
-                                                .countdown {
-                                                    display: flex;
-                                                    gap: 0.5rem;
-                                                    margin: 0.8rem 0 0.4rem;
-                                                    flex-wrap: nowrap;
-                                                    justify-content: center;
-                                                    overflow-x: auto;
-                                                }
-                                                .countdown .box {
-                                                    padding: 0.4rem 0.6rem;
-                                                    background: rgba(0, 0, 0, 0.05);
-                                                    border-radius: 6px;
-                                                    display: flex;
-                                                    align-items: baseline;
-                                                    font-weight: 600;
-                                                }
-                                                .countdown .num {
-                                                    font-size: clamp(1.8rem, 5.5vw, 2.7rem);
-                                                    font-weight: 600;
-                                                    color: var(--accent);
-                                                }
-                                                .countdown .label {
-                                                    font-size: 0.75em;
-                                                    margin-left: 0.2em;
-                                                }
-                                                .small-heading {
-                                                    text-transform: uppercase;
-                                                    font-size: 0.85rem;
-                                                    color: var(--accent);
-                                                    margin-bottom: 0.4rem;
-                                                }
+            --primary: #ffffff;
+            --accent: #a5b68d;
+            --text: #333333;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: var(--text);
+            background: var(--primary);
+            scroll-behavior: smooth;
+            direction: ltr;
+        }
+        .hands-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        section:not(.intro-slide) {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.8rem;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .spaced-section {
+            margin-bottom: 1.6rem;
+        }
+        .intro-slide {
+            width: 100%;
+            min-height: 75vh;
+            background: url("hug.jpg") center top no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            will-change: background-position;
+        }
+        .intro-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        }
+        #playMusicBtn {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(3px);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        #playMusicBtn:focus {
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        #playMusicBtn:hover,
+        #playMusicBtn:active {
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: none;
+        }
+        h1.great {
+            font-family: "Great Vibes", cursive;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--accent);
+            margin-bottom: 0.2rem;
+        }
+        h2 {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        h3 {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        p,
+        li {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            line-height: 1.6;
+        }
+        blockquote {
+            max-width: 90%;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .countdown {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0.8rem 0 0.4rem;
+            flex-wrap: nowrap;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        .countdown .box {
+            padding: 0.4rem 0.6rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: baseline;
+            font-weight: 600;
+        }
+        .countdown .num {
+            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .countdown .label {
+            font-size: 0.75em;
+            margin-left: 0.2em;
+        }
+        .small-heading {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
 
-            /* Location Map Button */
+        /* Location Map Button */
+        a.btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            margin-top: 1rem; /* Added top margin */
+            margin-bottom: 0.7rem;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        a.btn:focus,
+        a.btn:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        /* RSVP Submit Button */
+        .rsvp-form-card button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.3s ease, transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        .rsvp-form-card button:focus,
+        .rsvp-form-card button:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        .rsvp-form-card button:hover:not(:disabled) {
+            background: #8b9a76;
+        }
+
+        /* Ensure scale resets after release */
+        a.btn:not(:active),
+        .rsvp-form-card button:not(:active) {
+            transform: scale(1);
+        }
+
+        /* RSVP Form Styles */
+        .rsvp-form-container {
+            width: 100%;
+            max-width: 450px;
+            margin-top: 1rem;
+        }
+        .rsvp-form-container label {
+            display: block;
+            margin-bottom: 1rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+        }
+        .rsvp-form-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .rsvp-form-card label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+        }
+        .rsvp-form-card input,
+        .rsvp-form-card select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        .rsvp-form-card input {
+            cursor: text;
+        }
+        .rsvp-form-card select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 24 24' stroke='%23333333' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1.2rem;
+        }
+        .rsvp-form-card select:disabled {
+            background: transparent;
+            border-color: #e2e8f0;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        .rsvp-form-card input:focus,
+        .rsvp-form-card select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
+            background: transparent;
+        }
+        .rsvp-form-card button:disabled {
+            background: var(--accent);
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .rsvp-form-card .map-container {
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .rsvp-form-card .map-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .rsvp-form-card .map-container img:hover {
+            transform: scale(1.02);
+        }
+
+        @media (min-width: 600px) {
+            section {
+                padding: 1rem 1.2rem;
+                margin-bottom: 1rem;
+                max-width: 600px;
+            }
+            .spaced-section {
+                margin-bottom: 2rem;
+            }
+            .intro-slide {
+                min-height: 70vh;
+                background-size: cover;
+            }
+            h1.great {
+                font-size: clamp(2.5rem, 6vw, 5rem);
+            }
+            h2 {
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+            }
+            h3 {
+                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            }
+            p,
+            li {
+                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            }
+            blockquote {
+                max-width: 26ch;
+                font-size: clamp(1.25rem, 4vw, 1.6rem);
+            }
+            .small-heading {
+                font-size: 0.85rem;
+            }
             a.btn {
-                width: 100%;
-                padding: 0.75rem;
-                font-size: clamp(0.9rem, 3vw, 1rem);
-                font-family: "Montserrat", sans-serif;
-                font-weight: 600;
-                margin-bottom: 0.7rem;
-                color: #ffffff;
-                background: var(--accent);
-                border: none;
-                border-radius: 8px;
-                text-decoration: none; /* Remove underline */
-                -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
-                transition: transform 0.1s ease; /* Smooth scale transition */
-                touch-action: manipulation; /* Improve touch responsiveness */
+                padding: 0.75rem 1.25rem;
+                font-size: 1rem;
             }
-
-            a.btn:focus,
-            a.btn:active {
-                outline: none; /* Remove focus outline */
-                box-shadow: none; /* Remove any box-shadow */
-                transform: scale(0.95); /* Scale down on press */
+            .rsvp-form-container {
+                max-width: 500px;
             }
-
-            /* RSVP Submit Button */
-            .rsvp-form-card button {
-                width: 100%;
-                padding: 0.75rem;
-                font-size: clamp(0.9rem, 3vw, 1rem);
-                font-family: "Montserrat", sans-serif;
-                font-weight: 600;
-                color: #ffffff;
-                background: var(--accent);
-                border: none;
-                border-radius: 8px;
-                cursor: pointer;
-                -webkit-tap-highlight-color: transparent; /* Remove mobile tap highlight */
-                transition: background 0.3s ease, transform 0.1s ease; /* Smooth transitions */
-                touch-action: manipulation; /* Improve touch responsiveness */
-            }
-
-            .rsvp-form-card button:focus,
-            .rsvp-form-card button:active {
-                outline: none; /* Remove focus outline */
-                box-shadow: none; /* Remove any box-shadow */
-                transform: scale(0.95); /* Scale down on press */
-            }
-
-            .rsvp-form-card button:hover:not(:disabled) {
-                background: #8b9a76; /* Slightly darker shade for hover */
-            }
-
-            /* Ensure scale resets after release */
-            a.btn:not(:active),
-            .rsvp-form-card button:not(:active) {
-                transform: scale(1); /* Explicitly reset scale when not active */
-            }
-
-                                                /* RSVP Form Styles */
-                                                .rsvp-form-container {
-                                                    width: 100%;
-                                                    max-width: 450px;
-                                                    margin-top: 1rem;
-                                                }
-                                                .rsvp-form-container label {
-                                                    display: block;
-                                                    margin-bottom: 1rem;
-                                                    font-size: clamp(0.85rem, 3vw, 1rem);
-                                                    font-weight: 600;
-                                                    color: var(--text);
-                                                    text-align: left;
-                                                }
-                                    .rsvp-form-card {
-                                        width: 100%;
-                                        max-width: 450px;
-                                        background: var(--primary); /* White background to match page */
-                                        border-radius: 12px; /* Rounded corners for card effect */
-                                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Material Design elevation */
-                                        padding: 1.5rem; /* Internal padding for card */
-                                        transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
-                                    }
-                                    .rsvp-form-card label {
-                                        display: block;
-                                        margin-bottom: 0.5rem;
-                                        font-size: clamp(0.85rem, 3vw, 1rem);
-                                        font-weight: 600;
-                                        color: var(--text);
-                                        text-align: left;
-                                    }
-                                    .rsvp-form-card input,
-                                    .rsvp-form-card select {
-                                        width: 100%;
-                                        padding: 0.75rem 1rem;
-                                        font-size: clamp(0.85rem, 3vw, 1rem);
-                                        font-family: "Montserrat", sans-serif;
-                                        border: 1px solid #e2e8f0;
-                                        border-radius: 8px;
-                                        background: transparent; /* Transparent background as requested */
-                                        color: var(--text);
-                                        transition: border-color 0.3s ease, box-shadow 0.3s ease;
-                                        margin-bottom: 1rem; /* Spacer between fields */
-                                        cursor: pointer; /* Pointer for select, text for input */
-                                    }
-                                    .rsvp-form-card input {
-                                        cursor: text; /* Text cursor for input */
-                                    }
-                                    .rsvp-form-card select {
-                                        appearance: none;
-                                        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23333333' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-                                        background-repeat: no-repeat;
-                                        background-position: right 0.75rem center;
-                                        background-size: 1.2rem;
-                                    }
-                                    .rsvp-form-card select:disabled {
-                                        background: transparent; /* Transparent when disabled */
-                                        border-color: #e2e8f0;
-                                        opacity: 0.7; /* Faded for disabled state */
-                                        cursor: not-allowed;
-                                    }
-                                    .rsvp-form-card input:focus,
-                                    .rsvp-form-card select:focus {
-                                        outline: none;
-                                        border-color: var(--accent); /* Accent color for focus */
-                                        box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2); /* Subtle glow */
-                                        background: transparent; /* Transparent on focus */
-                                    }
-                                    .rsvp-form-card button:disabled {
-                                        background: var(--accent); /* Same accent color */
-                                        opacity: 0.5; /* Faded effect to look inactive */
-                                        cursor: not-allowed;
-                                        transform: none;
-                                    }
-                                    .rsvp-form-card .map-container {
-                                        margin-bottom: 1.5rem;
-                                        text-align: center;
-                                    }
-                                    .rsvp-form-card .map-container img {
-                                        width: 100%;
-                                        height: auto;
-                                        border-radius: 8px;
-                                        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for map */
-                                        transition: transform 0.3s ease;
-                                    }
-                                    .rsvp-form-card .map-container img:hover {
-                                        transform: scale(1.02); /* Slight zoom on hover */
-                                    }
-
-                                                @media (min-width: 600px) {
-                                                    section {
-                                                        padding: 1rem 1.2rem;
-                                                        margin-bottom: 1rem;
-                                                        max-width: 600px;
-                                                    }
-                                                    .spaced-section {
-                                                        margin-bottom: 2rem;
-                                                    }
-                                                    .intro-slide {
-                                                        min-height: 70vh;
-                                                        background-size: cover;
-                                                    }
-                                                    h1.great {
-                                                        font-size: clamp(2.5rem, 6vw, 5rem);
-                                                    }
-                                                    h2 {
-                                                        font-size: clamp(1.5rem, 4vw, 2.2rem);
-                                                    }
-                                                    h3 {
-                                                        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
-                                                    }
-                                                    p,
-                                                    li {
-                                                        font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-                                                    }
-                                                    blockquote {
-                                                        max-width: 26ch;
-                                                        font-size: clamp(1.25rem, 4vw, 1.6rem);
-                                                    }
-                                                    .small-heading {
-                                                        font-size: 0.85rem;
-                                                    }
-                                                    a.btn {
-                                                        padding: 0.75rem 1.25rem;
-                                                        font font-size: 1rem;
-                                                    }
-                                                    .rsvp-form-container {
-                                                        max-width: 500px;
-                                                    }
-                                                }
+        }
     </style>
 </head>
 
@@ -440,212 +441,215 @@
 
     <script>
         // Detect language from URL path
-            const supportedLangs = ["en", "ar"];
-            const pathSegments = window.location.pathname.split("/").filter(Boolean);
-            const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
-            async function loadStrings(lang = "en") {
-                try {
-                    const response = await fetch(`/lang/${lang}.json`);
-                    if (!response.ok) throw new Error("Failed to load language file");
-                    return await response.json();
-                } catch (error) {
-                    console.error(error);
-                    return null;
+        const supportedLangs = ["en", "ar"];
+        const pathSegments = window.location.pathname.split("/").filter(Boolean);
+        const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
+        async function loadStrings(lang = "en") {
+            try {
+                const response = await fetch(`/lang/${lang}.json`);
+                if (!response.ok) throw new Error("Failed to load language file");
+                return await response.json();
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        function applyStrings(strings) {
+            if (!strings) return;
+            document.getElementById("playMusicBtn").textContent = strings.playMusic;
+            document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
+            document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
+            document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
+            document.getElementById("invitationText").textContent = strings.invitation;
+            document.getElementById("brideGroom").innerHTML = strings.brideGroom;
+            document.getElementById("date").textContent = strings.date;
+            document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
+            document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
+            document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
+            document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
+            document.getElementById("locationTitle").textContent = strings.locationTitle;
+            document.getElementById("time").textContent = strings.time;
+            document.getElementById("reception").textContent = strings.reception;
+            document.getElementById("locationMap").textContent = strings.locationMap;
+            document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
+            document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
+            document.getElementById("accountNumber").textContent = strings.accountNumber;
+            document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
+            document.getElementById("goodNight").textContent = strings.goodNight;
+            document.getElementById("nameLabel").textContent = strings.formLabels.name;
+            document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
+            document.getElementById("numberLabel").textContent = strings.formLabels.number;
+            document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
+            document.getElementById("attendance").options[1].text = strings.formLabels.yes;
+            document.getElementById("attendance").options[2].text = strings.formLabels.no;
+            document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
+            document.getElementById("submitBtn").textContent = strings.formLabels.submit;
+
+            document.documentElement.lang = lang;
+            if (lang === "ar") {
+                document.documentElement.dir = "rtl";
+                document.body.style.direction = "rtl";
+            } else {
+                document.documentElement.dir = "ltr";
+                document.body.style.direction = "ltr";
+            }
+        }
+
+        // Countdown timer
+        function startCountdown(targetDate, lang) {
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    daysEl.textContent = 0;
+                    hoursEl.textContent = 0;
+                    minutesEl.textContent = 0;
+                    secondsEl.textContent = 0;
+                    clearInterval(timer);
+                    return;
                 }
+
+                let locale = lang === "ar" ? "ar-lb" : lang;
+                const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
+                const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
+                const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
+                const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
+
+                daysEl.textContent = days;
+                hoursEl.textContent = hours;
+                minutesEl.textContent = minutes;
+                secondsEl.textContent = seconds;
             }
 
-            function applyStrings(strings) {
-                if (!strings) return;
-                document.getElementById("playMusicBtn").textContent = strings.playMusic;
-                document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
-                document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
-                document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
-                document.getElementById("invitationText").textContent = strings.invitation;
-                document.getElementById("brideGroom").innerHTML = strings.brideGroom;
-                document.getElementById("date").textContent = strings.date;
-                document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
-                document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
-                document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
-                document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
-                document.getElementById("locationTitle").textContent = strings.locationTitle;
-                document.getElementById("time").textContent = strings.time;
-                document.getElementById("reception").textContent = strings.reception;
-                document.getElementById("locationMap").textContent = strings.locationMap;
-                document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
-                document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
-                document.getElementById("accountNumber").textContent = strings.accountNumber;
-                document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
-                document.getElementById("goodNight").textContent = strings.goodNight;
-                document.getElementById("nameLabel").textContent = strings.formLabels.name;
-                document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
-                document.getElementById("numberLabel").textContent = strings.formLabels.number;
-                document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
-                document.getElementById("attendance").options[1].text = strings.formLabels.yes;
-                document.getElementById("attendance").options[2].text = strings.formLabels.no;
-                document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
-                document.getElementById("submitBtn").textContent = strings.formLabels.submit;
+            updateCountdown();
+            const timer = setInterval(updateCountdown, 1000);
+        }
 
-                document.documentElement.lang = lang;
-                if (lang === "ar") {
-                    document.documentElement.dir = "rtl";
-                    document.body.style.direction = "rtl";
+        // RSVP Form Logic
+        function initializeRSVPForm() {
+            const nameInput = document.getElementById("name");
+            const attendanceSelect = document.getElementById("attendance");
+            const numberSelect = document.getElementById("number");
+            const submitBtn = document.getElementById("submitBtn");
+
+            function validate() {
+                const nameOk = nameInput.value.trim() !== "";
+                const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
+                const isYes = attendanceSelect.value === "yes";
+                const numberOk = numberSelect.value !== "";
+
+                if (isYes) {
+                    numberSelect.removeAttribute("disabled");
                 } else {
-                    document.documentElement.dir = "ltr";
-                    document.body.style.direction = "ltr";
-                }
-            }
-
-            // Countdown timer
-            function startCountdown(targetDate, lang) {
-                const daysEl = document.getElementById("days");
-                const hoursEl = document.getElementById("hours");
-                const minutesEl = document.getElementById("minutes");
-                const secondsEl = document.getElementById("seconds");
-
-                function updateCountdown() {
-                    const now = new Date();
-                    const diff = targetDate - now;
-
-                    if (diff <= 0) {
-                        daysEl.textContent = 0;
-                        hoursEl.textContent = 0;
-                        minutesEl.textContent = 0;
-                        secondsEl.textContent = 0;
-                        clearInterval(timer);
-                        return;
-                    }
-
-                    let locale = lang === "ar" ? "ar-lb" : lang;
-                    const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
-                    const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
-                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
-                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
-
-                    daysEl.textContent = days;
-                    hoursEl.textContent = hours;
-                    minutesEl.textContent = minutes;
-                    secondsEl.textContent = seconds;
+                    numberSelect.value = "";
+                    numberSelect.setAttribute("disabled", "disabled");
                 }
 
-                updateCountdown();
-                const timer = setInterval(updateCountdown, 1000);
+                submitBtn.disabled = !(nameOk && attendanceOk && ((isYes && numberOk) || !isYes));
             }
 
-            // RSVP Form Logic
-            function initializeRSVPForm() {
-                const nameInput = document.getElementById("name");
-                const attendanceSelect = document.getElementById("attendance");
-                const numberSelect = document.getElementById("number");
-                const submitBtn = document.getElementById("submitBtn");
+            [nameInput, attendanceSelect, numberSelect].forEach((el) => {
+                el.addEventListener("input", validate);
+                el.addEventListener("change", validate); // Added change event for select
+            });
 
-                function validate() {
-                    const nameOk = nameInput.value.trim() !== "";
-                    const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-                    const isYes = attendanceSelect.value === "yes";
-                    const numberOk = numberSelect.value !== "";
+            submitBtn.addEventListener("click", () => {
+                if (!submitBtn.disabled) {
+                    const name = nameInput.value.trim();
+                    const attendance = attendanceSelect.value === "yes" ? "Yes" : "No";
+                    const number = attendanceSelect.value === "yes" ? numberSelect.value : "N/A";
+                    const message = `RSVP Julien and Christina Wedding\nName: ${name}\nNumber: ${number}\nAttending: ${attendance}`;
+                    const encodedMessage = encodeURIComponent(message);
+                    const phoneNumber = "+31687606064";
+                    const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                    window.location.href = whatsappLink;
 
-                    if (isYes) {
-                        numberSelect.removeAttribute("disabled");
-                    } else {
+                    setTimeout(() => {
+                        nameInput.value = "";
+                        attendanceSelect.value = "";
                         numberSelect.value = "";
-                        numberSelect.setAttribute("disabled", "disabled");
-                    }
-
-                    submitBtn.disabled = !(nameOk && attendanceOk && ((isYes && numberOk) || !isYes));
+                        validate();
+                    }, 500);
                 }
-
-                [nameInput, attendanceSelect, numberSelect].forEach((el) => el.addEventListener("input", validate));
-
-                submitBtn.addEventListener("click", () => {
-                    if (!submitBtn.disabled) {
-                        const name = nameInput.value.trim();
-                        const attendance = attendanceSelect.value === "yes" ? "Yes" : "No";
-                        const number = attendanceSelect.value === "yes" ? numberSelect.value : "N/A";
-                        const message = `RSVP Julien and Christina Wedding\nName: ${name}\nNumber: ${number}\nAttending: ${attendance}`;
-                        const encodedMessage = encodeURIComponent(message);
-                        const phoneNumber = "+31687606064"; // Replace with actual phone number
-                        const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                        window.location.href = whatsappLink;
-
-                        setTimeout(() => {
-                            nameInput.value = "";
-                            attendanceSelect.value = "";
-                            numberSelect.value = "";
-                            validate();
-                        }, 500);
-                    }
-                });
-
-                validate();
-            }
-
-            // Play music button logic
-            const playMusicBtn = document.getElementById("playMusicBtn");
-            const audio = document.getElementById("weddingAudio");
-            let userStartedPlayback = false;
-            let wasPlayingBeforeHidden = false;
-
-            playMusicBtn.addEventListener("click", () => {
-                audio
-                    .play()
-                    .then(() => {
-                        userStartedPlayback = true;
-                        playMusicBtn.remove();
-                    })
-                    .catch((err) => {
-                        console.warn("Autoplay blocked:", err);
-                    });
             });
 
-            document.addEventListener("visibilitychange", () => {
-                if (!userStartedPlayback) return;
+            validate();
+        }
 
-                if (document.hidden) {
-                    if (!audio.paused) {
-                        audio.pause();
-                        wasPlayingBeforeHidden = true;
-                    } else {
-                        wasPlayingBeforeHidden = false;
-                    }
+        // Play music button logic
+        const playMusicBtn = document.getElementById("playMusicBtn");
+        const audio = document.getElementById("weddingAudio");
+        let userStartedPlayback = false;
+        let wasPlayingBeforeHidden = false;
+
+        playMusicBtn.addEventListener("click", () => {
+            audio
+                .play()
+                .then(() => {
+                    userStartedPlayback = true;
+                    playMusicBtn.remove();
+                })
+                .catch((err) => {
+                    console.warn("Autoplay blocked:", err);
+                });
+        });
+
+        document.addEventListener("visibilitychange", () => {
+            if (!userStartedPlayback) return;
+
+            if (document.hidden) {
+                if (!audio.paused) {
+                    audio.pause();
+                    wasPlayingBeforeHidden = true;
                 } else {
-                    if (wasPlayingBeforeHidden) {
-                        audio.play().catch(() => {
-                            console.warn("Resuming playback blocked by browser.");
-                        });
-                    }
+                    wasPlayingBeforeHidden = false;
+                }
+            } else {
+                if (wasPlayingBeforeHidden) {
+                    audio.play().catch(() => {
+                        console.warn("Resuming playback blocked by browser.");
+                    });
+                }
+            }
+        });
+
+        // Parallax Effect
+        function parallaxEffect() {
+            const introSlide = document.querySelector(".intro-slide");
+            if (!introSlide) return;
+
+            let isScrolling = false;
+            window.addEventListener("scroll", function () {
+                if (!isScrolling) {
+                    window.requestAnimationFrame(function () {
+                        const scrollPosition = window.scrollY;
+                        const offset = scrollPosition * 0.6;
+                        introSlide.style.backgroundPositionY = `${offset}px`;
+                        isScrolling = false;
+                    });
+                    isScrolling = true;
                 }
             });
+        }
 
-            // Parallax Effect
-            function parallaxEffect() {
-                const introSlide = document.querySelector(".intro-slide");
-                if (!introSlide) return;
-
-                let isScrolling = false;
-                window.addEventListener("scroll", function () {
-                    if (!isScrolling) {
-                        window.requestAnimationFrame(function () {
-                            const scrollPosition = window.scrollY;
-                            const offset = scrollPosition * 0.6;
-                            introSlide.style.backgroundPositionY = `${offset}px`;
-                            isScrolling = false;
-                        });
-                        isScrolling = true;
-                    }
-                });
+        // Initialize
+        (async () => {
+            const strings = await loadStrings(lang);
+            applyStrings(strings);
+            const weddingDate = new Date("2025-08-31T18:00:00");
+            startCountdown(weddingDate, lang);
+            initializeRSVPForm();
+            if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
+                parallaxEffect();
             }
-
-            // Initialize
-            (async () => {
-                const strings = await loadStrings(lang);
-                applyStrings(strings);
-                const weddingDate = new Date("2025-08-31T18:00:00");
-                startCountdown(weddingDate, lang);
-                initializeRSVPForm();
-                if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
-                    parallaxEffect();
-                }
-            })();
+        })();
     </script>
 </body>
 
