@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -165,12 +165,19 @@
             color: var(--accent);
             margin-bottom: 0.4rem;
         }
+
+
         #belovedSection {
             display: none; /* Hidden by default */
         }
         #belovedSection.show {
             display: flex;
         }
+
+
+
+
+
         #belovedName {
             font-family: "Great Vibes", cursive;
             font-size: clamp(1.8rem, 5.5vw, 1.8rem);
@@ -401,6 +408,7 @@
 </section>
 
 <section id="belovedSection">
+
     <p id="belovedName"></p>
 </section>
 
@@ -461,6 +469,10 @@
         </form>
     </div>
 </section>
+<section>
+    <p id="goodNight"></p>
+</section>
+
 <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
 <script>
@@ -518,6 +530,7 @@
 
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
+
             document.getElementById("belovedName").textContent = sanitizedName;
             belovedSection.classList.add("show");
         } else {
