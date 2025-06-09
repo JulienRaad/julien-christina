@@ -417,7 +417,6 @@
             function parallaxEffect() {
                 const introSlide = document.querySelector(".intro-slide");
                 if (!introSlide) return;
-
                 // Throttle scroll event for performance
                 let isScrolling = false;
                 window.addEventListener("scroll", function () {
@@ -432,7 +431,6 @@
                     }
                 });
             }
-
             // Run parallax only if the device supports it
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                 parallaxEffect();
