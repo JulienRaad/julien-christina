@@ -21,5 +21,15 @@
   "accountNumber": "Acc# 30605332-03",
   "rsvpTitle": "RSVP by July 31st",
   "rsvpContacts": "Julien +31687606064\nChristina +31621491472",
-  "goodNight": "Sweet dreams to your children"
+  "goodNight": "Sweet dreams to your children",
+  "formLabels": {
+    "name": "Full Name",
+    "attendance": "Attendance",
+    "number": "Number of People",
+    "attendancePlaceholder": "Select Attendance",
+    "yes": "Yes",
+    "no": "No",
+    "numberPlaceholder": "Select Number",
+    "submit": "RSVP"
+  }
 }
