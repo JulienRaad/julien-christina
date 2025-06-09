@@ -319,19 +319,8 @@
         cursor: not-allowed;
         transform: none;
     }
-    .rsvp-form-card .map-container {
-        margin-bottom: 1.5rem;
-        text-align: center;
-    }
-    .rsvp-form-card .map-container img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
-    .rsvp-form-card .map-container img:hover {
-        transform: scale(1.02);
+    .rsvp-form-card rsvpTitle {
+        margin-bottom: 0.5rem;
     }
 
     @media (min-width: 600px) {
@@ -452,7 +441,7 @@
             </div>
         </section>
         <section>
-            <h3 id="goodNight"></h3>
+            <label id="goodNight"></label>
         </section>
 
         <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
@@ -569,8 +558,6 @@
                     const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
                     const isYes = attendanceSelect.value === "yes";
                     const numberOk = numberSelect.value !== "";
-
-                    console.log("Validation:", { nameOk, attendanceOk, isYes, numberOk });
 
                     if (isYes) {
                         numberSelect.removeAttribute("disabled");
