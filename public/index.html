@@ -506,7 +506,7 @@
                 document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
                 document.getElementById("submitBtn").textContent = strings.formLabels.submit;
                 for (let i = 1; i <= 5; i++) {
-                   document.getElementById("number").options[i].text = i.toLocaleString(lang);
+                   document.getElementById("number").options[i].text = Number(i).toLocaleString(locale);
                 }
                 document.documentElement.lang = lang;
                 if (lang === "ar") {
@@ -602,13 +602,6 @@
                         const phoneNumber = "+31687606064";
                         const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                         window.location.href = whatsappLink;
-
-                        setTimeout(() => {
-                            nameInput.value = "";
-                            attendanceSelect.value = "";
-                            numberSelect.value = "";
-                            validate();
-                        }, 500);
                     }
                 });
 
