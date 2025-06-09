@@ -22,150 +22,151 @@
         <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
 
         <style>
-                        :root {
-                            --primary: #ffffff;
-                            --accent: #a5b68d;
-                            --text: #333333;
-                        }
-                        * {
-                            margin: 0;
-                            padding: 0;
-                            box-sizing: border-box;
-                        }
-                        html,
-                        body {
-                            font-family: "Montserrat", sans-serif;
-                            color: var(--text);
-                            background: var(--primary);
-                            scroll-behavior: smooth;
-                            direction: ltr;
-                        }
-                        .hands-image {
-                            width: 100%;
-                            height: auto;
-                            display: block;
-                            margin-bottom: 1rem;
-                        }
-                        section:not(.intro-slide) {
-                            min-height: auto;
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: center;
-                            align-items: center;
-                            text-align: center;
-                            padding: 0.8rem 1rem;
-                            margin-bottom: 0.8rem;
-                            max-width: 95%;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-                        .spaced-section {
-                            margin-bottom: 1.6rem;
-                        }
-                        .intro-slide {
-                            width: 100%;
-                            min-height: 75vh;
-                            background: url("hug.jpg") center top no-repeat;
-                            background-size: cover;
-                            position: relative;
-                            overflow: hidden;
-                            will-change: background-position;
-                        }
-                        .intro-slide::before {
-                            content: "";
-                            position: absolute;
-                            inset: 0;
-                            background: rgba(0, 0, 0, 0);
-                            z-index: 1;
-                        }
-                        #playMusicBtn {
-                            position: absolute;
-                            top: 1.5rem;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background: rgba(0, 0, 0, 0.6);
-                            color: white;
-                            border: none;
-                            padding: 0.75rem 1.5rem;
-                            border-radius: 25px;
-                            font-size: 1rem;
-                            font-weight: 600;
-                            cursor: pointer;
-                            z-index: 2;
-                            backdrop-filter: blur(3px);
-                            -webkit-tap-highlight-color: transparent;
-                            outline: none;
-                            box-shadow: none;
-                        }
-                        #playMusicBtn:focus {
-                            outline: none;
-                            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
-                            background-color: rgba(0, 0, 0, 0.7);
-                        }
-                        #playMusicBtn:hover,
-                        #playMusicBtn:active {
-                            background-color: rgba(0, 0, 0, 0.7);
-                            box-shadow: none;
-                        }
-                        h1.great {
-                            font-family: "Great Vibes", cursive;
-                            font-size: clamp(2rem, 8vw, 4rem);
-                            color: var(--accent);
-                            margin-bottom: 0.2rem;
-                        }
-                        h2 {
-                            font-size: clamp(1.2rem, 5vw, 1.8rem);
-                            font-weight: 600;
-                            margin-bottom: 0.4rem;
-                        }
-                        h3 {
-                            font-size: clamp(1rem, 4vw, 1.5rem);
-                            font-weight: 600;
-                            margin-bottom: 0.4rem;
-                        }
-                        p,
-                        li {
-                            font-size: clamp(0.85rem, 3vw, 1rem);
-                            line-height: 1.6;
-                        }
-                        blockquote {
-                            max-width: 90%;
-                            font-size: clamp(1rem, 4vw, 1.4rem);
-                            font-style: italic;
-                            line-height: 1.5;
-                        }
-                        .countdown {
-                            display: flex;
-                            gap: 0.5rem;
-                            margin: 0.8rem 0 0.4rem;
-                            flex-wrap: nowrap;
-                            justify-content: center;
-                            overflow-x: auto;
-                        }
-                        .countdown .box {
-                            padding: 0.4rem 0.6rem;
-                            background: rgba(0, 0, 0, 0.05);
-                            border-radius: 6px;
-                            display: flex;
-                            align-items: baseline;
-                            font-weight: 600;
-                        }
-                        .countdown .num {
-                            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
-                            font-weight: 600;
-                            color: var(--accent);
-                        }
-                        .countdown .label {
-                            font-size: 0.75em;
-                            margin-left: 0.2em;
-                        }
-                        .small-heading {
-                            text-transform: uppercase;
-                            font-size: 0.85rem;
-                            color: var(--accent);
-                            margin-bottom: 0.4rem;
-                        }
-                        a.btn {
+                                    :root {
+                                        --primary: #ffffff;
+                                        --accent: #a5b68d;
+                                        --text: #333333;
+                                    }
+                                    * {
+                                        margin: 0;
+                                        padding: 0;
+                                        box-sizing: border-box;
+                                    }
+                                    html,
+                                    body {
+                                        font-family: "Montserrat", sans-serif;
+                                        color: var(--text);
+                                        background: var(--primary);
+                                        scroll-behavior: smooth;
+                                        direction: ltr;
+                                    }
+                                    .hands-image {
+                                        width: 100%;
+                                        height: auto;
+                                        display: block;
+                                        margin-bottom: 1rem;
+                                    }
+                                    section:not(.intro-slide) {
+                                        min-height: auto;
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: center;
+                                        align-items: center;
+                                        text-align: center;
+                                        padding: 0.8rem 1rem;
+                                        margin-bottom: 0.8rem;
+                                        max-width: 95%;
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                    }
+                                    .spaced-section {
+                                        margin-bottom: 1.6rem;
+                                    }
+                                    .intro-slide {
+                                        width: 100%;
+                                        min-height: 75vh;
+                                        background: url("hug.jpg") center top no-repeat;
+                                        background-size: cover;
+                                        position: relative;
+                                        overflow: hidden;
+                                        will-change: background-position;
+                                    }
+                                    .intro-slide::before {
+                                        content: "";
+                                        position: absolute;
+                                        inset: 0;
+                                        background: rgba(0, 0, 0, 0);
+                                        z-index: 1;
+                                    }
+                                    #playMusicBtn {
+                                        position: absolute;
+                                        top: 1.5rem;
+                                        left: 50%;
+                                        transform: translateX(-50%);
+                                        background: rgba(0, 0, 0, 0.6);
+                                        color: white;
+                                        border: none;
+                                        padding: 0.75rem 1.5rem;
+                                        border-radius: 25px;
+                                        font-size: 1rem;
+                                        font-weight: 600;
+                                        cursor: pointer;
+                                        z-index: 2;
+                                        backdrop-filter: blur(3px);
+                                        -webkit-tap-highlight-color: transparent;
+                                        outline: none;
+                                        box-shadow: none;
+                                    }
+                                    #playMusicBtn:focus {
+                                        outline: none;
+                                        box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+                                        background-color: rgba(0, 0, 0, 0.7);
+                                    }
+                                    #playMusicBtn:hover,
+                                    #playMusicBtn:active {
+                                        background-color: rgba(0, 0, 0, 0.7);
+                                        box-shadow: none;
+                                    }
+                                    h1.great {
+                                        font-family: "Great Vibes", cursive;
+                                        font-size: clamp(2rem, 8vw, 4rem);
+                                        color: var(--accent);
+                                        margin-bottom: 0.2rem;
+                                    }
+                                    h2 {
+                                        font-size: clamp(1.2rem, 5vw, 1.8rem);
+                                        font-weight: 600;
+                                        margin-bottom: 0.4rem;
+                                    }
+                                    h3 {
+                                        font-size: clamp(1rem, 4vw, 1.5rem);
+                                        font-weight: 600;
+                                        margin-bottom: 0.4rem;
+                                    }
+                                    p,
+                                    li {
+                                        font-size: clamp(0.85rem, 3vw, 1rem);
+                                        line-height: 1.6;
+                                    }
+                                    blockquote {
+                                        max-width: 90%;
+                                        font-size: clamp(1rem, 4vw, 1.4rem);
+                                        font-style: italic;
+                                        line-height: 1.5;
+                                    }
+                                    .countdown {
+                                        display: flex;
+                                        gap: 0.5rem;
+                                        margin: 0.8rem 0 0.4rem;
+                                        flex-wrap: nowrap;
+                                        justify-content: center;
+                                        overflow-x: auto;
+                                    }
+                                    .countdown .box {
+                                        padding: 0.4rem 0.6rem;
+                                        background: rgba(0, 0, 0, 0.05);
+                                        border-radius: 6px;
+                                        display: flex;
+                                        align-items: baseline;
+                                        font-weight: 600;
+                                    }
+                                    .countdown .num {
+                                        font-size: clamp(1.8rem, 5.5vw, 2.7rem);
+                                        font-weight: 600;
+                                        color: var(--accent);
+                                    }
+                                    .countdown .label {
+                                        font-size: 0.75em;
+                                        margin-left: 0.2em;
+                                    }
+                                    .small-heading {
+                                        text-transform: uppercase;
+                                        font-size: 0.85rem;
+                                        color: var(--accent);
+                                        margin-bottom: 0.4rem;
+                                    }
+
+            a.btn {
                 width: 100%;
                 padding: 0.75rem;
                 font-size: clamp(0.9rem, 3vw, 1rem);
@@ -175,81 +176,17 @@
                 background: var(--accent);
                 border: none;
                 border-radius: 8px;
-                        }
-                        /* RSVP Form Styles */
-                        .rsvp-form-container {
-                            width: 100%;
-                            max-width: 450px;
-                            margin-top: 1rem;
-                        }
-                        .rsvp-form-container label {
-                            display: block;
-                            margin-bottom: 0.5rem;
-                            font-size: clamp(0.85rem, 3vw, 1rem);
-                            font-weight: 600;
-                            color: var(--text);
-                            text-align: left;
-                        }
-            .rsvp-form-card {
-                width: 100%;
-                max-width: 450px;
-                background: var(--primary); /* White background to match page */
-                border-radius: 12px; /* Rounded corners for card effect */
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Material Design elevation */
-                padding: 1.5rem; /* Internal padding for card */
-                margin-top: 1rem;
-                margin-bottom: 1rem;
-                transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
+                text-decoration: none; /* Remove underline */
+                transition: transform 0.1s ease; /* Smooth scale transition */
             }
-            .rsvp-form-card:hover {
-                transform: translateY(-2px); /* Slight lift on hover */
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.1); /* Elevated shadow */
+
+            a.btn:focus,
+            a.btn:active {
+                outline: none; /* Remove focus outline */
+                box-shadow: none; /* Remove any box-shadow */
+                transform: scale(0.95); /* Scale down on click */
             }
-            .rsvp-form-card label {
-                display: block;
-                margin-bottom: 0.5rem;
-                font-size: clamp(0.85rem, 3vw, 1rem);
-                font-weight: 600;
-                color: var(--text);
-                text-align: left;
-            }
-            .rsvp-form-card input,
-            .rsvp-form-card select {
-                width: 100%;
-                padding: 0.75rem 1rem;
-                font-size: clamp(0.85rem, 3vw, 1rem);
-                font-family: "Montserrat", sans-serif;
-                border: 1px solid #e2e8f0;
-                border-radius: 8px;
-                background: transparent; /* Transparent background as requested */
-                color: var(--text);
-                transition: border-color 0.3s ease, box-shadow 0.3s ease;
-                margin-bottom: 1rem; /* Spacer between fields */
-                cursor: pointer; /* Pointer for select, text for input */
-            }
-            .rsvp-form-card input {
-                cursor: text; /* Text cursor for input */
-            }
-            .rsvp-form-card select {
-                appearance: none;
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23333333' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-                background-repeat: no-repeat;
-                background-position: right 0.75rem center;
-                background-size: 1.2rem;
-            }
-            .rsvp-form-card select:disabled {
-                background: transparent; /* Transparent when disabled */
-                border-color: #e2e8f0;
-                opacity: 0.7; /* Faded for disabled state */
-                cursor: not-allowed;
-            }
-            .rsvp-form-card input:focus,
-            .rsvp-form-card select:focus {
-                outline: none;
-                border-color: var(--accent); /* Accent color for focus */
-                box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2); /* Subtle glow */
-                background: transparent; /* Transparent on focus */
-            }
+
             .rsvp-form-card button {
                 width: 100%;
                 padding: 0.75rem;
@@ -261,75 +198,168 @@
                 border: none;
                 border-radius: 8px;
                 cursor: pointer;
-                transition: background 0.3s ease, transform 0.2s ease, opacity 0.3s ease;
+                transition: background 0.3s ease, transform 0.1s ease; /* Add transform transition */
                 margin-top: 0.5rem;
             }
-            .rsvp-form-card button:hover:not(:disabled) {
-                background: #8b9a76; /* Slightly darker shade for hover */
-                transform: translateY(-2px);
-            }
-            .rsvp-form-card button:disabled {
-                background: var(--accent); /* Same accent color */
-                opacity: 0.5; /* Faded effect to look inactive */
-                cursor: not-allowed;
-                transform: none;
-            }
-            .rsvp-form-card .map-container {
-                margin-bottom: 1.5rem;
-                text-align: center;
-            }
-            .rsvp-form-card .map-container img {
-                width: 100%;
-                height: auto;
-                border-radius: 8px;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for map */
-                transition: transform 0.3s ease;
-            }
-            .rsvp-form-card .map-container img:hover {
-                transform: scale(1.02); /* Slight zoom on hover */
+
+            .rsvp-form-card button:focus,
+            .rsvp-form-card button:active {
+                outline: none; /* Remove focus outline */
+                box-shadow: none; /* Remove any box-shadow */
+                transform: scale(0.95); /* Scale down on click */
             }
 
-                        @media (min-width: 600px) {
-                            section {
-                                padding: 1rem 1.2rem;
-                                margin-bottom: 1rem;
-                                max-width: 600px;
-                            }
-                            .spaced-section {
-                                margin-bottom: 2rem;
-                            }
-                            .intro-slide {
-                                min-height: 70vh;
-                                background-size: cover;
-                            }
-                            h1.great {
-                                font-size: clamp(2.5rem, 6vw, 5rem);
-                            }
-                            h2 {
-                                font-size: clamp(1.5rem, 4vw, 2.2rem);
-                            }
-                            h3 {
-                                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
-                            }
-                            p,
-                            li {
-                                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-                            }
-                            blockquote {
-                                max-width: 26ch;
-                                font-size: clamp(1.25rem, 4vw, 1.6rem);
-                            }
-                            .small-heading {
-                                font-size: 0.85rem;
-                            }
-                            a.btn {
-                                padding: 0.75rem 1.25rem;
-                                font font-size: 1rem;
-                            }
-                            .rsvp-form-container {
-                                max-width: 500px;
-                            }
+            .rsvp-form-card button:hover:not(:disabled) {
+                background: #8b9a76; /* Maintain hover effect */
+                transform: translateY(-2px); /* Keep hover lift */
+            }
+                                    a.btn {
+                            width: 100%;
+                            padding: 0.75rem;
+                            font-size: clamp(0.9rem, 3vw, 1rem);
+                            font-family: "Montserrat", sans-serif;
+                            font-weight: 600;
+                            color: #ffffff;
+                            background: var(--accent);
+                            border: none;
+                            border-radius: 8px;
+                                    }
+                                    /* RSVP Form Styles */
+                                    .rsvp-form-container {
+                                        width: 100%;
+                                        max-width: 450px;
+                                        margin-top: 1rem;
+                                    }
+                                    .rsvp-form-container label {
+                                        display: block;
+                                        margin-bottom: 0.5rem;
+                                        font-size: clamp(0.85rem, 3vw, 1rem);
+                                        font-weight: 600;
+                                        color: var(--text);
+                                        text-align: left;
+                                    }
+                        .rsvp-form-card {
+                            width: 100%;
+                            max-width: 450px;
+                            background: var(--primary); /* White background to match page */
+                            border-radius: 12px; /* Rounded corners for card effect */
+                            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Material Design elevation */
+                            padding: 1.5rem; /* Internal padding for card */
+                            margin-top: 1rem;
+                            margin-bottom: 1rem;
+                            transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover animation */
                         }
+                        .rsvp-form-card:hover {
+                            transform: translateY(-2px); /* Slight lift on hover */
+                            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.1); /* Elevated shadow */
+                        }
+                        .rsvp-form-card label {
+                            display: block;
+                            margin-bottom: 0.5rem;
+                            font-size: clamp(0.85rem, 3vw, 1rem);
+                            font-weight: 600;
+                            color: var(--text);
+                            text-align: left;
+                        }
+                        .rsvp-form-card input,
+                        .rsvp-form-card select {
+                            width: 100%;
+                            padding: 0.75rem 1rem;
+                            font-size: clamp(0.85rem, 3vw, 1rem);
+                            font-family: "Montserrat", sans-serif;
+                            border: 1px solid #e2e8f0;
+                            border-radius: 8px;
+                            background: transparent; /* Transparent background as requested */
+                            color: var(--text);
+                            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                            margin-bottom: 1rem; /* Spacer between fields */
+                            cursor: pointer; /* Pointer for select, text for input */
+                        }
+                        .rsvp-form-card input {
+                            cursor: text; /* Text cursor for input */
+                        }
+                        .rsvp-form-card select {
+                            appearance: none;
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23333333' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+                            background-repeat: no-repeat;
+                            background-position: right 0.75rem center;
+                            background-size: 1.2rem;
+                        }
+                        .rsvp-form-card select:disabled {
+                            background: transparent; /* Transparent when disabled */
+                            border-color: #e2e8f0;
+                            opacity: 0.7; /* Faded for disabled state */
+                            cursor: not-allowed;
+                        }
+                        .rsvp-form-card input:focus,
+                        .rsvp-form-card select:focus {
+                            outline: none;
+                            border-color: var(--accent); /* Accent color for focus */
+                            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2); /* Subtle glow */
+                            background: transparent; /* Transparent on focus */
+                        }
+                        .rsvp-form-card button:disabled {
+                            background: var(--accent); /* Same accent color */
+                            opacity: 0.5; /* Faded effect to look inactive */
+                            cursor: not-allowed;
+                            transform: none;
+                        }
+                        .rsvp-form-card .map-container {
+                            margin-bottom: 1.5rem;
+                            text-align: center;
+                        }
+                        .rsvp-form-card .map-container img {
+                            width: 100%;
+                            height: auto;
+                            border-radius: 8px;
+                            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for map */
+                            transition: transform 0.3s ease;
+                        }
+                        .rsvp-form-card .map-container img:hover {
+                            transform: scale(1.02); /* Slight zoom on hover */
+                        }
+
+                                    @media (min-width: 600px) {
+                                        section {
+                                            padding: 1rem 1.2rem;
+                                            margin-bottom: 1rem;
+                                            max-width: 600px;
+                                        }
+                                        .spaced-section {
+                                            margin-bottom: 2rem;
+                                        }
+                                        .intro-slide {
+                                            min-height: 70vh;
+                                            background-size: cover;
+                                        }
+                                        h1.great {
+                                            font-size: clamp(2.5rem, 6vw, 5rem);
+                                        }
+                                        h2 {
+                                            font-size: clamp(1.5rem, 4vw, 2.2rem);
+                                        }
+                                        h3 {
+                                            font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+                                        }
+                                        p,
+                                        li {
+                                            font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+                                        }
+                                        blockquote {
+                                            max-width: 26ch;
+                                            font-size: clamp(1.25rem, 4vw, 1.6rem);
+                                        }
+                                        .small-heading {
+                                            font-size: 0.85rem;
+                                        }
+                                        a.btn {
+                                            padding: 0.75rem 1.25rem;
+                                            font font-size: 1rem;
+                                        }
+                                        .rsvp-form-container {
+                                            max-width: 500px;
+                                        }
+                                    }
         </style>
     </head>
     <body>
