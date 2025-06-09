@@ -21,5 +21,15 @@
   "accountNumber": "رقم الحساب 30-30605332",
   "rsvpTitle": "لتأكيد الحضور قبل ٣١ يوليو",
   "rsvpContacts": "جوليان 31687606064+\nكريستينا 31621491472+",
-  "goodNight": "نوماً هنيئاً لأطفالكم"
+  "goodNight": "نوماً هنيئاً لأطفالكم",
+   "formLabels": {
+    "name": "الاسم الكامل",
+    "attendance": "الحضور",
+    "number": "عدد الأشخاص",
+    "attendancePlaceholder": "اختر الحضور",
+    "yes": "نعم",
+    "no": "لا",
+    "numberPlaceholder": "اختر العدد",
+    "submit": "تأكيد الحضور"
+  }
 }
