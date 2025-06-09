@@ -165,22 +165,15 @@
             color: var(--accent);
             margin-bottom: 0.4rem;
         }
-
-        /* Beloved Section */
         #belovedSection {
             display: none; /* Hidden by default */
         }
         #belovedSection.show {
             display: flex;
         }
-        #belovedText {
-            font-family: "Montserrat", sans-serif;
-            font-size: clamp(1.4rem, 5vw, 1.6rem);
-            font-weight: 600;
-        }
         #belovedName {
-            font-family: "Montserrat", sans-serif;
-            font-size: clamp(1.4rem, 5vw, 1.6rem);
+            font-family: "Great Vibes", cursive;
+            font-size: clamp(1.8rem, 5.5vw, 1.8rem);
             font-weight: 600;
             margin-top: 0.2rem;
         }
@@ -408,7 +401,6 @@
 </section>
 
 <section id="belovedSection">
-    <p id="belovedText"></p>
     <p id="belovedName"></p>
 </section>
 
@@ -530,7 +522,6 @@
 
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
-            document.getElementById("belovedText").textContent = strings.belovedText;
             document.getElementById("belovedName").textContent = sanitizedName;
             belovedSection.classList.add("show");
         } else {
