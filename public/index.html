@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html>More actions
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -176,12 +176,12 @@
         }
         #belovedText {
             font-family: "Montserrat", sans-serif;
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-size: clamp(1rem, 4vw, 1.2rem);
             font-weight: 600;
         }
         #belovedName {
             font-family: "Montserrat", sans-serif;
-            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            font-size: clamp(1rem, 4vw, 1.2rem);
             font-weight: 600;
             margin-top: 0.2rem;
         }
@@ -223,7 +223,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            -webkit-tap-highlight-color: diaphragmatic;
+            -webkit-tap-highlight-color: transparent;
             transition: background 0.3s ease, transform 0.1s ease;
             touch-action: manipulation;
         }
@@ -407,10 +407,12 @@
         <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
     </blockquote>
 </section>
-<section>
+
+<section id="belovedSection">
     <p id="belovedText"></p>
     <p id="belovedName"></p>
 </section>
+
 <section>
     <div style="font-weight: 600;">
         <p class="small-heading" id="hosts"></p>
@@ -621,7 +623,7 @@
         function validate() {
             const nameOk = nameInput.value.trim() !== "";
             const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-            const numberOk = isSingleGuest || attendanceSelect.value === "no" || numberSelect.value !== "";
+            const numberOk = isSingleGuest ? true : numberSelect.value !== ""; // Always valid when max=1
 
             if (!isSingleGuest && attendanceSelect.value === "yes") {
                 numberSelect.removeAttribute("disabled");
@@ -630,7 +632,7 @@
                 numberSelect.setAttribute("disabled", "disabled");
             }
 
-            submitBtn.disabled = !(nameOk && attendanceOk && numberOk);
+            submitBtn.disabled = !(nameOk && attendanceOk && (isSingleGuest || numberOk));
         }
 
         [nameInput, attendanceSelect].forEach((el) => {
