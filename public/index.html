@@ -166,16 +166,15 @@
                             margin-bottom: 0.4rem;
                         }
                         a.btn {
-                            display: inline-block;
-                            margin-top: 0.8rem;
-                            padding: 0.6rem 1
-
-            rem;
-                            background: var(--accent);
-                            color: #fff;
-                            border-radius: 4px;
-                            text-decoration: none;
-                            font-size: 0.9rem;
+                width: 100%;
+                padding: 0.75rem;
+                font-size: clamp(0.9rem, 3vw, 1rem);
+                font-family: "Montserrat", sans-serif;
+                font-weight: 600;
+                color: #ffffff;
+                background: var(--accent);
+                border: none;
+                border-radius: 8px;
                         }
                         /* RSVP Form Styles */
                         .rsvp-form-container {
@@ -369,7 +368,7 @@
             <h2 id="locationTitle"></h2>
             <p id="time"></p>
             <p id="reception"></p>
-            <a href="https://goo.gl/maps/bG3LuEYqgSpdQ5qH6" target="_blank" id="locationMap" class="btn"></a>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=33.993698022227484,35.7287315563787" target="_blank" id="locationMap" class="btn"></a>
         </section>
         <section>
             <div class="rsvp-form-card">
@@ -540,7 +539,7 @@
                         const number = attendanceSelect.value === "yes" ? numberSelect.value : "N/A";
                         const message = `RSVP Julien and Christina Wedding\nName: ${name}\nNumber: ${number}\nAttending: ${attendance}`;
                         const encodedMessage = encodeURIComponent(message);
-                        const phoneNumber = "YOUR_PHONE_NUMBER"; // Replace with actual phone number
+                        const phoneNumber = "+31687606064"; // Replace with actual phone number
                         const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                         window.location.href = whatsappLink;
 
