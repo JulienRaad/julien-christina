@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>Wedding Invitation</title>
-    
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Julien & Christina Wedding" />
-    <meta property="og:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-    <meta property="og:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
-    <meta property="og:image:alt" content="Love" />
-    <meta property="og:url" content="https://www.jcraadwedding.com" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="JCWedding" />
+    <meta property="og:title" content="Julien & Christina Wedding"/>
+    <meta property="og:description"
+          content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025."/>
+    <meta property="og:image"
+          content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1"/>
+    <meta property="og:image:alt" content="Love"/>
+    <meta property="og:url" content="https://www.jcraadwedding.com"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="JCWedding"/>
     <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Julien & Christina Wedding" />
-    <meta name="twitter:description" content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025." />
-    <meta name="twitter:image" content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1" />
-    <meta name="twitter:image:alt" content="Love" />
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Julien & Christina Wedding"/>
+    <meta name="twitter:description"
+          content="You are invited to celebrate the wedding of Julien and Christina on August 31st, 2025."/>
+    <meta name="twitter:image"
+          content="https://www.dropbox.com/scl/fi/s7clragwyl0f7prqxl1o3/hug.jpg?rlkey=xtw959wqe9mbyyr343ml8pt98&st=dkz1wgh5&raw=1"/>
+    <meta name="twitter:image:alt" content="Love"/>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap"
+          rel="stylesheet"/>
 
     <style>
         :root {
@@ -177,12 +182,10 @@
         #belovedText {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             font-weight: 600;
-            color: var(--accent);
         }
         #belovedName {
-            font-family: "Great Vibes", cursive;
+            font-family: "Montserrat", sans-serif;
             font-size: clamp(1.5rem, 6vw, 2.5rem);
-            color: var(--text);
             margin-top: 0.2rem;
         }
 
@@ -223,7 +226,7 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+            -webkit-tap-highlight-color: diaphragmatic;
             transition: background 0.3s ease, transform 0.1s ease;
             touch-action: manipulation;
         }
@@ -393,12 +396,6 @@
                 padding: 0.75rem 1.25rem;
                 font-size: 1rem;
             }
-            #belovedText {
-                font-size: clamp(1.5rem, 4vw, 2rem);
-            }
-            #belovedName {
-                font-size: clamp(1.75rem, 5vw, 3rem);
-            }
         }
     </style>
 </head>
@@ -414,10 +411,8 @@
     </blockquote>
 </section>
 
-<section id="belovedSection">
-    <p id="belovedText"></p>
-    <p id="belovedName"></p>
-</section>
+<p id="belovedText"></p>
+<p id="belovedName"></p>
 
 <section>
     <div style="font-weight: 600;">
@@ -431,20 +426,25 @@
     <h3 id="date"></h3>
 
     <div class="countdown" id="countdown">
-        <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
-        <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
-        <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
-        <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
+        <div class="box"><span class="num" id="days"></span><span class="label"
+                                                                  id="daysLabel"></span></div>
+        <div class="box"><span class="num" id="hours"></span><span class="label"
+                                                                   id="hoursLabel"></span></div>
+        <div class="box"><span class="num" id="minutes"></span><span class="label"
+                                                                     id="minutesLabel"></span></div>
+        <div class="box"><span class="num" id="seconds"></span><span class="label"
+                                                                     id="secondsLabel"></span></div>
     </div>
 </section>
 
-<img src="hands.jpg" alt="Rings" class="hands-image" />
+<img src="hands.jpg" alt="Rings" class="hands-image"/>
 
 <section>
     <h2 id="locationTitle"></h2>
     <p id="time"></p>
     <p id="reception"></p>
-    <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun" target="_blank" id="locationMap" class="btn"></a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun"
+       target="_blank" id="locationMap" class="btn"></a>
 </section>
 
 <section>
@@ -458,7 +458,7 @@
         <h3 id="rsvpTitle"></h3>
         <form id="rsvpForm" onsubmit="return false;">
             <label for="name" id="nameLabel"></label>
-            <input type="text" id="name" required />
+            <input type="text" id="name" required/>
 
             <label for="attendance" id="attendanceLabel"></label>
             <select id="attendance" required>
@@ -539,7 +539,7 @@
         // Handle beloved section
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
-            document.getElementById("belovedText").textContent = strings.belovedText || "Our Beloved";
+            document.getElementById("belovedText").textContent = strings.belovedText;
             document.getElementById("belovedName").textContent = sanitizedName;
             belovedSection.classList.add("show");
         } else {
@@ -563,7 +563,7 @@
             }
         }
 
-        document.getElementById("submitBtn").textContent = strings.formLabels.submit;
+        document.getElementById("submitBtn").textContent.= strings.formLabels.submit;
         document.documentElement.lang = lang;
         if (lang === "ar") {
             document.documentElement.dir = "rtl";
@@ -629,7 +629,7 @@
         function validate() {
             const nameOk = nameInput.value.trim() !== "";
             const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-            const numberOk = isSingleGuest ? true : numberSelect.value !== ""; // Always valid when max=1
+            const numberOk = isSingleGuest || attendanceSelect.value === "no" || numberSelect.value !== "";
 
             if (!isSingleGuest && attendanceSelect.value === "yes") {
                 numberSelect.removeAttribute("disabled");
@@ -638,7 +638,7 @@
                 numberSelect.setAttribute("disabled", "disabled");
             }
 
-            submitBtn.disabled = !(nameOk && attendanceOk && (isSingleGuest || numberOk));
+            submitBtn.disabled = !(nameOk && attendanceOk && numberOk);
         }
 
         [nameInput, attendanceSelect].forEach((el) => {
