@@ -1,10 +1,8 @@
 {
   "rewrites": [
-    { "source": "/lang/:path*",     "destination": "/lang/:path*" },
+    { "source": "/lang/:path*", "destination": "/lang/:path*" },
     { "source": "/:file((?:[^/]+)\\.[a-z0-9]+)", "destination": "/:file" },
-    { "source": "/:locale(en|ar)",          "destination": "/" },
-    { "source": "/:locale(en|ar)/:path*",   "destination": "/:path*" },
-    { "source": "/:slug",         "destination": "/" },
-    { "source": "/:slug/:path*",  "destination": "/:path*" }
+    { "source": "/:slug", "destination": "/" },
+    { "source": "/:slug/:path*", "destination": "/:path*" }
   ]
 }

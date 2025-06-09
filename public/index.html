@@ -360,29 +360,24 @@
     }
 </style>
     </head>
-
     <body>
         <section class="intro-slide">
             <button id="playMusicBtn"></button>
         </section>
-
         <section>
             <blockquote id="quote">
                 <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
             </blockquote>
         </section>
-
         <section>
             <div style="font-weight: 600;">
                 <p class="small-heading" id="hosts"></p>
             </div>
             <p id="invitationText"></p>
         </section>
-
         <section class="spaced-section">
             <h1 class="great" id="brideGroom"></h1>
             <h3 id="date"></h3>
-
             <div class="countdown" id="countdown">
                 <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
                 <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
@@ -390,46 +385,34 @@
                 <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
             </div>
         </section>
-
         <img src="hands.jpg" alt="Rings" class="hands-image" />
-
         <section>
             <h2 id="locationTitle"></h2>
             <p id="time"></p>
             <p id="reception"></p>
             <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun" target="_blank" id="locationMap" class="btn"></a>
         </section>
-
         <section>
             <h3 id="giftRegistryTitle"></h3>
             <p id="giftRegistryDesc"></p>
             <p id="accountNumber"></p>
         </section>
-
         <section>
             <div class="rsvp-form-card">
                 <h3 id="rsvpTitle"></h3>
                 <form id="rsvpForm" onsubmit="return false;">
                     <label for="name" id="nameLabel"></label>
                     <input type="text" id="name" required />
-
                     <label for="attendance" id="attendanceLabel"></label>
                     <select id="attendance" required>
                         <option value="" disabled selected></option>
                         <option value="yes"></option>
                         <option value="no"></option>
                     </select>
-
                     <label for="number" id="numberLabel"></label>
                     <select id="number" required>
                         <option value="" disabled selected></option>
-                        <option value="1"></option>
-                        <option value="2"></option>
-                        <option value="3"></option>
-                        <option value="4"></option>
-                        <option value="5"></option>
                     </select>
-
                     <button type="button" id="submitBtn" disabled></button>
                 </form>
             </div>
@@ -437,15 +420,16 @@
         <section>
             <p id="goodNight"></p>
         </section>
-
         <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
         <script>
-            // Detect language from URL path
+            // Detect language from query parameter
             const supportedLangs = ["en", "ar"];
-            const pathSegments = window.location.pathname.split("/").filter(Boolean);
-            const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
-            const locale = (lang === "ar") ? "ar-lb" : lang;
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = supportedLangs.includes(urlParams.get("lang")) ? urlParams.get("lang") : "en";
+            const locale = lang === "ar" ? "ar-lb" : lang;
+            const maxGuests = parseInt(urlParams.get("max")) || 5; // Default to 5 if max is not provided or invalid
+            const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
 
             async function loadStrings(lang = "en") {
                 try {
@@ -488,8 +472,14 @@
                 document.getElementById("attendance").options[2].text = strings.formLabels.no;
                 document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
                 document.getElementById("submitBtn").textContent = strings.formLabels.submit;
-                for (let i = 1; i <= 5; i++) {
-                   document.getElementById("number").options[i].text = Number(i).toLocaleString(locale);
+                // Dynamically generate number dropdown options based on validatedMaxGuests
+                const numberSelect = document.getElementById("number");
+                numberSelect.innerHTML = `<option value="" disabled selected>${strings.formLabels.numberPlaceholder}</option>`;
+                for (let i = 1; i <= validatedMaxGuests; i++) {
+                    const option = document.createElement("option");
+                    option.value = i;
+                    option.text = Number(i).toLocaleString(locale);
+                    numberSelect.appendChild(option);
                 }
                 document.documentElement.lang = lang;
                 if (lang === "ar") {
