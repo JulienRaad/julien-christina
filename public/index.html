@@ -553,15 +553,16 @@
                         return;
                     }
 
+                    const locale = (lang === "ar") ? "ar-lb" : lang;
                     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
                     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-                    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-                    const seconds = Math.floor((diff / 1000) % 60);
+                    const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
+                    const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
 
                     daysEl.textContent = toArabicNumerals(days);
                     hoursEl.textContent = toArabicNumerals(hours);
-                    minutesEl.textContent = toArabicNumerals(minutes);
-                    secondsEl.textContent = toArabicNumerals(seconds);
+                    minutesEl.textContent = minutes;
+                    secondsEl.textContent = seconds;
                 }
 
                 updateCountdown();
