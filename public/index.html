@@ -166,6 +166,25 @@
             margin-bottom: 0.4rem;
         }
 
+        /* Beloved Section */
+        #belovedSection {
+            display: none; /* Hidden by default */
+        }
+        #belovedSection.show {
+            display: flex;
+        }
+        #belovedText {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        #belovedName {
+            font-family: "Great Vibes", cursive;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            color: var(--text);
+            margin-top: 0.2rem;
+        }
+
         /* Location Map Button */
         a.btn {
             width: 100%;
@@ -373,6 +392,12 @@
                 padding: 0.75rem 1.25rem;
                 font-size: 1rem;
             }
+            #belovedText {
+                font-size: clamp(1.5rem, 4vw, 2rem);
+            }
+            #belovedName {
+                font-size: clamp(1.75rem, 5vw, 3rem);
+            }
         }
     </style>
 </head>
@@ -386,6 +411,11 @@
     <blockquote id="quote">
         <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
     </blockquote>
+</section>
+
+<section id="belovedSection">
+    <p id="belovedText"></p>
+    <p id="belovedName"></p>
 </section>
 
 <section>
@@ -452,14 +482,18 @@
 <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
 <script>
-    // Detect language and max from query parameters
+    // Detect language, max, and name from query parameters
     const supportedLangs = ["en", "ar"];
     const urlParams = new URLSearchParams(window.location.search);
     const lang = supportedLangs.includes(urlParams.get("lang")) ? urlParams.get("lang") : "en";
+    const id = parseInt(urlParams.get("id")) || 1;
+    const validatedId = isNaN(id) ? 1 : id;
     const locale = lang === "ar" ? "ar-lb" : lang;
-    const maxGuests = parseInt(urlParams.get("max")) || 5; // Default to 5 if max is not provided or invalid
+    const maxGuests = parseInt(urlParams.get("for")) || 5; // Default to 5 if max is not provided or invalid
     const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
     const isSingleGuest = validatedMaxGuests === 1; // Flag for max=1 case
+    const rawName = urlParams.get("name") || "";
+    const sanitizedName = rawName.trim().slice(0, 30).replace(/[<>]/g, ""); // Limit to 30 chars, remove < and >
 
     async function loadStrings(lang = "en") {
         try {
@@ -500,6 +534,16 @@
         document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
         document.getElementById("attendance").options[1].text = strings.formLabels.yes;
         document.getElementById("attendance").options[2].text = strings.formLabels.no;
+
+        // Handle beloved section
+        const belovedSection = document.getElementById("belovedSection");
+        if (sanitizedName) {
+            document.getElementById("belovedText").textContent = strings.belovedText || "Our Beloved";
+            document.getElementById("belovedName").textContent = sanitizedName;
+            belovedSection.classList.add("show");
+        } else {
+            belovedSection.style.display = "none";
+        }
 
         // Dynamically generate number dropdown options based on validatedMaxGuests
         const numberSelect = document.getElementById("number");
@@ -576,6 +620,11 @@
         const numberSelect = document.getElementById("number");
         const submitBtn = document.getElementById("submitBtn");
 
+        // Pre-fill name input if sanitizedName is provided
+        if (sanitizedName) {
+            nameInput.value = sanitizedName;
+        }
+
         function validate() {
             const nameOk = nameInput.value.trim() !== "";
             const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
@@ -613,7 +662,7 @@
                 }
                 message += `\n${strings.formLabels.attendance}: ${attendance}`;
                 const encodedMessage = encodeURIComponent(message);
-                const phoneNumber = "+31687606064";
+                const phoneNumber = validatedId === 1 ? "+31687606064" : "+31621491472";
                 const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                 window.location.href = whatsappLink;
             }
