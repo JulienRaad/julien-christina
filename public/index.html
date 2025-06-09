@@ -380,19 +380,19 @@
                     </a>
                 </div>
                 <form id="rsvpForm" onsubmit="return false;">
-                    <label for="name">Full Name</label>
+                    <label for="name" id="nameLabel"></label>
                     <input type="text" id="name" required />
 
-                    <label for="attendance">Attendance</label>
+                    <label for="attendance" id="attendanceLabel"></label>
                     <select id="attendance" required>
-                        <option value="" disabled selected>Select Attendance</option>
-                        <option value="yes">Yes</option>
-                        <option value="no">No</option>
+                        <option value="" disabled selected></option>
+                        <option value="yes"></option>
+                        <option value="no"></option>
                     </select>
 
-                    <label for="number">Number of People</label>
+                    <label for="number" id="numberLabel"></label>
                     <select id="number" required>
-                        <option value="" disabled selected>Select Number</option>
+                        <option value="" disabled selected></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -400,7 +400,7 @@
                         <option value="5">5</option>
                     </select>
 
-                    <button type="button" id="submitBtn" disabled>RSVP</button>
+                    <button type="button" id="submitBtn" disabled></button>
                 </form>
             </div>
         </section>
@@ -447,43 +447,33 @@
 
             function applyStrings(strings) {
                 if (!strings) return;
-
                 document.getElementById("playMusicBtn").textContent = strings.playMusic;
-
                 document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
                 document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
-
                 document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
                 document.getElementById("invitationText").textContent = strings.invitation;
-
                 document.getElementById("brideGroom").innerHTML = strings.brideGroom;
                 document.getElementById("date").textContent = strings.date;
-
                 document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
                 document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
                 document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
                 document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
-
                 document.getElementById("locationTitle").textContent = strings.locationTitle;
                 document.getElementById("time").textContent = strings.time;
                 document.getElementById("reception").textContent = strings.reception;
-
                 document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
                 document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
                 document.getElementById("accountNumber").textContent = strings.accountNumber;
-
                 document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
                 document.getElementById("goodNight").textContent = strings.goodNight;
-
-                // Update form labels and options dynamically based on language
-                document.querySelector("label[for='name']").textContent = strings.formLabels?.name || "Name";
-                document.querySelector("label[for='attendance']").textContent = strings.formLabels?.attendance || "Attendance";
-                document.querySelector("label[for='number']").textContent = strings.formLabels?.number || "Number of People";
-                document.getElementById("attendance").options[0].text = strings.formLabels?.attendancePlaceholder || "Select Attendance";
-                document.getElementById("attendance").options[1].text = strings.formLabels?.yes || "Yes";
-                document.getElementById("attendance").options[2].text = strings.formLabels?.no || "No";
-                document.getElementById("number").options[0].text = strings.formLabels?.numberPlaceholder || "Select Number";
-                document.getElementById("submitBtn").textContent = strings.formLabels?.submit || "RSVP";
+                document.getElementById("nameLabel").textContent = strings.formLabels.name;
+                document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
+                document.getElementById("numberLabel").textContent = strings.formLabels.number;
+                document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
+                document.getElementById("attendance").options[1].text = strings.formLabels.yes;
+                document.getElementById("attendance").options[2].text = strings.formLabels.no;
+                document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
+                document.getElementById("submitBtn").textContent = strings.formLabels.submit;
             }
 
             // Countdown timer
