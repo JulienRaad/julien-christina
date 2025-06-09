@@ -1,4 +1,4 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>More actionsMore actions
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -165,8 +165,10 @@
             color: var(--accent);
             margin-bottom: 0.4rem;
         }
+
+
         #belovedSection {
-            display: none;
+            display: none; /* Hidden by default */
         }
         #belovedSection.show {
             display: flex;
@@ -177,6 +179,8 @@
             font-weight: 600;
             margin-top: 0.2rem;
         }
+
+        /* Location Map Button */
         a.btn {
             width: 100%;
             padding: 0.75rem;
@@ -193,12 +197,15 @@
             transition: transform 0.1s ease;
             touch-action: manipulation;
         }
+
         a.btn:focus,
         a.btn:active {
             outline: none;
             box-shadow: none;
             transform: scale(0.95);
         }
+
+        /* RSVP Submit Button */
         .rsvp-form-card button {
             width: 100%;
             padding: 0.75rem;
@@ -214,19 +221,24 @@
             transition: background 0.3s ease, transform 0.1s ease;
             touch-action: manipulation;
         }
+
         .rsvp-form-card button:focus,
         .rsvp-form-card button:active {
             outline: none;
             box-shadow: none;
             transform: scale(0.95);
         }
+
         .rsvp-form-card button:hover:not(:disabled) {
             background: #8b9a76;
         }
+
+        /* Ensure scale resets after release */
         a.btn:not(:active),
         .rsvp-form-card button:not(:active) {
             transform: scale(1);
         }
+
         .rsvp-form-card {
             width: 100%;
             max-width: 450px;
@@ -322,18 +334,20 @@
             transform: none;
         }
 
+        /* Hide dropdown arrow and style single-guest field */
         .rsvp-form-card select.single-guest {
-            background-image: none;
-            appearance: none;
-            cursor: default;
-            padding-right: 1rem;
+            background-image: none; /* Remove dropdown arrow */
+            appearance: none; /* Ensure no native dropdown styling */
+            cursor: default; /* Indicate non-interactivity */
+            padding-right: 1rem; /* Adjust padding to align with other inputs */
         }
 
+        /* Optional: Make the disabled single-guest field look like a static text field */
         .rsvp-form-card select.single-guest:disabled {
-            background: #f8f8f8;
+            background: #f8f8f8; /* Light background to mimic text input */
             border-color: #e2e8f0;
             color: var(--text);
-            opacity: 1;
+            opacity: 1; /* Override default disabled opacity */
         }
 
         @media (min-width: 600px) {
@@ -389,6 +403,7 @@
 </section>
 
 <section id="belovedSection">
+
     <p id="belovedName"></p>
 </section>
 
@@ -449,6 +464,7 @@
         </form>
     </div>
 </section>
+
 <audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
 
 <script>
@@ -590,13 +606,18 @@ function validate() {
     const nameOk = nameInput.value.trim() !== "";
     const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
     const numberOk = isSingleGuest ? true : numberSelect.value !== "";
+
+    // Enable numberSelect only if attendance is "yes" and not a single guest
     if (!isSingleGuest && attendanceSelect.value === "yes") {
         numberSelect.removeAttribute("disabled");
     } else if (!isSingleGuest) {
         numberSelect.value = "";
         numberSelect.setAttribute("disabled", "disabled");
     }
+
+    // Enable submit button if name and attendance are valid, and if attendance is "yes", number must be valid
     submitBtn.disabled = !(nameOk && attendanceOk && (attendanceSelect.value === "no" || isSingleGuest || numberOk));
+}
 
         [nameInput, attendanceSelect].forEach((el) => {
             el.addEventListener("input", validate);
@@ -624,6 +645,7 @@ function validate() {
                 window.location.href = whatsappLink;
             }
         });
+
         validate();
     }
 
