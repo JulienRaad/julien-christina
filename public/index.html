@@ -258,6 +258,9 @@
             color: var(--text);
             text-align: left;
         }
+        [dir="rtl"] .rsvp-form-card label {
+            text-align: right;
+        }
         .rsvp-form-card input {
             width: 100%;
             padding: 0.75rem 1rem;
@@ -290,16 +293,20 @@
             cursor: pointer;
             line-height: 1.5;
         }
-        .rsvp-form-card select:disabled {
-            background: transparent;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1rem;
-            border-color: #e2e8f0;
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+.rsvp-form-card select:disabled {
+    background: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+    border-color: #e2e8f0;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+[dir="rtl"] .rsvp-form-card select:disabled {
+    background-position: left 0.75rem center;
+}
         .rsvp-form-card input:focus {
             outline: none;
             border-color: var(--accent);
