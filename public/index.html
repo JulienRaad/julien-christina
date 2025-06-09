@@ -41,6 +41,11 @@
                 scroll-behavior: smooth;
                 direction: ltr;
             }
+            .hands-image {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
             section:not(.intro-slide) {
                 min-height: auto;
                 display: flex;
@@ -50,7 +55,7 @@
                 text-align: center;
                 padding: 0.8rem 1rem;
                 margin-bottom: 0.8rem;
-                max-width: 90%;
+                max-width: 95%;
                 margin-left: auto;
                 margin-right: auto;
             }
@@ -59,8 +64,8 @@
             }
             .intro-slide {
                 width: 100vw;
-                min-height: 70vh;
-                background: url("proposal.png") center top no-repeat;
+                min-height: 75vh;
+                background: url("hug.jpg") center top no-repeat;
                 background-size: cover;
                 position: relative;
                 overflow: hidden;
@@ -233,12 +238,14 @@
             <h3 id="date"></h3>
 
             <div class="countdown" id="countdown">
-                <div class="box"><span class="num" id="days">0</span><span class="label" id="daysLabel"></span></div>
-                <div class="box"><span class="num" id="hours">0</span><span class="label" id="hoursLabel"></span></div>
-                <div class="box"><span class="num" id="minutes">0</span><span class="label" id="minutesLabel"></span></div>
-                <div class="box"><span class="num" id="seconds">0</span><span class="label" id="secondsLabel"></span></div>
+                <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
+                <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
+                <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
+                <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
             </div>
         </section>
+
+        <img src="hands.jpg" alt="Rings" class="hands-image">
 
         <section>
             <h2 id="locationTitle"></h2>
