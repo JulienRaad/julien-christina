@@ -407,10 +407,10 @@
         <span id="quoteAuthor" style="font-size: 0.9em; opacity: 0.7;"></span>
     </blockquote>
 </section>
-
+<section>
     <p id="belovedText"></p>
     <p id="belovedName"></p>
-
+</section>
 <section>
     <div style="font-weight: 600;">
         <p class="small-heading" id="hosts"></p>
@@ -555,7 +555,7 @@
             }
         }
 
-        document.getElementById("submitBtn").textContent.= strings.formLabels.submit;
+        document.getElementById("submitBtn").textContent = strings.formLabels.submit;
         document.documentElement.lang = lang;
         if (lang === "ar") {
             document.documentElement.dir = "rtl";
