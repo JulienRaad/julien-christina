@@ -300,7 +300,12 @@
             opacity: 0.7;
             cursor: not-allowed;
         }
-        .rsvp-form-card input:focus,
+        .rsvp-form-card input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
+            background: transparent;
+        }
         .rsvp-form-card select:focus {
             outline: none;
             border-color: var(--accent);
@@ -421,7 +426,7 @@
         <p id="accountNumber"></p>
     </section>
 
-<section>
+    <section>
         <div class="rsvp-form-card">
             <h3 id="rsvpTitle"></h3>
             <form id="rsvpForm" onsubmit="return false;">
@@ -506,7 +511,10 @@
             if (lang === "ar") {
                 document.documentElement.dir = "rtl";
                 document.body.style.direction = "rtl";
-                document.querySelector(".rsvp-form-container select").style.backgroundPosition = "left 0.75rem center";
+                const selects = document.querySelectorAll(".rsvp-form-card select");
+                selects.forEach(select => {
+                    select.style.backgroundPosition = "left 0.75rem center";
+                });
             } else {
                 document.documentElement.dir = "ltr";
                 document.body.style.direction = "ltr";
@@ -520,29 +528,34 @@
             const minutesEl = document.getElementById("minutes");
             const secondsEl = document.getElementById("seconds");
 
+            function toArabicNumerals(number) {
+                if (lang !== "ar") return number.toString();
+                const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+                return number.toString().replace(/\d/g, (d) => arabicDigits[parseInt(d)]);
+            }
+
             function updateCountdown() {
                 const now = new Date();
                 const diff = targetDate - now;
 
                 if (diff <= 0) {
-                    daysEl.textContent = 0;
-                    hoursEl.textContent = 0;
-                    minutesEl.textContent = 0;
-                    secondsEl.textContent = 0;
+                    daysEl.textContent = toArabicNumerals(0);
+                    hoursEl.textContent = toArabicNumerals(0);
+                    minutesEl.textContent = toArabicNumerals(0);
+                    secondsEl.textContent = toArabicNumerals(0);
                     clearInterval(timer);
                     return;
                 }
 
-                let locale = lang === "ar" ? "ar-lb" : lang;
-                const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
-                const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
-                const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
-                const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
 
-                daysEl.textContent = days;
-                hoursEl.textContent = hours;
-                minutesEl.textContent = minutes;
-                secondsEl.textContent = seconds;
+                daysEl.textContent = toArabicNumerals(days);
+                hoursEl.textContent = toArabicNumerals(hours);
+                minutesEl.textContent = toArabicNumerals(minutes);
+                secondsEl.textContent = toArabicNumerals(seconds);
             }
 
             updateCountdown();
@@ -550,7 +563,7 @@
         }
 
         // RSVP Form Logic
-        function initializeRSVPForm() {
+        function initializeRSVPForm(strings) {
             const nameInput = document.getElementById("name");
             const attendanceSelect = document.getElementById("attendance");
             const numberSelect = document.getElementById("number");
@@ -561,6 +574,8 @@
                 const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
                 const isYes = attendanceSelect.value === "yes";
                 const numberOk = numberSelect.value !== "";
+
+                console.log("Validation:", { nameOk, attendanceOk, isYes, numberOk });
 
                 if (isYes) {
                     numberSelect.removeAttribute("disabled");
@@ -579,10 +594,10 @@
 
             submitBtn.addEventListener("click", () => {
                 if (!submitBtn.disabled) {
-const name = nameInput.value.trim();
-const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
-const number = attendanceSelect.value === "yes" ? numberSelect.value : strings.formLabels.no;
-const message = `${strings.messageTitle}\n${strings.formLabels.name}: ${name}\n${number !== "0" ? `${strings.formLabels.number}: ${number}\n` : ""}${strings.formLabels.attendance}: ${attendance}`;
+                    const name = nameInput.value.trim();
+                    const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
+                    const number = attendanceSelect.value === "yes" ? numberSelect.value : 0;
+                    const message = `${strings.messageTitle}\n${strings.formLabels.name}: ${name}\n${number !== "0" ? `${strings.formLabels.number}: ${number}\n` : ""}${strings.formLabels.attendance}: ${attendance}`;
                     const encodedMessage = encodeURIComponent(message);
                     const phoneNumber = "+31687606064";
                     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
@@ -659,10 +674,14 @@ const message = `${strings.messageTitle}\n${strings.formLabels.name}: ${name}\n$
         // Initialize
         (async () => {
             const strings = await loadStrings(lang);
+            if (!strings) {
+                console.error("Failed to load strings, using fallback");
+                return;
+            }
             applyStrings(strings);
             const weddingDate = new Date("2025-08-31T18:00:00");
             startCountdown(weddingDate, lang);
-            initializeRSVPForm();
+            initializeRSVPForm(strings);
             if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
                 parallaxEffect();
             }
