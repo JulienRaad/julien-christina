@@ -174,7 +174,6 @@
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         margin-top: 1rem;
-        margin-bottom: 0.7rem;
         color: #ffffff;
         background: var(--accent);
         border: none;
@@ -226,20 +225,6 @@
         transform: scale(1);
     }
 
-    /* RSVP Form Styles */
-    .rsvp-form-container {
-        width: 100%;
-        max-width: 450px;
-        margin-top: 1rem;
-    }
-    .rsvp-form-container label {
-        display: block;
-        margin-bottom: 1rem;
-        font-size: clamp(0.85rem, 3vw, 1rem);
-        font-weight: 600;
-        color: var(--text);
-        text-align: left;
-    }
     .rsvp-form-card {
         width: 100%;
         max-width: 450px;
@@ -455,11 +440,11 @@
                     <label for="number" id="numberLabel"></label>
                     <select id="number" required>
                         <option value="" disabled selected></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
+                        <option value="1"></option>
+                        <option value="2"></option>
+                        <option value="3"></option>
+                        <option value="4"></option>
+                        <option value="5"></option>
                     </select>
 
                     <button type="button" id="submitBtn" disabled></button>
@@ -477,6 +462,8 @@
             const supportedLangs = ["en", "ar"];
             const pathSegments = window.location.pathname.split("/").filter(Boolean);
             const lang = supportedLangs.includes(pathSegments[0]) ? pathSegments[0] : "en";
+            const locale = (lang === "ar") ? "ar-lb" : lang;
+
             async function loadStrings(lang = "en") {
                 try {
                     const response = await fetch(`/lang/${lang}.json`);
@@ -518,7 +505,9 @@
                 document.getElementById("attendance").options[2].text = strings.formLabels.no;
                 document.getElementById("number").options[0].text = strings.formLabels.numberPlaceholder;
                 document.getElementById("submitBtn").textContent = strings.formLabels.submit;
-
+                for (let i = 1; i <= 5; i++) {
+                   document.getElementById("number").options[i].text = i.toLocaleString(lang);
+                }
                 document.documentElement.lang = lang;
                 if (lang === "ar") {
                     document.documentElement.dir = "rtl";
@@ -554,7 +543,6 @@
                         return;
                     }
 
-                    const locale = (lang === "ar") ? "ar-lb" : lang;
                     const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
                     const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
                     const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
