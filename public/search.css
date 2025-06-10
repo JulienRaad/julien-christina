@@ -26,10 +26,11 @@ body {
 /* Thank you message */
 .thank-you {
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 500;
   color: var(--accent);
-  margin-bottom: var(--space);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   line-height: 1.4;
 }
 
@@ -40,10 +41,6 @@ body {
   padding: var(--space);
   box-shadow: var(--shadow);
   transition: transform 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
 }
 
 /* Header card */
@@ -58,7 +55,7 @@ body {
 
 /* Header text */
 .header-card h1 {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   text-align: center;
   color: #333;
@@ -109,10 +106,6 @@ input[type="text"]:focus {
   line-height: 1.3;
   font-size: 1.2rem;
   transition: none;
-}
-
-.card-list .card:hover {
-  transform: none;
 }
 
 .card span.name {
