@@ -403,6 +403,7 @@
 </section>
 
 <section id="belovedSection">
+
     <p id="belovedName"></p>
 </section>
 
@@ -524,8 +525,9 @@
 
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
-c            const formattedName = sanitizedName.replace(/\n/g, "<br>");
-             document.getElementById("belovedName").innerHTML = formattedName;
+            const formattedName = sanitizedName.replace(/\n/g, "<br>");
+            document.getElementById("belovedName").innerHTML = formattedName;
+            belovedSection.classList.add("show");
         } else {
             belovedSection.style.display = "none";
         }
