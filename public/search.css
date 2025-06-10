@@ -22,25 +22,24 @@ body {
 
 /* General card styling */
 .card {
-  position: relative; /* needed for gradient border */
-  background: #fff;
+  background: linear-gradient(145deg, #fff, #f8f8f8);
   border-radius: var(--radius);
   padding: var(--space);
   box-shadow: var(--shadow);
-  z-index: 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
+  border: 1px solid transparent;
+  position: relative;
 }
 
-/* Gradient border using ::before pseudo-element */
-.card::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: calc(var(--radius) + 3px);
-  background: linear-gradient(135deg, #a5b68d, #82975c);
-  z-index: -1;
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--accent);
+}
+
+.card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* Header card */
@@ -68,7 +67,7 @@ input[type="text"] {
   border-radius: var(--radius);
   font-size: 1rem;
   outline: none;
-  -webkit-appearance: none; /* Removes ❌ clear button on Safari */
+  -webkit-appearance: none;
 }
 
 input[type="text"]::-webkit-search-cancel-button {
@@ -81,7 +80,7 @@ input[type="text"]::-ms-reveal {
   display: none;
 }
 input[type="text"] {
-  appearance: none; /* fallback */
+  appearance: none;
 }
 
 input[type="text"]:focus {
@@ -98,36 +97,38 @@ input[type="text"]:focus {
 }
 
 .card-list .card {
-  background: #fff;
+  background: linear-gradient(145deg, #fff, #f8f8f8);
   border-radius: var(--radius);
-  padding: 0.9rem 1rem;
+  padding: 1rem 1.2rem;
   box-shadow: var(--shadow);
-  line-height: 1.3;
-  position: relative; /* also add gradient border here */
-  z-index: 0;
+  line-height: 1.4;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border 0.2s ease;
 }
 
-.card-list .card::before {
-  content: "";
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: calc(var(--radius) + 3px);
-  background: linear-gradient(135deg, #a5b68d, #82975c);
-  z-index: -1;
+.card-list .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--accent);
+}
+
+.card-list .card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .card span.name {
   font-weight: 500;
+  font-size: 1.05rem;
+  color: #222;
+  display: block;
 }
 
 .card span.table {
-  display: inline-block;
-  margin-top: 0.2rem;
+  display: block;
+  margin-top: 0.3rem;
   font-size: 0.85rem;
   color: #666;
+  font-style: italic;
 }
 
 /* Screen-reader only utility */
