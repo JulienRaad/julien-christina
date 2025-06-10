@@ -520,13 +520,20 @@
         document.getElementById("attendance").options[2].text = strings.formLabels.no;
 
         const belovedSection = document.getElementById("belovedSection");
-        if (sanitizedName) {
-            const formattedName = sanitizedName.replace(/+/g, "<br>").replace(/_/g, " ");
-            document.getElementById("belovedName").innerHTML = formattedName;
-            belovedSection.classList.add("show");
-        } else {
-            belovedSection.style.display = "none";
-        }
+            // Validate name: must contain at least one letter after removing numbers, +, and _
+    const isValidName = sanitizedName && /[a-zA-Z]/.test(sanitizedName.replace(/[+_]/g, ""));
+
+    if (isValidName) {
+        // Process name: && to &, + to <br>, _ to space
+        const formattedName = sanitizedName
+            .replace(/&&/g, "&") // Convert && to &
+            .replace(/\+/g, "<br>") // Convert + to <br>
+            .replace(/_/g, " "); // Convert _ to space
+        document.getElementById("belovedName").innerHTML = formattedName;
+        belovedSection.classList.add("show");
+    } else {
+        belovedSection.style.display = "none";
+    }
 
         const numberSelect = document.getElementById("number");
         if (isSingleGuest) {
@@ -599,9 +606,13 @@
         const numberSelect = document.getElementById("number");
         const submitBtn = document.getElementById("submitBtn");
 
-        if (sanitizedName) {
-            nameInput.value = sanitizedName.replace(/_/g, " ").replace(/+/g, " ");
-        }
+            if (sanitizedName) {
+        const formName = sanitizedName
+            .replace(/&&/g, "&") // Convert && to &
+            .replace(/\+/g, " ") // Use space in form, not <br>
+            .replace(/_/g, " "); // Convert _ to space
+        nameInput.value = formName;
+    }
 
 function validate() {
     const nameOk = nameInput.value.trim() !== "";
