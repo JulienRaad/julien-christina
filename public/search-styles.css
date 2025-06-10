@@ -5,12 +5,12 @@ body {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   margin: 0;
-  padding: 24px; /* Add padding to prevent touching screen edges */
+  padding: 32px; /* Increased padding for more space from edges */
   display: flex;
-  flex-direction: column; /* Stack elements vertically */
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  overflow: auto; /* Allow scrolling for the entire page */
+  overflow: auto;
 }
 
 .container {
@@ -22,7 +22,7 @@ body {
   border-radius: 16px;
   text-align: center;
   position: relative;
-  margin-top: 24px; /* Align closer to top */
+  margin-top: 24px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -45,13 +45,12 @@ h1 {
   width: 100%;
 }
 
-/* Material Outlined Input with Placeholder */
 .input-wrapper input {
   width: 100%;
   padding: 16px 12px;
   font-size: 16px;
   border: 2px solid #bdbdbd;
-  border-radius: 8px; /* Rounded corners to match card */
+  border-radius: 8px;
   background: #ffffff;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -68,23 +67,20 @@ h1 {
   box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.1);
 }
 
-/* Remove label and underline */
 .input-wrapper label,
 .input-wrapper .underline {
   display: none;
 }
 
-/* Results list (outside card) */
 #results {
   max-width: 480px;
   width: 90%;
-  max-height: 300px; /* Limit height for scrolling */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 300px;
+  overflow-y: auto;
   margin-top: 16px;
-  display: none; /* Hidden by default */
+  display: none;
 }
 
-/* Show results when populated */
 #results.populated {
   display: block;
 }
@@ -95,19 +91,17 @@ h1 {
   font-size: 16px;
   color: #212121;
   background: #fafafa;
-  transition: background 0.2s ease; /* Keep background transition for subtle effect */
+  transition: background 0.2s ease;
 }
 
 .result-item:last-child {
   border-bottom: none;
 }
 
-/* Remove hover effects to eliminate click indication */
 .result-item:hover {
-  background: #fafafa; /* Match normal state */
+  background: #fafafa;
 }
 
-/* Add a subtle background decoration */
 .container::before {
   content: '';
   position: absolute;
@@ -119,15 +113,16 @@ h1 {
   border-radius: 16px 16px 0 0;
 }
 
-/* Responsive Design */
+/* Enhanced mobile responsiveness */
 @media (max-width: 600px) {
   body {
-    padding: 16px;
+    padding: 24px; /* Ensure padding on mobile */
   }
 
   .container {
     padding: 24px;
-    width: 95%;
+    width: 100%;
+    max-width: 400px; /* Slightly narrower for mobile */
     margin-top: 16px;
   }
 
@@ -141,6 +136,7 @@ h1 {
   }
 
   #results {
-    width: 95%;
+    width: 100%;
+    max-width: 400px;
   }
 }
