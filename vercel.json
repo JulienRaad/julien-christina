@@ -2,8 +2,8 @@
   "rewrites": [
     { "source": "/lang/:path*", "destination": "/lang/:path*" },
     { "source": "/:file((?:[^/]+)\\.[a-z0-9]+)", "destination": "/:file" },
+    { "source": "/search", "destination": "/search.html" }, // Moved up
     { "source": "/:slug", "destination": "/" },
-    { "source": "/:slug/:path*", "destination": "/:path*" },
-    { "source": "/search", "destination": "/search.html" }
+    { "source": "/:slug/:path*", "destination": "/:path*" }
   ]
 }
