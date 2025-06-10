@@ -481,8 +481,7 @@
     const sanitizedName = rawName
                              .trim()
                              .slice(0, 30)
-                             .replace(/[<>]/g, "")
-                             .replace(/_/g, "\n");
+                             .replace(/[<>]/g, "");
 
     async function loadStrings(lang = "en") {
         try {
@@ -525,7 +524,7 @@
 
         const belovedSection = document.getElementById("belovedSection");
         if (sanitizedName) {
-            const formattedName = sanitizedName.replace(/\n/g, "<br>");
+            const formattedName = sanitizedName.replace(/_/g, "<br>");
             document.getElementById("belovedName").innerHTML = formattedName;
             belovedSection.classList.add("show");
         } else {
@@ -604,7 +603,7 @@
         const submitBtn = document.getElementById("submitBtn");
 
         if (sanitizedName) {
-            nameInput.value = sanitizedName;
+            nameInput.value = sanitizedName.replace(/_/g, " ");
         }
 
 function validate() {
