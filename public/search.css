@@ -26,11 +26,10 @@ body {
 /* Thank you message */
 .thank-you {
   text-align: center;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--accent);
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   line-height: 1.4;
 }
 
@@ -45,7 +44,7 @@ body {
 
 /* Header card */
 .header-card {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
