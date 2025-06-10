@@ -478,7 +478,11 @@
     const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
     const isSingleGuest = validatedMaxGuests === 1;
     const rawName = urlParams.get("name") || "";
-    const sanitizedName = rawName.trim().slice(0, 30).replace(/[<>]/g, "");
+    const sanitizedName = rawName
+                             .trim()
+                             .slice(0, 30)
+                             .replace(/[<>]/g, "")
+                             .replace(/_/g, "\n");
 
     async function loadStrings(lang = "en") {
         try {
