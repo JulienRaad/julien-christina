@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 fetch('guests.json')
     .then(response => response.json())
     .then(data => {
-        guests = data.guests; // Access the 'guests' array
+        guests = data
     })
     .catch(error => {
          resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
