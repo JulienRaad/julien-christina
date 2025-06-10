@@ -526,8 +526,8 @@
     if (isValidName) {
         // Process name: && to &, + to <br>, _ to space
         const formattedName = sanitizedName
-            .replace(/&&/g, "&") // Convert && to &
-            .replace(/\+/g, "<br>") // Convert + to <br>
+            .replace(/,/g, "&") // Convert && to &
+            .replace(/+/g, "<br>") // Convert + to <br>
             .replace(/_/g, " "); // Convert _ to space
         document.getElementById("belovedName").innerHTML = formattedName;
         belovedSection.classList.add("show");
@@ -608,8 +608,8 @@
 
             if (sanitizedName) {
         const formName = sanitizedName
-            .replace(/&&/g, "&") // Convert && to &
-            .replace(/\+/g, " ") // Use space in form, not <br>
+            .replace(/,/g, "&") // Convert && to &
+            .replace(/+/g, " ") // Use space in form, not <br>
             .replace(/_/g, " "); // Convert _ to space
         nameInput.value = formName;
     }
