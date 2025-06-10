@@ -3,6 +3,7 @@
     { "source": "/lang/:path*", "destination": "/lang/:path*" },
     { "source": "/:file((?:[^/]+)\\.[a-z0-9]+)", "destination": "/:file" },
     { "source": "/:slug", "destination": "/" },
-    { "source": "/:slug/:path*", "destination": "/:path*" }
+    { "source": "/:slug/:path*", "destination": "/:path*" },
+    { "source": "/search", "destination": "/search.html" }
   ]
 }
