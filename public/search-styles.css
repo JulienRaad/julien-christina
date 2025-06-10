@@ -5,12 +5,12 @@ body {
   font-family: 'Roboto', sans-serif;
   background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   margin: 0;
-  padding: 0;
+  padding: 24px; /* Add padding to prevent touching screen edges */
   display: flex;
+  flex-direction: column; /* Stack elements vertically */
   align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: auto; /* Allow scrolling for the entire page */
 }
 
 .container {
@@ -22,7 +22,7 @@ body {
   border-radius: 16px;
   text-align: center;
   position: relative;
-  overflow: hidden;
+  margin-top: 24px; /* Align closer to top */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -41,21 +41,26 @@ h1 {
 
 .input-wrapper {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   width: 100%;
 }
 
-/* Material Outlined Input */
+/* Material Outlined Input with Placeholder */
 .input-wrapper input {
   width: 100%;
   padding: 16px 12px;
   font-size: 16px;
   border: 2px solid #bdbdbd;
-  border-radius: 4px;
+  border-radius: 8px; /* Rounded corners to match card */
   background: #ffffff;
   outline: none;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
+}
+
+.input-wrapper input::placeholder {
+  color: #757575;
+  font-size: 16px;
 }
 
 .input-wrapper input:focus {
@@ -63,40 +68,25 @@ h1 {
   box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.1);
 }
 
-.input-wrapper label {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  font-size: 16px;
-  color: #757575;
-  background: #ffffff;
-  padding: 0 4px;
-  pointer-events: none;
-  transform: translateY(-50%);
-  transition: all 0.2s ease;
-}
-
-.input-wrapper input:focus + label,
-.input-wrapper input:not(:placeholder-shown) + label {
-  top: 0;
-  font-size: 12px;
-  color: #3f51b5;
-  transform: translateY(-100%);
-}
-
-/* Remove the underline since we're using outlined style */
+/* Remove label and underline */
+.input-wrapper label,
 .input-wrapper .underline {
   display: none;
 }
 
-#results.card {
-  text-align: left;
-  background: #fafafa;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  padding: 16px;
+/* Results list (outside card) */
+#results {
+  max-width: 480px;
+  width: 90%;
+  max-height: 300px; /* Limit height for scrolling */
+  overflow-y: auto; /* Enable vertical scrolling */
   margin-top: 16px;
-  transition: all 0.3s ease;
+  display: none; /* Hidden by default */
+}
+
+/* Show results when populated */
+#results.populated {
+  display: block;
 }
 
 .result-item {
@@ -104,17 +94,17 @@ h1 {
   border-bottom: 1px solid #e0e0e0;
   font-size: 16px;
   color: #212121;
-  transition: background 0.2s ease, transform 0.2s ease;
+  background: #fafafa;
+  transition: background 0.2s ease; /* Keep background transition for subtle effect */
 }
 
 .result-item:last-child {
   border-bottom: none;
 }
 
+/* Remove hover effects to eliminate click indication */
 .result-item:hover {
-  background: #e8eaf6;
-  transform: translateX(4px);
-  cursor: default;
+  background: #fafafa; /* Match normal state */
 }
 
 /* Add a subtle background decoration */
@@ -131,9 +121,14 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 600px) {
+  body {
+    padding: 16px;
+  }
+
   .container {
     padding: 24px;
     width: 95%;
+    margin-top: 16px;
   }
 
   h1 {
@@ -145,12 +140,7 @@ h1 {
     font-size: 14px;
   }
 
-  .input-wrapper label {
-    font-size: 14px;
-  }
-
-  .input-wrapper input:focus + label,
-  .input-wrapper input:not(:placeholder-shown) + label {
-    font-size: 10px;
+  #results {
+    width: 95%;
   }
 }
