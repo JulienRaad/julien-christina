@@ -480,12 +480,7 @@
     const rawName = urlParams.get("name") || "";
     const sanitizedName = rawName
     .trim() // Remove leading/trailing whitespace
-    .slice(0, 30) // Limit to 30 characters
     .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
-    .replace(/\s+/g, " ") // Normalize multiple spaces to single space
-    .replace(/,+/g, ",") // Normalize multiple commas
-    .replace(/\++/g, "+") // Normalize multiple plus signs
-    .replace(/_+/g, "_"); // Normalize multiple underscores
 
     async function loadStrings(lang = "en") {
         try {
@@ -535,7 +530,7 @@
         const nameParts = sanitizedName
             .replace(/,/g, " & ") // Convert commas to &
             .replace(/_/g, " ") // Convert underscores to space
-            .split("+"); // Split on + for line breaks
+            .split(";"); // Split on ; for line breaks
         const formattedName = nameParts
             .map(part => part.trim()) // Trim each part
             .filter(part => part !== "") // Remove empty parts
@@ -620,8 +615,8 @@
 
             if (sanitizedName) {
         const formName = sanitizedName
-            .replace(/,/g, "&") // Convert commas to &
-            .replace(/[+_]/g, " ") // Convert + and _ to space
+            .replace(/,/g, " & ") // Convert commas to &
+            .replace(/[;_]/g, " ") // Convert ; and _ to space
             .replace(/\s+/g, " "); // Normalize spaces
         nameInput.value = formName;
     }
