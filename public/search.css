@@ -26,9 +26,9 @@ body {
 /* Thank you message */
 .thank-you {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 500;
-  color: #333;
+  color: var(--accent);
   margin-bottom: var(--space);
   line-height: 1.4;
 }
