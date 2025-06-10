@@ -1,43 +1,50 @@
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.getElementById('searchInput');
-  const resultsDiv  = document.getElementById('results');
-  let guests = [];
+// Fetch guest data once when the page loads
+let guests = [];
 
-  /* ---- Load guest data ---- */
-  fetch('guests.json')
-    .then(res => res.json())
-    .then(data => { guests = data; })
-    .catch(err => {
-      resultsDiv.textContent = `Error: ${err.message}`;
-      resultsDiv.classList.add('populated');
-    });
-
-  /* ---- Helper to clear list ---- */
-  const clearResults = () => {
-    resultsDiv.innerHTML = '';
-    resultsDiv.classList.remove('populated');
-  };
-
-  /* ---- Live-filter as user types ---- */
-  searchInput.addEventListener('input', () => {
-    const query = searchInput.value.trim().toLowerCase();
-    clearResults();                         // reset every keystroke
-    if (!query) return;                     // nothing typed yet
-
-    const matches = guests.filter(g =>
-      g.name.toLowerCase().startsWith(query)
-    );
-
-    if (matches.length === 0) return;       // no results → show nothing
-
-    matches.forEach(g => {
-      const item = document.createElement('div');
-      item.className = 'result-item';
-      item.textContent = `${g.name} | Table ${g.table}`;
-      resultsDiv.appendChild(item);
-    });
-    resultsDiv.classList.add('populated');  // reveal the list
+fetch("guests.json")
+  .then((resp) => resp.json())
+  .then((data) => {
+    guests = data;
+  })
+  .catch((err) => {
+    console.error("Could not load guests.json:", err);
   });
+
+const searchBox = document.getElementById("guest-search");
+const list = document.getElementById("suggestions");
+
+searchBox.addEventListener("input", () => {
+  const query = searchBox.value.trim().toLowerCase();
+  renderSuggestions(
+    query
+      ? guests.filter((g) => g.name.toLowerCase().includes(query))
+      : []
+  );
 });
-</script>
+
+function renderSuggestions(matches) {
+  list.innerHTML = ""; // Clear previous suggestions
+
+  matches.forEach((guest) => {
+    const li = document.createElement("li");
+    li.className = "card";
+
+    li.innerHTML = `
+      <span class="name">${highlightMatch(guest.name)}</span><br/>
+      <span class="table">Table ${guest.table}</span>
+    `;
+
+    list.appendChild(li);
+  });
+}
+
+function highlightMatch(name) {
+  const q = searchBox.value.trim();
+  if (!q) return name;
+  const regex = new RegExp(`(${escapeRegExp(q)})`, "gi");
+  return name.replace(regex, "<mark>$1</mark>");
+}
+
+function escapeRegExp(text) {
+  return text.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
+}

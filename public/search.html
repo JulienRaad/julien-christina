@@ -2,21 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Find Your Wedding Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guest Lookup</title>
+
+  <!-- Roboto + Material Icons for a “Material-first” feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
   <link rel="stylesheet" href="search-styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div class="main-wrapper">
-  <div class="container">
-    <h1>Find Your Wedding Table</h1>
-    <div class="input-wrapper">
-      <input type="text" id="searchInput" placeholder="Type your name..." required />
-    </div>
-  </div>
-  <div id="results" class=""></div>
-</div>
+<header>
+  <h1><span class="material-icons">search</span> Guest Finder</h1>
+</header>
+
+<main>
+  <label for="guest-search" class="sr-only">Search for guest name</label>
+  <input
+          id="guest-search"
+          type="search"
+          placeholder="Start typing a name…"
+          autocomplete="off"
+  />
+
+  <ul id="suggestions" class="card-list"></ul>
+</main>
+
 <script src="search-script.js"></script>
 </body>
 </html>

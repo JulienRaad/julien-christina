@@ -1,10 +1,26 @@
 [
   {
-    "name": "Julien",
+    "name": "Alice Johnson",
+    "table": 1
+  },
+  {
+    "name": "Bob Smith",
+    "table": 2
+  },
+  {
+    "name": "Carlos Hernández",
+    "table": 3
+  },
+  {
+    "name": "Diana Lee",
     "table": 4
   },
   {
-    "name": "Julius",
-    "table": 2
+    "name": "Eva Müller",
+    "table": 5
+  },
+  {
+    "name": "Fahim Khan",
+    "table": 6
   }
 ]
