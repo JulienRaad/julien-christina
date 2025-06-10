@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-            resultsDiv.classList.add('populated'); // Show error message
+            resultsDiv.classList.add('populated');
         });
 
     // Filter names as user types
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.trim().toLowerCase();
         resultsDiv.innerHTML = '';
-        resultsDiv.classList.remove('populated'); // Hide by default
+        resultsDiv.classList.remove('populated');
 
         if (query.length === 0) return;
 
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (matches.length === 0) {
             resultsDiv.innerHTML = '<p>No matches found.</p>';
-            resultsDiv.classList.add('populated'); // Show no matches message
+            resultsDiv.classList.add('populated');
             return;
         }
 
@@ -38,6 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             div.textContent = `${guest.name} | Table ${guest.table}`;
             resultsDiv.appendChild(div);
         });
-        resultsDiv.classList.add('populated'); // Show results list
+        resultsDiv.classList.add('populated');
     });
 });
