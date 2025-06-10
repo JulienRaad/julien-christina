@@ -4,18 +4,21 @@ document.addEventListener('DOMContentLoaded', () => {
     let guests = [];
 
     // Fetch the JSON file
-fetch('guests.json')
-    .then(response => response.json())
-    .then(data => {
-        guests = data
-    })
-    .catch(error => {
-         resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-    });
+    fetch('guests.json')
+        .then(response => response.json())
+        .then(data => {
+            guests = data;
+        })
+        .catch(error => {
+            resultsDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            resultsDiv.classList.add('populated'); // Show error message
+        });
+
     // Filter names as user types
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.trim().toLowerCase();
         resultsDiv.innerHTML = '';
+        resultsDiv.classList.remove('populated'); // Hide by default
 
         if (query.length === 0) return;
 
@@ -25,6 +28,7 @@ fetch('guests.json')
 
         if (matches.length === 0) {
             resultsDiv.innerHTML = '<p>No matches found.</p>';
+            resultsDiv.classList.add('populated'); // Show no matches message
             return;
         }
 
@@ -34,5 +38,6 @@ fetch('guests.json')
             div.textContent = `${guest.name} | Table ${guest.table}`;
             resultsDiv.appendChild(div);
         });
+        resultsDiv.classList.add('populated'); // Show results list
     });
 });
