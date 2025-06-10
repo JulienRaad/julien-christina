@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const searchInput = document.getElementById('searchInput');
   const resultsDiv  = document.getElementById('results');
   let guests = [];
-
+  
   /* ---- Load guest data ---- */
   fetch('guests.json')
     .then(res => res.json())
