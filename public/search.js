@@ -16,7 +16,7 @@ searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
   renderSuggestions(
     query
-      ? guests.filter((g) => g.name.toLowerCase().includes(query))
+      ? guests.filter((g) => g.name.toLowerCase().startsWith(query))
       : []
   );
 });
