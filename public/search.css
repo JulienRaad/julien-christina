@@ -20,30 +20,56 @@ body {
   padding: var(--space);
 }
 
-/* Header */
-header {
-  text-align: center;
-  margin-bottom: var(--space);
+/* General card styling */
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: var(--space);
+  box-shadow: var(--shadow);
 }
 
-header h1 {
-  font-size: 1.5rem;
+/* Header card */
+.header-card {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+/* Header text */
+.header-card h1 {
+  font-size: 1.2rem;
   font-weight: 500;
-  color: var(--accent);
+  text-align: center;
+  color: #333;
 }
 
-/* Search box */
-input[type="search"] {
+/* Search input */
+input[type="text"] {
   width: 100%;
   padding: 0.9rem 1rem;
   border: 2px solid var(--accent);
   border-radius: var(--radius);
   font-size: 1rem;
   outline: none;
-  transition: box-shadow 0.2s;
+  -webkit-appearance: none; /* Removes ❌ clear button on Safari */
 }
 
-input[type="search"]:focus {
+input[type="text"]::-webkit-search-cancel-button {
+  display: none;
+}
+input[type="text"]::-ms-clear {
+  display: none;
+}
+input[type="text"]::-ms-reveal {
+  display: none;
+}
+input[type="text"] {
+  appearance: none; /* fallback */
+}
+
+input[type="text"]:focus {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
@@ -56,7 +82,7 @@ input[type="search"]:focus {
   gap: 0.75rem;
 }
 
-.card {
+.card-list .card {
   background: #fff;
   border-radius: var(--radius);
   padding: 0.9rem 1rem;

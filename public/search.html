@@ -5,23 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Find Your Table</title>
 
-  <!-- Removed fonts and icons -->
   <link rel="stylesheet" href="search.css" />
 </head>
 <body>
-<header>
-  <h1>Find your table</h1>
-</header>
 
-<main>
+<!-- Card container for header + input -->
+<section class="card header-card">
+  <h1>Find your table</h1>
+
   <label for="guest-search" class="sr-only">Search for guest name</label>
   <input
           id="guest-search"
-          type="search"
-          placeholder="Type your name…"
+          type="text"
+          placeholder="Start typing a name…"
           autocomplete="off"
+          inputmode="search"
   />
+</section>
 
+<main>
   <ul id="suggestions" class="card-list"></ul>
 </main>
 
