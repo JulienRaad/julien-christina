@@ -1,4 +1,3 @@
-// Fetch guest data once when the page loads
 let guests = [];
 
 fetch("guests.json")
@@ -23,28 +22,17 @@ searchBox.addEventListener("input", () => {
 });
 
 function renderSuggestions(matches) {
-  list.innerHTML = ""; // Clear previous suggestions
+  list.innerHTML = "";
 
   matches.forEach((guest) => {
     const li = document.createElement("li");
     li.className = "card";
 
     li.innerHTML = `
-      <span class="name">${highlightMatch(guest.name)}</span><br/>
+      <span class="name">${guest.name}</span><br/>
       <span class="table">Table ${guest.table}</span>
     `;
 
     list.appendChild(li);
   });
-}
-
-function highlightMatch(name) {
-  const q = searchBox.value.trim();
-  if (!q) return name;
-  const regex = new RegExp(`(${escapeRegExp(q)})`, "gi");
-  return name.replace(regex, "<mark>$1</mark>");
-}
-
-function escapeRegExp(text) {
-  return text.replace(/[.*+\-?^${}()|[\]\\]/g, "\\$&");
 }

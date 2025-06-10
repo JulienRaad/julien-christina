@@ -3,18 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Guest Lookup</title>
+  <title>Find Your Table</title>
 
-  <!-- Roboto + Material Icons for a “Material-first” feel -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link rel="stylesheet" href="search-styles.css" />
+  <!-- Removed fonts and icons -->
+  <link rel="stylesheet" href="search.css" />
 </head>
 <body>
 <header>
-  <h1><span class="material-icons">search</span> Guest Finder</h1>
+  <h1>Find your table</h1>
 </header>
 
 <main>
@@ -22,13 +18,13 @@
   <input
           id="guest-search"
           type="search"
-          placeholder="Start typing a name…"
+          placeholder="Type your name…"
           autocomplete="off"
   />
 
   <ul id="suggestions" class="card-list"></ul>
 </main>
 
-<script src="search-script.js"></script>
+<script src="search.js"></script>
 </body>
 </html>
