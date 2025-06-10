@@ -1,3 +1,4 @@
+/* Base styles */
 body {
   font-family: 'Roboto', sans-serif;
   background: #f5f5f5;
@@ -9,6 +10,7 @@ body {
   min-height: 100vh;
 }
 
+/* Centered card container */
 .container {
   background: white;
   padding: 40px;
@@ -19,73 +21,53 @@ body {
   text-align: center;
 }
 
+/* Heading */
 h1 {
   margin-bottom: 30px;
   color: #333;
   font-size: 24px;
 }
 
+/* Input wrapper */
 .input-wrapper {
-  position: relative;
+  width: 100%;
   margin-bottom: 30px;
-  width: 100%;
 }
 
-.input-wrapper input {
+/* Outlined input */
+#searchInput {
   width: 100%;
-  padding: 12px 10px 12px 10px;
+  padding: 12px 16px;
   font-size: 16px;
-  border: none;
-  border-bottom: 2px solid #ccc;
-  background: transparent;
+  border: 2px solid #ccc;
+  border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s;
+  background-color: #fff;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.input-wrapper input:focus {
-  border-bottom: 2px solid #6200ee;
+/* Placeholder styling */
+#searchInput::placeholder {
+  color: #999;
 }
 
-.input-wrapper label {
-  position: absolute;
-  top: 12px;
-  left: 10px;
-  font-size: 16px;
-  color: #aaa;
-  pointer-events: none;
-  transition: 0.2s ease all;
+/* Focus effect */
+#searchInput:focus {
+  border-color: #6200ee;
+  box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.1);
 }
 
-.input-wrapper input:focus + label,
-.input-wrapper input:not(:placeholder-shown) + label {
-  top: -10px;
-  left: 5px;
-  font-size: 12px;
-  color: #6200ee;
-}
-
-.underline {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: #6200ee;
-  transition: width 0.3s;
-}
-
-.input-wrapper input:focus ~ .underline {
-  width: 100%;
-}
-
+/* Results container */
 #results.card {
   text-align: left;
   background: #fafafa;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 15px;
+  margin-top: 10px;
 }
 
+/* Each result item */
 .result-item {
   padding: 10px;
   border-bottom: 1px solid #eee;
@@ -94,15 +76,18 @@ h1 {
   transition: background 0.2s;
 }
 
+/* Last item no border */
 .result-item:last-child {
   border-bottom: none;
 }
 
+/* Hover effect on result */
 .result-item:hover {
   background: #f0f0f0;
   cursor: default;
 }
 
+/* Responsive tweaks */
 @media (max-width: 600px) {
   .container {
     padding: 20px;
