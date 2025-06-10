@@ -1,95 +1,156 @@
-/* Base styles */
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 body {
   font-family: 'Roboto', sans-serif;
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
   margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  overflow: hidden;
 }
 
-/* Centered card container */
 .container {
-  background: white;
-  padding: 40px;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
+  background: #ffffff;
+  padding: 32px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Heading */
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
 h1 {
-  margin-bottom: 30px;
-  color: #333;
-  font-size: 24px;
+  margin-bottom: 24px;
+  color: #1a237e;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* Input wrapper */
 .input-wrapper {
+  position: relative;
+  margin-bottom: 32px;
   width: 100%;
-  margin-bottom: 30px;
 }
 
-/* Outlined input */
-#searchInput {
+/* Material Outlined Input */
+.input-wrapper input {
   width: 100%;
-  padding: 12px 16px;
+  padding: 16px 12px;
   font-size: 16px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
+  border: 2px solid #bdbdbd;
+  border-radius: 4px;
+  background: #ffffff;
   outline: none;
-  background-color: #fff;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
 }
 
-/* Placeholder styling */
-#searchInput::placeholder {
-  color: #999;
+.input-wrapper input:focus {
+  border-color: #3f51b5;
+  box-shadow: 0 0 0 4px rgba(63, 81, 181, 0.1);
 }
 
-/* Focus effect */
-#searchInput:focus {
-  border-color: #6200ee;
-  box-shadow: 0 0 0 3px rgba(98, 0, 238, 0.1);
+.input-wrapper label {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  font-size: 16px;
+  color: #757575;
+  background: #ffffff;
+  padding: 0 4px;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: all 0.2s ease;
 }
 
-/* Results container */
+.input-wrapper input:focus + label,
+.input-wrapper input:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 12px;
+  color: #3f51b5;
+  transform: translateY(-100%);
+}
+
+/* Remove the underline since we're using outlined style */
+.input-wrapper .underline {
+  display: none;
+}
+
 #results.card {
   text-align: left;
   background: #fafafa;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 15px;
-  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin-top: 16px;
+  transition: all 0.3s ease;
 }
 
-/* Each result item */
 .result-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
   font-size: 16px;
-  color: #333;
-  transition: background 0.2s;
+  color: #212121;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* Last item no border */
 .result-item:last-child {
   border-bottom: none;
 }
 
-/* Hover effect on result */
 .result-item:hover {
-  background: #f0f0f0;
+  background: #e8eaf6;
+  transform: translateX(4px);
   cursor: default;
 }
 
-/* Responsive tweaks */
+/* Add a subtle background decoration */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #3f51b5, #f50057);
+  border-radius: 16px 16px 0 0;
+}
+
+/* Responsive Design */
 @media (max-width: 600px) {
   .container {
-    padding: 20px;
+    padding: 24px;
+    width: 95%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .input-wrapper input {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+
+  .input-wrapper label {
+    font-size: 14px;
+  }
+
+  .input-wrapper input:focus + label,
+  .input-wrapper input:not(:placeholder-shown) + label {
+    font-size: 10px;
   }
 }
