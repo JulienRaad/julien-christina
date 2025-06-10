@@ -9,7 +9,7 @@
 }
 
 :root {
-  --accent: #FBCEB1;
+  --accent: #FA9189;
   --radius: 12px;
   --shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   --space: 1rem;
@@ -29,7 +29,7 @@ body {
   font-size: 1.75rem;
   font-weight: 500;
   color: var(--accent);
-  margin-top: 2rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
   line-height: 1.4;
 }
