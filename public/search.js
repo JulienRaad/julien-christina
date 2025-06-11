@@ -1,14 +1,31 @@
     let guests = [];
 
-    fetch("guests.json")
-      .then((resp) => resp.json())
-      .then((data) => {
-        guests = data;
-        renderSuggestions([]); // preload empty
-      })
-      .catch((err) => {
-        console.error("Could not load guests.json:", err);
-      });
+fetch("table_assignments.csv")
+  .then((resp) => resp.text())
+  .then((data) => {
+    // Parse CSV data
+    guests = parseCSV(data);
+  })
+  .catch((err) => {
+    console.error("Could not load table_assignments.csv:", err);
+  });
+
+// Function to parse CSV data
+function parseCSV(csvText) {
+  const rows = csvText.trim().split("\n");
+  const headers = rows[0].split(",").map((header) => header.trim());
+  const result = [];
+
+  for (let i = 1; i < rows.length; i++) {
+    const values = rows[i].split(",").map((value) => value.trim());
+    const obj = {};
+    headers.forEach((header, index) => {
+      obj[header] = values[index];
+    });
+    result.push(obj);
+  }
+  return result;
+}
 
     const searchBox = document.getElementById("guest-search");
     const list = document.getElementById("suggestions");
