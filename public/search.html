@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Find Your Table</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Find Table</title>
 
-  <link rel="stylesheet" href="search.css" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+          rel="stylesheet"/>
+
+    <!-- Font Awesome for icons -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+            integrity="sha512-...sha..."
+            crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="search.css"/>
 </head>
 <body>
+<div class="app">
+    <h1 class="title">Find Table</h1>
 
-<!-- Card container for header + input -->
-<section class="card header-card">
-  <h1>Please Find Your Table</h1>
+    <div class="search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <label for="guest-search"></label>
+        <input
+                type="text"
+                id="guest-search"
+                placeholder="Search name..."
+                autocomplete="off"
+        />
+    </div>
 
-  <label for="guest-search" class="sr-only">Search for guest name</label>
-  <input
-          id="guest-search"
-          type="text"
-          placeholder="Type your name…"
-          autocomplete="off"
-          inputmode="search"
-  />
-</section>
-
-<main>
-  <ul id="suggestions" class="card-list"></ul>
-</main>
+    <ul id="suggestions" class="guest-list"></ul>
+</div>
 
 <script src="search.js"></script>
 </body>
