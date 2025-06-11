@@ -10,11 +10,14 @@ body {
   color: #ffffff;
   min-height: 100vh;
 
-  /* Brushed-style gradient -------------------------------- */
-  background:
-    radial-gradient(150% 90% at 50% -20%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%),
-    linear-gradient(135deg, #061032 0%, #081742 25%, #0c1e4e 60%, #061032 100%);
-  /* ------------------------------------------------------- */
+  /* Strong linear brushed-style gradient with teal tones */
+  background: linear-gradient(
+    135deg,
+    #022f33 0%,
+    #034c53 30%,
+    #04646c 60%,
+    #03828a 100%
+  );
 }
 
 /* ---------- Layout ---------- */
@@ -39,21 +42,27 @@ body {
   margin-bottom: 30px;
 }
 
-/* ---------- Elevated search "card" ---------- */
 .search-card {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: 12px;           /* less rounded */
-  padding: 16px 16px;            /* more room */
+  /* Teal-tinted semi-transparent card */
+  background: linear-gradient(
+    135deg,
+    rgba(3, 76, 83, 0.3),
+    rgba(4, 100, 108, 0.25)
+  );
+  border-radius: 12px;
+  padding: 16px 16px;
 
-  /* soft elevation */
+  /* Enhanced soft shadow for elevation */
   box-shadow:
-    0 3px 6px rgba(0, 0, 0, 0.35),
-    0 1px 2px rgba(255, 255, 255, 0.07) inset;
+    0 4px 8px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(255, 255, 255, 0.05) inset;
+
   margin-bottom: 28px;
+  backdrop-filter: blur(4px);
 }
 
 .search-icon {
