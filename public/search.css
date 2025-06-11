@@ -23,16 +23,6 @@ body {
   padding: var(--space);
 }
 
-/* Thank you message */
-.thank-you {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  line-height: 1.4;
-}
-
 /* General card styling */
 .card {
   background: #fff;
@@ -64,7 +54,7 @@ body {
 input[type="text"] {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 2px solid var(--accent);
+  border: 1px solid var(--accent);
   border-radius: var(--radius);
   font-size: 1rem;
   outline: none;
@@ -85,7 +75,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 /* Suggestions list */
