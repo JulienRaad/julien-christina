@@ -54,7 +54,7 @@ body {
 input[type="text"] {
   width: 100%;
   padding: 0.9rem 1rem;
-  border: 1px solid var(--accent);
+  border: 1.5px solid var(--accent);
   border-radius: var(--radius);
   font-size: 1rem;
   outline: none;
@@ -75,7 +75,7 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--accent) 30%, transparent);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 /* Suggestions list */
