@@ -69,6 +69,11 @@ body {
   outline: none;
 }
 
+#guest-search::placeholder {
+  color: #cccccc; /* Lighter shade of gray */
+  opacity: 1; /* Ensures consistent rendering across browsers */
+}
+
 /* ---------- Guest list ---------- */
 .guest-list {
   list-style: none;
