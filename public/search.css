@@ -25,19 +25,9 @@ body {
   padding: 32px 22px 48px;
 }
 
-/* Back arrow */
-.back-btn {
-  background: transparent;
-  border: none;
-  color: inherit;
-  font-size: 24px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
 /* Title */
 .title {
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: 600;
   margin-bottom: 30px;
 }
@@ -58,11 +48,11 @@ body {
 
   /* Enhanced soft shadow for elevation */
   box-shadow:
-    0 4px 8px rgba(0, 0, 0, 0.4),
-    0 1px 2px rgba(255, 255, 255, 0.05) inset;
+    0 8px 12px rgba(0, 0, 0, 0.4),
+    0 3px 6px rgba(255, 255, 255, 0.05) inset;
 
   margin-bottom: 28px;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
 }
 
 .search-icon {
