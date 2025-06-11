@@ -17,7 +17,7 @@
         const query = searchBox.value.trim().toLowerCase();
         renderSuggestions(
             query ?
-            guests.filter((item) => item.Name.toLowerCase().startsWith(query)) :
+            guests.filter((guest) => guest.Name.toLowerCase().startsWith(query)) :
             []
         );
     });
@@ -41,12 +41,11 @@
 
     function renderSuggestions(matches) {
         list.innerHTML = "";
-
         matches.forEach((guest) => {
             const li = document.createElement("li");
             li.innerHTML = `
-          <span class="name">${guest.name}</span>
-          <span class="table">${guest.table}</span>
+          <span class="name">${guest.Name}</span>
+          <span class="table">${guest.Table}</span>
         `;
             list.appendChild(li);
         });
