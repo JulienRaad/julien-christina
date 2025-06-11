@@ -1,4 +1,4 @@
-/* Reset */
+/* ---------- Reset & Base ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,45 +8,56 @@
 body {
   font-family: "Poppins", sans-serif;
   color: #ffffff;
-  background: #0e143a;
   min-height: 100vh;
+
+  /* Brushed-style gradient -------------------------------- */
+  background:
+    radial-gradient(150% 90% at 50% -20%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 60%),
+    linear-gradient(135deg, #061032 0%, #081742 25%, #0c1e4e 60%, #061032 100%);
+  /* ------------------------------------------------------- */
 }
 
-/* Container aligns to top */
+/* ---------- Layout ---------- */
 .container {
-  padding: 24px 20px;
+  padding: 32px 22px 48px;
 }
 
 /* Back arrow */
 .back-btn {
   background: transparent;
   border: none;
-  color: #ffffff;
-  font-size: 22px;
+  color: inherit;
+  font-size: 24px;
   cursor: pointer;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 /* Title */
 .title {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 600;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 
-/* Search bar styled as card */
+/* ---------- Elevated search "card" ---------- */
 .search-card {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.07);
-  border-radius: 18px;
-  padding: 12px 16px;
-  margin-bottom: 24px;
+  gap: 14px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 12px;           /* less rounded */
+  padding: 16px 16px;            /* more room */
+
+  /* soft elevation */
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.35),
+    0 1px 2px rgba(255, 255, 255, 0.07) inset;
+  margin-bottom: 28px;
 }
 
 .search-icon {
-  font-size: 18px;
-  margin-right: 12px;
+  font-size: 24px;               /* bigger icon */
   opacity: 0.9;
 }
 
@@ -54,12 +65,12 @@ body {
   flex: 1;
   background: transparent;
   border: none;
-  color: white;
-  font-size: 1rem;
+  color: inherit;
+  font-size: 1.2rem;            /* larger text */
   outline: none;
 }
 
-/* Guest list */
+/* ---------- Guest list ---------- */
 .guest-list {
   list-style: none;
 }
@@ -67,14 +78,11 @@ body {
 .guest-list li {
   display: flex;
   justify-content: space-between;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+  padding: 12px 0;               /* taller rows */
+  font-size: 1.4rem;             /* bigger text */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.name {
-  font-weight: 400;
-}
-
-.table {
-  font-weight: 600;
-}
+.name { font-weight: 400; }
+.table { font-weight: 600; }
