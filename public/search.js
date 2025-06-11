@@ -4,7 +4,7 @@
       .then((resp) => resp.json())
       .then((data) => {
         guests = data;
-        renderSuggestions([]); // initially show empty or preload if needed
+        renderSuggestions([]); // preload empty
       })
       .catch((err) => {
         console.error("Could not load guests.json:", err);
@@ -27,7 +27,6 @@
 
       matches.forEach((guest) => {
         const li = document.createElement("li");
-        li.className = "card";
         li.innerHTML = `
           <span class="name">${guest.name}</span>
           <span class="table">${guest.table}</span>
