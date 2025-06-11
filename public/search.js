@@ -5,6 +5,7 @@ fetch("table_assignments.csv")
   .then((data) => {
     // Parse CSV data
     guests = parseCSV(data);
+    console.log(guests); // Check the parsed data
   })
   .catch((err) => {
     console.error("Could not load table_assignments.csv:", err);
