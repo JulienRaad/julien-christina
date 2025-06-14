@@ -36,7 +36,6 @@ body {
   margin: 0;
 }
 
-/* ---------- Search Input ---------- */
 #guest-search {
   display: block;
   width: 75%;
@@ -45,17 +44,17 @@ body {
   border: none;
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
   color: #000000;
-  font-size: 3rem;
+  font-size: 4rem;
   text-align: center;
   outline: none;
-  margin-bottom: 32px;
+  margin: 0 auto 32px; /* Updated this line */
   padding: 8px 0;
 }
 
 #guest-search::placeholder {
   color: #888888;
   opacity: 1;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 /* ---------- Guest List ---------- */
@@ -69,7 +68,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 8px 0;
   font-size: 1.4rem;
 }
 
