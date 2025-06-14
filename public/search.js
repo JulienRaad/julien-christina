@@ -37,11 +37,13 @@ searchBox.addEventListener("input", () => {
 
 function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
-    // Sort by table first if grouping by table, then by name within each table
+    // Sort by table (numerically) first if grouping by table, then by name within each table
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
         if (groupBy === "table") {
-            // Sort by table first, then by name within the same table
-            return a.table.localeCompare(b.table) || a.name.localeCompare(b.name);
+            // Convert table to number for numerical sorting, then sort by name within the same table
+            const tableA = parseInt(a.table, 10);
+            const tableB = parseInt(b.table, 10);
+            return tableA - tableB || a.name.localeCompare(b.name);
         }
         // Default: sort by name only
         return a.name.localeCompare(b.name);
