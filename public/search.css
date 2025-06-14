@@ -74,11 +74,15 @@ body {
   opacity: 1;
   font-size: 3rem;
 }
+
 /* ---------- Guest List ---------- */
 .guest-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 400px; /* Adjust based on your design */
+  overflow-y: auto; /* Enable scrolling for sticky headers */
+  position: relative; /* Ensure sticky positioning is relative to this container */
 }
 
 .guest-list li {
@@ -95,6 +99,11 @@ body {
   padding: 8px 0;
   margin-top: 8px;
   color: #333;
+  position: sticky; /* Make headers stick to the top */
+  top: 0; /* Stick at the top of .guest-list */
+  background-color: #ffffff; /* Match body background to prevent overlap */
+  z-index: 10; /* Ensure headers stay above other list items */
+  border-bottom: 1px solid #ddd; /* Optional: visual separation */
 }
 
 .name {
@@ -103,4 +112,9 @@ body {
 
 .table {
   font-weight: 600;
+}
+
+/* Optional: Hover effect for non-header items */
+.guest-list li:not(.group-letter):hover {
+  background-color: #f0f0f0;
 }
