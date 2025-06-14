@@ -4,7 +4,7 @@ fetch("table_assignments.csv")
   .then((resp) => resp.text())
   .then((data) => {
     guests = parseCSV(data).sort((a, b) => a.Name.localeCompare(b.Name));
-    renderSuggestions(guests);
+    renderSuggestions(guests, "name");
   })
   .catch((err) => {
     console.error("Could not load table_assignments.csv:", err);
@@ -15,12 +15,24 @@ const list = document.getElementById("suggestions");
 
 searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
-  renderSuggestions(
-    (query
-      ? guests.filter((guest) =>guest.Name.toLowerCase().startsWith(query))
-      : guests
-    ).sort((a, b) => a.Name.localeCompare(b.Name))
-  );
+
+  if (!query) {
+    renderSuggestions(guests, "name");
+    return;
+  }
+
+  const isNumber = /^\d+$/.test(query); // check if query is all digits
+
+  const filtered = isNumber
+    ? guests.filter((guest) => guest.Table === query)
+    : guests.filter((guest) => guest.Name.toLowerCase().startsWith(query));
+
+  const groupBy = isNumber ? "table" : "name";
+
+  // Sort guests by name regardless of grouping
+  filtered.sort((a, b) => a.Name.localeCompare(b.Name));
+
+  renderSuggestions(filtered, groupBy);
 });
 
 function parseCSV(csvText) {
@@ -40,21 +52,24 @@ function parseCSV(csvText) {
   return result;
 }
 
-function renderSuggestions(matches) {
+function renderSuggestions(matches, groupBy = "name") {
   list.innerHTML = "";
 
-  let currentLetter = null;
+  let currentGroup = null;
 
   matches.forEach((guest) => {
-    const firstLetter = guest.Name.charAt(0).toUpperCase();
+    const groupKey =
+      groupBy === "table"
+        ? guest.Table
+        : guest.Name.charAt(0).toUpperCase();
 
-    // If the letter changes, insert a heading
-    if (firstLetter !== currentLetter) {
-      currentLetter = firstLetter;
-      const letterHeading = document.createElement("li");
-      letterHeading.textContent = currentLetter;
-      letterHeading.classList.add("group-letter");
-      list.appendChild(letterHeading);
+    if (groupKey !== currentGroup) {
+      currentGroup = groupKey;
+      const heading = document.createElement("li");
+      heading.textContent =
+        groupBy === "table" ? `Table ${groupKey}` : groupKey;
+      heading.classList.add("group-letter");
+      list.appendChild(heading);
     }
 
     const li = document.createElement("li");
