@@ -25,50 +25,27 @@ body {
 
   .search-input input {
     width: 100%;
-    padding: 10px 40px 10px 10px; /* right padding for icon */
-    font-size: 16px;
+    padding: 10px 10px 10px 40px; /* left padding for icon */
+    font-size: 2rem;
     border: none;
     border-bottom: 2px solid #757575;
     outline: none;
     transition: border-color 0.3s;
     background: transparent;
+
+    /* Disable default clear button in some browsers */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   .search-input input::placeholder {
     color: #999;
   }
 
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder{
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input:focus {
-    border-bottom-color: #3f51b5;
-  }
-
   .search-icon {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
@@ -79,12 +56,6 @@ body {
   .search-input input:focus + .search-icon {
     fill: #3f51b5;
   }
-
-#guest-search::placeholder {
-  color: #CCCCCC;
-  opacity: 1;
-  font-size: 2.2rem;
-}
 
 /* ---------- Guest List ---------- */
 .guest-list {
