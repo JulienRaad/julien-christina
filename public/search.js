@@ -18,19 +18,11 @@ searchBox.addEventListener("input", () => {
         renderSuggestions(allGuests, "name");
         return;
     }
-
     let groupBy = "name";
-    let filteredGuests = [];
-    if (query.startsWith("id=")) {
-        const id = query.split("=")[1];
+    let filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
+    if (filteredGuests.length === 0) {
+        filteredGuests = allGuests.filter((guest) => guest.table === query);
         groupBy = "table";
-        filteredGuests = allGuests.filter((guest) => guest.id === id);
-    } else {
-        filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
-        if (filteredGuests.length === 0) {
-            filteredGuests = allGuests.filter((guest) => guest.table === query);
-            groupBy = "table";
-        }
     }
     renderSuggestions(filteredGuests, groupBy);
 });
