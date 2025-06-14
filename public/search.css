@@ -20,26 +20,24 @@ body {
 /* ---------- Title ---------- */
 .title {
   font-size: 2.2rem;
-  font-weight: 400;  /* Removed bold styling */
-  text-align: center; /* Center the title */
+  font-weight: 400;         /* Normal weight (not bold) */
+  text-align: center;       /* Centered title */
   margin-bottom: 30px;
 }
 
+/* ---------- Search Input ---------- */
 .search-card {
   display: flex;
   align-items: center;
   gap: 12px;
 
-  background: #f0f0f0; /* Light gray background */
-  border-radius: 12px;
-  padding: 16px 16px;
-
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    0 1px 2px rgba(0, 0, 0, 0.05) inset;
-
+  background: none;             /* No card background */
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
   margin-bottom: 28px;
-  backdrop-filter: none; /* Removed blur */
+  backdrop-filter: none;
+  border-bottom: 1px solid #000;  /* Underline entire section */
 }
 
 .search-icon {
@@ -52,9 +50,12 @@ body {
   flex: 1;
   background: transparent;
   border: none;
+  border-bottom: 2px solid #000;  /* Underline for the input */
   color: #000000;
   font-size: 1.2rem;
   outline: none;
+  padding: 4px 0;
+  margin-left: 8px;
 }
 
 #guest-search::placeholder {
@@ -77,4 +78,4 @@ body {
 }
 
 .name { font-weight: 400; }
-.table { font-weight: 600; } 
+.table { font-weight: 600; }
