@@ -1,7 +1,10 @@
+let allGuests = [];
+
 fetch("guests.json")
   .then((resp) => resp.json())
   .then((data) => {
-    renderSuggestions(data, "name");
+    allGuests = data
+    renderSuggestions(allGuests, "name");
   })
   .catch((err) => {
     console.error("Could not load guests.json:", err);
@@ -14,26 +17,26 @@ const list = document.getElementById("suggestions");
 searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
   if (!query) {
-    renderSuggestions(guests, "name");
+    renderSuggestions(allGuests, "name");
     return;
   }
 
   const isNumber = /^\d+$/.test(query); // check if query is all digits
-  const filtered = isNumber
-    ? guests.filter((guest) => guest.Table === query)
-    : guests.filter((guest) => guest.Name.toLowerCase().startsWith(query));
+  const filteredGuests = isNumber
+    ? allGuests.filter((guest) => guest.Table === query)
+    : allGuests.filter((guest) => guest.Name.toLowerCase().startsWith(query));
 
   const groupBy = isNumber ? "table" : "name";
-  renderSuggestions(filtered, groupBy);
+  renderSuggestions(filteredGuests, groupBy);
 });
 
-function renderSuggestions(data, groupBy = "name") {
-  let matches = filtered.sort((a, b) => a.Name.localeCompare(b.Name));
+function renderSuggestions(matchedGuests, groupBy = "name") {
+  let sortedMatchedGuests = matchedGuests.sort((a, b) => a.Name.localeCompare(b.Name));
   list.innerHTML = "";
 
   let currentGroup = null;
 
-  matches.forEach((guest) => {
+  sortedMatchedGuests.forEach((guest) => {
     const groupKey =
       groupBy === "table"
         ? guest.Table
