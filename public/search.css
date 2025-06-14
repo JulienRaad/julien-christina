@@ -28,14 +28,6 @@ body {
   margin-bottom: 30px;
 }
 
-.title.hidden {
-  opacity: 0;
-  transform: translateY(-20px);
-  pointer-events: none;
-  height: 0;
-  margin: 0;
-}
-
 #guest-search {
   display: block;
   width: 75%;
@@ -44,7 +36,7 @@ body {
   border: none;
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
   color: #000000;
-  font-size: 4rem;
+  font-size: 6rem;
   text-align: center;
   outline: none;
   margin: 0 auto 32px; /* Updated this line */
@@ -54,7 +46,7 @@ body {
 #guest-search::placeholder {
   color: #888888;
   opacity: 1;
-  font-size: 4rem;
+  font-size: 6rem;
 }
 
 /* ---------- Guest List ---------- */
@@ -76,7 +68,7 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   padding: 8px 0;
-  margin-top: 16px;
+  margin-bottom: 8px;
   color: #333;
 }
 
