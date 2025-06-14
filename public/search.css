@@ -31,8 +31,8 @@ body {
 /* ---------- Guest Search ---------- */
 #guest-search {
   display: block;
-  width: 75%;
-  max-width: 75%;
+  width: 100%;
+  max-width: 100%;
   background: transparent;
   border: none;
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
@@ -80,21 +80,4 @@ body {
 
 .table {
   font-weight: 600;
-}
-
-/* ---------- Responsive Adjustments ---------- */
-@media (max-width: 600px) {
-  .title {
-    font-size: 2rem;
-  }
-
-  #guest-search {
-    font-size: 1.6rem;
-  }
-
-  #guest-search::placeholder {
-    font-size: 1.6rem;
-    color: #888888;
-    opacity: 1;
-  }
 }
