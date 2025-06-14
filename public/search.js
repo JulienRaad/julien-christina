@@ -22,7 +22,7 @@ searchBox.addEventListener("input", () => {
   let groupBy = "name";
 	let filteredGuests = []
 	if (query.startsWith("id=")) {
-		const id = str.split("=")[1];
+		const id = query.split("=")[1];
     groupBy = "table"
 		filteredGuests = allGuests.filter((guest) => guest.id === id)
 	} else {
