@@ -73,10 +73,12 @@ function renderSuggestions(matches, groupBy = "name") {
     }
 
     const li = document.createElement("li");
-    li.innerHTML = `
-      <span class="name">${guest.Name}</span>
-      <span class="table">${guest.Table}</span>
-    `;
+
+    li.innerHTML =
+      groupBy === "table"
+        ? `<span class="name">${guest.Name}</span>`
+        : `<span class="name">${guest.Name}</span> <span class="table">${guest.Table}</span>`;
+
     list.appendChild(li);
   });
 }
