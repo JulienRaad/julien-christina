@@ -3,7 +3,7 @@ let guests = [];
 fetch("table_assignments.csv")
   .then((resp) => resp.text())
   .then((data) => {
-    guests = parseCSV(data);
+    guests = parseCSV(data).sort((a, b) => a.Name.localeCompare(b.Name));
     renderSuggestions(guests);
   })
   .catch((err) => {
@@ -12,35 +12,15 @@ fetch("table_assignments.csv")
 
 const searchBox = document.getElementById("guest-search");
 const list = document.getElementById("suggestions");
-const title = document.querySelector(".title");
 
 searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
   renderSuggestions(
-    query
-      ? guests.filter((guest) =>
-          guest.Name.toLowerCase().startsWith(query)
-        )
+    (query
+      ? guests.filter((guest) =>guest.Name.toLowerCase().startsWith(query))
       : guests
+    ).sort((a, b) => a.Name.localeCompare(b.Name))
   );
-});
-
-searchBox.addEventListener("focus", () => {
-  // Hide title for more space
-  title.classList.add("hidden");
-
-  // Scroll input to top after a short delay (keyboard handling)
-  setTimeout(() => {
-    searchBox.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }, 150);
-});
-
-searchBox.addEventListener("blur", () => {
-  // Show title back after input is unfocused
-  title.classList.remove("hidden");
 });
 
 function parseCSV(csvText) {
