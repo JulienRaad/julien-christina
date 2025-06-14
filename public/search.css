@@ -1,5 +1,4 @@
-/* ---------- Reset & Base ---------- */
-* {
+* {More actions
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -20,60 +19,56 @@ body {
   margin: 0 auto;
 }
 
-/* ---------- Search Wrapper ---------- */
-.search-wrapper {
-  display: flex;
-  align-items: center;
-  border-bottom: 1.25px solid rgba(0, 0, 0, 0.2);
-  margin: 0 auto 32px;
-  max-width: 100%;
-  padding: 8px 0;
-}
-
-/* ---------- Search Icon ---------- */
-.search-icon {
-  font-size: 1.6rem;
-  color: #CCCCCC;
-  margin-right: 12px;
-}
-
-/* ---------- Guest Search Input ---------- */
+/* ---------- Guest Search ---------- */
 #guest-search {
-  flex: 1;
+  display: block;
+  width: 100%;
+  max-width: 100%;
   background: transparent;
   border: none;
-  color: #000000;
+  border-bottom: 1.25px solid rgba(0, 0, 0, 0.2);
+  color: #CCCCCC;
   font-size: 2.2rem;
   font-weight: 600;
-  text-align: left;
+  text-align: center;
   outline: none;
-  padding: 0;
-  margin: 0;
+
+  margin: 0 auto 32px;
+  padding: 8px 0;
+
+
+
+
+
 }
 
 #guest-search::placeholder {
   color: #CCCCCC;
+  opacity: 1;
   font-size: 2.2rem;
-  text-align: left;
 }
 
 #guest-search::-webkit-input-placeholder {
   color: #CCCCCC;
+  opacity: 1;
   font-size: 2.2rem;
 }
 
 #guest-search::-moz-placeholder {
   color: #CCCCCC;
+  opacity: 1;
   font-size: 2.2rem;
 }
 
 #guest-search:-ms-input-placeholder {
   color: #CCCCCC;
+  opacity: 1;
   font-size: 2.2rem;
 }
 
 #guest-search:-moz-placeholder {
   color: #CCCCCC;
+  opacity: 1;
   font-size: 2.2rem;
 }
 
@@ -94,9 +89,9 @@ body {
 
 .group-letter {
   position: sticky;
-  top: 0;
-  background: #ffffff;
-  z-index: 1;
+  top: 0; /* Sticks to the top of the scrolling container */
+  background: #ffffff; /* Match the page background so it looks solid */
+  z-index: 1; /* Ensure it stays above other elements */
   font-size: 1.6rem;
   font-weight: 600;
   padding: 8px 0;
