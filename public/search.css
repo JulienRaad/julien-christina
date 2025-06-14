@@ -25,14 +25,13 @@ body {
 
   .search-input input {
     width: 100%;
-    padding: 10px 10px 10px 10px; /* left padding for icon */
+    padding: 10px 10px 10px 40px; /* left padding for icon */
     font-size: 2rem;
     border: none;
-    border-bottom: 2px solid #757575;
+    color: #CCCCCC
+    border-bottom: 1.25px solid #CCCCCC;
     outline: none;
-    transition: border-color 0.3s;
     background: transparent;
-
     /* Disable default clear button in some browsers */
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -43,25 +42,25 @@ body {
 .search-input input::placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 4rem;
+  font-size: 2rem;
 }
    
 .search-input input::-webkit-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .search-input input::-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .search-input input::-ms-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 4rem;
+  font-size: 2rem;
 }
 
 .search-input input::-moz-placeholder {
