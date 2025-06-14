@@ -52,7 +52,7 @@ body {
   border: none;
   border-bottom: 2px solid #000;  /* Underline for the input */
   color: #000000;
-  font-size: 1.2rem;
+  font-size: 3rem;
   outline: none;
   padding: 4px 0;
   margin-left: 8px;
@@ -61,6 +61,7 @@ body {
 #guest-search::placeholder {
   color: #666666;
   opacity: 1;
+  font-size: 3rem;
 }
 
 /* ---------- Guest list ---------- */
