@@ -1,4 +1,6 @@
 let allGuests = [];
+const list = document.getElementById("suggestions");
+const searchBox = document.getElementById("guest-search");
 
 fetch("guests.json")
   .then((resp) => resp.json())
@@ -10,7 +12,6 @@ fetch("guests.json")
     console.error("Could not load guests.json:", err);
   });
 
-const searchBox = document.getElementById("guest-search");
 searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
   if (!query) {
@@ -29,8 +30,6 @@ searchBox.addEventListener("input", () => {
 
 function renderSuggestions(matchedGuests, groupBy) {
   list.innerHTML = "";
-
-  const list = document.getElementById("suggestions");
   const sortedMatchedGuests = matchedGuests.sort((a, b) => a.Name.localeCompare(b.Name));
   let currentGroup = null;
 
