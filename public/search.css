@@ -20,12 +20,12 @@ body {
 }
   .search-input {
     position: relative;
-    width: 300px;
+    width: 100%;
   }
 
   .search-input input {
     width: 100%;
-    padding: 10px 10px 10px 40px; /* left padding for icon */
+    padding: 10px 10px 10px 10px; /* left padding for icon */
     font-size: 2rem;
     border: none;
     border-bottom: 2px solid #757575;
@@ -39,9 +39,36 @@ body {
     appearance: none;
   }
 
-  .search-input input::placeholder {
-    color: #999;
-  }
+
+.search-input input::placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 4rem;
+}
+   
+.search-input input::-webkit-input-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 4rem;
+}
+
+.search-input input::-moz-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 4rem;
+}
+
+.search-input input::-ms-input-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 4rem;
+}
+
+.search-input input::-moz-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 4rem;
+}
 
   .search-icon {
     position: absolute;
@@ -49,12 +76,8 @@ body {
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;
-    fill: #757575;
+    fill: #CCCCCC;
     transition: fill 0.3s;
-  }
-
-  .search-input input:focus + .search-icon {
-    fill: #3f51b5;
   }
 
 /* ---------- Guest List ---------- */
