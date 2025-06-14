@@ -20,26 +20,21 @@ body {
   margin: 0 auto;
 }
 
+/* ---------- Guest Search ---------- */
 #guest-search {
   display: block;
   width: 100%;
   max-width: 100%;
-  padding: 14px 20px;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #333;
-  background-color: #f5f5f5;
-  border: 2px solid #ddd;
-  border-radius: 999px; /* Fully rounded */
+  background: transparent;
+  border: none;
+  border-bottom: 1.25px solid rgba(0, 0, 0, 0.2);
+  color: #CCCCCC;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
   outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
   margin: 0 auto 32px;
-  text-align: left;
-}
-
-#guest-search:focus {
-  border-color: #6200ea;
-  box-shadow: 0 0 0 4px rgba(98, 0, 238, 0.1); /* subtle glow */
+  padding: 8px 0;
 }
 
 #guest-search::placeholder {
