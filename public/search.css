@@ -26,9 +26,9 @@ body {
   max-width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1.25px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1.25px solid #CCCCCC;
   color: #CCCCCC;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 600;
   text-align: center;
   outline: none;
@@ -39,31 +39,31 @@ body {
 #guest-search::placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
 
 #guest-search::-webkit-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
 
 #guest-search::-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
 
 #guest-search:-ms-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
 
 #guest-search:-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
 }
 
 /* ---------- Guest List ---------- */
