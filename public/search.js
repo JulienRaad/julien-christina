@@ -30,7 +30,7 @@ searchBox.addEventListener("input", () => {
 
 function renderSuggestions(matchedGuests, groupBy) {
   list.innerHTML = "";
-  const sortedMatchedGuests = matchedGuests.sort((previousGuest, currentGuest) => previousGuest.name.localeCompare(currentGuest.Name));
+  const sortedMatchedGuests = matchedGuests.sort((previousGuest, currentGuest) => previousGuest.name.localeCompare(currentGuest.name));
   let currentGroup = null;
 
   sortedMatchedGuests.forEach((guest) => {
