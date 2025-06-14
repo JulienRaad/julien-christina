@@ -10,7 +10,7 @@ body {
   color: #000000;
   background: #ffffff;
   min-height: 100vh;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 /* ---------- Layout ---------- */
@@ -28,6 +28,7 @@ body {
   margin-bottom: 30px;
 }
 
+/* ---------- Guest Search ---------- */
 #guest-search {
   display: block;
   width: 75%;
@@ -37,40 +38,18 @@ body {
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
   color: #000000;
   font-size: 6rem;
+  font-weight: 600;
   text-align: center;
   outline: none;
-  margin: 0 auto 32px; /* Updated this line */
+  margin: 0 auto 32px;
   padding: 8px 0;
 }
 
 #guest-search::placeholder {
   color: #888888;
-  opacity: 1;
   font-size: 6rem;
-}
-
-#guest-search::-webkit-input-placeholder {
-  color: #888888;
   opacity: 1;
-  font-size: 6rem;
-}
-
-#guest-search::-moz-placeholder {
-  color: #888888;
-  opacity: 1;
-  font-size: 6rem;
-}
-
-#guest-search:-ms-input-placeholder {
-  color: #888888;
-  opacity: 1;
-  font-size: 6rem;
-}
-
-#guest-search:-moz-placeholder {
-  color: #888888;
-  opacity: 1;
-  font-size: 6rem;
+  font-weight: 600;
 }
 
 /* ---------- Guest List ---------- */
@@ -115,6 +94,8 @@ body {
   }
 
   #guest-search::placeholder {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
+    color: #888888;
+    opacity: 1;
   }
 }
