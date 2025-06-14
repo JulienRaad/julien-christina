@@ -5,6 +5,7 @@
         .then((data) => {
             // Parse CSV data
             guests = parseCSV(data);
+            renderSuggestions(guests)
         })
         .catch((err) => {
             console.error("Could not load table_assignments.csv:", err);
@@ -18,7 +19,7 @@
         renderSuggestions(
             query ?
             guests.filter((guest) => guest.Name.toLowerCase().startsWith(query)) :
-            []
+            guests
         );
     });
 
