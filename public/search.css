@@ -46,31 +46,31 @@ body {
 }
 
 #guest-search::placeholder {
-  color: #C3C3C3;
+  color: #F0F0F0;
   opacity: 1;
   font-size: 3rem;
 }
 
 #guest-search::-webkit-input-placeholder {
-  color: #C3C3C3;
+  color: #F0F0F0;
   opacity: 1;
   font-size: 3rem;
 }
 
 #guest-search::-moz-placeholder {
-  color: #C3C3C3;
+  color: #F0F0F0;
   opacity: 1;
   font-size: 3rem;
 }
 
 #guest-search:-ms-input-placeholder {
-  color: #C3C3C3;
+  color: #F0F0F0;
   opacity: 1;
   font-size: 3rem;
 }
 
 #guest-search:-moz-placeholder {
-  color: #C3C3C3;
+  color: #F0F0F0;
   opacity: 1;
   font-size: 3rem;
 }
