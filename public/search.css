@@ -17,10 +17,11 @@ body {
   padding: 32px 22px 48px;
 }
 
-/* Title */
+/* ---------- Title ---------- */
 .title {
   font-size: 2.2rem;
-  font-weight: 600;
+  font-weight: 400;  /* Removed bold styling */
+  text-align: center; /* Center the title */
   margin-bottom: 30px;
 }
 
