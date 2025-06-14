@@ -10,42 +10,51 @@ body {
   color: #000000;
   background: #ffffff;
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* ---------- Layout ---------- */
 .container {
   padding: 32px 22px 48px;
+  max-width: 600px;
+  margin: 0 auto; /* Center container */
 }
 
 /* ---------- Title ---------- */
 .title {
   font-size: 2.5rem;
-  font-weight: 400;         /* Normal weight (not bold) */
-  text-align: center;       /* Centered title */
+  font-weight: 400;
+  text-align: center;
   margin-bottom: 30px;
 }
 
+/* ---------- Search Input ---------- */
 #guest-search {
-  flex: 1;
+  display: block;
+  width: 100%;
+  max-width: 100%;
   background: transparent;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
   color: #000000;
-  font-size: 4rem;
-  text-align: center;       /* Centered title */
+  font-size: 2rem;
+  text-align: center;
   outline: none;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
+  padding: 8px 0;
 }
 
 #guest-search::placeholder {
-  color: #666666;
+  color: #888888;
   opacity: 1;
-  font-size: 3rem;
+  font-size: 1.5rem;
 }
 
-/* ---------- Guest list ---------- */
+/* ---------- Guest List ---------- */
 .guest-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .guest-list li {
@@ -57,5 +66,10 @@ body {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-.name { font-weight: 400; }
-.table { font-weight: 600; }
+.name {
+  font-weight: 400;
+}
+
+.table {
+  font-weight: 600;
+}
