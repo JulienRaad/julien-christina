@@ -42,7 +42,21 @@ function parseCSV(csvText) {
 
 function renderSuggestions(matches) {
   list.innerHTML = "";
+
+  let currentLetter = null;
+
   matches.forEach((guest) => {
+    const firstLetter = guest.Name.charAt(0).toUpperCase();
+
+    // If the letter changes, insert a heading
+    if (firstLetter !== currentLetter) {
+      currentLetter = firstLetter;
+      const letterHeading = document.createElement("li");
+      letterHeading.textContent = currentLetter;
+      letterHeading.classList.add("group-letter");
+      list.appendChild(letterHeading);
+    }
+
     const li = document.createElement("li");
     li.innerHTML = `
       <span class="name">${guest.Name}</span>
