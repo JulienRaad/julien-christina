@@ -19,43 +19,22 @@ body {
 
 /* ---------- Title ---------- */
 .title {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 400;         /* Normal weight (not bold) */
   text-align: center;       /* Centered title */
   margin-bottom: 30px;
-}
-
-/* ---------- Search Input ---------- */
-.search-card {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  background: none;             /* No card background */
-  border-radius: 0;
-  padding: 0;
-  box-shadow: none;
-  margin-bottom: 28px;
-  backdrop-filter: none;
-  border-bottom: 1px solid #000;  /* Underline entire section */
-}
-
-.search-icon {
-  font-size: 24px;
-  color: #000000;
-  opacity: 0.9;
 }
 
 #guest-search {
   flex: 1;
   background: transparent;
   border: none;
-  border-bottom: 2px solid #000;  /* Underline for the input */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   color: #000000;
-  font-size: 3rem;
+  font-size: 4rem;
+  text-align: center;       /* Centered title */
   outline: none;
-  padding: 4px 0;
-  margin-left: 8px;
+  margin-bottom: 28px;
 }
 
 #guest-search::placeholder {
