@@ -32,14 +32,26 @@ body {
   font-weight: 600;
   text-align: center;
   outline: none;
-
   margin: 0 auto 32px;
   padding: 8px 0;
+  padding-left: 40px; /* Space for the icon */
+}
 
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-
-
-
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #CCCCCC;
+  font-size: 1.8rem;
+  pointer-events: none; /* Makes sure clicks go to the input */
 }
 
 #guest-search::placeholder {
