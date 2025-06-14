@@ -7,17 +7,9 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  color: #ffffff;
+  color: #000000;
+  background: #ffffff;
   min-height: 100vh;
-
-  /* Strong linear brushed-style gradient with teal tones */
-  background: linear-gradient(
-    135deg,
-    #022f33 0%,
-    #034c53 30%,
-    #04646c 60%,
-    #03828a 100%
-  );
 }
 
 /* ---------- Layout ---------- */
@@ -37,26 +29,21 @@ body {
   align-items: center;
   gap: 12px;
 
-  /* Teal-tinted semi-transparent card */
-  background: linear-gradient(
-    135deg,
-    rgba(3, 76, 83, 0.3),
-    rgba(4, 100, 108, 0.25)
-  );
+  background: #f0f0f0; /* Light gray background */
   border-radius: 12px;
   padding: 16px 16px;
 
-  /* Enhanced soft shadow for elevation */
   box-shadow:
-    0 8px 12px rgba(0, 0, 0, 0.4),
-    0 3px 6px rgba(255, 255, 255, 0.05) inset;
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.05) inset;
 
   margin-bottom: 28px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: none; /* Removed blur */
 }
 
 .search-icon {
-  font-size: 24px;               /* bigger icon */
+  font-size: 24px;
+  color: #000000;
   opacity: 0.9;
 }
 
@@ -64,14 +51,14 @@ body {
   flex: 1;
   background: transparent;
   border: none;
-  color: inherit;
-  font-size: 1.2rem;            /* larger text */
+  color: #000000;
+  font-size: 1.2rem;
   outline: none;
 }
 
 #guest-search::placeholder {
-  color: #cccccc; /* Lighter shade of gray */
-  opacity: 1; /* Ensures consistent rendering across browsers */
+  color: #666666;
+  opacity: 1;
 }
 
 /* ---------- Guest list ---------- */
@@ -83,10 +70,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;               /* taller rows */
-  font-size: 1.4rem;             /* bigger text */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 0;
+  font-size: 1.4rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .name { font-weight: 400; }
-.table { font-weight: 600; }
+.table { font-weight: 600; } 
