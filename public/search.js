@@ -10,54 +10,41 @@ fetch("guests.json")
     console.error("Could not load guests.json:", err);
   });
 
-
 const searchBox = document.getElementById("guest-search");
-const list = document.getElementById("suggestions");
-
 searchBox.addEventListener("input", () => {
   const query = searchBox.value.trim().toLowerCase();
   if (!query) {
     renderSuggestions(allGuests, "name");
     return;
   }
-
-  const isNumber = /^\d+$/.test(query); // check if query is all digits
-  const filteredGuests = isNumber
-    ? allGuests.filter((guest) => guest.Table === query)
-    : allGuests.filter((guest) => guest.Name.toLowerCase().startsWith(query));
-
-  const groupBy = isNumber ? "table" : "name";
+  let groupBy = "name";
+  let filteredGuests = []
+  filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
+  if (filteredGuests.length === 0) {
+    filteredGuests = allGuests.filter((guest) => guest.table === query)
+    groupBy = "table"
+  }
   renderSuggestions(filteredGuests, groupBy);
 });
 
-function renderSuggestions(matchedGuests, groupBy = "name") {
-  let sortedMatchedGuests = matchedGuests.sort((a, b) => a.Name.localeCompare(b.Name));
+function renderSuggestions(matchedGuests, groupBy) {
   list.innerHTML = "";
 
+  const list = document.getElementById("suggestions");
+  const sortedMatchedGuests = matchedGuests.sort((a, b) => a.Name.localeCompare(b.Name));
   let currentGroup = null;
 
   sortedMatchedGuests.forEach((guest) => {
-    const groupKey =
-      groupBy === "table"
-        ? guest.Table
-        : guest.Name.charAt(0).toUpperCase();
-
+    const groupKey = groupBy === "table" ? guest.table : guest.name.charAt(0).toUpperCase();
     if (groupKey !== currentGroup) {
       currentGroup = groupKey;
       const heading = document.createElement("li");
-      heading.textContent =
-        groupBy === "table" ? `Table ${groupKey}` : groupKey;
+      heading.textContent = groupBy === "table" ? `Table ${groupKey}` : groupKey;
       heading.classList.add("group-letter");
       list.appendChild(heading);
     }
-
     const li = document.createElement("li");
-
-    li.innerHTML =
-      groupBy === "table"
-        ? `<span class="name">${guest.Name}</span>`
-        : `<span class="name">${guest.Name}</span> <span class="table">${guest.Table}</span>`;
-
+    li.innerHTML = groupBy === "table" ? `<span class="name">${guest.name}</span>`: `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`;
     list.appendChild(li);
   });
 }
