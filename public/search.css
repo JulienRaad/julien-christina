@@ -1,4 +1,4 @@
-* {More actions
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -18,69 +18,49 @@ body {
   max-width: 600px;
   margin: 0 auto;
 }
-  .search-input {
-    position: relative;
-    width: 300px;
-  }
 
-  .search-input input {
-    width: 100%;
-    padding: 10px 40px 10px 10px; /* right padding for icon */
-    font-size: 16px;
-    border: none;
-    border-bottom: 2px solid #757575;
-    outline: none;
-    transition: border-color 0.3s;
-    background: transparent;
-  }
-
-  .search-input input::placeholder {
-    color: #999;
-  }
-
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder{
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input::placeholder {
-    color: #CCCCCC;
-    opacity: 1;
-    font-size: 2.2rem;
-  }
-
-  .search-input input:focus {
-    border-bottom-color: #3f51b5;
-  }
-
-  .search-icon {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    fill: #757575;
-    transition: fill 0.3s;
-  }
-
-  .search-input input:focus + .search-icon {
-    fill: #3f51b5;
-  }
+/* ---------- Guest Search ---------- */
+#guest-search {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1.25px solid rgba(0, 0, 0, 0.2);
+  color: #CCCCCC;
+  font-size: 2.2rem;
+  font-weight: 600;
+  text-align: center;
+  outline: none;
+  margin: 0 auto 32px;
+  padding: 8px 0;
+}
 
 #guest-search::placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 2.2rem;
+}
+
+#guest-search::-webkit-input-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 2.2rem;
+}
+
+#guest-search::-moz-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 2.2rem;
+}
+
+#guest-search:-ms-input-placeholder {
+  color: #CCCCCC;
+  opacity: 1;
+  font-size: 2.2rem;
+}
+
+#guest-search:-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
   font-size: 2.2rem;

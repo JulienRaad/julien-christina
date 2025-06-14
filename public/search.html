@@ -4,31 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Table Finder</title>
-  <!-- Open Graph -->
-  <meta property="og:title" content="Table Finder" />
-  <meta property="og:description" content="Thank you for being part of our big day! Search and find your table." />
-  <meta property="og:url" content="https://www.jcraadwedding.com/search" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="JCRaadWedding" />
+    <title>Table Finder</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content="Table Finder" />
+    <meta property="og:description" content="Thank you for being part of our big day! Search and find your table." />
+    <meta property="og:url" content="https://www.jcraadwedding.com/search" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JCRaadWedding" />
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-  <!-- Font Awesome for search icon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="search.css" />
 </head>
 
 <body>
 <div class="container">
-  <div class="search-input">
-    <label>
-      <input type="search" placeholder="Name or Table#" />
-    </label>
-    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24">
-      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16a6.471 6.471 0 004.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zM10 14a4.5 4.5 0 110-9 4.5 4.5 0 010 9z"/>
-    </svg>
-  </div>
+    <label for="guest-search"></label>
+    <input id="guest-search" placeholder="Type a name or table" autocomplete="off" />
   <ul id="suggestions" class="guest-list"></ul>
 </div>
 <script src="search.js"></script>
