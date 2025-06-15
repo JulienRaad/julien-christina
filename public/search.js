@@ -19,7 +19,11 @@ searchBox.addEventListener("input", () => {
         return;
     }
     let groupBy = "name";
-    let filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
+    let filteredGuests = allGuests.filter((guest) => guest.firstName.toLowerCase().startsWith(query));
+    if (filteredGuests.length === 0) {
+        filteredGuests = allGuests.filter((guest) => guest.lastName.toLowerCase().startsWith(query));
+        groupBy = "name";
+    }
     if (filteredGuests.length === 0) {
         filteredGuests = allGuests.filter((guest) => guest.table === query);
         groupBy = "table";
@@ -37,19 +41,19 @@ function renderSuggestions(matchedGuests, groupBy) {
         if (groupBy === "table") {
             const tableA = parseInt(a.table, 10);
             const tableB = parseInt(b.table, 10);
-            return tableA - tableB || a.name.localeCompare(b.name);
+            return tableA - tableB || a.firstName.localeCompare(b.firstName);
         }
-        return a.name.localeCompare(b.name);
+        return a.firstName.localeCompare(b.firstName);
     });
 
     let currentGroup = null;
     sortedMatchedGuests.forEach((guest) => {
-        const groupKey = groupBy === "table" ? guest.table : guest.name.charAt(0).toUpperCase();
+        const groupKey = groupBy === "table" ? guest.table : guest.firstName.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
             addListElement(groupBy === "table" ? `Table ${groupKey}` : groupKey, true);
         }
-        addListElement(groupBy === "table" ? `<span class="name">${guest.name}</span>` : `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`);
+        addListElement(groupBy === "table" ? `<span class="name">${guest.firstName}</span>` : `<span class="name">${guest.firstName}</span> <span class="table">${guest.table}</span>`);
     });
 }
 
