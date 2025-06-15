@@ -87,7 +87,7 @@ function createListItem({ content, className = "", onClick = null }) {
   return element;
 }
 
-ffunction addGuestElement(guest, isGroupedByTable) {
+function addGuestElement(guest, isGroupedByTable) {
   const text = isGroupedByTable
     ? `<span class="name">${guest.firstName} ${guest.lastName}</span>`
     : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`;
