@@ -13,19 +13,19 @@ fetch("guests.json")
     });
 
 searchBox.addEventListener("input", () => {
-    const query = searchBox.value.trim().toLowerCase();
+    const query = searchBox.value.trim().toLowerCase().replaceAll(" ", "");
     if (!query) {
         renderSuggestions(allGuests, "name");
         return;
     }
     let groupBy = "name";
-    let filteredGuests = allGuests.filter((guest) => guest.firstName.toLowerCase().startsWith(query));
+    let filteredGuests = allGuests.filter((guest) => searchGuestByFullName(guest, query);
     if (filteredGuests.length === 0) {
-        filteredGuests = allGuests.filter((guest) => guest.lastName.toLowerCase().startsWith(query));
+        filteredGuests = allGuests.filter((guest) => searchAllFamily(guest, query);
         groupBy = "table";
     }
     if (filteredGuests.length === 0) {
-        filteredGuests = allGuests.filter((guest) => guest.table === query);
+        filteredGuests = allGuests.filter((guest) => searchByTable(guest, query));
         groupBy = "table";
     }
     renderSuggestions(filteredGuests, groupBy);
@@ -64,4 +64,21 @@ function addListElement(text, isHeading = false){
          element.classList.add("group-heading");
       }
       list.appendChild(element);
+}
+
+function fullName(guest){
+   const result = `${guest.firstName}${guest.lastName}`;
+   return result.toLowerCase();
+}
+
+function searchGuestByFullName(guest, query){
+    return fullName(guest).startsWith(query);
+}
+
+function searchAllFamily(guest, query){
+    return guest.lastName.toLowerCase().startsWith(query);
+}
+
+function searchByTable(guest, query){
+    return guest.table.toLowerCase().startsWith(query);
 }
