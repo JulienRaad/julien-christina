@@ -30,7 +30,7 @@ searchBox.addEventListener("input", () => {
 function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
     if (matchedGuests.length == 0){
-       addChildElementToList("No results found");
+       addListElementInnerHtml("No results found");
        return;
     }
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
