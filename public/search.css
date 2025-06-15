@@ -81,35 +81,32 @@ body {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  background: transparent;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* remove tap highlight on mobile */
 }
 
 /* Ripple effect */
-.guest-list li::after {
+.guest-list li::before {
   content: "";
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 20px;
-  height: 20px;
-  background: rgba(0, 0, 0, 0.05);
+  width: 100px;
+  height: 100px;
+  background: rgba(0, 0, 0, 0.1);
   border-radius: 50%;
+  pointer-events: none;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
+  transition: transform 0.5s ease-out, opacity 1s ease-out;
   z-index: 0;
+}
+
+.guest-list li:active::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
   transition: none;
-}
-
-.guest-list li:active::after {
-  animation: ripple-expand 0.6s ease-out forwards;
-}
-
-@keyframes ripple-expand {
-  to {
-    transform: translate(-50%, -50%) scale(10);
-    opacity: 0;
-  }
 }
 
 .group-heading {
@@ -122,6 +119,7 @@ body {
   padding: 8px 0;
   margin-top: 8px;
   color: #333;
+  user-select: none;
 }
 
 .name {
