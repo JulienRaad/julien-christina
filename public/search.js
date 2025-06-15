@@ -62,6 +62,6 @@ function addListElementInnerHtml(innerHtml){
 function addListHeadingElementText(text){
       const heading = document.createElement("li");
       heading.textContent = text;
-      heading.classList.add("group-letter");
+      heading.classList.add("group-heading");
       list.appendChild(heading);
 }
