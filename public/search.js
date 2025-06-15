@@ -22,7 +22,7 @@ searchBox.addEventListener("input", () => {
     let filteredGuests = allGuests.filter((guest) => guest.firstName.toLowerCase().startsWith(query));
     if (filteredGuests.length === 0) {
         filteredGuests = allGuests.filter((guest) => guest.lastName.toLowerCase().startsWith(query));
-        groupBy = "name";
+        groupBy = "table";
     }
     if (filteredGuests.length === 0) {
         filteredGuests = allGuests.filter((guest) => guest.table === query);
@@ -53,7 +53,7 @@ function renderSuggestions(matchedGuests, groupBy) {
             currentGroup = groupKey;
             addListElement(groupBy === "table" ? `Table ${groupKey}` : groupKey, true);
         }
-        addListElement(groupBy === "table" ? `<span class="name">${guest.firstName}</span>` : `<span class="name">${guest.firstName}</span> <span class="table">${guest.table}</span>`);
+        addListElement(groupBy === "table" ? `<span class="name">${guest.firstName} ${guest.lastName}</span>` : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`);
     });
 }
 
