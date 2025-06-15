@@ -47,19 +47,19 @@ function renderSuggestions(matchedGuests, groupBy) {
         const groupKey = groupBy === "table" ? guest.table : guest.name.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
-            addHeading(groupBy === "table" ? `Table ${groupKey}` : groupKey);
+            addListHeadingElementText(groupBy === "table" ? `Table ${groupKey}` : groupKey);
         }
-        addChildElementToList(groupBy === "table" ? `<span class="name">${guest.name}</span>` : `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`);
+        addListElementInnerHtml(groupBy === "table" ? `<span class="name">${guest.name}</span>` : `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`);
     });
 }
 
-function addChildElementToList(innerHtml){
+function addListElementInnerHtml(innerHtml){
      const li = document.createElement("li");
      li.innerHTML = innehHtml;
      list.appendChild(li);
 }
 
-function addHeadingText(text){
+function addListHeadingElementText(text){
       const heading = document.createElement("li");
       heading.textContent = text;
       heading.classList.add("group-letter");
