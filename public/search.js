@@ -57,15 +57,17 @@ function renderSuggestions(matchedGuests, groupBy) {
     });
 }
 
-function addGuestElement(guest, isGroupByTable){
-    const text = isGroupedByTable ? `<span class="name">${guest.firstName} ${guest.lastName}</span>` : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`
+function addGuestElement(guest, isGroupedByTable){
+    const text = isGroupedByTable
+        ? `<span class="name">${guest.firstName} ${guest.lastName}</span>`
+        : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`;
     const element = document.createElement("li");
     element.innerHTML = text;
     list.appendChild(element);
     element.addEventListener('click', function() {
-        searchBox.content = '${guest.table}';
+        searchBox.value = guest.table
         searchBox.dispatchEvent(new Event('input'));
-    }
+    });
 }
 
 function addHeadingElement(text){
@@ -77,15 +79,15 @@ function addHeadingElement(text){
 
 function isMatchByFullName(guest, query){
     const fullName = `${guest.firstName}${guest.lastName}`;
-    return normalise(fullName).startsWith(normalise(query));
+    return normalise(fullName).startsWith(query);
 }
 
 function isMatchByFamily(guest, query){
-    return normalise(guest.lastName).startsWith(normalise(query));
+    return normalise(guest.lastName).startsWith(query);
 }
 
 function isMatchByTable(guest, query){
-    return normalise(guest.table).startsWith(normalise(query));
+    return normalise(guest.table).startsWith(query);
 }
 
 function normalise(text){
