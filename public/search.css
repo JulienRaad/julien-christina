@@ -38,31 +38,31 @@ body {
 #guest-search::placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 #guest-search::-webkit-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 #guest-search::-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 #guest-search:-ms-input-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 #guest-search:-moz-placeholder {
   color: #CCCCCC;
   opacity: 1;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
 }
 
 /* ---------- Guest List ---------- */
