@@ -17,6 +17,8 @@ window.addEventListener("popstate", () => {
     if (searchBox.value.trim().length > 0) {
         searchBox.value = "";
         searchBox.dispatchEvent(new Event('input'));
+    } else {
+        history.back();
     }
 });
 
