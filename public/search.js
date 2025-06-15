@@ -34,7 +34,7 @@ searchBox.addEventListener("input", () => {
 function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
     if (matchedGuests.length === 0){
-       addHeadingText("No results found.");
+       addTextHeading("No results found.");
        return;
     }
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
@@ -54,7 +54,7 @@ function renderSuggestions(matchedGuests, groupBy) {
             if (isGroupedByTable){
                 addTableHeading(groupKey)
             } else {
-                addHeadingText(groupKey)
+                addTextHeading(groupKey)
             }
         }
         addGuestElement(guest, isGroupedByTable);
@@ -75,7 +75,7 @@ function addGuestElement(guest, isGroupedByTable){
 }
 
 function addTableHeading(table){
-    const text = `Table ${groupKey}`
+    const text = `Table ${table}`
     const element = document.createElement("li");
     element.innerHTML = text;
     element.classList.add("group-heading");
@@ -86,7 +86,7 @@ function addTableHeading(table){
     });
 }
 
-function addHeadingText(text){
+function addTextHeading(text){
     const element = document.createElement("li");
     element.innerHTML = text;
     element.classList.add("group-heading");
