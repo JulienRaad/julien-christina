@@ -15,7 +15,8 @@ fetch("guests.json")
 // Add a popstate event listener to handle browser back navigation
 window.addEventListener("popstate", () => {
     if (searchBox.value.trim().length > 0) {
-        searchBox.value = ""; 
+        searchBox.value = "";
+        searchBox.dispatchEvent(new Event('input'));
     }
 });
 
