@@ -78,6 +78,32 @@ body {
   align-items: center;
   padding: 8px 0;
   font-size: 1.4rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.guest-list li::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease-out, height 0.4s ease-out, opacity 0.8s;
+  opacity: 0;
+  z-index: 0;
+}
+
+.guest-list li:active::after {
+  width: 200%;
+  height: 200%;
+  opacity: 1;
+  transition: 0s;
 }
 
 .group-heading {
