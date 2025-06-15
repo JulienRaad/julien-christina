@@ -13,7 +13,7 @@ fetch("guests.json")
     });
 
 searchBox.addEventListener("input", () => {
-    const query = normalise(searchBox.value);
+    const query = normalised(searchBox.value);
     if (!query) {
         renderSuggestions(allGuests, "name");
         return;
@@ -72,7 +72,7 @@ function searchGuestByFullName(guest, query){
 }
 
 function searchAllFamily(guest, query){
-    return normalised(lastName).startsWith(normalised(query));
+    return normalised(guest.lastName).startsWith(normalised(query));
 }
 
 function normalised(text){
