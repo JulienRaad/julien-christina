@@ -95,8 +95,8 @@ function addGuestElement(guest, isGroupedByTable) {
   createListItem({
     content: text,
     onClick: () => {
-      searchBox.value = guest.table;
-      searchBox.dispatchEvent(new Event("input"));
+      searchBox.value = '';
+      search(guest.table);
     },
   });
 }
@@ -106,8 +106,8 @@ function addTableHeading(table) {
     content: `Table ${table}`,
     className: "group-heading",
     onClick: () => {
-      searchBox.value = table;
-      searchBox.dispatchEvent(new Event("input"));
+      searchBox.value = '';
+      search(table);
     },
   });
 }
