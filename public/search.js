@@ -66,23 +66,19 @@ function addListElement(text, isHeading = false){
       list.appendChild(element);
 }
 
-function fullName(guest){
-   const result = `${guest.firstName}${guest.lastName}`;
-   return result.toLowerCase();
-}
-
 function searchGuestByFullName(guest, query){
-    return fullName(guest).startsWith(query);
+    const fullName = `${guest.firstName}${guest.lastName}`;
+    return normalised(fullName).startsWith(normalised(query));
 }
 
 function searchAllFamily(guest, query){
-    return guest.lastName.toLowerCase().startsWith(query);
+    return normalised(lastName).startsWith(normalised(query));
 }
 
-function normalise(query){
-    return query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", "");
+function normalised(text){
+    return text.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", "");
 }
 
 function searchByTable(guest, query){
-    return guest.table.toLowerCase().startsWith(query);
+    return normalised(guest.table).startsWith(normalised(query));
 }
