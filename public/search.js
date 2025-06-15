@@ -19,13 +19,13 @@ searchBox.addEventListener("input", () => {
         return;
     }
     let groupBy = "name";
-    let filteredGuests = allGuests.filter((guest) => searchGuestByFullName(guest, query));
+    let filteredGuests = allGuests.filter((guest) => isMatchByFullName(guest, query));
     if (filteredGuests.length === 0) {
-        filteredGuests = allGuests.filter((guest) => searchAllFamily(guest, query));
+        filteredGuests = allGuests.filter((guest) => isMatchByFamily(guest, query));
         groupBy = "table";
     }
     if (filteredGuests.length === 0) {
-        filteredGuests = allGuests.filter((guest) => searchByTable(guest, query));
+        filteredGuests = allGuests.filter((guest) => isMatchByTable(guest, query));
         groupBy = "table";
     }
     renderSuggestions(filteredGuests, groupBy);
@@ -45,37 +45,46 @@ function renderSuggestions(matchedGuests, groupBy) {
         }
         return a.firstName.localeCompare(b.firstName);
     });
-
     let currentGroup = null;
     sortedMatchedGuests.forEach((guest) => {
-        const groupKey = groupBy === "table" ? guest.table : guest.firstName.charAt(0).toUpperCase();
+        const isGroupedByTable = groupBy === "table"
+        const groupKey = isGroupedByTable ? guest.table : guest.firstName.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
-            addListElement(groupBy === "table" ? `Table ${groupKey}` : groupKey, true);
+            addListElement(isGroupedByTable ? `Table ${groupKey}` : groupKey, true);
         }
-        addListElement(groupBy === "table" ? `<span class="name">${guest.firstName} ${guest.lastName}</span>` : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`);
+        addListElement();
     });
 }
 
-function addListElement(text, isHeading = false){
-      const element = document.createElement("li");
-      element.innerHTML = text;
-      if (isHeading){
-         element.classList.add("group-heading");
-      }
-      list.appendChild(element);
+function addGuestElement(guest, isGroupByTable){
+    const text = isGroupedByTable ? `<span class="name">${guest.firstName} ${guest.lastName}</span>` : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`
+    const element = document.createElement("li");
+    element.innerHTML = text;
+    list.appendChild(element);
+    element.addEventListener('click', function() {
+        searchBox.content = '${guest.table}';
+        searchBox.dispatchEvent(new Event('input'));
+    }
 }
 
-function searchGuestByFullName(guest, query){
+function addListElement(text){
+    const element = document.createElement("li");
+    element.innerHTML = text;
+    element.classList.add("group-heading");
+    list.appendChild(element);
+}
+
+function isMatchByFullName(guest, query){
     const fullName = `${guest.firstName}${guest.lastName}`;
     return normalise(fullName).startsWith(normalise(query));
 }
 
-function searchAllFamily(guest, query){
+function isMatchByFamily(guest, query){
     return normalise(guest.lastName).startsWith(normalise(query));
 }
 
-function searchByTable(guest, query){
+function isMatchByTable(guest, query){
     return normalise(guest.table).startsWith(normalise(query));
 }
 
