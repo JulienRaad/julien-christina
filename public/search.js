@@ -47,7 +47,7 @@ function renderSuggestions(matchedGuests, groupBy) {
     });
     let currentGroup = null;
     sortedMatchedGuests.forEach((guest) => {
-        const isGroupedByTable = groupBy === "table"
+        const isGroupedByTable = groupBy === "table";
         const groupKey = isGroupedByTable ? guest.table : guest.firstName.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
@@ -69,7 +69,7 @@ function addGuestElement(guest, isGroupedByTable){
     element.innerHTML = text;
     list.appendChild(element);
     element.addEventListener('click', function() {
-        searchBox.value = guest.table
+        searchBox.value = guest.table;
         searchBox.dispatchEvent(new Event('input'));
     });
 }
@@ -81,7 +81,7 @@ function addTableHeading(table){
     element.classList.add("group-heading");
     list.appendChild(element);
     element.addEventListener('click', function() {
-        searchBox.value = table
+        searchBox.value = table;
         searchBox.dispatchEvent(new Event('input'));
     });
 }
