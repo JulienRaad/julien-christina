@@ -13,7 +13,7 @@ fetch("guests.json")
     });
 
 searchBox.addEventListener("input", () => {
-    const query = searchBox.value.trim().toLowerCase().replaceAll(" ", "");
+    const query = normalise(searchBox.value);
     if (!query) {
         renderSuggestions(allGuests, "name");
         return;
@@ -60,7 +60,7 @@ function renderSuggestions(matchedGuests, groupBy) {
 function addListElement(text, isHeading = false){
       const element = document.createElement("li");
       element.innerHTML = text;
-      if (isHeading === true){
+      if (isHeading){
          element.classList.add("group-heading");
       }
       list.appendChild(element);
@@ -77,6 +77,10 @@ function searchGuestByFullName(guest, query){
 
 function searchAllFamily(guest, query){
     return guest.lastName.toLowerCase().startsWith(query);
+}
+
+function normalise(query){
+    return query.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", "");
 }
 
 function searchByTable(guest, query){
