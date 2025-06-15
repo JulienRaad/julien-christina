@@ -113,6 +113,22 @@
             color: var(--accent);
             margin-bottom: 0.5rem;
         }
+        
+        .centered-names {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.4em;
+            text-align: center;
+        }
+        .centered-names .name,
+        .centered-names .amp {
+            font-family: "Merienda", cursive;
+            font-size: clamp(2rem, 5.5vw, 6rem);
+            color: var(--accent);
+        }
+
         h2 {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             font-weight: 600;
@@ -414,7 +430,11 @@
 </section>
 
 <section class="spaced-section">
-    <h1 class="great" id="brideGroom"></h1>
+    <h1 class="great centered-names">
+  <span class="name" id="groom"></span>
+  <span class="amp" id="and"></span>
+  <span class="name" id ="bride"></span>
+</h1>
     <h3 id="date"></h3>
 
     <div class="countdown" id="countdown">
@@ -497,6 +517,9 @@
         document.getElementById("playMusicBtn").textContent = strings.playMusic;
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
+        document.getElementById("groom").textContent = strings.groom;
+        document.getElementById("and").textContent = strings.and;
+        document.getElementById("bride").textContent = strings.bride;
         document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
         document.getElementById("invitationText").textContent = strings.invitation;
         document.getElementById("brideGroom").innerHTML = strings.brideGroom;
