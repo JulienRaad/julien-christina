@@ -19,9 +19,9 @@ searchBox.addEventListener("input", () => {
         return;
     }
     let groupBy = "name";
-    let filteredGuests = allGuests.filter((guest) => searchGuestByFullName(guest, query);
+    let filteredGuests = allGuests.filter((guest) => searchGuestByFullName(guest, query));
     if (filteredGuests.length === 0) {
-        filteredGuests = allGuests.filter((guest) => searchAllFamily(guest, query);
+        filteredGuests = allGuests.filter((guest) => searchAllFamily(guest, query));
         groupBy = "table";
     }
     if (filteredGuests.length === 0) {
