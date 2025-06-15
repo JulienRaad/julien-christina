@@ -20,13 +20,16 @@ const matchers = [
 
 searchBox.addEventListener("input", () => {
   const query = normalise(searchBox.value);
+  search(query);
+});
+
+function search(query){
   if (!query) {
     renderSuggestions(allGuests, "name");
     return;
   }
   let filteredGuests = [];
   let groupBy = "name";
-
   for (const matcher of matchers) {
     filteredGuests = allGuests.filter((guest) => matcher.fn(guest, query));
     if (filteredGuests.length > 0) {
@@ -34,9 +37,8 @@ searchBox.addEventListener("input", () => {
       break;
     }
   }
-
   renderSuggestions(filteredGuests, groupBy);
-});
+}
 
 function renderSuggestions(matchedGuests, groupBy) {
   list.innerHTML = "";
@@ -72,36 +74,49 @@ function getGroupKey(guest, groupBy) {
   return groupBy === "table" ? guest.table : guest.firstName.charAt(0).toUpperCase();
 }
 
-function addGuestElement(guest, isGroupedByTable) {
+function createListItem({ content, className = "", onClick = null }) {
+  const element = document.createElement("li");
+  element.innerHTML = content; // content is always string, may contain HTML tags
+  if (className) {
+    element.classList.add(className);
+  }
+  if (typeof onClick === "function") {
+    element.addEventListener("click", onClick);
+  }
+  list.appendChild(element);
+  return element;
+}
+
+ffunction addGuestElement(guest, isGroupedByTable) {
   const text = isGroupedByTable
     ? `<span class="name">${guest.firstName} ${guest.lastName}</span>`
     : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`;
-  const element = document.createElement("li");
-  element.innerHTML = text;
-  list.appendChild(element);
-  element.addEventListener("click", () => {
-    searchBox.value = guest.table;
-    searchBox.dispatchEvent(new Event("input"));
+
+  createListItem({
+    content: text,
+    onClick: () => {
+      searchBox.value = guest.table;
+      searchBox.dispatchEvent(new Event("input"));
+    },
   });
 }
 
 function addTableHeading(table) {
-  const text = `Table ${table}`;
-  const element = document.createElement("li");
-  element.textContent = text;
-  element.classList.add("group-heading");
-  list.appendChild(element);
-  element.addEventListener("click", () => {
-    searchBox.value = table;
-    searchBox.dispatchEvent(new Event("input"));
+  createListItem({
+    content: `Table ${table}`,
+    className: "group-heading",
+    onClick: () => {
+      searchBox.value = table;
+      searchBox.dispatchEvent(new Event("input"));
+    },
   });
 }
 
 function addTextHeading(text) {
-  const element = document.createElement("li");
-  element.textContent = text;
-  element.classList.add("group-heading");
-  list.appendChild(element);
+  createListItem({
+    content: text,
+    className: "group-heading",
+  });
 }
 
 function isMatchByFullName(guest, query) {
