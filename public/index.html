@@ -108,26 +108,35 @@
             box-shadow: none;
         }
         h1.great {
-            font-family: "Merienda", cursive;
-            font-size: clamp(2rem, 5.5vw, 6rem);
-            color: var(--accent);
             margin-bottom: 0.5rem;
         }
         
-        .centered-names {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.4em;
-            text-align: center;
-        }
-        .centered-names .name,
-        .centered-names .amp {
-            font-family: "Merienda", cursive;
-            font-size: clamp(2rem, 5.5vw, 6rem);
-            color: var(--accent);
-        }
+.centered-names {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+    gap: 0.4em;
+    width: 100%;
+    max-width: 100%;
+}
+
+.centered-names .name,
+.centered-names .amp {
+    font-family: "Merienda", cursive;
+    font-size: clamp(2rem, 5.5vw, 6rem);
+    color: var(--accent);
+    word-break: break-word;
+}
+
+.centered-names .groom-name {
+    justify-self: end;
+}
+
+.centered-names .bride-name {
+    justify-self: start;
+}
 
         h2 {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
@@ -430,10 +439,10 @@
 </section>
 
 <section class="spaced-section">
-    <h1 class="great centered-names">
-  <span class="name" id="groom"></span>
-  <span class="amp" id="and"></span>
-  <span class="name" id ="bride"></span>
+<h1 class="great centered-names">
+  <span class="name groom-name" id="groom"></span>
+  <span class="amp">&amp;</span>
+  <span class="name bride-name" id="bride"></span>
 </h1>
     <h3 id="date"></h3>
 
