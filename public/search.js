@@ -34,7 +34,7 @@ searchBox.addEventListener("input", () => {
 function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
     if (matchedGuests.length === 0){
-       addListElement("No results found.", true);
+       addHeadingElement("No results found.", true);
        return;
     }
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
@@ -51,9 +51,9 @@ function renderSuggestions(matchedGuests, groupBy) {
         const groupKey = isGroupedByTable ? guest.table : guest.firstName.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
-            addListElement(isGroupedByTable ? `Table ${groupKey}` : groupKey, true);
+            addHeadingElement(isGroupedByTable ? `Table ${groupKey}` : groupKey);
         }
-        addListElement();
+        addGuestElement(guest, isGroupedByTable);
     });
 }
 
@@ -68,7 +68,7 @@ function addGuestElement(guest, isGroupByTable){
     }
 }
 
-function addListElement(text){
+function addHeadingElement(text){
     const element = document.createElement("li");
     element.innerHTML = text;
     element.classList.add("group-heading");
