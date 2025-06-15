@@ -31,6 +31,7 @@ function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
     if (matchedGuests.length == 0){
        addChildElementToList("No results found");
+       return;
     }
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
         if (groupBy === "table") {
@@ -58,7 +59,7 @@ function addChildElementToList(innerHtml){
      list.appendChild(li);
 }
 
-funtion addHeadingText(text){
+function addHeadingText(text){
       const heading = document.createElement("li");
       heading.textContent = text;
       heading.classList.add("group-letter");
