@@ -55,7 +55,7 @@ function renderSuggestions(matchedGuests, groupBy) {
 
 function addListElementInnerHtml(innerHtml){
      const li = document.createElement("li");
-     li.innerHTML = innehHtml;
+     li.innerHTML = innerHtml;
      list.appendChild(li);
 }
 
