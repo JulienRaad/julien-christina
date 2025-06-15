@@ -28,7 +28,6 @@ searchBox.addEventListener("input", () => {
         renderSuggestions(allGuests, "name");
         return;
     }
-    history.pushState(null, '', '');
     let groupBy = "name";
     let filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
     if (filteredGuests.length === 0) {
