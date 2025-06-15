@@ -29,8 +29,8 @@ searchBox.addEventListener("input", () => {
 
 function renderSuggestions(matchedGuests, groupBy) {
     list.innerHTML = "";
-    if (matchedGuests.length == 0){
-       addListElementInnerHtml("No results found");
+    if (matchedGuests.length === 0){
+       addListElement("No results found.", true);
        return;
     }
     const sortedMatchedGuests = matchedGuests.sort((a, b) => {
@@ -47,21 +47,17 @@ function renderSuggestions(matchedGuests, groupBy) {
         const groupKey = groupBy === "table" ? guest.table : guest.name.charAt(0).toUpperCase();
         if (groupKey !== currentGroup) {
             currentGroup = groupKey;
-            addListHeadingElementText(groupBy === "table" ? `Table ${groupKey}` : groupKey);
+            addListElement(groupBy === "table" ? `Table ${groupKey}` : groupKey, true);
         }
-        addListElementInnerHtml(groupBy === "table" ? `<span class="name">${guest.name}</span>` : `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`);
+        addListElement(groupBy === "table" ? `<span class="name">${guest.name}</span>` : `<span class="name">${guest.name}</span> <span class="table">${guest.table}</span>`);
     });
 }
 
-function addListElementInnerHtml(innerHtml){
-     const li = document.createElement("li");
-     li.innerHTML = innerHtml;
-     list.appendChild(li);
-}
-
-function addListHeadingElementText(text){
-      const heading = document.createElement("li");
-      heading.textContent = text;
-      heading.classList.add("group-heading");
-      list.appendChild(heading);
+function addListElement(text, isHeading = false){
+      const element = document.createElement("li");
+      element.innerHTML = text;
+      if (isHeading === true){
+         element.classList.add("group-heading");
+      }
+      list.appendChild(element);
 }
