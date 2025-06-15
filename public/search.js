@@ -12,12 +12,20 @@ fetch("guests.json")
         console.error("Could not load guests.json:", err);
     });
 
+// Add a popstate event listener to handle browser back navigation
+window.addEventListener("popstate", () => {
+    if (searchBox.value.trim().length > 0) {
+        searchBox.value = ""; 
+    }
+});
+
 searchBox.addEventListener("input", () => {
     const query = searchBox.value.trim().toLowerCase();
     if (!query) {
         renderSuggestions(allGuests, "name");
         return;
     }
+    history.pushState(null, '', '');
     let groupBy = "name";
     let filteredGuests = allGuests.filter((guest) => guest.name.toLowerCase().startsWith(query));
     if (filteredGuests.length === 0) {
