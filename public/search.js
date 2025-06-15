@@ -13,7 +13,7 @@ fetch("guests.json")
     });
 
 searchBox.addEventListener("input", () => {
-    const query = normalised(searchBox.value);
+    const query = normalise(searchBox.value);
     if (!query) {
         renderSuggestions(allGuests, "name");
         return;
@@ -68,17 +68,17 @@ function addListElement(text, isHeading = false){
 
 function searchGuestByFullName(guest, query){
     const fullName = `${guest.firstName}${guest.lastName}`;
-    return normalised(fullName).startsWith(normalised(query));
+    return normalise(fullName).startsWith(normalise(query));
 }
 
 function searchAllFamily(guest, query){
-    return normalised(guest.lastName).startsWith(normalised(query));
-}
-
-function normalised(text){
-    return text.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", "");
+    return normalise(guest.lastName).startsWith(normalise(query));
 }
 
 function searchByTable(guest, query){
-    return normalised(guest.table).startsWith(normalised(query));
+    return normalise(guest.table).startsWith(normalise(query));
+}
+
+function normalise(text){
+    return text.trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replaceAll(" ", "");
 }
