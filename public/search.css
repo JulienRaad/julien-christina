@@ -30,7 +30,6 @@ body {
   font-weight: 600;
   outline: none;
   margin: 0 auto 32px;
-  padding: 12px 0;
 }
 
 #guest-search::placeholder {
