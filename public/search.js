@@ -74,9 +74,12 @@ function getGroupKey(guest, groupBy) {
   return groupBy === "table" ? guest.table : guest.firstName.charAt(0).toUpperCase();
 }
 
-function createListItem({ innerHtml, onClick = null }) {
+function createListItem({ innerHtml, className = "", onClick = null }) {
   const element = document.createElement("li");
   element.innerHTML = innerHtml;
+  if (className) {
+    element.className = className
+  }
   element.addEventListener("click", onClick);
   list.appendChild(element);
   return element;
@@ -98,7 +101,8 @@ function addGuestElement(guest, isGroupedByTable) {
 
 function addTableHeading(table) {
   createListItem({
-    innerHtml: `<span class="group-heading">Table ${table}</span>`,
+    innerHtml: `<span>Table ${table}</span>`,
+    className: "group-heading",
     onClick: () => {
       searchBox.value = '';
       search(table);
@@ -108,7 +112,8 @@ function addTableHeading(table) {
 
 function addTextHeading(text) {
   createListItem({
-    innerHtml: `<span class="group-heading">${text}</span>`,
+    innerHtml: `<span>${text}</span>`,
+    className: "group-heading",
   });
 }
 
