@@ -84,7 +84,8 @@ body {
   z-index: 1; 
   font-size: 4rem;
   font-weight: 600;
-  padding: 12px 0;
+  padding: 8px 0;
+  marging-top: 8px;
   color: #41afc3;
 }
 
