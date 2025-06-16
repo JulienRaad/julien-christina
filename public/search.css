@@ -1,7 +1,5 @@
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
@@ -15,7 +13,6 @@ body {
 .container {
   padding: 32px 22px 48px;
   max-width: 600px;
-  margin: 0 auto;
 }
 
 #guest-search {
@@ -29,7 +26,6 @@ body {
   font-size: 2rem;
   font-weight: 600;
   outline: none;
-  margin: 0 auto 32px;
   padding: 12px 0;
 }
 
@@ -65,8 +61,6 @@ body {
 
 .guest-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 .guest-list li {
@@ -84,8 +78,7 @@ body {
   z-index: 1; 
   font-size: 2rem;
   font-weight: 600;
-  padding: 8px 0;
-  color: #41afc3;
+  padding: 24px 0;
 }
 
 .name {
