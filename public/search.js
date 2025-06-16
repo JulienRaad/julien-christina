@@ -43,7 +43,7 @@ function search(query){
 function renderSuggestions(matchedGuests, groupBy) {
   list.innerHTML = "";
   if (matchedGuests.length === 0) {
-    addTextHeading("No results found.");
+    addNoResults();
     return;
   }
   const sortedMatchedGuests = matchedGuests.sort((a, b) => {
@@ -93,8 +93,7 @@ function addGuestElement(guest, isGroupedByTable) {
   createListItem({
     innerHtml: innerHtml,
     onClick: () => {
-      searchBox.value = '';
-      search(guest.table);
+      dispatchSearchInputEvent(guest.table);
     },
   });
 }
@@ -104,8 +103,7 @@ function addTableHeading(table) {
     innerHtml: `<span class="group-heading">Table ${table}</span>`,
     className: "group-heading",
     onClick: () => {
-      searchBox.value = '';
-      search(table);
+      dispatchSearchInputEvent(table);
     },
   });
 }
@@ -113,6 +111,16 @@ function addTableHeading(table) {
 function addTextHeading(text) {
   createListItem({
     innerHtml: `<span class="group-heading">${text}</span>`,
+    className: "group-heading",
+    onClick: () => {
+      dispatchSearchInputEvent(text);
+    },
+  });
+}
+
+function addNoResults() {
+  createListItem({
+    innerHtml: `<span class="group-heading">No results found.</span>`,
     className: "group-heading",
   });
 }
@@ -131,6 +139,11 @@ function isMatchByFamily(guest, query) {
 
 function isMatchByTable(guest, query) {
   return normalise(guest.table).startsWith(query);
+}
+
+function dispatchSearchInputEvent(input){
+  searchBox.value = input;
+  searchBox.dispatchEvent(new Event('input'));
 }
 
 function normalise(text) {
