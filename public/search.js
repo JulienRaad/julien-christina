@@ -76,21 +76,19 @@ function getGroupKey(guest, groupBy) {
 
 function createListItem({ content, className = "", onClick = null }) {
   const element = document.createElement("li");
-  element.innerHTML = content; // content is always string, may contain HTML tags
+  element.innerHTML = content;
   if (className) {
     element.classList.add(className);
   }
-  if (typeof onClick === "function") {
-    element.addEventListener("click", onClick);
-  }
+  element.addEventListener("click", onClick);
   list.appendChild(element);
   return element;
 }
 
 function addGuestElement(guest, isGroupedByTable) {
   const text = isGroupedByTable
-    ? `<span class="name">${guest.firstName} ${guest.lastName}</span>`
-    : `<span class="name">${guest.firstName} ${guest.lastName}</span> <span class="table">${guest.table}</span>`;
+    ? `<span class="name">${getFullName(guest)}</span>`
+    : `<span class="name">${getFullName(guest)}</span> <span class="table">${guest.table}</span>`;
 
   createListItem({
     content: text,
@@ -119,9 +117,12 @@ function addTextHeading(text) {
   });
 }
 
+function getFullName(guest){
+  return `${guest.firstName} ${guest.lastName}`;
+}
+
 function isMatchByFullName(guest, query) {
-  const fullName = `${guest.firstName}${guest.lastName}`;
-  return normalise(fullName).startsWith(query);
+  return normalise(getFullName(guest)).startsWith(query);
 }
 
 function isMatchByFamily(guest, query) {
