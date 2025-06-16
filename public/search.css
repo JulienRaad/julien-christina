@@ -87,7 +87,7 @@ body {
 .group-heading {
   position: sticky;
   top: 0; /* Sticks to the top of the scrolling container */
-  background: transparent;
+  background: #FFFFFF;
   z-index: 1; /* Ensure it stays above other elements */
   font-size: 1.6rem;
   font-weight: 600;
