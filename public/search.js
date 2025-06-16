@@ -83,12 +83,12 @@ function createListItem({ innerHtml, onClick = null }) {
 }
 
 function addGuestElement(guest, isGroupedByTable) {
-  const text = isGroupedByTable
+  const innerHtml = isGroupedByTable
     ? `<span class="name">${getFullName(guest)}</span>`
     : `<span class="name">${getFullName(guest)}</span> <span class="table">${guest.table}</span>`;
 
   createListItem({
-    content: text,
+    innerHtml: innerHtml,
     onClick: () => {
       searchBox.value = '';
       search(guest.table);
@@ -98,7 +98,7 @@ function addGuestElement(guest, isGroupedByTable) {
 
 function addTableHeading(table) {
   createListItem({
-    content: `<span class="group-heading">Table ${table}</span>`,
+    innerHtml: `<span class="group-heading">Table ${table}</span>`,
     onClick: () => {
       searchBox.value = '';
       search(table);
@@ -108,7 +108,7 @@ function addTableHeading(table) {
 
 function addTextHeading(text) {
   createListItem({
-    content: `<span class="group-heading">${text}</span>`,
+    innerHtml: `<span class="group-heading">${text}</span>`,
   });
 }
 
