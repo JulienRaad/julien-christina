@@ -77,24 +77,21 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0;
-  font-size: 1.4rem;
-  cursor: pointer;
-  background: transparent;
-  user-select: none;
+  font-size: 1.6rem;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .group-heading {
   position: sticky;
   top: 0; /* Sticks to the top of the scrolling container */
-  background: #ffffff;
+  background: #ffffff; /* Match the page background so it looks solid */
   z-index: 1; /* Ensure it stays above other elements */
   font-size: 1.6rem;
   font-weight: 600;
   padding: 8px 0;
   margin-top: 8px;
   color: #333;
-  user-select: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
 }
 
 .name {
