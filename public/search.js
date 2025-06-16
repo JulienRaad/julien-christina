@@ -101,7 +101,7 @@ function addGuestElement(guest, isGroupedByTable) {
 
 function addTableHeading(table) {
   createListItem({
-    innerHtml: `<span>Table ${table}</span>`,
+    innerHtml: `<span class="group-heading">Table ${table}</span>`,
     className: "group-heading",
     onClick: () => {
       searchBox.value = '';
@@ -112,7 +112,7 @@ function addTableHeading(table) {
 
 function addTextHeading(text) {
   createListItem({
-    innerHtml: `<span>${text}</span>`,
+    innerHtml: `<span class="group-heading">${text}</span>`,
     className: "group-heading",
   });
 }
