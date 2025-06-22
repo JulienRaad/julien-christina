@@ -283,20 +283,7 @@
         [dir="rtl"] .rsvp-form-card label {
             text-align: right;
         }
-        .rsvp-form-card input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            font-family: "Montserrat", sans-serif;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            background: transparent;
-            color: var(--text);
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 1rem;
-            cursor: text;
-            -webkit-tap-highlight-color: transparent;
-        }
+
         .rsvp-form-card select {
             appearance: none;
             width: 100%;
@@ -330,12 +317,6 @@
         [dir="rtl"] .rsvp-form-card select:disabled {
             background-position: left 0.75rem center;
         }
-        .rsvp-form-card input:focus {
-            outline: none;
-            border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
-            background: transparent;
-        }
         .rsvp-form-card select:focus {
             outline: none;
             border-color: var(--accent);
@@ -346,7 +327,7 @@
             background-position: right 0.75rem center;
             background-size: 1rem;
         }
-        .rsvp-form-card input:active,
+
         .rsvp-form-card select:active {
             outline: none;
             -webkit-tap-highlight-color: transparent;
@@ -470,8 +451,6 @@
     <div class="rsvp-form-card">
         <h3 id="rsvpTitle"></h3>
         <form id="rsvpForm" onsubmit="return false;">
-            <input type="text" id="name" value="Uneditable" readonly style="pointer-events: none;" tabindex="-1" required />
-
             <label for="attendance" id="attendanceLabel"></label>
             <select id="attendance" required>
                 <option value="" disabled selected></option>
