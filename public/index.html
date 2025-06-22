@@ -554,16 +554,16 @@
 
     if (isValidName) {
         const nameParts = sanitizedName
-            .replace(/,/g, " & ") // Convert commas to &
+            .replace(/,/g, "&") // Convert commas to &
             .replace(/_/g, " ") // Convert underscores to space
             .split(";"); // Split on ; for line breaks
 const formattedName = nameParts
     .map(part => part.trim()) // Trim each part
     .filter(part => part !== "") // Remove empty parts
     .map(part =>
-        part.split(" & ")
+        part.split("&")
             .map(subPart => `<span>${subPart.trim()}</span>`)
-            .join("<span>&</span>")
+            .join("<span>&nbsp;&&nbsp;</span>")
     ) // Split on &, wrap each sub-part in span, insert & on its own line
     .join("<br>"); // Join parts with <br>
         document.getElementById("belovedName").innerHTML = formattedName;
