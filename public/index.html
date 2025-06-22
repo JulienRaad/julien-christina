@@ -563,7 +563,7 @@ const formattedName = nameParts
     .map(part =>
         part.split(" & ")
             .map(subPart => `<span>${subPart.trim()}</span>`)
-            .join("<br><span>&</span><br>")
+            .join("<span>&</span>")
     ) // Split on &, wrap each sub-part in span, insert & on its own line
     .join("<br>"); // Join parts with <br>
         document.getElementById("belovedName").innerHTML = formattedName;
