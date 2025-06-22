@@ -470,7 +470,6 @@
     <div class="rsvp-form-card">
         <h3 id="rsvpTitle"></h3>
         <form id="rsvpForm" onsubmit="return false;">
-            <label for="name" id="nameLabel" ></label>
             <input type="text" id="name" value="Uneditable" readonly style="pointer-events: none;" tabindex="-1" required />
 
             <label for="attendance" id="attendanceLabel"></label>
@@ -541,7 +540,6 @@
         document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
         document.getElementById("accountNumber").textContent = strings.accountNumber;
         document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
-        document.getElementById("nameLabel").textContent = strings.formLabels.name;
         document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
         document.getElementById("numberLabel").textContent = strings.formLabels.number;
         document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
@@ -638,21 +636,19 @@ const formattedName = nameParts
     }
 
     function initializeRSVPForm(strings) {
-        const nameInput = document.getElementById("name");
         const attendanceSelect = document.getElementById("attendance");
         const numberSelect = document.getElementById("number");
         const submitBtn = document.getElementById("submitBtn");
 
-            if (sanitizedName) {
+            
         const formName = sanitizedName
             .replace(/,/g, " & ") // Convert commas to &
             .replace(/[;_]/g, " ") // Convert ; and _ to space
             .replace(/\s+/g, " "); // Normalize spaces
-        nameInput.value = formName;
-    }
+            .trim();
+
 
 function validate() {
-    const nameOk = nameInput.value.trim() !== "";
     const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
     const numberOk = isSingleGuest ? true : numberSelect.value !== "";
 
@@ -664,15 +660,12 @@ function validate() {
         numberSelect.setAttribute("disabled", "disabled");
     }
 
-    // Enable submit button if name and attendance are valid, and if attendance is "yes", number must be valid
-    submitBtn.disabled = !(nameOk && attendanceOk && (attendanceSelect.value === "no" || isSingleGuest || numberOk));
+    // Enable submit button if attendance is valid, and if attendance is "yes", number must be valid
+    submitBtn.disabled = !(attendanceOk && (attendanceSelect.value === "no" || isSingleGuest || numberOk));
 }
-
-        [nameInput, attendanceSelect].forEach((el) => {
-            el.addEventListener("input", validate);
-            el.addEventListener("change", validate);
-        });
-
+            attendanceSelect.addEventListener("input", validate);
+            attendanceSelect.addEventListener("change", validate);
+        
         if (!isSingleGuest) {
             numberSelect.addEventListener("input", validate);
             numberSelect.addEventListener("change", validate);
@@ -680,10 +673,9 @@ function validate() {
 
         submitBtn.addEventListener("click", () => {
             if (!submitBtn.disabled) {
-                const name = nameInput.value.trim();
                 const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
                 const number = isSingleGuest ? "1" : (attendanceSelect.value === "yes" ? Number(numberSelect.value).toLocaleString(locale) : "0");
-                let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${name}`;
+                let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${formName}`;
                 if (number !== "0" && number !== 0) {
                     message += `\n${strings.formLabels.number}: ${number}`;
                 }
