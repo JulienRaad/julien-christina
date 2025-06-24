@@ -68,7 +68,7 @@
     left: 50%;
     transform: translateX(-50%);
     background: transparent; /* White gradient with transparency */
-    color: var(--text); /* Dark text for readability */
+    color: #FFFFFF; /* Dark text for readability */
     border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border for definition */
     padding: 0.85rem 1.7rem;
     font-size: 1.8rem;
