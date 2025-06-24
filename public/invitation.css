@@ -62,20 +62,21 @@
             background: rgba(0, 0, 0, 0); /* No dimming when dimmed-off class is applied */
         }
         #startButton {
+            visibility: hidden;
             position: absolute;
-            bottom: 22.5%;
+            bottom: 25%;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.5);
             color: white;
             border: 1px solid rgba(255, 255, 255, 0.6);
             padding: 0.85rem 1.7rem;
             border-radius: 45px;
-            font-size: 1.75rem;
+            font-size: 2rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 2;
-            backdrop-filter: blur(1.5px);
+            backdrop-filter: blur(2px);
             -webkit-tap-highlight-color: transparent;
             outline: none;
             box-shadow: none;
