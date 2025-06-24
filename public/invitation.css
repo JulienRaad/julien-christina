@@ -64,15 +64,15 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            bottom: 20%;
+            bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.6);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.75rem;
             border-radius: 8px;
-            font-size: 1.8rem;
+            font-size: 1.25rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 2;
@@ -97,7 +97,7 @@
         
 .centered-names {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   max-width: 100%;
 }
