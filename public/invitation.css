@@ -1,334 +1,368 @@
-  :root {
-  --primary : #ffffff;--accent : #a5b68d;--text : #333333;
-}
-* {
-  margin : 0;
-  padding : 0;
-  box-sizing : border-box;
-}
-html, body {
-  font-family : "Montserrat", sans-serif;
-  color : var(--text);
-  background : var(--primary);
-  scroll-behavior : smooth;
-  direction : ltr;
-}
-.hands-image {
-  width : 100%;
-  height : auto;
-  display : block;
-  margin-bottom : 1rem;
-}
-  section : not(.intro-slide) {
-  min-height : auto;
-  display : flex;
-  flex-direction : column;
-  justify-content : center;
-  align-items : center;
-  text-align : center;
-  padding : 0.8rem 0.8rem;
-  margin-bottom : 0.8rem;
-  max-width : 95%;
-  margin-left : auto;
-  margin-right : auto;
-}
-.spaced-section {
-  margin-bottom : 1.6rem;
-}
-.intro-slide {
-  width : 100%;
-  min-height : 75vh;
-  background : url("hug.jpg") center top no-repeat;
-  background-size : cover;
-  position : relative;
-  overflow : hidden;
-  will-change : background-position;
-}
-  .intro-slide : :before {
-  content : "";
-  position : absolute;
-  inset : 0;
-  background : rgba(0, 0, 0, 0);
-  z-index : 1;
-}
-#playMusicBtn {
-  position : absolute;
-  top : 1.5rem;
-  left : 50%;
-  transform : translateX(-50%);
-  background : rgba(0, 0, 0, 0.6);
-  color : white;
-  border : none;
-  padding : 0.75rem 1.5rem;
-  border-radius : 25px;
-  font-size : 1rem;
-  font-weight : 600;
-  cursor : pointer;
-  z-index : 2;
-  backdrop-filter : blur(3px);-webkit-tap-highlight-color : transparent;
-  outline : none;
-  box-shadow : none;
-}
-#quoteAuthor {
-font-size: 0.9em;
-opacity: 0.7;
-}
-  #playMusicBtn : focus {
-  outline : none;
-  box-shadow : inset 0 0 8px rgba(255, 255, 255, 0.3);
-  background-color : rgba(0, 0, 0, 0.7);
-}
-  #playMusicBtn : hover, #playMusicBtn : active {
-  background-color : rgba(0, 0, 0, 0.7);
-  box-shadow : none;
-}
-h1.great {
-  margin-bottom : 0.5rem;
-}
+        :root {
+            --primary: #ffffff;
+            --accent: #a5b68d;
+            --text: #333333;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: var(--text);
+            background: var(--primary);
+            scroll-behavior: smooth;
+            direction: ltr;
+        }
+        .hands-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        section:not(.intro-slide) {
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0.8rem 0.8rem;
+            margin-bottom: 0.8rem;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .spaced-section {
+            margin-bottom: 1.6rem;
+        }
+        .intro-slide {
+            width: 100%;
+            min-height: 75vh;
+            background: url("hug.jpg") center top no-repeat;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            will-change: background-position;
+        }
+        .intro-slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            z-index: 1;
+        }
+        #playMusicBtn {
+            position: absolute;
+            top: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 2;
+            backdrop-filter: blur(3px);
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            box-shadow: none;
+        }
+        #playMusicBtn:focus {
+            outline: none;
+            box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        #playMusicBtn:hover,
+        #playMusicBtn:active {
+            background-color: rgba(0, 0, 0, 0.7);
+            box-shadow: none;
+        }
+        h1.great {
+            margin-bottom: 0.5rem;
+        }
+        
 .centered-names {
-  display : flex;
-  flex-direction : column;
-  width : 100%;
-  max-width : 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
 }
+
 .centered-names .amp {
-  font-family : "Merienda", cursive;
-  text-align : center;
-  font-size : clamp(1.5rem, 4vw, 5rem);
-  color : var(--accent);
+    font-family: "Merienda", cursive;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 5rem);
+    color: var(--accent);
 }
-.centered-names .name {
-  font-family : "Merienda", cursive;
-  text-align : center;
-  font-size : clamp(2rem, 5vw, 5.5rem);
-  color : var(--accent);
+  .centered-names .name {
+    font-family: "Merienda", cursive;
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 5.5rem);
+    color: var(--accent);
 }
+
 .centered-names .groom-name {
-  justify-self : center;
+    justify-self: center;
 }
+
 .centered-names .bride-name {
-  justify-self : center;
+    justify-self: center;
 }
-h2 {
-  font-size : clamp(1.2rem, 5vw, 1.8rem);
-  font-weight : 600;
-  margin-bottom : 0.4rem;
-}
-h3 {
-  font-size : clamp(1rem, 4vw, 1.5rem);
-  font-weight : 600;
-  margin-bottom : 0.4rem;
-}
-p, li {
-  font-size : clamp(0.85rem, 3vw, 1rem);
-  line-height : 1.6;
-}
-blockquote {
-  max-width : 90%;
-  font-size : clamp(1rem, 4vw, 1.4rem);
-  font-style : italic;
-  line-height : 1.5;
-}
-.countdown {
-  display : flex;
-  gap : 0.5rem;
-  margin : 0.8rem 0 0.4rem;
-  flex-wrap : nowrap;
-  justify-content : center;
-  overflow-x : auto;
-}
-.countdown .box {
-  padding : 0.4rem 0.6rem;
-  background : rgba(0, 0, 0, 0.05);
-  border-radius : 6px;
-  display : flex;
-  align-items : baseline;
-  font-weight : 600;
-}
-.countdown .num {
-  font-size : clamp(1.8rem, 5.5vw, 2.7rem);
-  font-weight : 600;
-  color : var(--accent);
-}
-.countdown .label {
-  font-size : 0.75em;
-  margin-left : 0.2em;
-}
-.small-heading {
-  text-transform : uppercase;
-  font-weight: 600;
-  font-size : 1rem;
-  color : var(--accent);
-  margin-bottom : 0.4rem;
-}
-#belovedSection {
-  display : none;
-}
-#belovedSection.show {
-  display : flex;
-}
-#belovedName {
-  font-family : "Merienda", cursive;
-  font-size : clamp(1.2rem, 3vw, 4rem);
-  font-weight : 600;
-}
-a.btn {
-  width : 100%;
-  padding : 0.75rem;
-  font-size : clamp(0.9rem, 3vw, 1rem);
-  font-family : "Montserrat", sans-serif;
-  font-weight : 600;
-  margin-top : 1rem;
-  color : #ffffff;
-  background : var(--accent);
-  border : none;
-  border-radius : 8px;
-  text-decoration : none;-webkit-tap-highlight-color : transparent;
-  transition : transform 0.1s ease;
-  touch-action : manipulation;
-}
-  a.btn : focus, a.btn : active {
-  outline : none;
-  box-shadow : none;
-  transform : scale(0.95);
-}
-.rsvp-form-card button {
-  width : 100%;
-  padding : 0.75rem;
-  font-size : clamp(0.9rem, 3vw, 1rem);
-  font-family : "Montserrat", sans-serif;
-  font-weight : 600;
-  color : #ffffff;
-  background : var(--accent);
-  border : none;
-  border-radius : 8px;
-  cursor : pointer;-webkit-tap-highlight-color : transparent;
-  transition : background 0.3s ease, transform 0.1s ease;
-  touch-action : manipulation;
-}
-  .rsvp-form-card button : focus, .rsvp-form-card button : active {
-  outline : none;
-  box-shadow : none;
-  transform : scale(0.95);
-}
-  .rsvp-form-card button : hover : not( : disabled) {
-  background : #8b9a76;
-}
-  a.btn : not( : active), .rsvp-form-card button : not( : active) {
-  transform : scale(1);
-}
-.rsvp-form-card {
-  width : 100%;
-  max-width : 450px;
-  background : var(--primary);
-  border-radius : 12px;
-  box-shadow : 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-  padding : 1.5rem;
-  transition : transform 0.2s ease, box-shadow 0.2s ease;
-}
-.rsvp-form-card label {
-  display : block;
-  margin-bottom : 0.5rem;
-  font-size : clamp(0.85rem, 3vw, 1rem);
-  font-weight : 600;
-  color : var(--text);
-  text-align : left;
-}
-[dir="rtl"] .rsvp-form-card label {
-  text-align : right;
-}
-.rsvp-form-card select {
-  appearance : none;
-  width : 100%;
-  padding : 0.75rem 2rem 0.75rem 1rem;
-  font-size : clamp(0.85rem, 3vw, 1rem);
-  font-family : "Montserrat", sans-serif;
-  border : 1px solid #e2e8f0;
-  border-radius : 8px;
-  background : transparent;
-  background-image : url("data : image/svg+xml, %3Csvg xmlns='http : //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-  background-repeat : no-repeat;
-  background-position : right 0.75rem center;
-  background-size : 1rem;
-  color : var(--text);
-  transition : border-color 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom : 1rem;
-  cursor : pointer;
-  line-height : 1.5;-webkit-tap-highlight-color : transparent;
-}
-  .rsvp-form-card select : disabled {
-  background : transparent;
-  background-image : url("data : image/svg+xml, %3Csvg xmlns='http : //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-  background-repeat : no-repeat;
-  background-position : right 0.75rem center;
-  background-size : 1rem;
-  border-color : #e2e8f0;
-  opacity : 0.7;
-  cursor : not-allowed;
-}
-  [dir="rtl"] .rsvp-form-card select : disabled {
-  background-position : left 0.75rem center;
-}
-  .rsvp-form-card select : focus {
-  outline : none;
-  border-color : var(--accent);
-  box-shadow : 0 0 0 3px rgba(165, 182, 141, 0.2);
-  background : transparent;
-  background-image : url("data : image/svg+xml, %3Csvg xmlns='http : //www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-  background-repeat : no-repeat;
-  background-position : right 0.75rem center;
-  background-size : 1rem;
-}
-  .rsvp-form-card select : active {
-  outline : none;-webkit-tap-highlight-color : transparent;
-}
-  .rsvp-form-card button : disabled {
-  background : var(--accent);
-  opacity : 0.5;
-  cursor : not-allowed;
-  transform : none;
-}
-.rsvp-form-card select.single-guest {
-  background-image : none;
-  appearance : none;
-  cursor : default;
-  padding-right : 1rem;
-}
-  .rsvp-form-card select.single-guest : disabled {
-  background : #f8f8f8;
-  border-color : #e2e8f0;
-  color : var(--text);
-  opacity : 1;
-}
-  @media (min-width : 600px) {
-  section{padding : 1rem 1.2rem;
-  margin-bottom : 1rem;
-  max-width : 600px;
-}
-.spaced-section {
-  margin-bottom : 2rem;
-}
-.intro-slide {
-  min-height : 70vh;
-  background-size : cover;
-}
-h2 {
-  font-size : clamp(1.5rem, 4vw, 2.2rem);
-}
-h3 {
-  font-size : clamp(1.25rem, 3.5vw, 1.75rem);
-}
-p, li {
-  font-size : clamp(0.9rem, 2.8vw, 1.1rem);
-}
-blockquote {
-  max-width : 26ch;
-  font-size : clamp(1.25rem, 4vw, 1.6rem);
-}
-.small-heading {
-  font-size : 1rem;
-}
-a.btn {
-  padding : 0.75rem 1.25rem;
-  font-size : 1rem;
-}
+        h2 {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        h3 {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        p,
+        li {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            line-height: 1.6;
+        }
+        blockquote {
+            max-width: 90%;
+            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .countdown {
+            display: flex;
+            gap: 0.5rem;
+            margin: 0.8rem 0 0.4rem;
+            flex-wrap: nowrap;
+            justify-content: center;
+            overflow-x: auto;
+        }
+        .countdown .box {
+            padding: 0.4rem 0.6rem;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            display: flex;
+            align-items: baseline;
+            font-weight: 600;
+        }
+        .countdown .num {
+            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
+            font-weight: 600;
+            color: var(--accent);
+        }
+        .countdown .label {
+            font-size: 0.75em;
+            margin-left: 0.2em;
+        }
+        .small-heading {
+            text-transform: uppercase;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+
+        #belovedSection {
+            display: none; /* Hidden by default */
+        }
+        #belovedSection.show {
+            display: flex;
+        }
+        #belovedName {
+            font-family: "Merienda", cursive;
+            font-size: clamp(1.2rem, 3vw, 4rem);
+            font-weight: 600;
+        }
+
+        /* Location Map Button */
+        a.btn {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            margin-top: 1rem;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        a.btn:focus,
+        a.btn:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        /* RSVP Submit Button */
+        .rsvp-form-card button {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            color: #ffffff;
+            background: var(--accent);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: background 0.3s ease, transform 0.1s ease;
+            touch-action: manipulation;
+        }
+
+        .rsvp-form-card button:focus,
+        .rsvp-form-card button:active {
+            outline: none;
+            box-shadow: none;
+            transform: scale(0.95);
+        }
+
+        .rsvp-form-card button:hover:not(:disabled) {
+            background: #8b9a76;
+        }
+
+        /* Ensure scale resets after release */
+        a.btn:not(:active),
+        .rsvp-form-card button:not(:active) {
+            transform: scale(1);
+        }
+
+        .rsvp-form-card {
+            width: 100%;
+            max-width: 450px;
+            background: var(--primary);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .rsvp-form-card label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-weight: 600;
+            color: var(--text);
+            text-align: left;
+        }
+        [dir="rtl"] .rsvp-form-card label {
+            text-align: right;
+        }
+
+        .rsvp-form-card select {
+            appearance: none;
+            width: 100%;
+            padding: 0.75rem 2rem 0.75rem 1rem;
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            font-family: "Montserrat", sans-serif;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            color: var(--text);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            line-height: 1.5;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rsvp-form-card select:disabled {
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+            border-color: #e2e8f0;
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        [dir="rtl"] .rsvp-form-card select:disabled {
+            background-position: left 0.75rem center;
+        }
+        .rsvp-form-card select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(165, 182, 141, 0.2);
+            background: transparent;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+
+        .rsvp-form-card select:active {
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rsvp-form-card button:disabled {
+            background: var(--accent);
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Hide dropdown arrow and style single-guest field */
+        .rsvp-form-card select.single-guest {
+            background-image: none; /* Remove dropdown arrow */
+            appearance: none; /* Ensure no native dropdown styling */
+            cursor: default; /* Indicate non-interactivity */
+            padding-right: 1rem; /* Adjust padding to align with other inputs */
+        }
+
+        /* Optional: Make the disabled single-guest field look like a static text field */
+        .rsvp-form-card select.single-guest:disabled {
+            background: #f8f8f8; /* Light background to mimic text input */
+            border-color: #e2e8f0;
+            color: var(--text);
+            opacity: 1; /* Override default disabled opacity */
+        }
+
+        @media (min-width: 600px) {
+            section {
+                padding: 1rem 1.2rem;
+                margin-bottom: 1rem;
+                max-width: 600px;
+            }
+            .spaced-section {
+                margin-bottom: 2rem;
+            }
+            .intro-slide {
+                min-height: 70vh;
+                background-size: cover;
+            }
+            h2 {
+                font-size: clamp(1.5rem, 4vw, 2.2rem);
+            }
+            h3 {
+                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+            }
+            p,
+            li {
+                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
+            }
+            blockquote {
+                max-width: 26ch;
+                font-size: clamp(1.25rem, 4vw, 1.6rem);
+            }
+            .small-heading {
+                font-size: 1rem;
+            }
+            a.btn {
+                padding: 0.75rem 1.25rem;
+                font-size: 1rem;
+            }
+        }
