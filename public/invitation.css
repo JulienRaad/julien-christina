@@ -212,6 +212,10 @@
             transform: scale(0.95);
         }
 
+        .rsvp-form-card rsvpTitle {
+            marging-bottom: 1rem;
+        }
+
         /* RSVP Submit Button */
         .rsvp-form-card button {
             width: 100%;
