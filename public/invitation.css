@@ -152,7 +152,7 @@ margin-top: 2rem;
         .countdown {
             display: flex;
             gap: 0.5rem;
-            margin: 0.8rem 0 0.4rem;
+            margin: 0.4rem 0 0;
             flex-wrap: nowrap;
             justify-content: center;
             overflow-x: auto;
