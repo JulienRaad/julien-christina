@@ -70,9 +70,9 @@
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.6);
-            padding: 0.5rem 2rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 2;
@@ -103,13 +103,13 @@
 }
 
 .centered-names .amp {
-    font-family: "Merienda", cursive;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     font-size: clamp(1.5rem, 4vw, 5rem);
     color: var(--accent);
 }
   .centered-names .name {
-    font-family: "Merienda", cursive;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     font-size: clamp(2rem, 5vw, 5.5rem);
     color: var(--accent);
@@ -190,7 +190,7 @@
             display: flex;
         }
         #belovedName {
-            font-family: "Merienda", cursive;
+            font-family: "Montserrat", sans-serif;
             font-size: clamp(1.2rem, 3vw, 4rem);
             font-weight: 600;
         }
