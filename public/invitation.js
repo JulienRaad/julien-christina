@@ -28,8 +28,9 @@
 
     function applyStrings(strings) {
         if (!strings) return;
-        document.getElementById("playMusicBtn").textContent = strings.playMusic;
-        element.style.visibility = isStarted ? "hidden" : "visible";
+        const startButton = document.getElementById("startButton")
+        startButton.textContent = strings.playMusic;
+        startButton.style.visibility = isStarted ? "hidden" : "visible";
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
         document.getElementById("groom").textContent = strings.groom;
@@ -200,12 +201,11 @@
         validate();
     }
 
-    const playMusicBtn = document.getElementById("playMusicBtn");
+    const startButton = document.getElementById("startButton");
     const audio = document.getElementById("weddingAudio");
-    let userStartedPlayback = false;
     let wasPlayingBeforeHidden = false;
 
-playMusicBtn.addEventListener("click", () => {
+startButton.addEventListener("click", () => {
     audio
         .play()
         .then(() => {
@@ -213,9 +213,8 @@ playMusicBtn.addEventListener("click", () => {
                 top: window.innerHeight / 2,
                 behavior: "smooth"
             });
-            userStartedPlayback = true;
-            playMusicBtn.remove();
             isStarted = true;
+            startButton.remove();
         })
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
@@ -223,7 +222,7 @@ playMusicBtn.addEventListener("click", () => {
 });
 
     document.addEventListener("visibilitychange", () => {
-        if (!userStartedPlayback) return;
+        if (!isStarted) return;
 
         if (document.hidden) {
             if (!audio.paused) {
