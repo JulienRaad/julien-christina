@@ -205,7 +205,11 @@
     const audio = document.getElementById("weddingAudio");
     let wasPlayingBeforeHidden = false;
 
+if (!isStarted){
+document.body.classList.add("no-scroll");
+}
 startButton.addEventListener("click", () => {
+document.body.classList.remove("no-scroll");
     audio
         .play()
         .then(() => {
