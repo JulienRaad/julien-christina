@@ -202,6 +202,7 @@
     }
 
     const startButton = document.getElementById("startButton");
+    const introSlide = document.querySelector(".intro-slide");
     const audio = document.getElementById("weddingAudio");
     let wasPlayingBeforeHidden = false;
 
@@ -210,6 +211,7 @@ document.body.classList.add("no-scroll");
 }
 startButton.addEventListener("click", () => {
 document.body.classList.remove("no-scroll");
+introSlide.classList.add('dimmed-off'); // Remove dimming
     audio
         .play()
         .then(() => {
