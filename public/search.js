@@ -2,7 +2,7 @@ let allGuests = [];
 const list = document.getElementById("suggestions");
 const searchBox = document.getElementById("guest-search");
 
-fetch("guests.json")
+fetch("../search/guests.json")
   .then((resp) => resp.json())
   .then((data) => {
     allGuests = data;
