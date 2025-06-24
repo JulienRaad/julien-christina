@@ -29,7 +29,7 @@
     function applyStrings(strings) {
         if (!strings) return;
         const startButton = document.getElementById("startButton")
-        startButton.textContent = strings.playMusic;
+        startButton.textContent = strings.start;
         startButton.style.visibility = isStarted ? "hidden" : "visible";
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
