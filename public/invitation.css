@@ -57,15 +57,15 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            top: 1.5rem;
+            top: 1.75rem;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.6);
             color: white;
             border: none;
-            padding: 0.85rem 1.7rem;
-            border-radius: 25px;
-            font-size: 1.25rem;
+            padding: 0.0rem 1.8rem;
+            border-radius: 50px;
+            font-size: 1.5rem;
             font-weight: 600;
             cursor: pointer;
             z-index: 2;
