@@ -62,6 +62,7 @@
             visibility: hidden;
             position: absolute;
             bottom: 3rem;
+            margin-bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7);
