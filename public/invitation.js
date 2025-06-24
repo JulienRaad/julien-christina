@@ -203,17 +203,22 @@
     let userStartedPlayback = false;
     let wasPlayingBeforeHidden = false;
 
-    playMusicBtn.addEventListener("click", () => {
-        audio
-            .play()
-            .then(() => {
-                userStartedPlayback = true;
-                playMusicBtn.remove();
-            })
-            .catch((err) => {
-                console.warn("Autoplay blocked:", err);
+playMusicBtn.addEventListener("click", () => {
+    audio
+        .play()
+        .then(() => {
+            userStartedPlayback = true;
+            playMusicBtn.remove();
+            // Scroll down by half the viewport height smoothly
+            window.scrollBy({
+                top: window.innerHeight / 2,
+                behavior: "smooth"
             });
-    });
+        })
+        .catch((err) => {
+            console.warn("Autoplay blocked:", err);
+        });
+});
 
     document.addEventListener("visibilitychange", () => {
         if (!userStartedPlayback) return;
