@@ -129,6 +129,12 @@
             font-size: clamp(0.85rem, 3vw, 1rem);
             line-height: 1.6;
         }
+
+        #quoteAuthor {
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
         blockquote {
             max-width: 90%;
             font-size: clamp(1rem, 4vw, 1.4rem);
@@ -162,6 +168,7 @@
         }
         .small-heading {
             text-transform: uppercase;
+            font-weight: 500;
             font-size: 1rem;
             color: var(--accent);
             margin-bottom: 0.4rem;
