@@ -34,13 +34,10 @@
             align-items: center;
             text-align: center;
             padding: 0rem 0.5rem;
-            margin-bottom: 1.3rem;
-            max-width: 95%;
+            margin-bottom: 0.8rem;
+            margin-top: 0.5rem;
             margin-left: auto;
             margin-right: auto;
-        }
-        .spaced-section {
-            margin-bottom: 1.3rem;
         }
         .intro-slide {
             width: 100%;
@@ -95,11 +92,10 @@
             margin-bottom: 0.5rem;
         }
 
-#date {
-margin-top: 1.3rem;
-}
 .centered-names {
   display: flex;
+  margin-top: 0.8rem;
+  margin-bottom: 1.6rem;
   flex-direction: row; /* changed from column */
   justify-content: center; /* center items horizontally */
   align-items: center; /* center items vertically */
