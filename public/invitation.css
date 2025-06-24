@@ -152,6 +152,7 @@ blockquote {
 }
 .small-heading {
   text-transform : uppercase;
+  font-weight: 600;
   font-size : 1rem;
   color : var(--accent);
   margin-bottom : 0.4rem;
