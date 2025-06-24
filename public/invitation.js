@@ -1,8 +1,6 @@
     const supportedLangs = ["en", "ar"];
     const urlParams = new URLSearchParams(window.location.search);
-    const parsedUrl = new URL(window.location.pathname);
-    const pathname = parsedUrl.pathname; 
-    const lang = pathname.split('/')[1] ? "en;
+    const lang = "en";
     const id = parseInt(urlParams.get("id")) || 1;
     const validatedId = isNaN(id) ? 1 : id;
     const locale = lang === "ar" ? "ar-lb" : lang;
