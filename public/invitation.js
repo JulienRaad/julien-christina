@@ -1,3 +1,4 @@
+    let isStarted = false;
     const supportedLangs = ["en", "ar"];
     const urlParams = new URLSearchParams(window.location.search);
     const parsedUrl = new URL(window.location.href);
@@ -11,8 +12,6 @@
     const isSingleGuest = validatedMaxGuests === 1;
     const rawName = urlParams.get("name") || "";
     const sanitizedName = rawName
-    let playButtonRemoved = false;
-
         .trim() // Remove leading/trailing whitespace
         .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
 
@@ -30,7 +29,7 @@
     function applyStrings(strings) {
         if (!strings) return;
         document.getElementById("playMusicBtn").textContent = strings.playMusic;
-        element.style.visibility = playButtonRemoved ? "hidden" : "visible";
+        element.style.visibility = isStarted ? "hidden" : "visible";
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
         document.getElementById("groom").textContent = strings.groom;
@@ -216,7 +215,7 @@ playMusicBtn.addEventListener("click", () => {
             });
             userStartedPlayback = true;
             playMusicBtn.remove();
-            playButtonRemoved = true;
+            isStarted = true;
         })
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
