@@ -70,8 +70,8 @@
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.6);
-            padding: 1rem 1.75rem;
-            border-radius: 12px;
+            padding: 0.5rem 2rem;
+            border-radius: 8px;
             font-size: 2rem;
             font-weight: 600;
             cursor: pointer;
