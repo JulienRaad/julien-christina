@@ -23,12 +23,7 @@
   <!-- Optional preload or fonts if needed -->
 </head>
 <body>
-  <script>
-    // Wait a bit for bots to read OG tags, then redirect user
-    setTimeout(() => {
-      const query = new URLSearchParams(window.location.search);
-      window.location.href = "/?lang=ar" + (query.toString() ? "&" + query.toString() : "");
-    }, 1000);
-  </script>
+  <div id="content"></div>
+  <script src="apply-invitation-content.js"></script>
 </body>
 </html>
