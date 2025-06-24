@@ -64,8 +64,7 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            bottom: 0%;
-            margin-bottom: 2rem;
+            bottom: 7.5%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.5);
@@ -95,34 +94,30 @@
         h1.great {
             margin-bottom: 0.5rem;
         }
-        
 .centered-names {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* changed from column */
+  justify-content: center; /* center items horizontally */
+  align-items: center; /* center items vertically */
+  flex-wrap: wrap; /* optional, for better wrapping on small screens */
+  gap: 0.5rem; /* optional, spacing between names and ampersand */
   width: 100%;
   max-width: 100%;
+  text-align: center; /* fallback for any inline text alignment */
 }
 
 .centered-names .amp {
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
-    font-size: clamp(1.5rem, 4vw, 4.5rem);
-    color: var(--accent);
-}
-  .centered-names .name {
-    font-family: "Montserrat", sans-serif;
-    text-align: center;
-    font-size: clamp(1.75rem, 4.5vw, 5rem);
-    color: var(--accent);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.5rem, 4vw, 4.5rem);
+  color: var(--accent);
 }
 
-.centered-names .groom-name {
-    justify-self: center;
+.centered-names .name {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.85rem, 4.75vw, 5.25rem);
+  color: var(--accent);
 }
 
-.centered-names .bride-name {
-    justify-self: center;
-}
         h2 {
             font-size: clamp(1.2rem, 5vw, 1.8rem);
             font-weight: 600;
