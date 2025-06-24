@@ -62,10 +62,9 @@
             background: rgba(0, 0, 0, 0); /* No dimming when dimmed-off class is applied */
         }
 #startButton {
-    visibility: visible;
+    visibility: hidden;
     position: absolute;
-    bottom: 35%; /* Position 35% from the bottom of the parent container */
-    margin-bottom: 0;
+    bottom: 20%; /* Position 35% from the bottom of the parent container */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(
@@ -74,9 +73,9 @@
         rgba(255, 255, 255, 0.4)
     ); /* White gradient with transparency */
     color: var(--text); /* Dark text for readability */
-    border: 1px solid rgba(255, 255, 255, 0.8); /* Subtle white border for definition */
-    padding: 1rem 2rem;
-    font-size: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border for definition */
+    padding: 0.7rem 1.4rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
     z-index: 2;
