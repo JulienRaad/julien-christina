@@ -64,14 +64,14 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            bottom: 25%;
+            bottom: 20%;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.5);
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            padding: 0.85rem 1.7rem;
-            border-radius: 45px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            padding: 1rem 1.75rem;
+            border-radius: 12px;
             font-size: 2rem;
             font-weight: 600;
             cursor: pointer;
