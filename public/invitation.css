@@ -64,34 +64,26 @@
 #startButton {
     visibility: hidden;
     position: absolute;
-    bottom: 20%; /* Position 35% from the bottom of the parent container */
+    bottom: 25%; /* Position 35% from the bottom of the parent container */
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.7),
-        rgba(255, 255, 255, 0.4)
-    ); /* White gradient with transparency */
+    background: transparent; /* White gradient with transparency */
     color: var(--text); /* Dark text for readability */
     border: 1px solid rgba(255, 255, 255, 0.6); /* Subtle white border for definition */
-    padding: 0.7rem 1.4rem;
-    font-size: 1.5rem;
+    padding: 0.85rem 1.7rem;
+    font-size: 1.8rem;
     font-weight: 600;
     cursor: pointer;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
     outline: none;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     border-radius: 45px;
 }
 
 #startButton:hover,
 #startButton:active {
-    background: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.5)
-    ); /* Slightly brighter gradient on hover */
+    background: transparent; /* Slightly brighter gradient on hover */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
