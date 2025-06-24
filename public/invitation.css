@@ -94,9 +94,12 @@
         h1.great {
             margin-bottom: 0.5rem;
         }
+
+#date {
+margin-top = 2rem;
+}
 .centered-names {
   display: flex;
-  marging-bottom: 2rem;
   flex-direction: row; /* changed from column */
   justify-content: center; /* center items horizontally */
   align-items: center; /* center items vertically */
