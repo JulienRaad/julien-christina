@@ -35,7 +35,7 @@
             text-align: center;
             padding: 0rem 0.5rem;
             margin-bottom: 0.8rem;
-            margin-top: 0.5rem;
+            margin-top: 0.8rem;
             margin-left: auto;
             margin-right: auto;
         }
@@ -94,8 +94,8 @@
 
 .centered-names {
   display: flex;
-  margin-top: 0.8rem;
-  margin-bottom: 1.6rem;
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
   flex-direction: row; /* changed from column */
   justify-content: center; /* center items horizontally */
   align-items: center; /* center items vertically */
@@ -177,7 +177,6 @@
             color: var(--accent);
             margin-bottom: 0.4rem;
         }
-
 
         #belovedSection {
             display: none; /* Hidden by default */
