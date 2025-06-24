@@ -4,7 +4,7 @@
     { "source": "/:file((?:[^/]+)\\.[a-z0-9]+)", "destination": "/:file" },
     { "source": "/search", "destination": "/search.html" },
     { "source": "/:slug", "destination": "/" },
-    { "source": "/:slug/:path*", "destination": "/:path*" }
+    { "source": "/:slug/:path*", "destination": "/:path*" },
     { "source": "/ar", "destination": "/ar.html" }
   ]
 }
