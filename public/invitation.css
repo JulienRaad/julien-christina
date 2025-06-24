@@ -307,6 +307,9 @@ margin-top: 2rem;
         [dir="rtl"] .rsvp-form-card select:disabled {
             background-position: left 0.75rem center;
         }
+#rsvpTitle {
+  margin-bottom: 1rem;
+}
         .rsvp-form-card select:focus {
             outline: none;
             border-color: var(--accent);
