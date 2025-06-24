@@ -33,8 +33,9 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 1rem 1rem;
+            padding: 0.85rem 0.5rem;
             margin-left: auto;
+            max-width:95%
             margin-right: auto;
         }
         .intro-slide {
