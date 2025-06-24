@@ -1,0 +1,64 @@
+<section class="intro-slide">
+    <button id="playMusicBtn"></button>
+</section>
+<section>
+    <blockquote id="quote">
+        <span id="quoteAuthor"></span>
+    </blockquote>
+</section>
+<section id="belovedSection">
+    <p id="belovedName"></p>
+</section>
+<section>
+    <div>
+        <p class="small-heading" id="hosts"></p>
+    </div>
+    <p id="invitationText"></p>
+</section>
+<section class="spaced-section">
+<h1 class="great centered-names">
+  <span class="name groom-name" id="groom"></span>
+  <span class="amp" id="and"></span>
+  <span class="name bride-name" id="bride"></span>
+</h1>
+    <h3 id="date"></h3>
+    <div class="countdown" id="countdown">
+        <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
+        <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
+        <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
+        <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
+    </div>
+</section>
+<img src="hands.jpg" alt="Rings" class="hands-image" />
+<section>
+    <h2 id="locationTitle"></h2>
+    <p id="time"></p>
+    <p id="reception"></p>
+    <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJe39WoEhHHxUR_NxzEg1M0UA&destination=Pleine+Lune%2C+Faitroun" target="_blank" id="locationMap" class="btn"></a>
+</section>
+<section>
+    <h3 id="giftRegistryTitle"></h3>
+    <p id="giftRegistryDesc"></p>
+    <p id="accountNumber"></p>
+</section>
+<section>
+    <div class="rsvp-form-card">
+        <h3 id="rsvpTitle"></h3>
+        <form id="rsvpForm" onsubmit="return false;">
+            <label for="attendance" id="attendanceLabel"></label>
+            <select id="attendance" required>
+                <option value="" disabled selected></option>
+                <option value="yes"></option>
+                <option value="no"></option>
+            </select>
+
+            <label for="number" id="numberLabel"></label>
+            <select id="number" required>
+                <option value="" disabled selected></option>
+            </select>
+
+            <button type="button" id="submitBtn" disabled></button>
+        </form>
+    </div>
+</section>
+<audio id="weddingAudio" loop preload="auto" src="background-audio.mp3"></audio>
