@@ -24,15 +24,6 @@
 </head>
 <body>
   <div id="content"></div>
-  <script>
-    fetch("invitation-content.html")
-      .then((res) => res.text())
-      .then((html) => {
-        document.getElementById("content").innerHTML = html;
-        const script = document.createElement("script");
-        script.src = "invitation.js";
-        document.body.appendChild(script);
-      });
-  </script>
+  <script src="apply-invitation-content.js"></script>
 </body>
 </html>
