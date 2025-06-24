@@ -64,7 +64,7 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            bottom: 10%;
+            margin-bottom: 2rem;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.5);
@@ -97,7 +97,7 @@
         
 .centered-names {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   width: 100%;
   max-width: 100%;
 }
