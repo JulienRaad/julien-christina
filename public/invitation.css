@@ -48,6 +48,8 @@
             position: relative;
             overflow: hidden;
             will-change: background-position;
+            display: flex;
+            align-items: flex-end;     /* align to bottom */
         }
         .intro-slide::before {
             content: "";
@@ -56,6 +58,14 @@
             background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
+.into-section {
+    display: flex;
+    flex-direction: column;  /* stack children vertically */
+    align-items: center;     /* center horizontally */
+    text-align: center;
+    gap: 2rem;
+    padding-bottom = 2.rem;
+}
         .intro-slide.dimmed-off::before {
             background: rgba(0, 0, 0, 0); /* No dimming when dimmed-off class is applied */
         }
@@ -181,17 +191,11 @@
             color: var(--accent);
             margin-bottom: 0.4rem;
         }
-
-        #belovedSection {
-            display: none; /* Hidden by default */
-        }
-        #belovedSection.show {
-            display: flex;
-        }
         #belovedName {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.2rem, 3vw, 4rem);
-            font-weight: 550;
+            font-size: clamp(1.5rem, 4vw, 5rem);
+            font-weight: 600;
+            color: white;
         }
 
         /* Location Map Button */
