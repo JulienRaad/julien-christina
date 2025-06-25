@@ -63,7 +63,7 @@
 
         const rsvpCard = document.querySelector('.rsvp-form-card');
         if (!isValidName){
-            rsvpCard.style.visibility = 'hidden';
+            rsvpCard.style.display = 'none';
         }
             
         if (isValidName) {
