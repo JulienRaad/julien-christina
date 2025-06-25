@@ -94,7 +94,7 @@
         }
 
 #date {
-  margin-top: 1.9rem;
+  margin-top: 2.7rem;
 }
 .centered-names {
   display: flex;
@@ -111,13 +111,13 @@
 
 .centered-names .amp {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.9rem, 4.85vw, 5.45rem);
+  font-size: clamp(2rem, 5vw, 5.4rem);
   color: var(--accent);
 }
 
 .centered-names .name {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.9rem, 4.85vw, 5.45rem);
+  font-size: clamp(2rem, 5vw, 5.4rem);
   color: var(--accent);
 }
 
@@ -139,6 +139,7 @@
 
         #quoteAuthor {
             font-size: 0.9em;
+            display: block;
             opacity: 0.7;
         }
 
