@@ -184,7 +184,7 @@
 
         #belovedName {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 4vw, 5rem);
+            font-size: clamp(1.6rem, 4.25vw, 5rem);
             font-weight: 600;
             visibility: hidden;
             position: absolute;
@@ -193,6 +193,7 @@
             transform: translate(-50%, -50%);
             color: white;
             visibility: hidden;
+            z-index: 2;
         }
 
         /* Location Map Button */
