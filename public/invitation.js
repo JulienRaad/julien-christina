@@ -61,6 +61,11 @@
         // Validate name: non-empty after sanitization
         const isValidName = sanitizedName.trim() !== "";
 
+        const rsvpCard = document.querySelector('.rsvp-form-card');
+        if (!isValidName){
+            rsvpCard.style.visibility = 'hidden';
+        }
+            
         if (isValidName) {
             const nameParts = sanitizedName
                 .replace(/,/g, "&") // Convert commas to &
