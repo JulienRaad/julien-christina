@@ -15,6 +15,9 @@
         .trim() // Remove leading/trailing whitespace
         .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
 
+    const startButton = document.getElementById("startButton")
+    const belovedName = document.getElementById("belovedName")
+
     async function loadStrings(lang = "en") {
         try {
             const response = await fetch(`/lang/${lang}.json`);
@@ -28,7 +31,6 @@
 
     function applyStrings(strings) {
         if (!strings) return;
-        const startButton = document.getElementById("startButton")
         startButton.textContent = strings.start;
         startButton.style.visibility = isStarted ? "hidden" : "visible";
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
@@ -57,11 +59,10 @@
         document.getElementById("attendance").options[1].text = strings.formLabels.yes;
         document.getElementById("attendance").options[2].text = strings.formLabels.no;
 
-        const belovedSection = document.getElementById("belovedSection");
         // Validate name: non-empty after sanitization
         const isValidName = sanitizedName.trim() !== "";
 
-        if (isValidName) {
+        if (isValidName && !isStarted) {
             const nameParts = sanitizedName
                 .replace(/,/g, "&") // Convert commas to &
                 .replace(/_/g, " ") // Convert underscores to space
@@ -75,10 +76,10 @@
                     .join("<span>&nbsp;&&nbsp;</span>")
                 ) // Split on &, wrap each sub-part in span, insert & on its own line
                 .join("<br>"); // Join parts with <br>
-            document.getElementById("belovedName").innerHTML = formattedName;
-            belovedSection.classList.add("show");
+            belovedName.innerHTML = formattedName;
+            belovedName.style.visibility = "visible";
         } else {
-            belovedSection.style.display = "none";
+            belovedName.style.display = "none";
         }
 
         const numberSelect = document.getElementById("number");
@@ -221,6 +222,7 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
             });
             isStarted = true;
             startButton.remove();
+            belovedName.style.display = "none";
         })
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
