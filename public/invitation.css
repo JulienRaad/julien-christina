@@ -1,3 +1,5 @@
+ @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
         :root {
             --primary: #ffffff;
             --accent: #a5b68d;
@@ -33,7 +35,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0.85rem;
+            padding: 0.9rem;
             margin-left: auto;
             max-width: 95%;
             margin-right: auto;
@@ -60,9 +62,9 @@
         #startButton {
             visibility: hidden;
             position: absolute;
-            bottom: 15%;
-            left: 50%;
-            transform: translateX(-50%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
             background: rgba(0, 0, 0, 0.5);
             color: white;
             border: 2px solid rgba(255, 255, 255, 0.6);
@@ -92,11 +94,11 @@
         }
 
 #date {
-  margin-top: 1.65rem;
+  margin-top: 1.8rem;
 }
 .centered-names {
   display: flex;
-  margin-top: 0.8rem;
+  margin-top: 0.9rem;
   flex-direction: row; /* changed from column */
   justify-content: center; /* center items horizontally */
   align-items: center; /* center items vertically */
@@ -108,14 +110,14 @@
 }
 
 .centered-names .amp {
-  font-family: "Montserrat", sans-serif;
-  font-size: clamp(1.85rem, 4.75vw, 5.25rem);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4.85vw, 5.45rem);
   color: var(--accent);
 }
 
 .centered-names .name {
-  font-family: "Montserrat", sans-serif;
-  font-size: clamp(1.85rem, 4.75vw, 5.25rem);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.9rem, 4.85vw, 5.45rem);
   color: var(--accent);
 }
 
@@ -136,13 +138,13 @@
         }
 
         #quoteAuthor {
-            font-size: 0.9em;
+            font-size: 1em;
             opacity: 0.7;
         }
 
         blockquote {
             max-width: 90%;
-            font-size: clamp(1rem, 4vw, 1.4rem);
+            font-size: clamp(1.25rem, 5vw, 1.6rem);
             font-style: italic;
             line-height: 1.5;
         }
@@ -186,7 +188,7 @@
             display: flex;
         }
         #belovedName {
-            font-family: "Montserrat", sans-serif;
+            font-family: 'Playfair Display', serif;
             font-size: clamp(1.2rem, 3vw, 4rem);
             font-weight: 550;
         }
@@ -369,7 +371,7 @@
             }
             blockquote {
                 max-width: 26ch;
-                font-size: clamp(1.25rem, 4vw, 1.6rem);
+                font-size: clamp(1.25rem, 5vw, 1.6rem);
             }
             .small-heading {
                 font-size: 1rem;
