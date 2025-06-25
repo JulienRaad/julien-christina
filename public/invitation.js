@@ -15,8 +15,8 @@
         .trim() // Remove leading/trailing whitespace
         .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
 
-    const startButton = document.getElementById("startButton")
-    const belovedName = document.getElementById("belovedName")
+    const startButton = document.getElementById("startButton");
+    const belovedName = document.getElementById("belovedName");
 
     async function loadStrings(lang = "en") {
         try {
@@ -202,7 +202,6 @@
         validate();
     }
 
-    const startButton = document.getElementById("startButton");
     const introSlide = document.querySelector(".intro-slide");
     const audio = document.getElementById("weddingAudio");
     let wasPlayingBeforeHidden = false;
