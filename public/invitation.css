@@ -64,7 +64,7 @@
     align-items: center;     /* center horizontally */
     text-align: center;
     gap: 2rem;
-    padding-bottom = 2.rem;
+    padding-bottom: 2rem;
 }
         .intro-slide.dimmed-off::before {
             background: rgba(0, 0, 0, 0); /* No dimming when dimmed-off class is applied */
