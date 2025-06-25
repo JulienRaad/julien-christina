@@ -184,12 +184,13 @@
 
         #belovedName {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.6rem, 4.25vw, 5rem);
+            font-size: clamp(1.75rem, 4.75vw, 5.5rem);
             font-weight: 600;
             visibility: hidden;
             position: absolute;
             top: 70%;
             left: 50%;
+             width: 100%;
             transform: translate(-50%, -50%);
             color: white;
             visibility: hidden;
