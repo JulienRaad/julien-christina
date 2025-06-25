@@ -32,7 +32,7 @@
     function applyStrings(strings) {
         if (!strings) return;
         startButton.textContent = strings.start;
-        introSection.style.visibility = isStarted ? "hidden" : "visible";
+        
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
         document.getElementById("groom").textContent = strings.groom;
@@ -227,7 +227,7 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
             });
             isStarted = true;
             startButton.style.visibility = "hidden";
-            introSection.style.visibility = "hidden";
+           
         })
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
