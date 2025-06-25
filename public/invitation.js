@@ -15,9 +15,6 @@
         .trim() // Remove leading/trailing whitespace
         .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
 
-    const startButton = document.getElementById("startButton")
-    const introSection = document.querySelector('.into-section');
-
     async function loadStrings(lang = "en") {
         try {
             const response = await fetch(`/lang/${lang}.json`);
@@ -31,8 +28,9 @@
 
     function applyStrings(strings) {
         if (!strings) return;
+        const startButton = document.getElementById("startButton")
         startButton.textContent = strings.start;
-        introSection.style.visibility = isStarted ? "hidden" : "visible";
+        startButton.style.visibility = isStarted ? "hidden" : "visible";
         document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
         document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
         document.getElementById("groom").textContent = strings.groom;
@@ -63,11 +61,6 @@
         // Validate name: non-empty after sanitization
         const isValidName = sanitizedName.trim() !== "";
 
-        const rsvpCard = document.querySelector('.rsvp-form-card');
-        if (!isValidName){
-            rsvpCard.style.display = 'none';
-        }
-            
         if (isValidName) {
             const nameParts = sanitizedName
                 .replace(/,/g, "&") // Convert commas to &
@@ -208,6 +201,7 @@
         validate();
     }
 
+    const startButton = document.getElementById("startButton");
     const introSlide = document.querySelector(".intro-slide");
     const audio = document.getElementById("weddingAudio");
     let wasPlayingBeforeHidden = false;
@@ -226,8 +220,7 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
                 behavior: "smooth"
             });
             isStarted = true;
-            startButton.style.visibility = "hidden";
-            introSection.style.visibility = "hidden";
+            startButton.remove();
         })
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
