@@ -47,7 +47,7 @@
             background-size: cover;
             position: relative;
             overflow: hidden;
-            will-change: background-position;
+/*             will-change: background-position; */
         }
         .intro-slide::before {
             content: "";
