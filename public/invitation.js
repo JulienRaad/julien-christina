@@ -214,18 +214,20 @@ document.body.classList.remove("no-scroll");
 introSlide.classList.add('dimmed-off'); // Remove dimming
     audio
         .play()
-        .then(() => {
-            window.scrollBy({
+        .catch((err) => {
+            console.warn("Autoplay blocked:", err);
+        })
+        .finally(() => {
+        console.log("Attempted to play audio, success or fail.");
+         window.scrollBy({
                 top: window.innerHeight / 2,
                 behavior: "smooth"
             });
             isStarted = true;
             startButton.remove();
             belovedName.style.display = "none";
-        })
-        .catch((err) => {
-            console.warn("Autoplay blocked:", err);
         });
+;
 });
 
     document.addEventListener("visibilitychange", () => {
