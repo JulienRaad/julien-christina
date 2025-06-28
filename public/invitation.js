@@ -63,7 +63,7 @@
         const isValidName = sanitizedName.trim() !== "";
 
         if (!isValidName){
-            const form = document.querySelector(".rsvp-form-card")
+            const form = document.querySelector(".rsvp-form-card");
             form.style.display = "none"; 
         }
 
