@@ -184,7 +184,7 @@
 
         #belovedName {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.75rem, 4.75vw, 5.5rem);
+    font-size: clamp(1.5rem, 4vw, 4.5rem);
     font-weight: 600;
     text-align: center;
     position: absolute;
