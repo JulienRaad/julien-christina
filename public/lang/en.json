@@ -21,7 +21,7 @@
   "giftRegistryTitle": "Gift Registry",
   "giftRegistryDesc": "Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Whish Money.",
   "accountNumber": "Acc# 30605332-03",
-  "rsvpTitle": "RSVP by July 31st",
+  "rsvpTitle": "Please, RSVP by July 31st",
   "messageTitle":"RSVP for Julien & Christina Wedding",
   "formLabels": {
     "name": "Full Name",
@@ -31,6 +31,6 @@
     "yes": "Yes",
     "no": "No",
     "numberPlaceholder": "Select Number",
-    "submit": "RSVP"
+    "submit": "Submit"
   }
 }
