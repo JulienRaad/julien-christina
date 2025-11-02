@@ -1,21 +1,5 @@
  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
-html {
-  height: 100%;
-}
-
-@supports (-webkit-touch-callout: none) {
-  html {
-    height: -webkit-fill-available;
-  }
-}
-
-body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
         :root {
             --primary: #ffffff;
             --accent: #a5b68d;
@@ -59,7 +43,6 @@ body {
         .intro-slide {
             width: 100%;
             min-height: 100dvh;
-            min-height: -webkit-fill-available;
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
             position: relative;
