@@ -318,10 +318,21 @@
 #rsvpTitle {
   margin-bottom: 1rem;
 }
+
+/* -------------------------------------------------
+   2. Flex wrapper – the ONLY thing that sets the height
+   ------------------------------------------------- */
 .page-wrapper {
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    min-height: 100dvh;         /* never shorter */
+    height: 100dvh;             /* never taller */
+}
+/* -------------------------------------------------
+   6. (Optional) If you still see a gap on iOS Safari
+   ------------------------------------------------- */
+@supports (-webkit-touch-callout: none) {
+    html, body { height: -webkit-fill-available; }
 }
         .rsvp-form-card select:focus {
             outline: none;
