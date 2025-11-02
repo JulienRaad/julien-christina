@@ -51,6 +51,7 @@
         document.getElementById("time2").textContent = strings.time2;
         document.getElementById("reception").textContent = strings.reception;
         document.getElementById("locationMap").textContent = strings.locationMap;
+        document.getElementById("locationMap2").textContent = strings.locationMap2;
         document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
         document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
         document.getElementById("accountNumber").textContent = strings.accountNumber;
