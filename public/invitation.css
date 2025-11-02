@@ -45,9 +45,6 @@
             min-height: 100vh;
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
-            position: relative;
-            overflow: hidden;
-            will-change: background-position;
         }
         .intro-slide::before {
             content: "";
@@ -357,7 +354,7 @@
                 margin-bottom: 2rem;
             }
             .intro-slide {
-                min-height: 70vh;
+                min-height: 100vh;
                 background-size: cover;
             }
             h2 {

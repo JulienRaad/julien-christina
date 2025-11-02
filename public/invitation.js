@@ -256,24 +256,6 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
         }
     });
 
-    function parallaxEffect() {
-        const introSlide = document.querySelector(".intro-slide");
-        if (!introSlide) return;
-
-        let isScrolling = false;
-        window.addEventListener("scroll", function() {
-            if (!isScrolling) {
-                window.requestAnimationFrame(function() {
-                    const scrollPosition = window.scrollY;
-                    const offset = scrollPosition * 0.6;
-                    introSlide.style.backgroundPositionY = `${offset}px`;
-                    isScrolling = false;
-                });
-                isScrolling = true;
-            }
-        });
-    }
-
     (async () => {
         const strings = await loadStrings(lang);
         if (!strings) {
@@ -284,7 +266,4 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
         const weddingDate = new Date("2026-07-18T18:00:00");
         startCountdown(weddingDate, lang);
         initializeRSVPForm(strings);
-        if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
-            parallaxEffect();
-        }
     })();
