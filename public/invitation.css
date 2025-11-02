@@ -356,14 +356,13 @@
         @media (min-width: 600px) {
             section {
                 padding: 1rem 1.2rem;
-                margin-bottom: 1rem;
                 max-width: 600px;
             }
             .spaced-section {
                 margin-bottom: 2rem;
             }
             .intro-slide {
-                min-height: 70vh;
+                min-height: 100dvh;
                 background-size: cover;
             }
             h2 {
