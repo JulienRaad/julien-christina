@@ -209,8 +209,7 @@
 
     const introSlide = document.querySelector(".intro-slide");
     const audio = document.getElementById("weddingAudio");
-    const randomIndex = 1;
-    audio.src = `audio${randomIndex}.mp3`;
+    audio.src = `audio1.mp3`;
     audio.load();
     let wasPlayingBeforeHidden = false;
 

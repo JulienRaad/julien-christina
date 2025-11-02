@@ -1,11 +1,6 @@
 {
-<<<<<<< Updated upstream
   "start": "View invitation",
-  "quote": "So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate",
-=======
-  "start": "Open invitation",
   "quote": "What God has joined together, let no man separate",
->>>>>>> Stashed changes
   "quoteAuthor": " — Matthew 19:6",
   "hosts": "Mr. Tony and Leonie Dib\nTogether with\nMr. Emile and Leonora Abou Samra",
   "invitation": "Joyfully request your presence at the wedding of their son and daughter",
@@ -19,22 +14,16 @@
     "minutes": "M",
     "seconds": "S"
   },
-  "locationTitle": "Level River, Baabdat",
+  "locationTitle": "Mar Abda Church, Bsefrin",
   "time": "6:00 PM",
   "reception": "Reception to follow",
   "locationMap": "Open Map Directions",
   "giftRegistryTitle": "Gift Registry",
   "giftRegistryDesc": "Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Whish Money.",
-<<<<<<< Updated upstream
-  "accountNumber": "Acc# 30605332-03",
-  "rsvpTitle": "Please, RSVP by July 31st",
-  "messageTitle":"RSVP for Julien & Christina Wedding",
-=======
   "accountNumber": "Acc# 76158615",
   "rsvpTitle": "RSVP by June 31st",
   "rsvpContacts": "Elie +96176158615\nMaria +96176606875",
   "messageTitle":"RSVP for Elie & Maria Wedding",
->>>>>>> Stashed changes
   "formLabels": {
     "name": "Full Name",
     "attendance": "Attendance",
