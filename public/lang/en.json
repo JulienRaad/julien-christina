@@ -1,28 +1,40 @@
 {
+<<<<<<< Updated upstream
   "start": "View invitation",
   "quote": "So they are no longer two, but one flesh. Therefore what God has joined together, let no one separate",
+=======
+  "start": "Open invitation",
+  "quote": "What God has joined together, let no man separate",
+>>>>>>> Stashed changes
   "quoteAuthor": " — Matthew 19:6",
-  "hosts": "Mr. Pierre & Mrs. Fadia Raad\nTogether with\nMrs. Marina Saadallah",
+  "hosts": "Mr. Tony and Leonie Dib\nTogether with\nMr. Emile and Leonora Abou Samra",
   "invitation": "Joyfully request your presence at the wedding of their son and daughter",
-  "bride": "Christina",
-  "groom": "Julien",
+  "bride": "Elie",
+  "groom": "Maria",
   "and": "&",
-  "date": "Sunday, August 31st, 2025",
+  "date": "Saturday, July 18th, 2026",
   "countdownLabels": {
     "days": "D",
     "hours": "H",
     "minutes": "M",
     "seconds": "S"
   },
-  "locationTitle": "Pleine Lune, Faitroun",
+  "locationTitle": "Level River, Baabdat",
   "time": "6:00 PM",
   "reception": "Reception to follow",
   "locationMap": "Open Map Directions",
   "giftRegistryTitle": "Gift Registry",
   "giftRegistryDesc": "Your presence at our wedding is the greatest gift of all. However, should you wish to honor us with a gift, a wedding list is available at Whish Money.",
+<<<<<<< Updated upstream
   "accountNumber": "Acc# 30605332-03",
   "rsvpTitle": "Please, RSVP by July 31st",
   "messageTitle":"RSVP for Julien & Christina Wedding",
+=======
+  "accountNumber": "Acc# 76158615",
+  "rsvpTitle": "RSVP by June 31st",
+  "rsvpContacts": "Elie +96176158615\nMaria +96176606875",
+  "messageTitle":"RSVP for Elie & Maria Wedding",
+>>>>>>> Stashed changes
   "formLabels": {
     "name": "Full Name",
     "attendance": "Attendance",

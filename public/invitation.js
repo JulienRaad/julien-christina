@@ -209,7 +209,7 @@
 
     const introSlide = document.querySelector(".intro-slide");
     const audio = document.getElementById("weddingAudio");
-    const randomIndex = Math.floor(Math.random() * 6) + 1;
+    const randomIndex = 1;
     audio.src = `audio${randomIndex}.mp3`;
     audio.load();
     let wasPlayingBeforeHidden = false;
@@ -282,7 +282,7 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
             return;
         }
         applyStrings(strings);
-        const weddingDate = new Date("2025-08-31T18:00:00");
+        const weddingDate = new Date("2026-07-18T18:00:00");
         startCountdown(weddingDate, lang);
         initializeRSVPForm(strings);
         if (window.innerWidth > 320 && "requestAnimationFrame" in window) {
