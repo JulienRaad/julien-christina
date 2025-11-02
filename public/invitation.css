@@ -17,6 +17,8 @@
             background: var(--primary);
             scroll-behavior: smooth;
             direction: ltr;
+            height: 100%;               /* fallback */
+            min-height: 100dvh;         /* dynamic viewport height */
         }
         body.no-scroll {
             overflow: hidden;
@@ -42,6 +44,7 @@
         }
         .intro-slide {
             width: 100%;
+            height: 100dvh;             /* exact full screen */
             min-height: 100dvh;
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
@@ -315,6 +318,11 @@
 #rsvpTitle {
   margin-bottom: 1rem;
 }
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+}
         .rsvp-form-card select:focus {
             outline: none;
             border-color: var(--accent);
@@ -356,6 +364,7 @@
         @media (min-width: 600px) {
             section {
                 padding: 1rem 1.2rem;
+                margin-bottom: 1rem;
                 max-width: 600px;
             }
             .spaced-section {
