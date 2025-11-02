@@ -227,7 +227,7 @@ introSlide.classList.add('dimmed-off'); // Remove dimming
         .finally(() => {
         console.log("Attempted to play audio, success or fail.");
          window.scrollBy({
-                top: window.innerHeight / 2,
+                top: window.innerHeight / 3,
                 behavior: "smooth"
             });
             isStarted = true;
