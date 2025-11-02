@@ -17,12 +17,10 @@
             background: var(--primary);
             scroll-behavior: smooth;
             direction: ltr;
-            height: 100%;               /* fallback */
-            min-height: 100dvh;         /* dynamic viewport height */
         }
         body.no-scroll {
             overflow: hidden;
-            height: 100dvh;
+            height: 100vh;
         }
         .hands-image {
             width: 100%;
@@ -44,8 +42,7 @@
         }
         .intro-slide {
             width: 100%;
-            height: 100dvh;             /* exact full screen */
-            min-height: 100dvh;
+            min-height: 100vh;
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
             position: relative;
@@ -56,7 +53,7 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 1;
         }
         .intro-slide.dimmed-off::before {
@@ -186,22 +183,16 @@
         }
 
         #belovedName {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.5rem, 4vw, 4.5rem);
-    font-weight: 600;
-    text-align: center;
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    width: 95vw; /* make width responsive */
-    max-width: 100%;
-    transform: translate(-50%, -50%);
-    color: white;
-    z-index: 2;
-    visibility: hidden;
-    white-space: normal;       /* Allow text wrapping */
-    overflow-wrap: break-word; /* Break long names */
-    word-break: break-word;    /* Support for edge cases */
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 4vw, 5rem);
+            font-weight: 600;
+            visibility: hidden;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            visibility: hidden;
         }
 
         /* Location Map Button */
@@ -318,22 +309,6 @@
 #rsvpTitle {
   margin-bottom: 1rem;
 }
-
-/* -------------------------------------------------
-   2. Flex wrapper – the ONLY thing that sets the height
-   ------------------------------------------------- */
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh;         /* never shorter */
-    height: 100dvh;             /* never taller */
-}
-/* -------------------------------------------------
-   6. (Optional) If you still see a gap on iOS Safari
-   ------------------------------------------------- */
-@supports (-webkit-touch-callout: none) {
-    html, body { height: -webkit-fill-available; }
-}
         .rsvp-form-card select:focus {
             outline: none;
             border-color: var(--accent);
@@ -382,7 +357,7 @@
                 margin-bottom: 2rem;
             }
             .intro-slide {
-                min-height: 100dvh;
+                min-height: 70vh;
                 background-size: cover;
             }
             h2 {
