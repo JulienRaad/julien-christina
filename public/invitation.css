@@ -54,6 +54,7 @@
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
             background-attachment: scroll;
+            position: relative; /* Make it a stacking context */
         }
         .intro-slide::before {
             content: "";
@@ -199,7 +200,8 @@
             transform: translate(-50%, -50%);
             color: white;
             visibility: hidden;
-            z-index: 2; /* ✅ Put it above the dimming overlay */
+            text-align: center;
+            z-index: 2;
             text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
