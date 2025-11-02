@@ -201,7 +201,7 @@
                 }
                 message += `\n${strings.formLabels.attendance}: ${attendance}`;
                 const encodedMessage = encodeURIComponent(message);
-                const phoneNumber = validatedId === 1 ? "+31687606064" : "+31621491472";
+                const phoneNumber = validatedId === 1 ? "+96176158615" : "+96176606875";
                 const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                 window.location.href = whatsappLink;
             }

@@ -199,6 +199,8 @@
             transform: translate(-50%, -50%);
             color: white;
             visibility: hidden;
+            z-index: 2; /* ✅ Put it above the dimming overlay */
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
         }
 
         /* Location Map Button */
