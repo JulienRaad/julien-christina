@@ -47,6 +47,8 @@
         document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
         document.getElementById("locationTitle").textContent = strings.locationTitle;
         document.getElementById("time").textContent = strings.time;
+        document.getElementById("locationTitle2").textContent = strings.locationTitle2;
+        document.getElementById("time2").textContent = strings.time2;
         document.getElementById("reception").textContent = strings.reception;
         document.getElementById("locationMap").textContent = strings.locationMap;
         document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
