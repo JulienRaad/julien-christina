@@ -9,6 +9,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            padding-bottom: env(safe-area-inset-bottom);
         }
         html,
         body {
@@ -17,10 +18,13 @@
             background: var(--primary);
             scroll-behavior: smooth;
             direction: ltr;
+            margin: 0;
+            padding: 0;
+            height: 100%;
         }
         body.no-scroll {
             overflow: hidden;
-            height: 100vh;
+            height: 100dvh;
         }
         .hands-image {
             width: 100%;
@@ -42,7 +46,7 @@
         }
         .intro-slide {
             width: 100%;
-            min-height: 100vh;
+            min-height: 100dvh;
             background: url("hug.jpg") center top no-repeat;
             background-size: cover;
         }
@@ -354,7 +358,7 @@
                 margin-bottom: 2rem;
             }
             .intro-slide {
-                min-height: 100vh;
+                min-height: 100dvh;
                 background-size: cover;
             }
             h2 {
