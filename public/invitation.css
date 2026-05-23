@@ -18,34 +18,34 @@ html, body {
 }
 
 /* ── Fixed background shared by intro + pager ── */
-.pager-bg, .pager-bg2 {
+.pager-bg-container {
   position: fixed;
   inset: -5%;
-  background: center center / cover no-repeat;
-  will-change: transform;   /* GPU layer — keeps opacity changes from disturbing the animation */
-  animation: kenburns 20s ease-in-out infinite alternate;
-}
-.pager-bg {
-  background-image: url("hug.jpg");
+  will-change: transform;
+  animation: kenburns 15s ease-in-out infinite alternate;
   z-index: 0;
 }
-.pager-bg2 {
-  z-index: 1;               /* sits above bgA */
+
+.pager-bg-slide {
+  position: absolute;
+  inset: 0;
+  background: center center / cover no-repeat;
   opacity: 0;
-  /* transition set dynamically in JS to allow abort */
+  transition: opacity 1.4s ease-in-out;
+  will-change: opacity;
 }
 
 /* Gentle scale drift only — no translate, stays perfectly sharp */
 @keyframes kenburns {
   0%   { transform: scale(1.00); }
-  100% { transform: scale(1.05); }
+  100% { transform: scale(1.08); }
 }
 
 .pager-overlay {
   position: fixed;
   inset: 0;
   background: var(--overlay-color);
-  z-index: 2;   /* above both .pager-bg (0) and .pager-bg2 (1) */
+  z-index: 2;
 }
 
 /* ── Intro screen ── */
