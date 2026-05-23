@@ -10,13 +10,16 @@
 html, body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* Restored native pull-to-refresh behaviour on mobile */
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: auto;
   font-family: "Montserrat", sans-serif;
   color: var(--text);
   background: #111;
   direction: ltr;
-  /* Mobile optimizations: Disables double-tap to zoom and grey tap highlights */
-  touch-action: manipulation;
+  /* Allow pull-to-refresh swipes while still preventing double-tap zoom */
+  touch-action: pan-y pan-x;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -40,7 +43,7 @@ html, body {
 
 @keyframes kenburns {
   0%   { transform: scale(1.0); }
-  100% { transform: scale(1.15); }
+  100% { transform: scale(1.125); }
 }
 
 .pager-overlay {
@@ -61,10 +64,21 @@ html, body {
   justify-content: center;
   gap: 1.5rem;
   transition: opacity 0.5s ease;
-}
-.intro-screen.hidden {
+  
+  /* Kept hidden initially to prevent the empty text flash */
   opacity: 0;
   pointer-events: none;
+}
+
+/* Class added via JS only once all the text is fully rendered */
+.intro-screen.ready {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.intro-screen.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .beloved-name {

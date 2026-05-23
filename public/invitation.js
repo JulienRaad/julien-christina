@@ -254,8 +254,6 @@
       }
     }
 
-    startButton.style.visibility = "visible";
-
     if (lang === "ar") {
       document.documentElement.lang = "ar";
       document.documentElement.dir = "rtl";
@@ -329,5 +327,8 @@
     startCountdown(new Date("2026-07-18T18:00:00"));
     initRSVP(strings);
     scheduleCycle(); 
+    
+    // Unhide the landing page gracefully exactly when text injection is finished
+    introScreen.classList.add("ready");
   })();
 })();
