@@ -53,8 +53,8 @@
 
   // ── Instagram-Style Slide Navigation ──
   pager.addEventListener("click", (e) => {
-    // Prevent triggering slide change if user is interacting with links, buttons, or inputs
-    if (e.target.closest("button, a, select, input, label, .rsvp-form-card, .dot")) {
+    // Prevent triggering slide change if user is interacting with links, buttons, inputs, OR trying to copy the account number
+    if (e.target.closest("button, a, select, input, label, .rsvp-form-card, .dot, .account-num")) {
       return;
     }
 

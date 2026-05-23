@@ -15,6 +15,9 @@ html, body {
   color: var(--text);
   background: #111;
   direction: ltr;
+  /* Mobile optimizations: Disables double-tap to zoom and grey tap highlights */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* ── Fixed background shared by intro + pager ── */
@@ -37,7 +40,7 @@ html, body {
 
 @keyframes kenburns {
   0%   { transform: scale(1.0); }
-  100% { transform: scale(1.2); }
+  100% { transform: scale(1.15); }
 }
 
 .pager-overlay {
@@ -139,6 +142,9 @@ a.outline-btn {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.5s ease;
+  /* Prevent text from flashing blue when tapping fast like Instagram */
+  user-select: none;
+  -webkit-user-select: none;
 }
 .pager::-webkit-scrollbar { display: none; }
 .pager.visible {
@@ -192,9 +198,8 @@ blockquote {
 .hosts-label {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 1rem;
   letter-spacing: 0.1em;
-  opacity: 0.75;
   line-height: 1.8;
 }
 .body-text {
@@ -278,14 +283,18 @@ h3 {
   font-size: 1.25rem;
   letter-spacing: 0.04em;
   opacity: 0.9;
+  /* Allow users to easily select and copy the bank account number */
+  user-select: all; 
+  -webkit-user-select: all;
 }
 
 .whish-img {
-  margin-top: 1rem;
-  max-width: 80%;
-  width: 220px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  margin-top: 0.75rem;
+  height: 48px; /* App. 48dp on mobile devices */
+  width: auto;  /* Maintains original aspect ratio */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+  object-fit: contain;
 }
 
 /* ── RSVP ── */
@@ -294,6 +303,9 @@ h3 {
   display: flex;
   flex-direction: column;
   gap: 0;
+  /* Re-enable interactions inside the form card */
+  user-select: auto;
+  -webkit-user-select: auto;
 }
 .rsvp-form-card label {
   display: block;
