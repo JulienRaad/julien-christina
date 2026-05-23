@@ -21,29 +21,9 @@
   const audio = document.getElementById("weddingAudio");
   const slides = Array.from(pager.querySelectorAll(".slide"));
 
-  // ── Audio Autoplay Logic ──
+  // ── Audio Setup ──
   audio.src = "audio1.mp3";
   audio.load();
-  
-  // Attempt to play immediately (this works automatically on some setups/PWAs)
-  const attemptAutoplay = () => {
-    audio.play().catch(() => {
-      // Browser blocked autoplay (expected behavior). It will play on next interaction.
-    });
-  };
-  attemptAutoplay();
-
-  // Any screen interaction acts as a trigger to unlock the blocked audio
-  const unlockAudio = () => {
-    if (audio.paused) {
-      audio.play().catch(() => {});
-    }
-    // Remove listeners once audio is successfully triggered
-    document.removeEventListener("pointerdown", unlockAudio);
-    document.removeEventListener("touchstart", unlockAudio);
-  };
-  document.addEventListener("pointerdown", unlockAudio, { passive: true });
-  document.addEventListener("touchstart", unlockAudio, { passive: true });
 
   let wasPlayingBeforeHidden = false;
   document.addEventListener("visibilitychange", () => {
@@ -79,11 +59,11 @@
       if (index === -1) return;
       updateDots(index);
 
-      // Pin hug3.jpg to index 3 (Slide 4)
+      // Pin hug3.jpg ONLY to index 3 (Slide 4)
       if (index === 3) {
         pauseAndPin("hug3.jpg");
       } 
-      // Pin hug4.jpg to index 4 (Slide 5)
+      // Pin hug4.jpg ONLY to index 4 (Slide 5)
       else if (index === 4) {
         pauseAndPin("hug4.jpg");
       } 
@@ -95,8 +75,8 @@
   slides.forEach(slide => slideObserver.observe(slide));
 
   // ── Background image system ──
-  // 8 Total images starting with hug.jpg
-  const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg", "hug7.jpg"];
+  // Removed "hug3.jpg" and "hug4.jpg" from general rotation so they ONLY appear on their specific slides.
+  const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug5.jpg", "hug6.jpg", "hug7.jpg"];
   let bgIndex = 0;
   let bgPaused = false;
   let bgCycleTimer = null;
@@ -117,7 +97,6 @@
     currentSrc = src;
 
     preload(src).then(() => {
-      // Abort if the user requested another transition before loading finished
       if (src !== currentSrc) {
         if (done) done();
         return;
@@ -128,12 +107,10 @@
       newBg.style.backgroundImage = 'url("' + src + '")';
       bgContainer.appendChild(newBg);
 
-      // Force reflow and start fade in
       newBg.offsetHeight; 
       newBg.style.opacity = "1";
 
       setTimeout(() => {
-        // Clean up all DOM elements sitting *underneath* the newly appended slide
         const toRemove = [];
         for (let child of bgContainer.children) {
           if (child === newBg) break;
@@ -142,7 +119,7 @@
         toRemove.forEach(c => bgContainer.removeChild(c));
 
         if (done) done();
-      }, 1500); // Wait for the 1.4s css transition to resolve
+      }, 1500);
     });
   }
 
@@ -154,7 +131,7 @@
         bgIndex = (bgIndex + 1) % bgImages.length;
         if (!bgPaused) scheduleCycle();
       });
-    }, 3800); // Changed from 2850 to 3800 (slowed down ~25% frequency)
+    }, 3800);
   }
 
   function pauseAndPin(src) {
@@ -179,7 +156,8 @@
     dotsContainer.classList.add("visible");
     pager.scrollLeft = 0;
     updateDots(0);
-    // Audio is already trying to play from earlier, but just in case:
+    
+    // Explicitly start audio here on click
     audio.play().catch(() => {});
   });
 
@@ -194,8 +172,6 @@
 
   function applyStrings(s) {
     if (!s) return;
-    
-    // startButton text is now hardcoded in HTML as "TAP TO START", so it isn't overwritten here.
     
     const quoteEl = document.getElementById("quote");
     let textNode = null;
@@ -334,6 +310,6 @@
     applyStrings(strings);
     startCountdown(new Date("2026-07-18T18:00:00"));
     initRSVP(strings);
-    scheduleCycle(); // Start cycling immediately on load
+    scheduleCycle(); 
   })();
 })();
