@@ -20,9 +20,9 @@ html, body {
 /* ── Fixed background shared by intro + pager ── */
 .pager-bg-container {
   position: fixed;
-  inset: -2%; /* Reduced drastically so the image is no longer heavily cropped from the start */
+  inset: -2%;
   will-change: transform;
-  animation: kenburns 15s ease-in-out infinite alternate; /* Smoother turnarounds */
+  animation: kenburns 15s ease-in-out infinite alternate; 
   z-index: 0;
 }
 
@@ -35,10 +35,9 @@ html, body {
   will-change: opacity;
 }
 
-/* Very gentle scale to give it life without aggressive zooming */
 @keyframes kenburns {
   0%   { transform: scale(1.0); }
-  100% { transform: scale(1.1); }
+  100% { transform: scale(1.2); }
 }
 
 .pager-overlay {
@@ -279,6 +278,14 @@ h3 {
   font-size: 1.25rem;
   letter-spacing: 0.04em;
   opacity: 0.9;
+}
+
+.whish-img {
+  margin-top: 1rem;
+  max-width: 80%;
+  width: 220px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
 }
 
 /* ── RSVP ── */

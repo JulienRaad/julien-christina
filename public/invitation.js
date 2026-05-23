@@ -51,6 +51,25 @@
     pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
   }
 
+  // ── Instagram-Style Slide Navigation ──
+  pager.addEventListener("click", (e) => {
+    // Prevent triggering slide change if user is interacting with links, buttons, or inputs
+    if (e.target.closest("button, a, select, input, label, .rsvp-form-card, .dot")) {
+      return;
+    }
+
+    const clickX = e.clientX;
+    const screenWidth = window.innerWidth;
+    const currentIndex = Math.round(pager.scrollLeft / screenWidth);
+
+    // Left 33% goes back, remaining right 67% goes forward
+    if (clickX < screenWidth * 0.33) {
+      if (currentIndex > 0) goToSlide(currentIndex - 1);
+    } else {
+      if (currentIndex < slides.length - 1) goToSlide(currentIndex + 1);
+    }
+  });
+
   // ── IntersectionObserver for dots + slide pinning ──
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -75,7 +94,6 @@
   slides.forEach(slide => slideObserver.observe(slide));
 
   // ── Background image system ──
-  // Removed "hug3.jpg" and "hug4.jpg" from general rotation so they ONLY appear on their specific slides.
   const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug5.jpg", "hug6.jpg", "hug7.jpg"];
   let bgIndex = 0;
   let bgPaused = false;
