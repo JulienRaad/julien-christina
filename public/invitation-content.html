@@ -1,88 +1,106 @@
-<div id="pager" class="pager-container">
-    <!-- Page 1: Start Button -->
-    <div class="pager-page page-1 intro-slide">
-        <p id="belovedName"></p>
-        <button id="startButton"></button>
+<!-- Slide 1: Intro with background -->
+<div class="pager-bg"></div>
+<div class="pager-overlay"></div>
+
+<div class="pager" id="pager">
+
+  <!-- Slide 1: Start -->
+  <div class="slide slide-intro" id="slide-intro">
+    <p class="beloved-name" id="belovedName"></p>
+    <button class="start-btn" id="startButton"></button>
+  </div>
+
+  <!-- Slide 2: Quote -->
+  <div class="slide">
+    <div class="slide-content">
+      <blockquote id="quote"><span id="quoteAuthor"></span></blockquote>
     </div>
+  </div>
 
-    <!-- Page 2: Quote & Names & Countdown -->
-    <div class="pager-page page-2">
-        <section>
-            <blockquote id="quote">
-                <span id="quoteAuthor"></span>
-            </blockquote>
-        </section>
-        <section>
-            <div>
-                <p class="small-heading" id="hosts"></p>
-            </div>
-            <p id="invitationText"></p>
-        </section>
-        <section class="spaced-section">
-            <h1 class="great centered-names">
-                <span class="name groom-name" id="groom"></span>
-                <span class="amp" id="and"></span>
-                <span class="name bride-name" id="bride"></span>
-            </h1>
-            <h3 id="date"></h3>
-            <div class="countdown" id="countdown">
-                <div class="box"><span class="num" id="days"></span><span class="label" id="daysLabel"></span></div>
-                <div class="box"><span class="num" id="hours"></span><span class="label" id="hoursLabel"></span></div>
-                <div class="box"><span class="num" id="minutes"></span><span class="label" id="minutesLabel"></span></div>
-                <div class="box"><span class="num" id="seconds"></span><span class="label" id="secondsLabel"></span></div>
-            </div>
-        </section>
+  <!-- Slide 3: Hosts & Invitation -->
+  <div class="slide">
+    <div class="slide-content">
+      <p class="hosts-label" id="hosts"></p>
+      <p class="invitation-text" id="invitationText"></p>
     </div>
+  </div>
 
-    <!-- Page 3: Ceremony -->
-    <div class="pager-page page-3">
-        <img src="hands.jpg" alt="Rings" class="hands-image" />
-        <section>
-            <h2 id="locationTitle"></h2>
-            <p id="time"></p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJr33WMqA5HxUR6q79hqMiWiE%20VMMX+XVX&destination=Mar%20Abda%20Church%20qannabe,%20VMMX+XVX,%20Bsefrine,%20Lebanon" target="_blank" id="locationMap" class="btn"></a>
-        </section>
+  <!-- Slide 4: Names & Date & Countdown -->
+  <div class="slide">
+    <div class="slide-content">
+      <h1 class="couple-names">
+        <span class="name" id="groom"></span>
+        <span class="amp" id="and"></span>
+        <span class="name" id="bride"></span>
+      </h1>
+      <h3 class="wedding-date" id="date"></h3>
+      <div class="countdown" id="countdown">
+        <div class="box"><span class="num" id="days"></span><span class="lbl" id="daysLabel"></span></div>
+        <div class="box"><span class="num" id="hours"></span><span class="lbl" id="hoursLabel"></span></div>
+        <div class="box"><span class="num" id="minutes"></span><span class="lbl" id="minutesLabel"></span></div>
+        <div class="box"><span class="num" id="seconds"></span><span class="lbl" id="secondsLabel"></span></div>
+      </div>
     </div>
+  </div>
 
-    <!-- Page 4: Reception -->
-    <div class="pager-page page-4">
-        <img src="church.jpg" alt="Church" class="church-image" />
-        <section>
-            <p id="reception"></p>
-            <h2 id="locationTitle2"></h2>
-            <p id="time2"></p>
-            <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJz5CPuJg5HxURSi3Rf8Rh2hw&destination=VPJ3+PF6%20Level%20River%D8%8C%20%D8%B5%D8%A7%D9%84%D9%8A%D9%85%D8%A7%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82,%20Salima,%20Lebanon" target="_blank" id="locationMap2" class="btn"></a>
-        </section>
+  <!-- Slide 5: Hands image -->
+  <div class="slide slide-image">
+    <img src="hands.jpg" alt="Rings" class="full-slide-image" />
+  </div>
+
+  <!-- Slide 6: Church location -->
+  <div class="slide">
+    <div class="slide-content">
+      <h2 id="locationTitle"></h2>
+      <p class="time-text" id="time"></p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJr33WMqA5HxUR6q79hqMiWiE%20VMMX+XVX&destination=Mar%20Abda%20Church%20qannabe,%20VMMX+XVX,%20Bsefrine,%20Lebanon" target="_blank" id="locationMap" class="map-btn"></a>
     </div>
+  </div>
 
-    <!-- Page 5: Gift Registry & RSVP -->
-    <div class="pager-page page-5">
-        <section>
-            <h3 id="giftRegistryTitle"></h3>
-            <p id="giftRegistryDesc"></p>
-            <p id="accountNumber"></p>
-        </section>
-        <section>
-            <div class="rsvp-form-card">
-                <h3 id="rsvpTitle"></h3>
-                <form id="rsvpForm" onsubmit="return false;">
-                    <label for="attendance" id="attendanceLabel"></label>
-                    <select id="attendance" required>
-                        <option value="" disabled selected></option>
-                        <option value="yes"></option>
-                        <option value="no"></option>
-                    </select>
-
-                    <label for="number" id="numberLabel"></label>
-                    <select id="number" required>
-                        <option value="" disabled selected></option>
-                    </select>
-
-                    <button type="button" id="submitBtn" disabled></button>
-                </form>
-            </div>
-        </section>
+  <!-- Slide 7: Reception location -->
+  <div class="slide">
+    <div class="slide-content">
+      <p class="reception-label" id="reception"></p>
+      <h2 id="locationTitle2"></h2>
+      <p class="time-text" id="time2"></p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJz5CPuJg5HxURSi3Rf8Rh2hw&destination=VPJ3+PF6%20Level%20River%D8%8C%20%D8%B5%D8%A7%D9%84%D9%8A%D9%85%D8%A7%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82,%20Salima,%20Lebanon" target="_blank" id="locationMap2" class="map-btn"></a>
     </div>
+  </div>
+
+  <!-- Slide 8: Gift Registry -->
+  <div class="slide">
+    <div class="slide-content">
+      <h3 id="giftRegistryTitle"></h3>
+      <p class="gift-desc" id="giftRegistryDesc"></p>
+      <p class="account-num" id="accountNumber"></p>
+    </div>
+  </div>
+
+  <!-- Slide 9: RSVP -->
+  <div class="slide">
+    <div class="slide-content rsvp-slide">
+      <h3 id="rsvpTitle"></h3>
+      <div class="rsvp-form-card">
+        <label for="attendance" id="attendanceLabel"></label>
+        <select id="attendance" required>
+          <option value="" disabled selected></option>
+          <option value="yes"></option>
+          <option value="no"></option>
+        </select>
+
+        <label for="number" id="numberLabel"></label>
+        <select id="number" required>
+          <option value="" disabled selected></option>
+        </select>
+
+        <button type="button" id="submitBtn" disabled></button>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<!-- Dot indicators -->
+<div class="pager-dots" id="pagerDots"></div>
 
 <audio id="weddingAudio" loop preload="auto"></audio>

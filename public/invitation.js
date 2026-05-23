@@ -1,335 +1,252 @@
-    let isStarted = false;
-    let currentPage = 0; // Start at page 0 (first page)
-    const supportedLangs = ["en", "ar"];
-    const urlParams = new URLSearchParams(window.location.search);
-    const parsedUrl = new URL(window.location.href);
-    const parsedLang = parsedUrl.pathname.split('/')[1];
-    const lang = supportedLangs.includes(parsedLang) ? parsedLang : "en";
-    const id = parseInt(urlParams.get("id")) || 1;
-    const validatedId = isNaN(id) ? 1 : id;
-    const locale = lang === "ar" ? "ar-lb" : lang;
-    const maxGuests = parseInt(urlParams.get("for")) || 5;
-    const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5); // Ensure max is between 1 and 5
-    const isSingleGuest = validatedMaxGuests === 1;
-    const rawName = urlParams.get("name") || "";
-    const sanitizedName = rawName
-        .trim() // Remove leading/trailing whitespace
-        .replace(/[<>"]/g, "") // Remove <, >, and quotes for safety
+(function () {
+  let isStarted = false;
+  const supportedLangs = ["en", "ar"];
+  const parsedLang = new URL(window.location.href).pathname.split('/')[1];
+  const lang = supportedLangs.includes(parsedLang) ? parsedLang : "en";
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = parseInt(urlParams.get("id")) || 1;
+  const validatedId = isNaN(id) ? 1 : id;
+  const locale = lang === "ar" ? "ar-lb" : lang;
+  const maxGuests = parseInt(urlParams.get("for")) || 5;
+  const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5);
+  const isSingleGuest = validatedMaxGuests === 1;
+  const rawName = urlParams.get("name") || "";
+  const sanitizedName = rawName.trim().replace(/[<>"]/g, "");
 
-    const startButton = document.getElementById("startButton");
-    const belovedName = document.getElementById("belovedName");
-    const pagerContainer = document.getElementById("pager");
+  const pager = document.getElementById("pager");
+  const slides = Array.from(pager.querySelectorAll(".slide"));
+  const dotsContainer = document.getElementById("pagerDots");
+  const startButton = document.getElementById("startButton");
+  const belovedName = document.getElementById("belovedName");
+  const audio = document.getElementById("weddingAudio");
 
-    // Swipe detection variables
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let isScrolling = false;
+  // ── Build dots ──
+  slides.forEach((_, i) => {
+    const dot = document.createElement("div");
+    dot.className = "dot" + (i === 0 ? " active" : "");
+    dot.addEventListener("click", () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  });
 
-    function scrollToPage(pageIndex) {
-        const pagerContainer = document.getElementById("pager");
-        const pageWidth = window.innerWidth;
-        const scrollPosition = pageIndex * pageWidth;
-        pagerContainer.scrollLeft = scrollPosition;
-        currentPage = pageIndex;
+  function updateDots(index) {
+    dotsContainer.querySelectorAll(".dot").forEach((d, i) => {
+      d.classList.toggle("active", i === index);
+    });
+  }
+
+  function goToSlide(index) {
+    pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
+  }
+
+  // Track current slide via scroll
+  let scrollTimer;
+  pager.addEventListener("scroll", () => {
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(() => {
+      const index = Math.round(pager.scrollLeft / window.innerWidth);
+      updateDots(index);
+    }, 80);
+  }, { passive: true });
+
+  // ── Audio & visibility ──
+  audio.src = "audio1.mp3";
+  audio.load();
+  let wasPlayingBeforeHidden = false;
+
+  document.addEventListener("visibilitychange", () => {
+    if (!isStarted) return;
+    if (document.hidden) {
+      wasPlayingBeforeHidden = !audio.paused;
+      if (!audio.paused) audio.pause();
+    } else {
+      if (wasPlayingBeforeHidden) audio.play().catch(() => {});
+    }
+  });
+
+  // ── Start button ──
+  startButton.addEventListener("click", () => {
+    isStarted = true;
+    startButton.style.display = "none";
+    belovedName.style.display = "none";
+    document.querySelector(".pager-overlay").style.opacity = "0.25";
+    audio.play().catch(() => {});
+    goToSlide(1);
+  });
+
+  // ── Language strings ──
+  async function loadStrings(lang) {
+    try {
+      const res = await fetch(`/lang/${lang}.json`);
+      if (!res.ok) throw new Error("lang file not found");
+      return await res.json();
+    } catch (e) {
+      console.error(e);
+      return null;
+    }
+  }
+
+  function applyStrings(s) {
+    if (!s) return;
+
+    startButton.textContent = s.start;
+    document.getElementById("quote").childNodes[0].nodeValue = s.quote + " ";
+    document.getElementById("quoteAuthor").textContent = s.quoteAuthor;
+    document.getElementById("groom").textContent = s.groom;
+    document.getElementById("and").textContent = s.and;
+    document.getElementById("bride").textContent = s.bride;
+    document.getElementById("hosts").innerHTML = s.hosts.replace(/\n/g, "<br />");
+    document.getElementById("invitationText").textContent = s.invitation;
+    document.getElementById("date").textContent = s.date;
+    document.getElementById("daysLabel").textContent = s.countdownLabels.days;
+    document.getElementById("hoursLabel").textContent = s.countdownLabels.hours;
+    document.getElementById("minutesLabel").textContent = s.countdownLabels.minutes;
+    document.getElementById("secondsLabel").textContent = s.countdownLabels.seconds;
+    document.getElementById("locationTitle").textContent = s.locationTitle;
+    document.getElementById("time").textContent = s.time;
+    document.getElementById("reception").textContent = s.reception;
+    document.getElementById("locationTitle2").textContent = s.locationTitle2;
+    document.getElementById("time2").textContent = s.time2;
+    document.getElementById("locationMap").textContent = s.locationMap;
+    document.getElementById("locationMap2").textContent = s.locationMap2;
+    document.getElementById("giftRegistryTitle").textContent = s.giftRegistryTitle;
+    document.getElementById("giftRegistryDesc").textContent = s.giftRegistryDesc;
+    document.getElementById("accountNumber").textContent = s.accountNumber;
+    document.getElementById("rsvpTitle").textContent = s.rsvpTitle;
+    document.getElementById("attendanceLabel").textContent = s.formLabels.attendance;
+    document.getElementById("numberLabel").textContent = s.formLabels.number;
+    const att = document.getElementById("attendance");
+    att.options[0].text = s.formLabels.attendancePlaceholder;
+    att.options[1].text = s.formLabels.yes;
+    att.options[2].text = s.formLabels.no;
+    document.getElementById("submitBtn").textContent = s.formLabels.submit;
+
+    // Show / hide RSVP
+    const isValidName = sanitizedName.trim() !== "";
+    if (!isValidName) {
+      document.querySelector(".rsvp-form-card").style.display = "none";
     }
 
-    function handleSwipe() {
-        const diff = touchStartX - touchEndX;
-        const threshold = 50; // Minimum distance for swipe
-
-        if (Math.abs(diff) > threshold && !isScrolling) {
-            if (diff > 0) {
-                // Swiped left - go to next page
-                const nextPage = Math.min(currentPage + 1, 4); // 5 pages (0-4)
-                scrollToPage(nextPage);
-            } else {
-                // Swiped right - go to previous page
-                const prevPage = Math.max(currentPage - 1, 0);
-                scrollToPage(prevPage);
-            }
-        }
+    // Show beloved name
+    if (isValidName) {
+      const nameParts = sanitizedName
+        .replace(/,/g, "&")
+        .replace(/_/g, " ")
+        .split(";");
+      const formatted = nameParts
+        .map(p => p.trim()).filter(Boolean)
+        .map(p =>
+          p.split("&").map(sub => `<span>${sub.trim()}</span>`).join("<span>&nbsp;&&nbsp;</span>")
+        ).join("<br>");
+      belovedName.innerHTML = formatted;
+      belovedName.style.visibility = "visible";
     }
 
-    // Touch event listeners for swipe
-    if (pagerContainer) {
-        pagerContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            isScrolling = false;
-        }, false);
-
-        pagerContainer.addEventListener('touchmove', (e) => {
-            // Detect if user is scrolling vertically
-            if (e.touches.length > 1 || e.scale && e.scale !== 1) return;
-            
-            const moveX = e.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(moveX) > 5) {
-                isScrolling = true;
-            }
-        }, false);
-
-        pagerContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, false);
-
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' && currentPage < 4) {
-                scrollToPage(currentPage + 1);
-            } else if (e.key === 'ArrowLeft' && currentPage > 0) {
-                scrollToPage(currentPage - 1);
-            }
-        });
+    // Guest number select
+    const numberSelect = document.getElementById("number");
+    if (isSingleGuest) {
+      numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
+      numberSelect.setAttribute("disabled", "disabled");
+      numberSelect.classList.add("single-guest");
+    } else {
+      numberSelect.innerHTML = `<option value="" disabled selected>${s.formLabels.numberPlaceholder}</option>`;
+      for (let i = 1; i <= validatedMaxGuests; i++) {
+        const opt = document.createElement("option");
+        opt.value = i;
+        opt.text = Number(i).toLocaleString(locale);
+        numberSelect.appendChild(opt);
+      }
     }
 
-    async function loadStrings(lang = "en") {
-        try {
-            const response = await fetch(`./lang/${lang}.json`);
-            if (!response.ok) throw new Error("Failed to load language file");
-            return await response.json();
-        } catch (error) {
-            console.error(error);
-            return null;
-        }
+    // Show start button
+    startButton.style.visibility = "visible";
+
+    // RTL support
+    if (lang === "ar") {
+      document.documentElement.lang = "ar";
+      document.documentElement.dir = "rtl";
+      document.body.style.direction = "rtl";
+      document.querySelectorAll(".rsvp-form-card select:not(.single-guest)").forEach(sel => {
+        sel.style.backgroundPosition = "left 0.75rem center";
+      });
+    } else {
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
     }
+  }
 
-    function applyStrings(strings) {
-        if (!strings) return;
-        startButton.textContent = strings.start;
-        startButton.style.visibility = isStarted ? "hidden" : "visible";
-        document.getElementById("quote").childNodes[0].nodeValue = strings.quote + " ";
-        document.getElementById("quoteAuthor").textContent = strings.quoteAuthor;
-        document.getElementById("groom").textContent = strings.groom;
-        document.getElementById("and").textContent = strings.and;
-        document.getElementById("bride").textContent = strings.bride;
-        document.getElementById("hosts").innerHTML = strings.hosts.replace(/\n/g, "<br />");
-        document.getElementById("invitationText").textContent = strings.invitation;
-        document.getElementById("date").textContent = strings.date;
-        document.getElementById("daysLabel").textContent = strings.countdownLabels.days;
-        document.getElementById("hoursLabel").textContent = strings.countdownLabels.hours;
-        document.getElementById("minutesLabel").textContent = strings.countdownLabels.minutes;
-        document.getElementById("secondsLabel").textContent = strings.countdownLabels.seconds;
-        document.getElementById("locationTitle").textContent = strings.locationTitle;
-        document.getElementById("time").textContent = strings.time;
-        document.getElementById("locationTitle2").textContent = strings.locationTitle2;
-        document.getElementById("time2").textContent = strings.time2;
-        document.getElementById("reception").textContent = strings.reception;
-        document.getElementById("locationMap").textContent = strings.locationMap;
-        document.getElementById("locationMap2").textContent = strings.locationMap2;
-        document.getElementById("giftRegistryTitle").textContent = strings.giftRegistryTitle;
-        document.getElementById("giftRegistryDesc").textContent = strings.giftRegistryDesc;
-        document.getElementById("accountNumber").textContent = strings.accountNumber;
-        document.getElementById("rsvpTitle").textContent = strings.rsvpTitle;
-        document.getElementById("attendanceLabel").textContent = strings.formLabels.attendance;
-        document.getElementById("numberLabel").textContent = strings.formLabels.number;
-        document.getElementById("attendance").options[0].text = strings.formLabels.attendancePlaceholder;
-        document.getElementById("attendance").options[1].text = strings.formLabels.yes;
-        document.getElementById("attendance").options[2].text = strings.formLabels.no;
+  function startCountdown(targetDate) {
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
 
-        // Validate name: non-empty after sanitization
-        const isValidName = sanitizedName.trim() !== "";
+    function tick() {
+      const diff = targetDate - new Date();
+      if (diff <= 0) {
+        [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.textContent = Number(0).toLocaleString(locale));
+        clearInterval(timer);
+        return;
+      }
+      daysEl.textContent = Number(Math.floor(diff / 86400000)).toLocaleString(locale);
+      hoursEl.textContent = Number(Math.floor((diff / 3600000) % 24)).toLocaleString(locale);
+      minutesEl.textContent = Number(Math.floor((diff / 60000) % 60)).toLocaleString(locale);
+      secondsEl.textContent = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
+    }
+    tick();
+    const timer = setInterval(tick, 1000);
+  }
 
-        if (!isValidName){
-            const form = document.querySelector(".rsvp-form-card");
-            form.style.display = "none"; 
-        }
+  function initRSVP(s) {
+    const attSel = document.getElementById("attendance");
+    const numSel = document.getElementById("number");
+    const btn = document.getElementById("submitBtn");
 
-        if (isValidName && !isStarted) {
-            const nameParts = sanitizedName
-                .replace(/,/g, "&") // Convert commas to &
-                .replace(/_/g, " ") // Convert underscores to space
-                .split(";"); // Split on ; for line breaks
-            const formattedName = nameParts
-                .map(part => part.trim()) // Trim each part
-                .filter(part => part !== "") // Remove empty parts
-                .map(part =>
-                    part.split("&")
-                    .map(subPart => `<span>${subPart.trim()}</span>`)
-                    .join("<span>&nbsp;&&nbsp;</span>")
-                ) // Split on &, wrap each sub-part in span, insert & on its own line
-                .join("<br>"); // Join parts with <br>
-            belovedName.innerHTML = formattedName;
-            belovedName.style.visibility = "visible";
+    const formName = sanitizedName
+      .replace(/,/g, " & ")
+      .replace(/[;_]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    function validate() {
+      const attOk = attSel.value === "yes" || attSel.value === "no";
+      const numOk = isSingleGuest ? true : numSel.value !== "";
+      if (!isSingleGuest) {
+        if (attSel.value === "yes") {
+          numSel.removeAttribute("disabled");
         } else {
-            belovedName.style.display = "none";
+          numSel.value = "";
+          numSel.setAttribute("disabled", "disabled");
         }
-
-        const numberSelect = document.getElementById("number");
-        if (isSingleGuest) {
-            numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
-            numberSelect.setAttribute("disabled", "disabled");
-            numberSelect.classList.add("single-guest");
-        } else {
-            numberSelect.innerHTML = `<option value="" disabled selected>${strings.formLabels.numberPlaceholder}</option>`;
-            for (let i = 1; i <= validatedMaxGuests; i++) {
-                const option = document.createElement("option");
-                option.value = i;
-                option.text = Number(i).toLocaleString(locale);
-                numberSelect.appendChild(option);
-            }
-        }
-
-        document.getElementById("submitBtn").textContent = strings.formLabels.submit;
-        document.documentElement.lang = lang;
-        if (lang === "ar") {
-            document.documentElement.dir = "rtl";
-            document.body.style.direction = "rtl";
-            const selects = document.querySelectorAll(".rsvp-form-card select:not(.single-guest)");
-            selects.forEach((select) => {
-                select.style.backgroundPosition = "left 0.75rem center";
-            });
-        } else {
-            document.documentElement.dir = "ltr";
-            document.body.style.direction = "ltr";
-        }
+      }
+      btn.disabled = !(attOk && (attSel.value === "no" || isSingleGuest || numOk));
     }
 
-    function startCountdown(targetDate, lang) {
-        const daysEl = document.getElementById("days");
-        const hoursEl = document.getElementById("hours");
-        const minutesEl = document.getElementById("minutes");
-        const secondsEl = document.getElementById("seconds");
-
-        function updateCountdown() {
-            const now = new Date();
-            const diff = targetDate - now;
-
-            if (diff <= 0) {
-                const zero = Number(0).toLocaleString(locale);
-                daysEl.textContent = zero;
-                hoursEl.textContent = zero;
-                minutesEl.textContent = zero;
-                secondsEl.textContent = zero;
-                clearInterval(timer);
-                return;
-            }
-
-            const days = Number(Math.floor(diff / (1000 * 60 * 60 * 24))).toLocaleString(locale);
-            const hours = Number(Math.floor((diff / (1000 * 60 * 60)) % 24)).toLocaleString(locale);
-            const minutes = Number(Math.floor((diff / (1000 * 60)) % 60)).toLocaleString(locale);
-            const seconds = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
-
-            daysEl.textContent = days;
-            hoursEl.textContent = hours;
-            minutesEl.textContent = minutes;
-            secondsEl.textContent = seconds;
-        }
-
-        updateCountdown();
-        const timer = setInterval(updateCountdown, 1000);
+    attSel.addEventListener("change", validate);
+    attSel.addEventListener("input", validate);
+    if (!isSingleGuest) {
+      numSel.addEventListener("change", validate);
+      numSel.addEventListener("input", validate);
     }
 
-    function initializeRSVPForm(strings) {
-        const attendanceSelect = document.getElementById("attendance");
-        const numberSelect = document.getElementById("number");
-        const submitBtn = document.getElementById("submitBtn");
-
-
-        const formName = sanitizedName
-            .replace(/,/g, " & ") // Convert commas to &
-            .replace(/[;_]/g, " ") // Convert ; and _ to space
-            .replace(/\s+/g, " ") // Normalize spaces
-            .trim();
-
-
-        function validate() {
-            const attendanceOk = attendanceSelect.value === "yes" || attendanceSelect.value === "no";
-            const numberOk = isSingleGuest ? true : numberSelect.value !== "";
-
-            // Enable numberSelect only if attendance is "yes" and not a single guest
-            if (!isSingleGuest && attendanceSelect.value === "yes") {
-                numberSelect.removeAttribute("disabled");
-            } else if (!isSingleGuest) {
-                numberSelect.value = "";
-                numberSelect.setAttribute("disabled", "disabled");
-            }
-
-            // Enable submit button if attendance is valid, and if attendance is "yes", number must be valid
-            submitBtn.disabled = !(attendanceOk && (attendanceSelect.value === "no" || isSingleGuest || numberOk));
-        }
-        attendanceSelect.addEventListener("input", validate);
-        attendanceSelect.addEventListener("change", validate);
-
-        if (!isSingleGuest) {
-            numberSelect.addEventListener("input", validate);
-            numberSelect.addEventListener("change", validate);
-        }
-
-        submitBtn.addEventListener("click", () => {
-            if (!submitBtn.disabled) {
-                const attendance = attendanceSelect.value === "yes" ? strings.formLabels.yes : strings.formLabels.no;
-                const number = isSingleGuest ? "1" : (attendanceSelect.value === "yes" ? Number(numberSelect.value).toLocaleString(locale) : "0");
-                let message = `${strings.messageTitle}\n\n${strings.formLabels.name}: ${formName}`;
-                if (number !== "0" && number !== 0) {
-                    message += `\n${strings.formLabels.number}: ${number}`;
-                }
-                message += `\n${strings.formLabels.attendance}: ${attendance}`;
-                const encodedMessage = encodeURIComponent(message);
-                const phoneNumber = validatedId === 1 ? "+96176158615" : "+96176606875";
-                const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                window.location.href = whatsappLink;
-            }
-        });
-
-        validate();
-    }
-
-    const introSlide = document.querySelector(".page-1.intro-slide");
-    const audio = document.getElementById("weddingAudio");
-    audio.src = `audio1.mp3`;
-    audio.load();
-    let wasPlayingBeforeHidden = false;
-
-if (!isStarted){
-document.body.classList.add("no-scroll");
-}
-startButton.addEventListener("click", () => {
-    document.body.classList.remove("no-scroll");
-    if (introSlide) {
-        introSlide.classList.add('dimmed-off'); // Remove dimming
-    }
-    audio
-        .play()
-        .catch((err) => {
-            console.warn("Autoplay blocked:", err);
-        })
-        .finally(() => {
-            console.log("Attempted to play audio, success or fail.");
-            // Transition to next page
-            scrollToPage(1);
-            isStarted = true;
-            startButton.remove();
-            belovedName.style.display = "none";
-        });
-});
-
-    document.addEventListener("visibilitychange", () => {
-        if (!isStarted) return;
-
-        if (document.hidden) {
-            if (!audio.paused) {
-                audio.pause();
-                wasPlayingBeforeHidden = true;
-            } else {
-                wasPlayingBeforeHidden = false;
-            }
-        } else {
-            if (wasPlayingBeforeHidden) {
-                audio.play().catch(() => {
-                    console.warn("Resuming playback blocked by browser.");
-                });
-            }
-        }
+    btn.addEventListener("click", () => {
+      if (btn.disabled) return;
+      const attendance = attSel.value === "yes" ? s.formLabels.yes : s.formLabels.no;
+      const number = isSingleGuest ? "1" : (attSel.value === "yes" ? Number(numSel.value).toLocaleString(locale) : "0");
+      let msg = `${s.messageTitle}\n\n${s.formLabels.name}: ${formName}`;
+      if (number !== "0") msg += `\n${s.formLabels.number}: ${number}`;
+      msg += `\n${s.formLabels.attendance}: ${attendance}`;
+      const phone = validatedId === 1 ? "+96176158615" : "+96176606875";
+      window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
     });
 
-    (async () => {
-        const strings = await loadStrings(lang);
-        if (!strings) {
-            console.error("Failed to load strings, using fallback");
-            return;
-        }
-        applyStrings(strings);
-        const weddingDate = new Date("2026-07-18T18:00:00");
-        startCountdown(weddingDate, lang);
-        initializeRSVPForm(strings);
-    })();
+    validate();
+  }
+
+  (async () => {
+    const strings = await loadStrings(lang);
+    if (!strings) return;
+    applyStrings(strings);
+    startCountdown(new Date("2026-07-18T18:00:00"));
+    initRSVP(strings);
+  })();
+})();

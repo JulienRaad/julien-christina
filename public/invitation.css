@@ -1,489 +1,351 @@
- @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
 
-        :root {
-            --primary: #ffffff;
-            --accent: #a5b68d;
-            --text: #333333;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html,
-        body {
-            font-family: "Montserrat", sans-serif;
-            color: white;
-            background: var(--primary);
-            scroll-behavior: smooth;
-            direction: ltr;
-            width: 100%;
-            height: 100%;
-        }
-
-        #content {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-
-        #content::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: url("hug.jpg") center top no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            z-index: -2;
-            pointer-events: none;
-        }
-
-        #content::after {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: -1;
-            pointer-events: none;
-        }
-        body.no-scroll {
-            overflow: hidden;
-            height: 100svh;
-        }
-        /* Pager Container and Pages */
-        .pager-container {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            position: relative;
-            z-index: 1;
-        }
-
-        .pager-page {
-            min-width: 100%;
-            width: 100%;
-            min-height: 100svh;
-            scroll-snap-align: start;
-            overflow-y: auto;
-            -webkit-overflow-scrolling: touch;
-            scroll-behavior: smooth;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .pager-page.page-1.intro-slide {
-            min-height: 100svh;
-            background: none;
-        }
-
-        .pager-page.page-1.intro-slide::before {
-            display: none;
-        }
-
-        .pager-page.page-1.intro-slide.dimmed-off::before {
-            display: none;
-        }
-
-        .hands-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-                .church-image {
-                    width: 100%;
-                    height: auto;
-                    display: block;
-                    margin-bottom: 1rem;
-                    margin-top: 1rem;
-                }
-
-        section:not(.intro-slide) {
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0.9rem;
-            margin-left: auto;
-            max-width: 97%;
-            margin-right: auto;
-        }
-
-        /* Hide the old intro-slide only if it's not inside the pager */
-        .intro-slide:not(.pager-page) {
-            display: none;
-        }
-
-        .pager-page section {
-            min-height: auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0.9rem;
-            margin-left: auto;
-            max-width: 97%;
-            margin-right: auto;
-        }
-        #startButton {
-            visibility: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 50px;
-            font-size: 1.25rem;
-            font-weight: 600;
-            cursor: pointer;
-            z-index: 2;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            box-shadow: none;
-            transition: all 0.3s ease;
-        }
-
-        #startButton:focus {
-            outline: none;
-            box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        #startButton:hover,
-        #startButton:active {
-            background-color: rgba(255, 255, 255, 0.1);
-            box-shadow: none;
-        }
-        h1.great {
-            margin-bottom: 0.5rem;
-        }
-
-#date {
-  margin-top: 2.7rem;
+:root {
+  --primary: #ffffff;
+  --accent: #a5b68d;
+  --accent-dark: #8b9a76;
+  --text: #333333;
+  --text-light: #ffffff;
+  --overlay: rgba(0, 0, 0, 0.45);
 }
-.centered-names {
-  display: flex;
-  margin-top: 0.9rem;
-  flex-direction: row; /* changed from column */
-  justify-content: center; /* center items horizontally */
-  align-items: center; /* center items vertically */
-  flex-wrap: wrap; /* optional, for better wrapping on small screens */
-  gap: 0.5rem; /* optional, spacing between names and ampersand */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
   width: 100%;
-  max-width: 100%;
-  text-align: center; /* fallback for any inline text alignment */
+  height: 100%;
+  overflow: hidden;
+  font-family: "Montserrat", sans-serif;
+  color: var(--text);
+  background: #111;
+  direction: ltr;
 }
 
-.centered-names .amp {
+/* ── Background ── */
+.pager-bg {
+  position: fixed;
+  inset: 0;
+  background: url("hug.jpg") center top / cover no-repeat;
+  z-index: 0;
+  transition: opacity 0.6s ease;
+}
+
+.pager-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay);
+  z-index: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* ── Pager container ── */
+.pager {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.pager::-webkit-scrollbar { display: none; }
+
+/* ── Individual slides ── */
+.slide {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100%;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 480px;
+  color: var(--text-light);
+}
+
+/* ── Slide: Intro ── */
+.slide-intro {
+  flex-direction: column;
+  gap: 0;
+}
+
+.beloved-name {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 5.4rem);
+  font-size: clamp(1.6rem, 5vw, 3.5rem);
   color: white;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  line-height: 1.3;
+  visibility: hidden;
+  max-width: 80vw;
 }
 
-.centered-names .name {
+.start-btn {
+  visibility: hidden;
+  margin-top: 2rem;
+  background: rgba(0,0,0,0.45);
+  color: white;
+  border: 2px solid rgba(255,255,255,0.6);
+  padding: 0.65rem 1.4rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s, transform 0.1s;
+}
+.start-btn:active { transform: scale(0.95); background: rgba(0,0,0,0.65); }
+
+/* ── Quote slide ── */
+blockquote {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 5vw, 5.4rem);
+  font-style: italic;
+  font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+  line-height: 1.55;
   color: white;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+#quoteAuthor {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.82em;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  opacity: 0.75;
 }
 
-        h2 {
-            font-size: clamp(1.2rem, 5vw, 1.8rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            color: white;
-        }
-        h3 {
-            font-size: clamp(1rem, 4vw, 1.5rem);
-            font-weight: 600;
-            margin-bottom: 0.4rem;
-            color: white;
-        }
-        p,
-        li {
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            line-height: 1.6;
-            color: white;
-        }
+/* ── Hosts ── */
+.hosts-label {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  line-height: 1.7;
+}
+.invitation-text {
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  line-height: 1.65;
+  opacity: 0.92;
+}
 
-        #quoteAuthor {
-            font-size: 0.9em;
-            display: block;
-            opacity: 0.9;
-            color: white;
-        }
+/* ── Names & Date ── */
+.couple-names {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+}
+.couple-names .name,
+.couple-names .amp {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 8vw, 5rem);
+  color: var(--accent);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  line-height: 1;
+}
+.wedding-date {
+  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+  font-weight: 500;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
 
-        blockquote {
-            max-width: 90%;
-            font-size: clamp(1rem, 4.25vw, 1.5rem);
-            font-style: italic;
-            line-height: 1.5;
-            color: white;
-        }
-        .countdown {
-            display: flex;
-            gap: 0.5rem;
-            margin: 0.4rem 0 0;
-            flex-wrap: nowrap;
-            justify-content: center;
-            overflow-x: auto;
-        }
-        .countdown .box {
-            padding: 0.4rem 0.6rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
-            display: flex;
-            align-items: baseline;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .countdown .num {
-            font-size: clamp(1.8rem, 5.5vw, 2.7rem);
-            font-weight: 600;
-            color: white;
-        }
-        .countdown .label {
-            font-size: 0.75em;
-            margin-left: 0.2em;
-            color: white;
-        }
-        #hosts {
-            text-transform: uppercase;
-            font-weight: 550;
-            font-size: 0.8rem;
-            color: white;
-            margin-bottom: 0.4rem;
-        }
+/* ── Countdown ── */
+.countdown {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+.countdown .box {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  border-radius: 8px;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.15rem;
+}
+.countdown .num {
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.countdown .lbl {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
 
-        #belovedName {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.5rem, 4vw, 5rem);
-            font-weight: 600;
-            visibility: hidden;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            visibility: hidden;
-            text-align: center;
-            z-index: 2;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-        }
+/* ── Image slide ── */
+.slide-image { padding: 0; }
+.full-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-        /* Location Map Button */
-        a.btn {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            margin-top: 1rem;
-            color: white;
-            background: transparent;
-            border: 2px solid white;
-            border-radius: 8px;
-            text-decoration: none;
-            -webkit-tap-highlight-color: transparent;
-            transition: transform 0.1s ease, background 0.3s ease;
-            touch-action: manipulation;
-        }
+/* ── Location ── */
+.time-text {
+  font-size: clamp(0.9rem, 3vw, 1.05rem);
+  opacity: 0.85;
+}
+.reception-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+.map-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--accent);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-family: "Montserrat", sans-serif;
+  margin-top: 0.5rem;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s, transform 0.1s;
+}
+.map-btn:active { transform: scale(0.97); background: var(--accent-dark); }
 
-        a.btn:focus,
-        a.btn:active {
-            outline: none;
-            box-shadow: none;
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.1);
-        }
+/* ── Gift ── */
+.gift-desc {
+  font-size: clamp(0.85rem, 3vw, 1rem);
+  line-height: 1.6;
+  opacity: 0.88;
+}
+.account-num {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
 
-        a.btn:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
-        /* RSVP Submit Button */
-        .rsvp-form-card button {
-            width: 100%;
-            padding: 0.75rem;
-            font-size: clamp(0.9rem, 3vw, 1rem);
-            font-family: "Montserrat", sans-serif;
-            font-weight: 600;
-            color: white;
-            background: transparent;
-            border: 2px solid white;
-            border-radius: 8px;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
-            transition: background 0.3s ease, transform 0.1s ease;
-            touch-action: manipulation;
-        }
+/* ── RSVP ── */
+.rsvp-slide { gap: 0.75rem; }
+.rsvp-form-card {
+  width: 100%;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.rsvp-form-card label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.4rem;
+  text-align: left;
+}
+[dir="rtl"] .rsvp-form-card label { text-align: right; }
 
-        .rsvp-form-card button:focus,
-        .rsvp-form-card button:active {
-            outline: none;
-            box-shadow: none;
-            transform: scale(0.95);
-            background: rgba(255, 255, 255, 0.1);
-        }
+.rsvp-form-card select {
+  appearance: none;
+  width: 100%;
+  padding: 0.65rem 2rem 0.65rem 0.9rem;
+  font-size: clamp(0.85rem, 3vw, 0.95rem);
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 1rem;
+  color: white;
+  margin-bottom: 0.9rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.rsvp-form-card select option { color: var(--text); background: white; }
+.rsvp-form-card select:focus { outline: none; border-color: var(--accent); }
+.rsvp-form-card select:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+.rsvp-form-card select.single-guest {
+  background-image: none;
+  cursor: default;
+}
+[dir="rtl"] .rsvp-form-card select {
+  background-position: left 0.75rem center;
+  padding: 0.65rem 0.9rem 0.65rem 2rem;
+}
 
-        .rsvp-form-card button:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.15);
-        }
+.rsvp-form-card button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: white;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s, transform 0.1s;
+}
+.rsvp-form-card button:active { transform: scale(0.97); }
+.rsvp-form-card button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.rsvp-form-card button:hover:not(:disabled) { background: var(--accent-dark); }
 
-        .rsvp-form-card button:disabled {
-            background: transparent;
-            border-color: rgba(255, 255, 255, 0.5);
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
+/* ── Dot indicators ── */
+.pager-dots {
+  position: fixed;
+  bottom: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 0.45rem;
+}
+.pager-dots .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  transition: background 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.pager-dots .dot.active {
+  background: var(--accent);
+  transform: scale(1.4);
+}
 
-        /* Ensure scale resets after release */
-        a.btn:not(:active),
-        .rsvp-form-card button:not(:active) {
-            transform: scale(1);
-        }
-
-        .rsvp-form-card {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            box-shadow: none;
-            padding: 1.5rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .rsvp-form-card label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            font-weight: 600;
-            color: white;
-            text-align: left;
-        }
-
-        [dir="rtl"] .rsvp-form-card label {
-            text-align: right;
-        }
-
-        #rsvpTitle {
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .rsvp-form-card select {
-            appearance: none;
-            width: 100%;
-            padding: 0.75rem 2rem 0.75rem 1rem;
-            font-size: clamp(0.85rem, 3vw, 1rem);
-            font-family: "Montserrat", sans-serif;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1rem;
-            color: white;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            line-height: 1.5;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .rsvp-form-card select:disabled {
-            background: rgba(255, 255, 255, 0.05);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cccccc' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1rem;
-            border-color: rgba(255, 255, 255, 0.2);
-            opacity: 0.7;
-            cursor: not-allowed;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        [dir="rtl"] .rsvp-form-card select:disabled {
-            background-position: left 0.75rem center;
-        }
-
-        .rsvp-form-card select:focus {
-            outline: none;
-            border-color: white;
-            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.15);
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.75rem center;
-            background-size: 1rem;
-        }
-
-        .rsvp-form-card select:active {
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Hide dropdown arrow and style single-guest field */
-        .rsvp-form-card select.single-guest {
-            background-image: none;
-            appearance: none;
-            cursor: default;
-            padding-right: 1rem;
-        }
-
-        .rsvp-form-card select.single-guest:disabled {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.3);
-            color: white;
-            opacity: 1;
-        }
-
-        @media (min-width: 600px) {
-            section {
-                padding: 1rem 1.2rem;
-                margin-bottom: 1rem;
-                max-width: 600px;
-            }
-            .spaced-section {
-                margin-bottom: 2rem;
-            }
-            .intro-slide {
-                min-height: 100svh;
-                background-size: cover;
-            }
-            h2 {
-                font-size: clamp(1.5rem, 4vw, 2.2rem);
-            }
-            h3 {
-                font-size: clamp(1.25rem, 3.5vw, 1.75rem);
-            }
-            p,
-            li {
-                font-size: clamp(0.9rem, 2.8vw, 1.1rem);
-            }
-            blockquote {
-                max-width: 26ch;
-                font-size: clamp(1rem, 4.25vw, 1.5rem);
-            }
-            #hosts {
-                font-size: 0.8rem;
-            }
-            a.btn {
-                padding: 0.75rem 1.25rem;
-                font-size: 1rem;
-            }
-        }
+@media (min-width: 600px) {
+  .slide { padding: 2.5rem 2rem; }
+  .slide-content { max-width: 520px; }
+}
