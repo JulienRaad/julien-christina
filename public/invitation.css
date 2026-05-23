@@ -18,26 +18,29 @@ html, body {
 }
 
 /* ── Fixed background shared by intro + pager ── */
-.pager-bg {
+.pager-bg, .pager-bg2 {
   position: fixed;
-  inset: 0;
-  background: url("hug.jpg") center top / cover no-repeat;
+  inset: -8%;           /* oversized so Ken Burns zoom doesn't show edges */
+  background: center center / cover no-repeat;
   z-index: 0;
 }
+.pager-bg  { background-image: url("hug.jpg"); animation: kenburns 12s ease-in-out infinite alternate; }
+.pager-bg2 { opacity: 0; transition: opacity 2s ease; animation: kenburns2 12s ease-in-out infinite alternate; }
+
+@keyframes kenburns {
+  0%   { transform: scale(1)    translate(0,    0);    }
+  100% { transform: scale(1.12) translate(-1.5%, 1%);  }
+}
+@keyframes kenburns2 {
+  0%   { transform: scale(1.1)  translate(1.5%, -1%); }
+  100% { transform: scale(1)    translate(0,    0);    }
+}
+
 .pager-overlay {
   position: fixed;
   inset: 0;
   background: var(--overlay-color);
   z-index: 1;
-}
-
-/* Second bg layer for crossfade cycling */
-.pager-bg2 {
-  position: fixed;
-  inset: 0;
-  background: center top / cover no-repeat;
-  z-index: 0;
-  transition: opacity 1s ease;
 }
 
 /* ── Intro screen ── */
@@ -113,9 +116,7 @@ a.outline-btn {
   z-index: 5;
   display: flex;
   flex-direction: row;
-  overflow-x: scroll;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden;          /* no native scroll — touch handled in JS */
   scrollbar-width: none;
   opacity: 0;
   pointer-events: none;

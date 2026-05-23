@@ -37,38 +37,87 @@
   }
 
   function goToSlide(index) {
-    pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
+    scrollToSlide(index, true);
   }
 
-  // ── Instant dot update via IntersectionObserver ──
-  const observer = new IntersectionObserver((entries) => {
+  // ── Background image cycling with slow crossfade + Ken Burns ──
+  const bgImages = ["hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg"];
+  const PINNED_SLIDE = 3;       // 0-based: 4th slide always shows hug3
+  const PINNED_IMAGE = "hug3.jpg";
+  let bgIndex = 0;
+  let bgPaused = false;
+
+  const bgEl = document.querySelector(".pager-bg");
+  const bgEl2 = document.createElement("div");
+  bgEl2.className = "pager-bg2";
+  bgEl.parentNode.insertBefore(bgEl2, bgEl.nextSibling);
+
+  function crossfadeTo(imageUrl, onBg1Ready) {
+    bgEl2.style.backgroundImage = 'url("' + imageUrl + '")';
+    bgEl2.style.opacity = "1";
+    setTimeout(() => {
+      bgEl.style.backgroundImage = 'url("' + imageUrl + '")';
+      bgEl2.style.opacity = "0";
+      if (onBg1Ready) onBg1Ready();
+    }, 2000); // 2s fade matches CSS transition
+  }
+
+  const bgInterval = setInterval(() => {
+    if (bgPaused) return;
+    bgIndex = (bgIndex + 1) % bgImages.length;
+    crossfadeTo(bgImages[bgIndex]);
+  }, 5000);
+
+  // ── Watch slide changes to pin image on slide 3 ──
+  const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
-        const index = slides.indexOf(entry.target);
-        if (index !== -1) updateDots(index);
+      if (!entry.isIntersecting || entry.intersectionRatio < 0.5) return;
+      const index = slides.indexOf(entry.target);
+      if (index === -1) return;
+      updateDots(index);
+
+      if (index === PINNED_SLIDE) {
+        bgPaused = true;
+        crossfadeTo(PINNED_IMAGE);
+      } else if (bgPaused) {
+        // Resume: restore current auto image
+        bgPaused = false;
+        crossfadeTo(bgImages[bgIndex]);
       }
     });
   }, { root: pager, threshold: 0.5 });
-  slides.forEach(slide => observer.observe(slide));
+  slides.forEach(slide => slideObserver.observe(slide));
 
-  // ── Background image cycling with crossfade ──
-  const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug3.jpg"];
-  let bgIndex = 0;
-  const bgEl = document.querySelector(".pager-bg");
-  const bgEl2 = document.createElement("div");
-  bgEl2.className = "pager-bg pager-bg2";
-  bgEl2.style.cssText = "opacity:0;transition:opacity 1s ease;";
-  bgEl.parentNode.insertBefore(bgEl2, bgEl.nextSibling);
+  // ── One-slide-at-a-time swipe lock ──
+  let isScrolling = false;
+  let currentSlide = 0;
 
-  setInterval(() => {
-    bgIndex = (bgIndex + 1) % bgImages.length;
-    bgEl2.style.backgroundImage = 'url("' + bgImages[bgIndex] + '")';
-    bgEl2.style.opacity = "1";
-    setTimeout(() => {
-      bgEl.style.backgroundImage = 'url("' + bgImages[bgIndex] + '")';
-      bgEl2.style.opacity = "0";
-    }, 1000);
-  }, 5000);
+  function scrollToSlide(index, animated) {
+    if (index < 0 || index >= slides.length) return;
+    currentSlide = index;
+    updateDots(index);
+    pager.scrollTo({ left: index * window.innerWidth, behavior: animated ? "smooth" : "instant" });
+  }
+
+  let touchStartX = 0;
+  let touchStartY = 0;
+
+  pager.addEventListener("touchstart", e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  pager.addEventListener("touchend", e => {
+    if (isScrolling) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if (Math.abs(dy) > Math.abs(dx)) return; // vertical swipe, ignore
+    if (Math.abs(dx) < 40) return;           // too short
+    isScrolling = true;
+    const dir = dx < 0 ? 1 : -1;
+    scrollToSlide(currentSlide + dir, true);
+    setTimeout(() => { isScrolling = false; }, 600);
+  }, { passive: true });
 
   // ── Audio ──
   audio.src = "audio1.mp3";
@@ -93,8 +142,7 @@
     dotsContainer.classList.add("visible");
     audio.play().catch(() => {});
     // Ensure pager starts at slide 0
-    pager.scrollLeft = 0;
-    updateDots(0);
+    scrollToSlide(0, false);
   });
 
   // ── Load language strings ──
