@@ -21,6 +21,40 @@
   const audio = document.getElementById("weddingAudio");
   const slides = Array.from(pager.querySelectorAll(".slide"));
 
+  // ── Audio Autoplay Logic ──
+  audio.src = "audio1.mp3";
+  audio.load();
+  
+  // Attempt to play immediately (this works automatically on some setups/PWAs)
+  const attemptAutoplay = () => {
+    audio.play().catch(() => {
+      // Browser blocked autoplay (expected behavior). It will play on next interaction.
+    });
+  };
+  attemptAutoplay();
+
+  // Any screen interaction acts as a trigger to unlock the blocked audio
+  const unlockAudio = () => {
+    if (audio.paused) {
+      audio.play().catch(() => {});
+    }
+    // Remove listeners once audio is successfully triggered
+    document.removeEventListener("pointerdown", unlockAudio);
+    document.removeEventListener("touchstart", unlockAudio);
+  };
+  document.addEventListener("pointerdown", unlockAudio, { passive: true });
+  document.addEventListener("touchstart", unlockAudio, { passive: true });
+
+  let wasPlayingBeforeHidden = false;
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      wasPlayingBeforeHidden = !audio.paused;
+      if (!audio.paused) audio.pause();
+    } else {
+      if (wasPlayingBeforeHidden) audio.play().catch(() => {});
+    }
+  });
+
   // ── Dots ──
   slides.forEach((_, i) => {
     const dot = document.createElement("div");
@@ -37,19 +71,23 @@
     pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
   }
 
-  // ── IntersectionObserver for dots + slide-3 pinning ──
-  const PINNED_SLIDE = 3;
-  const PINNED_IMAGE = "hug3.jpg";
-
+  // ── IntersectionObserver for dots + slide pinning ──
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting || entry.intersectionRatio < 0.5) return;
       const index = slides.indexOf(entry.target);
       if (index === -1) return;
       updateDots(index);
-      if (index === PINNED_SLIDE) {
-        pauseAndPin(PINNED_IMAGE);
-      } else if (bgPaused) {
+
+      // Pin hug3.jpg to index 3 (Slide 4)
+      if (index === 3) {
+        pauseAndPin("hug3.jpg");
+      } 
+      // Pin hug4.jpg to index 4 (Slide 5)
+      else if (index === 4) {
+        pauseAndPin("hug4.jpg");
+      } 
+      else if (bgPaused) {
         resumeCycle();
       }
     });
@@ -57,11 +95,12 @@
   slides.forEach(slide => slideObserver.observe(slide));
 
   // ── Background image system ──
-  const bgImages = ["hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg"];
+  // 8 Total images starting with hug.jpg
+  const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg", "hug7.jpg"];
   let bgIndex = 0;
   let bgPaused = false;
   let bgCycleTimer = null;
-  let currentSrc = "hug.jpg"; // tracks what is currently showing
+  let currentSrc = "hug.jpg";
 
   const bgContainer = document.getElementById("bgContainer");
 
@@ -115,7 +154,7 @@
         bgIndex = (bgIndex + 1) % bgImages.length;
         if (!bgPaused) scheduleCycle();
       });
-    }, 2850); // Sped up x1.75 from 5000
+    }, 3800); // Changed from 2850 to 3800 (slowed down ~25% frequency)
   }
 
   function pauseAndPin(src) {
@@ -132,30 +171,16 @@
     });
   }
 
-  // ── Audio ──
-  audio.src = "audio1.mp3";
-  audio.load();
-  let wasPlayingBeforeHidden = false;
-
-  document.addEventListener("visibilitychange", () => {
-    if (!isStarted) return;
-    if (document.hidden) {
-      wasPlayingBeforeHidden = !audio.paused;
-      if (!audio.paused) audio.pause();
-    } else {
-      if (wasPlayingBeforeHidden) audio.play().catch(() => {});
-    }
-  });
-
   // ── Start button ──
   startButton.addEventListener("click", () => {
     isStarted = true;
     introScreen.classList.add("hidden");
     pager.classList.add("visible");
     dotsContainer.classList.add("visible");
-    audio.play().catch(() => {});
     pager.scrollLeft = 0;
     updateDots(0);
+    // Audio is already trying to play from earlier, but just in case:
+    audio.play().catch(() => {});
   });
 
   // ── Language strings ──
@@ -169,8 +194,9 @@
 
   function applyStrings(s) {
     if (!s) return;
-    startButton.textContent = s.start;
-
+    
+    // startButton text is now hardcoded in HTML as "TAP TO START", so it isn't overwritten here.
+    
     const quoteEl = document.getElementById("quote");
     let textNode = null;
     for (const n of quoteEl.childNodes) { if (n.nodeType === Node.TEXT_NODE) { textNode = n; break; } }
