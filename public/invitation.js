@@ -19,10 +19,9 @@
   const startButton = document.getElementById("startButton");
   const belovedName = document.getElementById("belovedName");
   const audio = document.getElementById("weddingAudio");
-
   const slides = Array.from(pager.querySelectorAll(".slide"));
 
-  // ── Build dots ──
+  // ── Dots ──
   slides.forEach((_, i) => {
     const dot = document.createElement("div");
     dot.className = "dot" + (i === 0 ? " active" : "");
@@ -31,93 +30,92 @@
   });
 
   function updateDots(index) {
-    dotsContainer.querySelectorAll(".dot").forEach((d, i) => {
-      d.classList.toggle("active", i === index);
-    });
+    dotsContainer.querySelectorAll(".dot").forEach((d, i) => d.classList.toggle("active", i === index));
   }
 
   function goToSlide(index) {
-    scrollToSlide(index, true);
+    pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
   }
 
-  // ── Background image cycling with slow crossfade + Ken Burns ──
-  const bgImages = ["hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg"];
-  const PINNED_SLIDE = 3;       // 0-based: 4th slide always shows hug3
+  // ── IntersectionObserver for dots + slide-3 pinning ──
+  const PINNED_SLIDE = 3;
   const PINNED_IMAGE = "hug3.jpg";
-  let bgIndex = 0;
-  let bgPaused = false;
 
-  const bgEl = document.querySelector(".pager-bg");
-  const bgEl2 = document.createElement("div");
-  bgEl2.className = "pager-bg2";
-  bgEl.parentNode.insertBefore(bgEl2, bgEl.nextSibling);
-
-  function crossfadeTo(imageUrl, onBg1Ready) {
-    bgEl2.style.backgroundImage = 'url("' + imageUrl + '")';
-    bgEl2.style.opacity = "1";
-    setTimeout(() => {
-      bgEl.style.backgroundImage = 'url("' + imageUrl + '")';
-      bgEl2.style.opacity = "0";
-      if (onBg1Ready) onBg1Ready();
-    }, 2000); // 2s fade matches CSS transition
-  }
-
-  const bgInterval = setInterval(() => {
-    if (bgPaused) return;
-    bgIndex = (bgIndex + 1) % bgImages.length;
-    crossfadeTo(bgImages[bgIndex]);
-  }, 5000);
-
-  // ── Watch slide changes to pin image on slide 3 ──
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting || entry.intersectionRatio < 0.5) return;
       const index = slides.indexOf(entry.target);
       if (index === -1) return;
       updateDots(index);
-
       if (index === PINNED_SLIDE) {
-        bgPaused = true;
-        crossfadeTo(PINNED_IMAGE);
+        pauseAndPin(PINNED_IMAGE);
       } else if (bgPaused) {
-        // Resume: restore current auto image
-        bgPaused = false;
-        crossfadeTo(bgImages[bgIndex]);
+        resumeCycle();
       }
     });
   }, { root: pager, threshold: 0.5 });
   slides.forEach(slide => slideObserver.observe(slide));
 
-  // ── One-slide-at-a-time swipe lock ──
-  let isScrolling = false;
-  let currentSlide = 0;
+  // ── Background image system ──
+  // Two layers: A (bottom) and B (top). We always fade B in over A, then swap.
+  const bgImages = ["hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg"];
+  let bgIndex = 0;
+  let bgPaused = false;
+  let bgCycleTimer = null;
+  let bgFadeTimer = null;
 
-  function scrollToSlide(index, animated) {
-    if (index < 0 || index >= slides.length) return;
-    currentSlide = index;
-    updateDots(index);
-    pager.scrollTo({ left: index * window.innerWidth, behavior: animated ? "smooth" : "instant" });
+  const bgA = document.querySelector(".pager-bg");   // starts with hug.jpg in CSS
+  const bgB = document.createElement("div");
+  bgB.className = "pager-bg2";
+  bgA.parentNode.insertBefore(bgB, bgA.nextSibling);
+
+  // Preload an image, resolve when loaded (or immediately on error)
+  function preload(src) {
+    return new Promise(resolve => {
+      const img = new Image();
+      img.onload = img.onerror = resolve;
+      img.src = src;
+    });
   }
 
-  let touchStartX = 0;
-  let touchStartY = 0;
+  // Crossfade bgA → new image. bgB fades in on top, then bgA is updated underneath, bgB fades out.
+  function crossfadeTo(src, done) {
+    clearTimeout(bgFadeTimer);
+    preload(src).then(() => {
+      bgB.style.backgroundImage = 'url("' + src + '")';
+      // Force reflow so transition fires
+      bgB.offsetHeight; // eslint-disable-line no-unused-expressions
+      bgB.style.opacity = "1";
+      bgFadeTimer = setTimeout(() => {
+        bgA.style.backgroundImage = 'url("' + src + '")';
+        bgB.style.opacity = "0";
+        if (done) done();
+      }, 2500);
+    });
+  }
 
-  pager.addEventListener("touchstart", e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
+  function scheduleCycle() {
+    clearTimeout(bgCycleTimer);
+    bgCycleTimer = setTimeout(() => {
+      if (bgPaused) return;
+      bgIndex = (bgIndex + 1) % bgImages.length;
+      crossfadeTo(bgImages[bgIndex], () => {
+        if (!bgPaused) scheduleCycle();
+      });
+    }, 5000);
+  }
 
-  pager.addEventListener("touchend", e => {
-    if (isScrolling) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dy) > Math.abs(dx)) return; // vertical swipe, ignore
-    if (Math.abs(dx) < 40) return;           // too short
-    isScrolling = true;
-    const dir = dx < 0 ? 1 : -1;
-    scrollToSlide(currentSlide + dir, true);
-    setTimeout(() => { isScrolling = false; }, 600);
-  }, { passive: true });
+  function pauseAndPin(src) {
+    bgPaused = true;
+    clearTimeout(bgCycleTimer);
+    clearTimeout(bgFadeTimer);
+    crossfadeTo(src);
+  }
+
+  function resumeCycle() {
+    bgPaused = false;
+    crossfadeTo(bgImages[bgIndex], scheduleCycle);
+  }
 
   // ── Audio ──
   audio.src = "audio1.mp3";
@@ -134,44 +132,38 @@
     }
   });
 
-  // ── Start button: hide intro, show pager ──
+  // ── Start button ──
   startButton.addEventListener("click", () => {
     isStarted = true;
     introScreen.classList.add("hidden");
     pager.classList.add("visible");
     dotsContainer.classList.add("visible");
     audio.play().catch(() => {});
-    // Ensure pager starts at slide 0
-    scrollToSlide(0, false);
+    pager.scrollLeft = 0;
+    updateDots(0);
+    // Begin bg cycling after a short delay
+    scheduleCycle();
   });
 
-  // ── Load language strings ──
+  // ── Language strings ──
   async function loadStrings(lang) {
     try {
       const res = await fetch(`/lang/${lang}.json`);
-      if (!res.ok) throw new Error("lang file not found");
+      if (!res.ok) throw new Error();
       return await res.json();
-    } catch (e) {
-      console.error(e);
-      return null;
-    }
+    } catch { return null; }
   }
 
   function applyStrings(s) {
     if (!s) return;
-
     startButton.textContent = s.start;
+
     const quoteEl = document.getElementById("quote");
-    // Set quote text as a text node before the author span
-    let quoteTextNode = null;
-    for (const node of quoteEl.childNodes) {
-      if (node.nodeType === Node.TEXT_NODE) { quoteTextNode = node; break; }
-    }
-    if (quoteTextNode) {
-      quoteTextNode.nodeValue = s.quote + " ";
-    } else {
-      quoteEl.insertBefore(document.createTextNode(s.quote + " "), quoteEl.firstChild);
-    }
+    let textNode = null;
+    for (const n of quoteEl.childNodes) { if (n.nodeType === Node.TEXT_NODE) { textNode = n; break; } }
+    if (textNode) textNode.nodeValue = s.quote + " ";
+    else quoteEl.insertBefore(document.createTextNode(s.quote + " "), quoteEl.firstChild);
+
     document.getElementById("quoteAuthor").textContent = s.quoteAuthor;
     document.getElementById("groom").textContent = s.groom;
     document.getElementById("and").textContent = s.and;
@@ -202,28 +194,18 @@
     att.options[2].text = s.formLabels.no;
     document.getElementById("submitBtn").textContent = s.formLabels.submit;
 
-    // Show / hide RSVP card
     const isValidName = sanitizedName.trim() !== "";
-    if (!isValidName) {
-      document.querySelector(".rsvp-form-card").style.display = "none";
-    }
+    if (!isValidName) document.querySelector(".rsvp-form-card").style.display = "none";
 
-    // Beloved name on intro
     if (isValidName) {
-      const nameParts = sanitizedName
-        .replace(/,/g, "&")
-        .replace(/_/g, " ")
-        .split(";");
-      const formatted = nameParts
-        .map(p => p.trim()).filter(Boolean)
-        .map(p =>
-          p.split("&").map(sub => `<span>${sub.trim()}</span>`).join("<span>&nbsp;&&nbsp;</span>")
-        ).join("<br>");
+      const nameParts = sanitizedName.replace(/,/g, "&").replace(/_/g, " ").split(";");
+      const formatted = nameParts.map(p => p.trim()).filter(Boolean)
+        .map(p => p.split("&").map(sub => `<span>${sub.trim()}</span>`).join("<span>&nbsp;&&nbsp;</span>"))
+        .join("<br>");
       belovedName.innerHTML = formatted;
       belovedName.style.visibility = "visible";
     }
 
-    // Number select
     const numberSelect = document.getElementById("number");
     if (isSingleGuest) {
       numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
@@ -239,10 +221,8 @@
       }
     }
 
-    // Show start button
     startButton.style.visibility = "visible";
 
-    // RTL
     if (lang === "ar") {
       document.documentElement.lang = "ar";
       document.documentElement.dir = "rtl";
@@ -265,11 +245,7 @@
     };
     function tick() {
       const diff = targetDate - new Date();
-      if (diff <= 0) {
-        Object.values(els).forEach(el => el.textContent = Number(0).toLocaleString(locale));
-        clearInterval(timer);
-        return;
-      }
+      if (diff <= 0) { Object.values(els).forEach(el => el.textContent = Number(0).toLocaleString(locale)); clearInterval(timer); return; }
       els.days.textContent = Number(Math.floor(diff / 86400000)).toLocaleString(locale);
       els.hours.textContent = Number(Math.floor((diff / 3600000) % 24)).toLocaleString(locale);
       els.minutes.textContent = Number(Math.floor((diff / 60000) % 60)).toLocaleString(locale);
@@ -283,33 +259,21 @@
     const attSel = document.getElementById("attendance");
     const numSel = document.getElementById("number");
     const btn = document.getElementById("submitBtn");
-
-    const formName = sanitizedName
-      .replace(/,/g, " & ")
-      .replace(/[;_]/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
+    const formName = sanitizedName.replace(/,/g, " & ").replace(/[;_]/g, " ").replace(/\s+/g, " ").trim();
 
     function validate() {
       const attOk = attSel.value === "yes" || attSel.value === "no";
       const numOk = isSingleGuest ? true : numSel.value !== "";
       if (!isSingleGuest) {
-        if (attSel.value === "yes") {
-          numSel.removeAttribute("disabled");
-        } else {
-          numSel.value = "";
-          numSel.setAttribute("disabled", "disabled");
-        }
+        if (attSel.value === "yes") numSel.removeAttribute("disabled");
+        else { numSel.value = ""; numSel.setAttribute("disabled", "disabled"); }
       }
       btn.disabled = !(attOk && (attSel.value === "no" || isSingleGuest || numOk));
     }
 
     attSel.addEventListener("change", validate);
     attSel.addEventListener("input", validate);
-    if (!isSingleGuest) {
-      numSel.addEventListener("change", validate);
-      numSel.addEventListener("input", validate);
-    }
+    if (!isSingleGuest) { numSel.addEventListener("change", validate); numSel.addEventListener("input", validate); }
 
     btn.addEventListener("click", () => {
       if (btn.disabled) return;
