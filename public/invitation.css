@@ -1,12 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&display=swap');
 
 :root {
-  --primary: #ffffff;
-  --accent: #a5b68d;
-  --accent-dark: #8b9a76;
-  --text: #333333;
-  --text-light: #ffffff;
-  --overlay: rgba(0, 0, 0, 0.45);
+  --text: #ffffff;
+  --overlay-color: rgba(0, 0, 0, 0.52);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,38 +17,108 @@ html, body {
   direction: ltr;
 }
 
-/* ── Background ── */
+/* ── Fixed background shared by intro + pager ── */
 .pager-bg {
   position: fixed;
   inset: 0;
   background: url("hug.jpg") center top / cover no-repeat;
   z-index: 0;
-  transition: opacity 0.6s ease;
 }
-
 .pager-overlay {
   position: fixed;
   inset: 0;
-  background: var(--overlay);
+  background: var(--overlay-color);
   z-index: 1;
-  transition: opacity 0.6s ease;
 }
 
-/* ── Pager container ── */
+/* ── Intro screen ── */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transition: opacity 0.5s ease;
+}
+.intro-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.beloved-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 6vw, 4rem);
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.5);
+  line-height: 1.3;
+  visibility: hidden;
+  max-width: 80vw;
+}
+
+/* ── Shared outlined button style ── */
+.outline-btn {
+  display: inline-block;
+  padding: 0.65rem 1.6rem;
+  background: transparent;
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  border-radius: 10px;
+  font-size: clamp(0.9rem, 3vw, 1rem);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+  backdrop-filter: blur(4px);
+}
+.outline-btn:active { transform: scale(0.96); background: rgba(255,255,255,0.1); }
+.outline-btn:hover { background: rgba(255,255,255,0.08); border-color: white; }
+
+/* Map buttons full width */
+a.outline-btn {
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+/* Submit button full width */
+.submit-btn {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.submit-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Pager ── */
 .pager {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 5;
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 .pager::-webkit-scrollbar { display: none; }
+.pager.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
 
-/* ── Individual slides ── */
+/* ── Slides ── */
 .slide {
   flex: 0 0 100vw;
   width: 100vw;
@@ -61,8 +127,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem 1.5rem;
-  position: relative;
+  padding: 2rem 1.5rem 4rem;
 }
 
 .slide-content {
@@ -73,78 +138,49 @@ html, body {
   gap: 1rem;
   width: 100%;
   max-width: 480px;
-  color: var(--text-light);
-}
-
-/* ── Slide: Intro ── */
-.slide-intro {
-  flex-direction: column;
-  gap: 0;
-}
-
-.beloved-name {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 5vw, 3.5rem);
   color: white;
-  text-align: center;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  line-height: 1.3;
-  visibility: hidden;
-  max-width: 80vw;
 }
 
-.start-btn {
-  visibility: hidden;
-  margin-top: 2rem;
-  background: rgba(0,0,0,0.45);
-  color: white;
-  border: 2px solid rgba(255,255,255,0.6);
-  padding: 0.65rem 1.4rem;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  cursor: pointer;
-  backdrop-filter: blur(4px);
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s, transform 0.1s;
-}
-.start-btn:active { transform: scale(0.95); background: rgba(0,0,0,0.65); }
-
-/* ── Quote slide ── */
+/* ── Quote ── */
 blockquote {
   font-family: 'Playfair Display', serif;
   font-style: italic;
   font-size: clamp(1.1rem, 4.5vw, 1.6rem);
-  line-height: 1.55;
+  line-height: 1.6;
   color: white;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
 }
 #quoteAuthor {
   display: block;
-  margin-top: 0.6rem;
+  margin-top: 0.65rem;
   font-size: 0.82em;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 /* ── Hosts ── */
 .hosts-label {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  color: var(--accent);
-  line-height: 1.7;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  opacity: 0.75;
+  line-height: 1.8;
 }
-.invitation-text {
-  font-size: clamp(0.9rem, 3vw, 1.05rem);
+.body-text {
+  font-size: clamp(0.88rem, 3vw, 1.05rem);
   line-height: 1.65;
-  opacity: 0.92;
+  opacity: 0.9;
+}
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.65;
 }
 
-/* ── Names & Date ── */
+/* ── Names ── */
 .couple-names {
   display: flex;
   flex-direction: row;
@@ -157,30 +193,29 @@ blockquote {
 .couple-names .name,
 .couple-names .amp {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.2rem, 8vw, 5rem);
-  color: var(--accent);
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  font-size: clamp(2.4rem, 9vw, 5.5rem);
+  color: white;
+  text-shadow: 0 2px 16px rgba(0,0,0,0.4);
   line-height: 1;
 }
 .wedding-date {
-  font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+  font-size: clamp(0.88rem, 3.5vw, 1.15rem);
   font-weight: 500;
-  margin-top: 0.5rem;
-  opacity: 0.9;
+  opacity: 0.88;
 }
 
 /* ── Countdown ── */
 .countdown {
   display: flex;
   gap: 0.6rem;
-  margin-top: 0.5rem;
   justify-content: center;
 }
 .countdown .box {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
   backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.2);
   border-radius: 8px;
-  padding: 0.5rem 0.7rem;
+  padding: 0.5rem 0.75rem;
   display: flex;
   align-items: baseline;
   gap: 0.15rem;
@@ -188,85 +223,49 @@ blockquote {
 .countdown .num {
   font-size: clamp(1.8rem, 6vw, 2.8rem);
   font-weight: 700;
-  color: var(--accent);
+  color: white;
   line-height: 1;
 }
 .countdown .lbl {
   font-size: 0.7rem;
-  opacity: 0.8;
-}
-
-/* ── Image slide ── */
-.slide-image { padding: 0; }
-.full-slide-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ── Location ── */
-.time-text {
-  font-size: clamp(0.9rem, 3vw, 1.05rem);
-  opacity: 0.85;
-}
-.reception-label {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
   opacity: 0.7;
 }
-.map-btn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem 1rem;
-  background: var(--accent);
-  color: white;
-  text-align: center;
-  border-radius: 10px;
-  text-decoration: none;
+
+/* ── Headings ── */
+h2 {
+  font-size: clamp(1.2rem, 5vw, 1.8rem);
   font-weight: 600;
-  font-size: clamp(0.85rem, 3vw, 0.95rem);
-  font-family: "Montserrat", sans-serif;
-  margin-top: 0.5rem;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s, transform 0.1s;
+  color: white;
 }
-.map-btn:active { transform: scale(0.97); background: var(--accent-dark); }
+h3 {
+  font-size: clamp(1rem, 4vw, 1.45rem);
+  font-weight: 600;
+  color: white;
+}
 
 /* ── Gift ── */
-.gift-desc {
-  font-size: clamp(0.85rem, 3vw, 1rem);
-  line-height: 1.6;
-  opacity: 0.88;
-}
 .account-num {
   font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--accent);
+  font-size: 1rem;
   letter-spacing: 0.04em;
+  opacity: 0.9;
 }
 
 /* ── RSVP ── */
-.rsvp-slide { gap: 0.75rem; }
 .rsvp-form-card {
   width: 100%;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 14px;
-  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 .rsvp-form-card label {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: white;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
   text-align: left;
+  opacity: 0.85;
 }
 [dir="rtl"] .rsvp-form-card label { text-align: right; }
 
@@ -276,51 +275,26 @@ blockquote {
   padding: 0.65rem 2rem 0.65rem 0.9rem;
   font-size: clamp(0.85rem, 3vw, 0.95rem);
   font-family: "Montserrat", sans-serif;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1.5px solid rgba(255,255,255,0.5);
   border-radius: 8px;
-  background: rgba(255,255,255,0.1) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 1rem;
+  background: rgba(255,255,255,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E") no-repeat right 0.75rem center / 1rem;
   color: white;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(4px);
 }
-.rsvp-form-card select option { color: var(--text); background: white; }
-.rsvp-form-card select:focus { outline: none; border-color: var(--accent); }
+.rsvp-form-card select option { color: #333; background: white; }
+.rsvp-form-card select:focus { outline: none; border-color: white; }
 .rsvp-form-card select:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 1rem;
 }
-.rsvp-form-card select.single-guest {
-  background-image: none;
-  cursor: default;
-}
+.rsvp-form-card select.single-guest { background-image: none; cursor: default; }
 [dir="rtl"] .rsvp-form-card select {
   background-position: left 0.75rem center;
   padding: 0.65rem 0.9rem 0.65rem 2rem;
 }
-
-.rsvp-form-card button {
-  width: 100%;
-  padding: 0.75rem;
-  font-size: clamp(0.9rem, 3vw, 1rem);
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  color: white;
-  background: var(--accent);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 0.25rem;
-  -webkit-tap-highlight-color: transparent;
-  transition: background 0.2s, transform 0.1s;
-}
-.rsvp-form-card button:active { transform: scale(0.97); }
-.rsvp-form-card button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-.rsvp-form-card button:hover:not(:disabled) { background: var(--accent-dark); }
 
 /* ── Dot indicators ── */
 .pager-dots {
@@ -328,24 +302,27 @@ blockquote {
   bottom: 1.2rem;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 10;
+  z-index: 20;
   display: flex;
   gap: 0.45rem;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
+.pager-dots.visible { opacity: 1; }
 .pager-dots .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.35);
   transition: background 0.3s, transform 0.3s;
   cursor: pointer;
 }
 .pager-dots .dot.active {
-  background: var(--accent);
-  transform: scale(1.4);
+  background: white;
+  transform: scale(1.5);
 }
 
 @media (min-width: 600px) {
-  .slide { padding: 2.5rem 2rem; }
+  .slide { padding: 2.5rem 2rem 5rem; }
   .slide-content { max-width: 520px; }
 }

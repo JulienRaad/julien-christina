@@ -14,11 +14,13 @@
   const sanitizedName = rawName.trim().replace(/[<>"]/g, "");
 
   const pager = document.getElementById("pager");
-  const slides = Array.from(pager.querySelectorAll(".slide"));
+  const introScreen = document.getElementById("introScreen");
   const dotsContainer = document.getElementById("pagerDots");
   const startButton = document.getElementById("startButton");
   const belovedName = document.getElementById("belovedName");
   const audio = document.getElementById("weddingAudio");
+
+  const slides = Array.from(pager.querySelectorAll(".slide"));
 
   // ── Build dots ──
   slides.forEach((_, i) => {
@@ -38,7 +40,6 @@
     pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
   }
 
-  // Track current slide via scroll
   let scrollTimer;
   pager.addEventListener("scroll", () => {
     clearTimeout(scrollTimer);
@@ -48,7 +49,7 @@
     }, 80);
   }, { passive: true });
 
-  // ── Audio & visibility ──
+  // ── Audio ──
   audio.src = "audio1.mp3";
   audio.load();
   let wasPlayingBeforeHidden = false;
@@ -63,17 +64,19 @@
     }
   });
 
-  // ── Start button ──
+  // ── Start button: hide intro, show pager ──
   startButton.addEventListener("click", () => {
     isStarted = true;
-    startButton.style.display = "none";
-    belovedName.style.display = "none";
-    document.querySelector(".pager-overlay").style.opacity = "0.25";
+    introScreen.classList.add("hidden");
+    pager.classList.add("visible");
+    dotsContainer.classList.add("visible");
     audio.play().catch(() => {});
-    goToSlide(1);
+    // Ensure pager starts at slide 0
+    pager.scrollLeft = 0;
+    updateDots(0);
   });
 
-  // ── Language strings ──
+  // ── Load language strings ──
   async function loadStrings(lang) {
     try {
       const res = await fetch(`/lang/${lang}.json`);
@@ -120,13 +123,13 @@
     att.options[2].text = s.formLabels.no;
     document.getElementById("submitBtn").textContent = s.formLabels.submit;
 
-    // Show / hide RSVP
+    // Show / hide RSVP card
     const isValidName = sanitizedName.trim() !== "";
     if (!isValidName) {
       document.querySelector(".rsvp-form-card").style.display = "none";
     }
 
-    // Show beloved name
+    // Beloved name on intro
     if (isValidName) {
       const nameParts = sanitizedName
         .replace(/,/g, "&")
@@ -141,7 +144,7 @@
       belovedName.style.visibility = "visible";
     }
 
-    // Guest number select
+    // Number select
     const numberSelect = document.getElementById("number");
     if (isSingleGuest) {
       numberSelect.innerHTML = `<option value="1" selected>${Number(1).toLocaleString(locale)}</option>`;
@@ -160,7 +163,7 @@
     // Show start button
     startButton.style.visibility = "visible";
 
-    // RTL support
+    // RTL
     if (lang === "ar") {
       document.documentElement.lang = "ar";
       document.documentElement.dir = "rtl";
@@ -175,22 +178,23 @@
   }
 
   function startCountdown(targetDate) {
-    const daysEl = document.getElementById("days");
-    const hoursEl = document.getElementById("hours");
-    const minutesEl = document.getElementById("minutes");
-    const secondsEl = document.getElementById("seconds");
-
+    const els = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds"),
+    };
     function tick() {
       const diff = targetDate - new Date();
       if (diff <= 0) {
-        [daysEl, hoursEl, minutesEl, secondsEl].forEach(el => el.textContent = Number(0).toLocaleString(locale));
+        Object.values(els).forEach(el => el.textContent = Number(0).toLocaleString(locale));
         clearInterval(timer);
         return;
       }
-      daysEl.textContent = Number(Math.floor(diff / 86400000)).toLocaleString(locale);
-      hoursEl.textContent = Number(Math.floor((diff / 3600000) % 24)).toLocaleString(locale);
-      minutesEl.textContent = Number(Math.floor((diff / 60000) % 60)).toLocaleString(locale);
-      secondsEl.textContent = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
+      els.days.textContent = Number(Math.floor(diff / 86400000)).toLocaleString(locale);
+      els.hours.textContent = Number(Math.floor((diff / 3600000) % 24)).toLocaleString(locale);
+      els.minutes.textContent = Number(Math.floor((diff / 60000) % 60)).toLocaleString(locale);
+      els.seconds.textContent = Number(Math.floor((diff / 1000) % 60)).toLocaleString(locale);
     }
     tick();
     const timer = setInterval(tick, 1000);

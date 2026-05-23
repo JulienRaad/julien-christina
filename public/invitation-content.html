@@ -1,31 +1,32 @@
-<!-- Slide 1: Intro with background -->
+<!-- Fixed background -->
 <div class="pager-bg"></div>
 <div class="pager-overlay"></div>
 
+<!-- Intro screen (separate from pager) -->
+<div class="intro-screen" id="introScreen">
+  <p class="beloved-name" id="belovedName"></p>
+  <button class="outline-btn" id="startButton"></button>
+</div>
+
+<!-- Pager (hidden until started) -->
 <div class="pager" id="pager">
 
-  <!-- Slide 1: Start -->
-  <div class="slide slide-intro" id="slide-intro">
-    <p class="beloved-name" id="belovedName"></p>
-    <button class="start-btn" id="startButton"></button>
-  </div>
-
-  <!-- Slide 2: Quote -->
+  <!-- Slide 1: Quote -->
   <div class="slide">
     <div class="slide-content">
       <blockquote id="quote"><span id="quoteAuthor"></span></blockquote>
     </div>
   </div>
 
-  <!-- Slide 3: Hosts & Invitation -->
+  <!-- Slide 2: Hosts & Invitation -->
   <div class="slide">
     <div class="slide-content">
       <p class="hosts-label" id="hosts"></p>
-      <p class="invitation-text" id="invitationText"></p>
+      <p class="body-text" id="invitationText"></p>
     </div>
   </div>
 
-  <!-- Slide 4: Names & Date & Countdown -->
+  <!-- Slide 3: Names, Date & Countdown -->
   <div class="slide">
     <div class="slide-content">
       <h1 class="couple-names">
@@ -43,42 +44,37 @@
     </div>
   </div>
 
-  <!-- Slide 5: Hands image -->
-  <div class="slide slide-image">
-    <img src="hands.jpg" alt="Rings" class="full-slide-image" />
-  </div>
-
-  <!-- Slide 6: Church location -->
+  <!-- Slide 4: Church location -->
   <div class="slide">
     <div class="slide-content">
       <h2 id="locationTitle"></h2>
-      <p class="time-text" id="time"></p>
-      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJr33WMqA5HxUR6q79hqMiWiE%20VMMX+XVX&destination=Mar%20Abda%20Church%20qannabe,%20VMMX+XVX,%20Bsefrine,%20Lebanon" target="_blank" id="locationMap" class="map-btn"></a>
+      <p class="body-text" id="time"></p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJr33WMqA5HxUR6q79hqMiWiE%20VMMX+XVX&destination=Mar%20Abda%20Church%20qannabe,%20VMMX+XVX,%20Bsefrine,%20Lebanon" target="_blank" id="locationMap" class="outline-btn"></a>
     </div>
   </div>
 
-  <!-- Slide 7: Reception location -->
+  <!-- Slide 5: Reception location -->
   <div class="slide">
     <div class="slide-content">
-      <p class="reception-label" id="reception"></p>
+      <p class="section-label" id="reception"></p>
       <h2 id="locationTitle2"></h2>
-      <p class="time-text" id="time2"></p>
-      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJz5CPuJg5HxURSi3Rf8Rh2hw&destination=VPJ3+PF6%20Level%20River%D8%8C%20%D8%B5%D8%A7%D9%84%D9%8A%D9%85%D8%A7%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82,%20Salima,%20Lebanon" target="_blank" id="locationMap2" class="map-btn"></a>
+      <p class="body-text" id="time2"></p>
+      <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJz5CPuJg5HxURSi3Rf8Rh2hw&destination=VPJ3+PF6%20Level%20River%D8%8C%20%D8%B5%D8%A7%D9%84%D9%8A%D9%85%D8%A7%D8%8C%20%D8%B7%D8%B1%D9%8A%D9%82,%20Salima,%20Lebanon" target="_blank" id="locationMap2" class="outline-btn"></a>
     </div>
   </div>
 
-  <!-- Slide 8: Gift Registry -->
+  <!-- Slide 6: Gift Registry -->
   <div class="slide">
     <div class="slide-content">
       <h3 id="giftRegistryTitle"></h3>
-      <p class="gift-desc" id="giftRegistryDesc"></p>
+      <p class="body-text" id="giftRegistryDesc"></p>
       <p class="account-num" id="accountNumber"></p>
     </div>
   </div>
 
-  <!-- Slide 9: RSVP -->
+  <!-- Slide 7: RSVP -->
   <div class="slide">
-    <div class="slide-content rsvp-slide">
+    <div class="slide-content">
       <h3 id="rsvpTitle"></h3>
       <div class="rsvp-form-card">
         <label for="attendance" id="attendanceLabel"></label>
@@ -87,13 +83,11 @@
           <option value="yes"></option>
           <option value="no"></option>
         </select>
-
         <label for="number" id="numberLabel"></label>
         <select id="number" required>
           <option value="" disabled selected></option>
         </select>
-
-        <button type="button" id="submitBtn" disabled></button>
+        <button type="button" id="submitBtn" disabled class="outline-btn submit-btn"></button>
       </div>
     </div>
   </div>
