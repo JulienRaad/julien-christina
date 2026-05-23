@@ -1,4 +1,5 @@
     let isStarted = false;
+    let currentPage = 0; // Start at page 0 (first page)
     const supportedLangs = ["en", "ar"];
     const urlParams = new URLSearchParams(window.location.search);
     const parsedUrl = new URL(window.location.href);
@@ -17,10 +18,73 @@
 
     const startButton = document.getElementById("startButton");
     const belovedName = document.getElementById("belovedName");
+    const pagerContainer = document.getElementById("pager");
+
+    // Swipe detection variables
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let isScrolling = false;
+
+    function scrollToPage(pageIndex) {
+        const pagerContainer = document.getElementById("pager");
+        const pageWidth = window.innerWidth;
+        const scrollPosition = pageIndex * pageWidth;
+        pagerContainer.scrollLeft = scrollPosition;
+        currentPage = pageIndex;
+    }
+
+    function handleSwipe() {
+        const diff = touchStartX - touchEndX;
+        const threshold = 50; // Minimum distance for swipe
+
+        if (Math.abs(diff) > threshold && !isScrolling) {
+            if (diff > 0) {
+                // Swiped left - go to next page
+                const nextPage = Math.min(currentPage + 1, 4); // 5 pages (0-4)
+                scrollToPage(nextPage);
+            } else {
+                // Swiped right - go to previous page
+                const prevPage = Math.max(currentPage - 1, 0);
+                scrollToPage(prevPage);
+            }
+        }
+    }
+
+    // Touch event listeners for swipe
+    if (pagerContainer) {
+        pagerContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isScrolling = false;
+        }, false);
+
+        pagerContainer.addEventListener('touchmove', (e) => {
+            // Detect if user is scrolling vertically
+            if (e.touches.length > 1 || e.scale && e.scale !== 1) return;
+            
+            const moveX = e.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(moveX) > 5) {
+                isScrolling = true;
+            }
+        }, false);
+
+        pagerContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' && currentPage < 4) {
+                scrollToPage(currentPage + 1);
+            } else if (e.key === 'ArrowLeft' && currentPage > 0) {
+                scrollToPage(currentPage - 1);
+            }
+        });
+    }
 
     async function loadStrings(lang = "en") {
         try {
-            const response = await fetch(`/lang/${lang}.json`);
+            const response = await fetch(`./lang/${lang}.json`);
             if (!response.ok) throw new Error("Failed to load language file");
             return await response.json();
         } catch (error) {
@@ -210,7 +274,7 @@
         validate();
     }
 
-    const introSlide = document.querySelector(".intro-slide");
+    const introSlide = document.querySelector(".page-1.intro-slide");
     const audio = document.getElementById("weddingAudio");
     audio.src = `audio1.mp3`;
     audio.load();
@@ -220,24 +284,23 @@ if (!isStarted){
 document.body.classList.add("no-scroll");
 }
 startButton.addEventListener("click", () => {
-document.body.classList.remove("no-scroll");
-introSlide.classList.add('dimmed-off'); // Remove dimming
+    document.body.classList.remove("no-scroll");
+    if (introSlide) {
+        introSlide.classList.add('dimmed-off'); // Remove dimming
+    }
     audio
         .play()
         .catch((err) => {
             console.warn("Autoplay blocked:", err);
         })
         .finally(() => {
-        console.log("Attempted to play audio, success or fail.");
-         window.scrollBy({
-                top: window.innerHeight / 3,
-                behavior: "smooth"
-            });
+            console.log("Attempted to play audio, success or fail.");
+            // Transition to next page
+            scrollToPage(1);
             isStarted = true;
             startButton.remove();
             belovedName.style.display = "none";
         });
-;
 });
 
     document.addEventListener("visibilitychange", () => {
