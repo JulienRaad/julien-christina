@@ -192,10 +192,9 @@ blockquote {
 /* ── Hosts ── */
 .hosts-label {
   text-transform: uppercase;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font-weight: 800;
+  font-size: 1rem;
   letter-spacing: 0.1em;
-  opacity: 0.75;
   line-height: 1.8;
 }
 .body-text {
