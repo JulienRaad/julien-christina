@@ -31,6 +31,15 @@ html, body {
   z-index: 1;
 }
 
+/* Second bg layer for crossfade cycling */
+.pager-bg2 {
+  position: fixed;
+  inset: 0;
+  background: center top / cover no-repeat;
+  z-index: 0;
+  transition: opacity 1s ease;
+}
+
 /* ── Intro screen ── */
 .intro-screen {
   position: fixed;

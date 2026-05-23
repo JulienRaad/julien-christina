@@ -40,14 +40,35 @@
     pager.scrollTo({ left: index * window.innerWidth, behavior: "smooth" });
   }
 
-  let scrollTimer;
-  pager.addEventListener("scroll", () => {
-    clearTimeout(scrollTimer);
-    scrollTimer = setTimeout(() => {
-      const index = Math.round(pager.scrollLeft / window.innerWidth);
-      updateDots(index);
-    }, 80);
-  }, { passive: true });
+  // ── Instant dot update via IntersectionObserver ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+        const index = slides.indexOf(entry.target);
+        if (index !== -1) updateDots(index);
+      }
+    });
+  }, { root: pager, threshold: 0.5 });
+  slides.forEach(slide => observer.observe(slide));
+
+  // ── Background image cycling with crossfade ──
+  const bgImages = ["hug.jpg", "hug1.jpg", "hug2.jpg", "hug3.jpg"];
+  let bgIndex = 0;
+  const bgEl = document.querySelector(".pager-bg");
+  const bgEl2 = document.createElement("div");
+  bgEl2.className = "pager-bg pager-bg2";
+  bgEl2.style.cssText = "opacity:0;transition:opacity 1s ease;";
+  bgEl.parentNode.insertBefore(bgEl2, bgEl.nextSibling);
+
+  setInterval(() => {
+    bgIndex = (bgIndex + 1) % bgImages.length;
+    bgEl2.style.backgroundImage = 'url("' + bgImages[bgIndex] + '")';
+    bgEl2.style.opacity = "1";
+    setTimeout(() => {
+      bgEl.style.backgroundImage = 'url("' + bgImages[bgIndex] + '")';
+      bgEl2.style.opacity = "0";
+    }, 1000);
+  }, 5000);
 
   // ── Audio ──
   audio.src = "audio1.mp3";
@@ -92,7 +113,17 @@
     if (!s) return;
 
     startButton.textContent = s.start;
-    document.getElementById("quote").childNodes[0].nodeValue = s.quote + " ";
+    const quoteEl = document.getElementById("quote");
+    // Set quote text as a text node before the author span
+    let quoteTextNode = null;
+    for (const node of quoteEl.childNodes) {
+      if (node.nodeType === Node.TEXT_NODE) { quoteTextNode = node; break; }
+    }
+    if (quoteTextNode) {
+      quoteTextNode.nodeValue = s.quote + " ";
+    } else {
+      quoteEl.insertBefore(document.createTextNode(s.quote + " "), quoteEl.firstChild);
+    }
     document.getElementById("quoteAuthor").textContent = s.quoteAuthor;
     document.getElementById("groom").textContent = s.groom;
     document.getElementById("and").textContent = s.and;
