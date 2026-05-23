@@ -20,9 +20,9 @@ html, body {
 /* ── Fixed background shared by intro + pager ── */
 .pager-bg-container {
   position: fixed;
-  inset: -15%;
+  inset: -2%; /* Reduced drastically so the image is no longer heavily cropped from the start */
   will-change: transform;
-  animation: kenburns 12s linear infinite alternate; 
+  animation: kenburns 15s ease-in-out infinite alternate; /* Smoother turnarounds */
   z-index: 0;
 }
 
@@ -35,10 +35,10 @@ html, body {
   will-change: opacity;
 }
 
-/* Halved the scale-in distance from 1.25 to 1.125 */
+/* Very gentle scale to give it life without aggressive zooming */
 @keyframes kenburns {
   0%   { transform: scale(1.0); }
-  100% { transform: scale(1.125); }
+  100% { transform: scale(1.1); }
 }
 
 .pager-overlay {
@@ -192,9 +192,10 @@ blockquote {
 /* ── Hosts ── */
 .hosts-label {
   text-transform: uppercase;
-  font-weight: 800;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
+  opacity: 0.75;
   line-height: 1.8;
 }
 .body-text {
