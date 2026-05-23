@@ -57,19 +57,21 @@
   slides.forEach(slide => slideObserver.observe(slide));
 
   // ── Background image system ──
-  // Two layers: A (bottom) and B (top). We always fade B in over A, then swap.
+  // Two permanent layers always present. bgA is always visible (Ken Burns).
+  // bgB sits on top and fades in to show a new image, then fades back out
+  // leaving bgA showing the same image — so bgA never jumps.
   const bgImages = ["hug1.jpg", "hug2.jpg", "hug3.jpg", "hug4.jpg", "hug5.jpg", "hug6.jpg"];
   let bgIndex = 0;
   let bgPaused = false;
   let bgCycleTimer = null;
   let bgFadeTimer = null;
+  let currentSrc = "hug.jpg"; // tracks what is currently showing
 
-  const bgA = document.querySelector(".pager-bg");   // starts with hug.jpg in CSS
+  const bgA = document.querySelector(".pager-bg");
   const bgB = document.createElement("div");
   bgB.className = "pager-bg2";
   bgA.parentNode.insertBefore(bgB, bgA.nextSibling);
 
-  // Preload an image, resolve when loaded (or immediately on error)
   function preload(src) {
     return new Promise(resolve => {
       const img = new Image();
@@ -78,18 +80,29 @@
     });
   }
 
-  // Crossfade bgA → new image. bgB fades in on top, then bgA is updated underneath, bgB fades out.
+  // Fade bgB in with new image, sync bgA silently, fade bgB out — bgA never visibly changes
   function crossfadeTo(src, done) {
+    if (src === currentSrc) { if (done) done(); return; }
     clearTimeout(bgFadeTimer);
     preload(src).then(() => {
+      // Set new image on bgB and fade it in over bgA
+      bgB.style.transition = "none";
       bgB.style.backgroundImage = 'url("' + src + '")';
-      // Force reflow so transition fires
-      bgB.offsetHeight; // eslint-disable-line no-unused-expressions
+      bgB.style.opacity = "0";
+      bgB.offsetHeight; // force reflow
+      bgB.style.transition = "opacity 2.5s ease";
       bgB.style.opacity = "1";
+
       bgFadeTimer = setTimeout(() => {
+        // bgB is now fully visible — silently update bgA to same image
         bgA.style.backgroundImage = 'url("' + src + '")';
+        currentSrc = src;
+        // Now fade bgB back out (bgA shows same image underneath — seamless)
+        bgB.style.transition = "opacity 2.5s ease";
         bgB.style.opacity = "0";
-        if (done) done();
+        bgFadeTimer = setTimeout(() => {
+          if (done) done();
+        }, 2500);
       }, 2500);
     });
   }
@@ -109,11 +122,14 @@
     bgPaused = true;
     clearTimeout(bgCycleTimer);
     clearTimeout(bgFadeTimer);
+    bgB.style.opacity = "0"; // abort any in-progress fade
     crossfadeTo(src);
   }
 
   function resumeCycle() {
     bgPaused = false;
+    clearTimeout(bgFadeTimer);
+    bgB.style.opacity = "0";
     crossfadeTo(bgImages[bgIndex], scheduleCycle);
   }
 
