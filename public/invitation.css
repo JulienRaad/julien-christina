@@ -20,7 +20,7 @@ html, body {
 /* ── Fixed background shared by intro + pager ── */
 .pager-bg-container {
   position: fixed;
-  inset: -15%; /* Extra inset needed for stronger scaling so edges don't show */
+  inset: -15%;
   will-change: transform;
   animation: kenburns 12s linear infinite alternate; 
   z-index: 0;
@@ -35,10 +35,10 @@ html, body {
   will-change: opacity;
 }
 
-/* Noticeably stronger scaling drift */
+/* Halved the scale-in distance from 1.25 to 1.125 */
 @keyframes kenburns {
   0%   { transform: scale(1.0); }
-  100% { transform: scale(1.25); }
+  100% { transform: scale(1.125); }
 }
 
 .pager-overlay {
@@ -65,20 +65,9 @@ html, body {
   pointer-events: none;
 }
 
-.intro-invite-text {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-size: clamp(1.5rem, 6.25vw, 2.25rem); /* +25% */
-  color: white;
-  text-align: center;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
-  padding: 0 1rem;
-  margin-bottom: -0.5rem;
-}
-
 .beloved-name {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.25rem, 7.5vw, 5rem); /* +25% */
+  font-size: clamp(2.25rem, 7.5vw, 5rem);
   color: white;
   text-align: center;
   text-shadow: 0 2px 16px rgba(0,0,0,0.5);
@@ -86,6 +75,17 @@ html, body {
   visibility: hidden;
   max-width: 80vw;
   margin-bottom: 0.5rem;
+}
+
+.intro-invite-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(1.5rem, 6.25vw, 2.25rem);
+  color: white;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  padding: 0 1rem;
+  margin-bottom: -0.5rem;
 }
 
 /* ── Shared outlined button style ── */
@@ -96,7 +96,7 @@ html, body {
   color: white;
   border: 2px solid rgba(255, 255, 255, 0.75);
   border-radius: 10px;
-  font-size: clamp(1.125rem, 3.75vw, 1.25rem); /* +25% */
+  font-size: clamp(1.125rem, 3.75vw, 1.25rem);
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
   cursor: pointer;
@@ -167,7 +167,7 @@ a.outline-btn {
   text-align: center;
   gap: 1.25rem;
   width: 100%;
-  max-width: 600px; /* Increased to accommodate larger text */
+  max-width: 600px;
   color: white;
 }
 
@@ -175,7 +175,7 @@ a.outline-btn {
 blockquote {
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: clamp(1.375rem, 5.625vw, 2rem); /* +25% */
+  font-size: clamp(1.375rem, 5.625vw, 2rem);
   line-height: 1.6;
   color: white;
   text-shadow: 0 1px 8px rgba(0,0,0,0.4);
@@ -183,7 +183,7 @@ blockquote {
 #quoteAuthor {
   display: block;
   margin-top: 0.65rem;
-  font-size: 1.025em; /* +25% */
+  font-size: 1.025em;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   opacity: 0.7;
@@ -193,18 +193,18 @@ blockquote {
 .hosts-label {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 0.9rem; /* +25% */
+  font-size: 0.9rem;
   letter-spacing: 0.1em;
   opacity: 0.75;
   line-height: 1.8;
 }
 .body-text {
-  font-size: clamp(1.1rem, 3.75vw, 1.3125rem); /* +25% */
+  font-size: clamp(1.1rem, 3.75vw, 1.3125rem);
   line-height: 1.65;
   opacity: 0.9;
 }
 .section-label {
-  font-size: 0.9375rem; /* +25% */
+  font-size: 0.9375rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   opacity: 0.65;
@@ -223,18 +223,18 @@ blockquote {
 .couple-names .name,
 .couple-names .amp {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 11.25vw, 6.875rem); /* +25% */
+  font-size: clamp(3rem, 11.25vw, 6.875rem);
   color: white;
   text-shadow: 0 2px 16px rgba(0,0,0,0.4);
   line-height: 1;
 }
 .wedding-date {
-  font-size: clamp(1.1rem, 4.375vw, 1.4375rem); /* +25% */
+  font-size: clamp(1.1rem, 4.375vw, 1.4375rem);
   font-weight: 500;
   opacity: 0.88;
 }
 
-/* ── Countdown (Sizes Unchanged) ── */
+/* ── Countdown ── */
 .countdown {
   display: flex;
   gap: 0.6rem;
@@ -263,12 +263,12 @@ blockquote {
 
 /* ── Headings ── */
 h2 {
-  font-size: clamp(1.5rem, 6.25vw, 2.25rem); /* +25% */
+  font-size: clamp(1.5rem, 6.25vw, 2.25rem);
   font-weight: 600;
   color: white;
 }
 h3 {
-  font-size: clamp(1.25rem, 5vw, 1.8125rem); /* +25% */
+  font-size: clamp(1.25rem, 5vw, 1.8125rem);
   font-weight: 600;
   color: white;
 }
@@ -276,7 +276,7 @@ h3 {
 /* ── Gift ── */
 .account-num {
   font-weight: 700;
-  font-size: 1.25rem; /* +25% */
+  font-size: 1.25rem;
   letter-spacing: 0.04em;
   opacity: 0.9;
 }
@@ -290,7 +290,7 @@ h3 {
 }
 .rsvp-form-card label {
   display: block;
-  font-size: 1rem; /* +25% */
+  font-size: 1rem;
   font-weight: 600;
   color: white;
   margin-bottom: 0.35rem;
@@ -303,7 +303,7 @@ h3 {
   appearance: none;
   width: 100%;
   padding: 0.65rem 2rem 0.65rem 0.9rem;
-  font-size: clamp(1.0625rem, 3.75vw, 1.1875rem); /* +25% */
+  font-size: clamp(1.0625rem, 3.75vw, 1.1875rem);
   font-family: "Montserrat", sans-serif;
   border: 1.5px solid rgba(255,255,255,0.5);
   border-radius: 8px;
