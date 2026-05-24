@@ -70,7 +70,7 @@ const guests = [
     { id: 63, name: "Yara Kordahi", allowed: 1 },
     { id: 64, name: "Karam & Remie", allowed: 2 },
     { id: 65, name: "Ali Zaid", allowed: 1 },
-    { id: 66, name: "Hanna Dib & Family", allowed: 4 },
+    { id: 66, name: "Hanna Dib & Family", allowed: 3 },
     { id: 67, name: "Joseph Dib & Family", allowed: 3 },
     { id: 68, name: "Jad Dib & Family", allowed: 4 },
     { id: 69, name: "Georges Rahme & Family", allowed: 4 },
@@ -148,6 +148,7 @@ const guests = [
     { id: 141, name: "Jack & Tatiana Antoun", allowed: 2 },
     { id: 142, name: "Marie Moussa", allowed: 4 },
     { id: 143, name: "Elie & Marie Ghanem", allowed: 2 },
+    { id: 144, name: "Miled Dib", allowed: 1 },
   ];
 
   const guestId = parseInt(urlParams.get("id"));
