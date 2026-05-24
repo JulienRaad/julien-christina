@@ -7,7 +7,7 @@
   const lang = (parsedLang && supportedLangs.includes(parsedLang)) ? parsedLang : "en";
   const locale = lang === "ar" ? "ar-lb" : lang;
 
-let guests = [
+const guests = [
     { id: 1, name: "Emile Abou Samra & Family", allowed: 3 },
     { id: 2, name: "Nagham Haddad", allowed: 1 },
     { id: 3, name: "Antoine Abou Samra & Family", allowed: 4 },
