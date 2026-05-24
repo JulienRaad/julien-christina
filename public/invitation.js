@@ -4,14 +4,18 @@
   const parsedLang = new URL(window.location.href).pathname.split('/')[1];
   const lang = supportedLangs.includes(parsedLang) ? parsedLang : "en";
   const urlParams = new URLSearchParams(window.location.search);
-  const id = parseInt(urlParams.get("id")) || 1;
-  const validatedId = isNaN(id) ? 1 : id;
+  const referrer = urlParams.get("referrer");
   const locale = lang === "ar" ? "ar-lb" : lang;
-  const maxGuests = parseInt(urlParams.get("for")) || 5;
-  const validatedMaxGuests = isNaN(maxGuests) || maxGuests < 1 ? 5 : Math.min(maxGuests, 5);
-  const isSingleGuest = validatedMaxGuests === 1;
-  const rawName = urlParams.get("name") || "";
-  const sanitizedName = rawName.trim().replace(/[<>"]/g, "");
+
+  const guests = [
+    { id: 1, name: "Julien & Christina Raad", allowed: 2 },
+  ];
+
+  const guestId = parseInt(urlParams.get("id"));
+  const guest = guests.find(g => g.id === guestId) ?? null;
+  const guestName = guest?.name ?? "";
+  const guestsNumber = guest?.allowed ?? 0;
+  const isSingleGuest = guestsNumber === 1;
 
   const pager = document.getElementById("pager");
   const introScreen = document.getElementById("introScreen");
@@ -53,7 +57,6 @@
 
   // ── Instagram-Style Slide Navigation ──
   pager.addEventListener("click", (e) => {
-    // Prevent triggering slide change if user is interacting with links, buttons, inputs, OR trying to copy the account number
     if (e.target.closest("button, a, select, input, label, .rsvp-form-card, .dot, .account-num")) {
       return;
     }
@@ -62,7 +65,6 @@
     const screenWidth = window.innerWidth;
     const currentIndex = Math.round(pager.scrollLeft / screenWidth);
 
-    // Left 33% goes back, remaining right 67% goes forward
     if (clickX < screenWidth * 0.33) {
       if (currentIndex > 0) goToSlide(currentIndex - 1);
     } else {
@@ -78,15 +80,11 @@
       if (index === -1) return;
       updateDots(index);
 
-      // Pin hug3.jpg ONLY to index 3 (Slide 4)
       if (index === 3) {
         pauseAndPin("hug3.jpg");
-      } 
-      // Pin hug4.jpg ONLY to index 4 (Slide 5)
-      else if (index === 4) {
+      } else if (index === 4) {
         pauseAndPin("hug4.jpg");
-      } 
-      else if (bgPaused) {
+      } else if (bgPaused) {
         resumeCycle();
       }
     });
@@ -125,7 +123,7 @@
       newBg.style.backgroundImage = 'url("' + src + '")';
       bgContainer.appendChild(newBg);
 
-      newBg.offsetHeight; 
+      newBg.offsetHeight;
       newBg.style.opacity = "1";
 
       setTimeout(() => {
@@ -174,8 +172,6 @@
     dotsContainer.classList.add("visible");
     pager.scrollLeft = 0;
     updateDots(0);
-    
-    // Explicitly start audio here on click
     audio.play().catch(() => {});
   });
 
@@ -190,7 +186,7 @@
 
   function applyStrings(s) {
     if (!s) return;
-    
+
     const quoteEl = document.getElementById("quote");
     let textNode = null;
     for (const n of quoteEl.childNodes) { if (n.nodeType === Node.TEXT_NODE) { textNode = n; break; } }
@@ -227,15 +223,10 @@
     att.options[2].text = s.formLabels.no;
     document.getElementById("submitBtn").textContent = s.formLabels.submit;
 
-    const isValidName = sanitizedName.trim() !== "";
-    if (!isValidName) document.querySelector(".rsvp-form-card").style.display = "none";
+    if (!guest) document.querySelector(".rsvp-form-card").style.display = "none";
 
-    if (isValidName) {
-      const nameParts = sanitizedName.replace(/,/g, "&").replace(/_/g, " ").split(";");
-      const formatted = nameParts.map(p => p.trim()).filter(Boolean)
-        .map(p => p.split("&").map(sub => `<span>${sub.trim()}</span>`).join("<span>&nbsp;&&nbsp;</span>"))
-        .join("<br>");
-      belovedName.innerHTML = formatted;
+    if (guest) {
+      belovedName.innerHTML = guestName;
       belovedName.style.visibility = "visible";
     }
 
@@ -246,7 +237,7 @@
       numberSelect.classList.add("single-guest");
     } else {
       numberSelect.innerHTML = `<option value="" disabled selected>${s.formLabels.numberPlaceholder}</option>`;
-      for (let i = 1; i <= validatedMaxGuests; i++) {
+      for (let i = 1; i <= guestsNumber; i++) {
         const opt = document.createElement("option");
         opt.value = i;
         opt.text = Number(i).toLocaleString(locale);
@@ -290,7 +281,7 @@
     const attSel = document.getElementById("attendance");
     const numSel = document.getElementById("number");
     const btn = document.getElementById("submitBtn");
-    const formName = sanitizedName.replace(/,/g, " & ").replace(/[;_]/g, " ").replace(/\s+/g, " ").trim();
+    const formName = guestName;
 
     function validate() {
       const attOk = attSel.value === "yes" || attSel.value === "no";
@@ -313,7 +304,7 @@
       let msg = `${s.messageTitle}\n\n${s.formLabels.name}: ${formName}`;
       if (number !== "0") msg += `\n${s.formLabels.number}: ${number}`;
       msg += `\n${s.formLabels.attendance}: ${attendance}`;
-      const phone = validatedId === 1 ? "+96176158615" : "+96176606875";
+      const phone = referrer ? "+96176158615" : "+96176606875";
       window.location.href = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
     });
 
@@ -326,9 +317,7 @@
     applyStrings(strings);
     startCountdown(new Date("2026-07-18T18:00:00"));
     initRSVP(strings);
-    scheduleCycle(); 
-    
-    // Unhide the landing page gracefully exactly when text injection is finished
+    scheduleCycle();
     introScreen.classList.add("ready");
   })();
 })();
