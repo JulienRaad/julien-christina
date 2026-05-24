@@ -3,6 +3,7 @@
   const supportedLangs = ["en", "ar"];
   const urlParams = new URLSearchParams(window.location.search);
   const referrer = urlParams.get("referrer");
+  const parsedLang = urlParams.get("lang");
   const lang = (parsedLang && supportedLangs.includes(parsedLang)) ? parsedLang : "en";
   const locale = lang === "ar" ? "ar-lb" : lang;
 
