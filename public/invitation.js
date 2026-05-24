@@ -71,7 +71,7 @@ const guests = [
     { id: 64, name: "Karam & Remie", allowed: 2 },
     { id: 65, name: "Ali Zaid", allowed: 1 },
     { id: 66, name: "Hanna Dib & Family", allowed: 4 },
-    { id: 67, name: "Joseph Dib&", allowed: 3 },
+    { id: 67, name: "Joseph Dib & Family", allowed: 3 },
     { id: 68, name: "Jad Dib & Family", allowed: 4 },
     { id: 69, name: "Georges Rahme & Family", allowed: 4 },
     { id: 70, name: "Sassine & Vera Akl", allowed: 2 },
