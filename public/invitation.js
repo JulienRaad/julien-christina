@@ -1,11 +1,7 @@
 (function () {
   let isStarted = false;
-  const supportedLangs = ["en", "ar"];
   const urlParams = new URLSearchParams(window.location.search);
   const referrer = urlParams.get("referrer");
-  const parsedLang = urlParams.get("lang");
-  const lang = (parsedLang && supportedLangs.includes(parsedLang)) ? parsedLang : "en";
-  const locale = lang === "ar" ? "ar-lb" : lang;
 
 const guests = [
     { id: 1, name: "Emile Abou Samra & Family", allowed: 3 },
@@ -317,10 +313,9 @@ const guests = [
     audio.play().catch(() => {});
   });
 
-  // ── Language strings ──
-  async function loadStrings(lang) {
+  async function loadStrings() {
     try {
-      const res = await fetch(`/lang/${lang}.json`);
+      const res = await fetch(`/lang/en.json`);
       if (!res.ok) throw new Error();
       return await res.json();
     } catch { return null; }
@@ -387,17 +382,8 @@ const guests = [
       }
     }
 
-    if (lang === "ar") {
-      document.documentElement.lang = "ar";
-      document.documentElement.dir = "rtl";
-      document.body.style.direction = "rtl";
-      document.querySelectorAll(".rsvp-form-card select:not(.single-guest)").forEach(sel => {
-        sel.style.backgroundPosition = "left 0.75rem center";
-      });
-    } else {
-      document.documentElement.lang = "en";
-      document.documentElement.dir = "ltr";
-    }
+    document.documentElement.lang = "en";
+    document.documentElement.dir = "ltr";
   }
 
   function startCountdown(targetDate) {
@@ -454,7 +440,7 @@ const guests = [
   }
 
   (async () => {
-    const strings = await loadStrings(lang);
+    const strings = await loadStrings();
     if (!strings) return;
     applyStrings(strings);
     startCountdown(new Date("2026-07-18T18:00:00"));
