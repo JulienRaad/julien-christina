@@ -1,10 +1,9 @@
 (function () {
   let isStarted = false;
   const supportedLangs = ["en", "ar"];
-  const parsedLang = new URL(window.location.href).pathname.split('/')[1];
-  const lang = supportedLangs.includes(parsedLang) ? parsedLang : "en";
   const urlParams = new URLSearchParams(window.location.search);
   const referrer = urlParams.get("referrer");
+  const lang = (parsedLang && supportedLangs.includes(parsedLang)) ? parsedLang : "en";
   const locale = lang === "ar" ? "ar-lb" : lang;
 
 let guests = [
