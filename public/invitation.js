@@ -60,7 +60,7 @@ const guests = [
     { id: 53, name: "Nadia Attieh", allowed: 1 },
     { id: 54, name: "Laudy El Hajj", allowed: 1 },
     { id: 55, name: "Ziad & Marilyne", allowed: 2 },
-    { id: 56, name: "Alain & Mia", allowed: 2 },
+    { id: 56, name: "Alain & Mia Dahdal", allowed: 2 },
     { id: 57, name: "Perla & Antoine", allowed: 2 },
     { id: 58, name: "Cynthia Saad", allowed: 1 },
     { id: 59, name: "Ibrahim & Jennifer Kawhach", allowed: 2 },
