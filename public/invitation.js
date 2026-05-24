@@ -2,6 +2,7 @@
   let isStarted = false;
   const urlParams = new URLSearchParams(window.location.search);
   const referrer = urlParams.get("referrer");
+  const locale = "en";
 
 const guests = [
     { id: 1, name: "Emile Abou Samra & Family", allowed: 3 },
