@@ -151,6 +151,8 @@ const guests = [
     { id: 144, name: "Miled Dib", allowed: 1 },
     { id: 145, name: "Père Wissam Harb", allowed: 1},
     { id: 146, name: "Charles & Christelle Mhanna", allowed: 2},
+    { id: 147, name: "Joseph Aad", allowed: 1}
+  
   ];
 
   const guestId = parseInt(urlParams.get("id"));
