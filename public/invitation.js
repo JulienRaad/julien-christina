@@ -399,12 +399,20 @@ const guests = [
   }
 
   function startCountdown(targetDate) {
-    const els = {
+      const els = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
       minutes: document.getElementById("minutes"),
       seconds: document.getElementById("seconds"),
     };
+    
+    if (targetDate <= new Date()) {
+    Object.values(els).forEach(el => {
+      el.textContent = "0";
+    });
+    return;
+  }
+  
     function tick() {
       const diff = targetDate - new Date();
       if (diff <= 0) { Object.values(els).forEach(el => el.textContent = Number(0).toLocaleString(locale)); clearInterval(timer); return; }
